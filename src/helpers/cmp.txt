@@ -1,0 +1,29 @@
+Page:
+1. Board:
+   nav cmps: 
+    1.MainNav - Purple 
+    2.BoardNav
+
+    cmps- 
+    1.BoardConrtollers
+    2.BoardHeader 
+    3.GroupList
+
+    cmp - GroupPreview : 
+    0. 
+    1. TaskList 
+        1. TaskPreview
+
+2.LoginSignup
+3.HomePage
+
+
+
+
+    
+
+
+
+
+
+
