@@ -9,7 +9,7 @@ export function BoardNav() {
 
   return (
     <section className="board-nav">
-      <h1>BoardNav</h1>
+      <h1>Main Workspace</h1>
       <button onClick={()=>addBoard()}>Add+</button>
       <BoardList />
     </section>
