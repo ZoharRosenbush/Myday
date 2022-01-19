@@ -1,8 +1,6 @@
 import { GroupPreview } from "./GroupPreview.jsx";
 export function GroupList({ board }) {
-  console.log("board in GroupList:", board);
   const { groups } = board;
-  console.log("groups in GroupList :", groups);
 
   return (
     <section>

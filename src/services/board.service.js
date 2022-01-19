@@ -26,30 +26,18 @@ function save(boardToSave) {
   }
 }
 async function saveTask(taskToSave, groupId, boardId) {
-  const board = await getById(boardId);
-
-  console.log("board:", board);
-  console.log("taskToSave:", taskToSave);
-
-  const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-  console.log("groupIdx:", groupIdx);
-
- const tasksToSave =  board.groups[groupIdx].tasks.map((task) => {
-    console.log("task:", task);
-    return (task.id === taskToSave.id) ? taskToSave : task;
-
-  });
-  board.groups[groupIdx].tasks = tasksToSave
-  console.log("board after changes:", board);
-
-  // TODO: find the task, and update
-  //   board.activities.unshift(activity);
-  //   saveBoard(board);
-  //   return board;
-  if (taskToSave._id) {
-    return storageService.put(STORAGE_KEY, taskToSave);
-  } else {
-    return storageService.post(STORAGE_KEY, taskToSave);
+  try {
+    const board = await getById(boardId);
+    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+  
+    const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
+      return task.id === taskToSave.id ? taskToSave : task;
+    });
+    board.groups[groupIdx].tasks = tasksToSave;
+    save(board);
+    return board
+  } catch (err) {
+    console.log("err:", err);
   }
 }
 
