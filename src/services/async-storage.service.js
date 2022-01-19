@@ -9,9 +9,9 @@ export const storageService = {
 //HELLO ASYNCD
 
 function query(entityType, filterBy, delay = 500) {
-    
+
     let entities = JSON.parse(localStorage.getItem(entityType)) || _createBoards()
-    console.log('the entities',entities);
+    console.log('the entities', entities);
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(entities)
@@ -58,6 +58,13 @@ function _createBoards() {
                 "username": "Abush",
                 "imgUrl": "http://some-img"
             },
+            "labels": [
+                {
+                    "id": "l101",
+                    "title": "Done",
+                    "color": "#61bd4f"
+                }
+            ],
             "members": [
                 {
                     "_id": "u101",

@@ -12,7 +12,7 @@ export function BoardList({boards}) {
         return (
           <ul key={idx}>
             <li key={board._id}>
-              <Link to={`/myday/board/:${board._id}`}>{board.title}</Link>
+              <Link to={`/myday/board/${board._id}`}>{board.title}</Link>
             </li>
           </ul>
         );

@@ -18,7 +18,7 @@ export function loadBoards() {
 
 
 export function loadBoard(boardId) {
-  console.log('boardId:', boardId);
+  console.log('in load board,boardId', boardId);
 
   return async (dispatch) => {
     try {

@@ -9,11 +9,11 @@ import { loadBoard } from "../store/board.action.js";
 class _BoardDetails extends React.Component {
 
   componentDidMount() {
-    const { boardId } = this.props.match.params;
-    console.log("boardId:", boardId);
+    const { boardId } = this.props.match.params
+    console.log("boardId", boardId);
     // const  board = await boardService.getById(boardId)
+    console.log("boardId:", boardId);
     this.props.loadBoard(boardId);
-    
     //   this.setState({ board });
   }
 
