@@ -17,6 +17,7 @@ const routes = [
     {
         path: '/myday/board',
         component: MainApp,
+        //TODO: change to boardApp
     }
     ,
     {
