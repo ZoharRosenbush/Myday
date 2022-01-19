@@ -1,6 +1,13 @@
 .board-nav{
     width: 150px;
     border: 1px solid rgba(0, 0, 0, 0.582);
-    height: 100vh;
+    height: 158%;
+    top: 0;
     position: fixed;
+    z-index: 5;
+    background-color: rgb(221, 211, 211);
+    
+    .fas .arrow .arrow-left{
+        color: black;
+    }
 }
