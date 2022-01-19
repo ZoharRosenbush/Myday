@@ -3,7 +3,7 @@ export const storageService = {
     get,
     post,
     put,
-    // remove,
+    remove,
 }
 
 
@@ -52,6 +52,16 @@ function post(entityType, newEntity) {
         })
 }
 
+function remove(entityType, entityId) {
+    return query(entityType)
+        .then(entities => {
+            const idx = entities.findIndex(entity => entity._id === entityId)
+            entities.splice(idx, 1)
+            _save(entityType, entities)
+        })
+}
+
+
 
 function _save(entityType, entities) {
     console.log('entityType:', entityType);
@@ -73,7 +83,7 @@ function _createBoards() {
     const boards = [
         {
             "_id": _makeId(),
-            cmpsOrder:[
+            cmpsOrder: [
                 "status-picker",
                 "member-picker",
                 "date-picker",
@@ -88,16 +98,16 @@ function _createBoards() {
                 "username": "Abush",
                 "imgUrl": "http://some-img"
             },
-            "status": [
-                { "id": "la123",value: "", color: "grey" },
-                { "id": "la555",value: "Done", color: "green" },
-                { "id": "la666",value: "Stuck", color: "red" },
-                { "id": "la777",value: "Working on it", color: "orange" },
+            "statuses": [
+                { "id": "la123", value: "", color: "grey" },
+                { "id": "la555", value: "Done", color: "green" },
+                { "id": "la666", value: "Stuck", color: "red" },
+                { "id": "la777", value: "Working on it", color: "orange" },
             ],
-            "Priority": [
-                { "id": "lb111",value: "Low", color: "grey" },
-                { "id": "lb222",value: "Medium", color: "green" },
-                { "id": "lb333",value: "High", color: "red" },
+            "Priorities": [
+                { "id": "lb111", value: "Low", color: "grey" },
+                { "id": "lb222", value: "Medium", color: "green" },
+                { "id": "lb333", value: "High", color: "red" },
             ],
             "members": [
                 {
@@ -162,12 +172,12 @@ function _createBoards() {
                                 "fullname": "Abi Abambi",
                                 "imgUrl": "http://some-img"
                             },
+
                         }
 
                     ],
                 },
             ],
-            "cmpsOrder": ["status-picker", "member-picker", "date-picker", "priority-picker"]
         }
     ]
     localStorage.setItem('boardDB', JSON.stringify(boards))
