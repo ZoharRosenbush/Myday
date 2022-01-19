@@ -1,18 +1,31 @@
-import { boards } from '../helpers/monday.js'
 import { storageService } from './async-storage.service.js'
 const STORAGE_KEY = 'boardDB'
 
 export const boardService = {
     query,
-    getById
+    getById,
+    save,
+    remove
 }
 
 function query(filterBy) {
-    console.log('log in query')
     return storageService.query(STORAGE_KEY)
 }
 
 function getById(boardId) {
-    console.log('the borad is in serivce',boardId)
-    return storageService.get(STORAGE_KEY,boardId)
+    return storageService.get(STORAGE_KEY, boardId)
 }
+
+function save(boardToSave) {
+    if (boardToSave._id) {
+        return storageService.put(STORAGE_KEY, boardToSave)
+    } else {
+        return storageService.post(STORAGE_KEY, boardToSave)
+    }
+}
+
+function remove(boardId) {
+    return storageService.remove(STORAGE_KEY, boardId)
+
+}
+

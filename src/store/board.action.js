@@ -16,7 +16,6 @@ export function loadBoards() {
   };
 }
 
-
 export function loadBoard(boardId) {
   console.log('in load board,boardId', boardId);
 
@@ -28,6 +27,25 @@ export function loadBoard(boardId) {
     } catch (err) {
       console.log("cannot find board:", err);
       throw err;
+    }
+  };
+}
+
+
+export function addBoard(board) {
+  return async (dispatch) => {
+    try {
+      const savedBoard = await boardService.save({ ...board })
+      dispatch({ type: "ADD_TOY", board: savedBoard });
+    }
+    // dispatch({
+    //   type: "SET_MSG",
+    //   msg: { txt: "board added", type: "success" },
+    // });
+
+    catch (err) {
+      console.log('Cannot add board', err);
+      // showErrorMsg("Cannot add board");
     }
   };
 }
@@ -100,24 +118,7 @@ export function loadBoard(boardId) {
 //   };
 // }
 
-// export function addToy(toy) {
-//   return async (dispatch)  =>{
-//     try{
-//       const savedToy = await toyService.save({ ...toy })
-//       const action = { type: "ADD_TOY", toy: savedToy };
-//       dispatch(action);
-//     }
-//         // dispatch({
-//         //   type: "SET_MSG",
-//         //   msg: { txt: "toy added", type: "success" },
-//         // });
 
-//   catch(err) {
-//     console.log('Cannot add toy', err);
-//         // showErrorMsg("Cannot add toy");
-//       }
-//   };
-// }
 
 // export function closeMsg ()  {
 //   return (dispatch) => {

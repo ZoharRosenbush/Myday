@@ -1,12 +1,11 @@
 export const storageService = {
     query,
     get,
-    // post,
-    // put,
-    // remove,
+    post,
+    put,
+    remove,
 }
 
-//HELLO ASYNCD
 
 function query(entityType, filterBy, delay = 500) {
 
@@ -27,6 +26,41 @@ function get(entityType, entityId) {
             return board
         })
 }
+
+function put(entityType, updatedEntity) {
+    console.log('ENTERED UPDATE')
+    return query(entityType)
+        .then(entities => {
+            const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
+            entities.splice(idx, 1, updatedEntity)
+            _save(entityType, entities)
+            return updatedEntity
+        })
+}
+
+
+function post(entityType, newEntity) {
+    console.log('ENTERED ADD')
+    newEntity._id = _makeId()
+
+
+    return query(entityType)
+        .then(entities => {
+            entities.push(newEntity)
+            _save(entityType, entities)
+            return newEntity
+        })
+}
+
+function remove(entityType, entityId) {
+    return query(entityType)
+        .then(entities => {
+            const idx = entities.findIndex(entity => entity._id === entityId)
+            entities.splice(idx, 1)
+            _save(entityType, entities)
+        })
+}
+
 
 
 function _save(entityType, entities) {
@@ -49,7 +83,7 @@ function _createBoards() {
     const boards = [
         {
             "_id": _makeId(),
-            cmpsOrder:[
+            cmpsOrder: [
                 "status-picker",
                 "member-picker",
                 "date-picker",
@@ -65,6 +99,7 @@ function _createBoards() {
                 "imgUrl": "http://some-img"
             },
             "statuses": [
+<<<<<<< HEAD
                 { "id": "la123",value: "", color: "grey" },
                 { "id": "la555",value: "Done", color: "green" },
                 { "id": "la666",value: "Stuck", color: "red" },
@@ -74,6 +109,17 @@ function _createBoards() {
                 { "id": "lb111",value: "Low", color: "grey" },
                 { "id": "lb222",value: "Medium", color: "green" },
                 { "id": "lb333",value: "High", color: "red" },
+=======
+                { "id": "la123", value: "", color: "grey" },
+                { "id": "la555", value: "Done", color: "green" },
+                { "id": "la666", value: "Stuck", color: "red" },
+                { "id": "la777", value: "Working on it", color: "orange" },
+            ],
+            "Priorities": [
+                { "id": "lb111", value: "Low", color: "grey" },
+                { "id": "lb222", value: "Medium", color: "green" },
+                { "id": "lb333", value: "High", color: "red" },
+>>>>>>> 2a0deca865715a424d83affbfb51e2f181f8733c
             ],
             "members": [
                 {
@@ -138,12 +184,12 @@ function _createBoards() {
                                 "fullname": "Abi Abambi",
                                 "imgUrl": "http://some-img"
                             },
+
                         }
 
                     ],
                 },
             ],
-            "cmpsOrder": ["status-picker", "member-picker", "date-picker", "priority-picker"]
         }
     ]
     localStorage.setItem('boardDB', JSON.stringify(boards))
