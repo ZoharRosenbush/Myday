@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function BoardList() {
+export function BoardList({boards}) {
 
   return (
     <section>

@@ -8,7 +8,8 @@ export const boardService = {
 }
 
 function query(filterBy) {
-    return boards = storageService.query(STORAGE_KEY)
+    console.log('log in query')
+    return storageService.query(STORAGE_KEY)
 }
 
 function getById(boardId) {

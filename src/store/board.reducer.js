@@ -1,6 +1,7 @@
 // import {userService} from '../services/user.service.js'
 
 const initialState = {
+  boards:[],
   board: {},
   activities: [],
 };
@@ -9,6 +10,11 @@ export function boardReducer(state = initialState, action) {
   let newState = state;
 
   switch (action.type) {
+
+    
+    case "SET_BOARDS":
+      return { ...state, boards: [ ...action.boards ] };
+    
     case "SET_BOARD":
       return { ...state, board: { ...action.board } };
 

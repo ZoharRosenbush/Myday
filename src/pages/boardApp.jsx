@@ -3,16 +3,24 @@ import { connect } from "react-redux";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 
+import {loadBoards} from '../store/board.action.js'
+
+
 class _BoardApp extends React.Component{
 
-
+  componentDidMount(){
+    this.props.loadBoards()
+    console.log('BoardApp loaded');
+  }
 
 
   render(){
+    const {boards} = this.props
+    console.log('the boards in app',boards)
     return (
       <section>
       <BoardHeader />
-      <BoardNav />
+      <BoardNav boards={boards} />
     </section>
   );
 }
@@ -20,13 +28,13 @@ class _BoardApp extends React.Component{
 
 function mapStateToProps({ boardModule }) {
   return {
-    board: boardModule.board,
+    boards: boardModule.boards,
     //   currFilterBy: toyModule.currFilterBy
   };
 }
 const mapDispatchToProps = {
-  loadBoard
-};
+  loadBoards
+}
 
 export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp);
 

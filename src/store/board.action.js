@@ -2,14 +2,29 @@ import { boardService } from "../services/board.service.js";
 
 
 
-export function loadBoard(boardId) {
-    console.log('boardId:', boardId);
-    
+export function loadBoards() {
+  console.log('hello boards')
   return async (dispatch) => {
     try {
-        const board = await boardService.getById(boardId);
-        console.log('board:',board );
-        dispatch({ type: "SET_BOARD", board: board });
+      const boards = await boardService.query();
+      console.log('the boards', boards)
+      dispatch({ type: "SET_BOARDS", boards: boards });
+    } catch (err) {
+      console.log("cannot find boards:", err);
+      throw err;
+    }
+  };
+}
+
+
+export function loadBoard(boardId) {
+  console.log('boardId:', boardId);
+
+  return async (dispatch) => {
+    try {
+      const board = await boardService.getById(boardId);
+      console.log('board:', board);
+      dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log("cannot find board:", err);
       throw err;
