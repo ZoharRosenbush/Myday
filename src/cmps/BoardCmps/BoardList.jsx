@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 
 export function BoardList({boards}) {
 
+  console.log('boards:', boards);
   return (
+    
     <section>
       {boards.map((board, idx) => {
           console.log('board._id:', board._id);
