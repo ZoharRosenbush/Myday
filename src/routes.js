@@ -1,5 +1,5 @@
 import { LoginSignup } from './pages/LoginSignup.jsx'
-import { boardApp } from './pages/boardApp.jsx'
+import { BoardApp } from './pages/BoardApp.jsx'
 import { BoardDetails } from './pages/BoardDetails.jsx'
 
 
@@ -15,7 +15,7 @@ const routes = [
     },
     {
         path: '/myday/board',
-        component: boardApp,
+        component: BoardApp,
     }
     
 ]
