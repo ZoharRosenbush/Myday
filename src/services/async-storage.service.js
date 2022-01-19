@@ -64,13 +64,13 @@ function _createBoards() {
                 "username": "Abush",
                 "imgUrl": "http://some-img"
             },
-            "status": [
+            "statuses": [
                 { "id": "la123",value: "", color: "grey" },
                 { "id": "la555",value: "Done", color: "green" },
                 { "id": "la666",value: "Stuck", color: "red" },
                 { "id": "la777",value: "Working on it", color: "orange" },
             ],
-            "Priority": [
+            "priorities": [
                 { "id": "lb111",value: "Low", color: "grey" },
                 { "id": "lb222",value: "Medium", color: "green" },
                 { "id": "lb333",value: "High", color: "red" },
