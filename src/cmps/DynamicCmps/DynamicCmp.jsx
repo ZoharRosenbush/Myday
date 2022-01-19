@@ -1,12 +1,13 @@
 // const ctgsOrder =["status-picker", "member-picker", "date-picker", "priority-picker"]
 import { StatusCmp } from "./StatusCmp.jsx";
 import { MemberCmp } from "./MemberCmp.jsx";
-export function DynamicCmp({ cmp, info, onUpdate , task}) {
-  switch (cmp) {
+export function DynamicCmp({ cmpData, updateTask}) {
+  switch (cmpData.type) {
     case "status-picker":
-      return <StatusCmp task={task} />;
+      return <StatusCmp cmpData={cmpData} />;
       // return <StatusCmp info={info} onUpdate={onUpdate}  />;
     case "member-picker":
+      // return <MembersCmp cmpData={cmpData} />;
     //   return <StatusCmp task={{ title: "Replace Logo", status: "Done" }} />;
       // return <MemberCmp info={info} onUpdate={onUpdate}  />;
     default:

@@ -7,24 +7,24 @@ import { loadBoard } from "../store/board.action.js";
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
-
   componentDidMount() {
-    const { boardId } = this.props.match.params
-    console.log("boardId", boardId);
+    const { boardId } = this.props.match.params;
+    console.log("boardId in details", boardId);
     // const  board = await boardService.getById(boardId)
-    console.log("boardId:", boardId);
+    console.log("boardId details:", boardId);
     this.props.loadBoard(boardId);
     //   this.setState({ board });
   }
 
   render() {
+    const { board } = this.props;
     return (
       <section>
         <BoardHeader
         // title={board.title}
         />
         <BoardNav />
-        <GroupList />
+        {board && <GroupList board={board}/>}
       </section>
     );
   }
@@ -37,8 +37,10 @@ function mapStateToProps({ boardModule }) {
   };
 }
 const mapDispatchToProps = {
-  loadBoard
+  loadBoard,
 };
 
-export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails);
-
+export const BoardDetails = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_BoardDetails);

@@ -1,69 +1,108 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 
-
-export class TaskPreview extends React.Component {
+export class _TaskPreview extends React.Component {
   state = {};
 
+  componentDidMount() {
+    console.log('this.props in task preview', this.props);
+  }
+  
 
-
-  onUpdate = (data) => {
-    // console.log("Updating: ", cmp, "with data:", data);
-    //Updating "status-peaker " with data: ""
+  updateTask = (cmpType, data) => {
+    console.log("updateTask");
+    // Switch
+    // task.members = data;
+    // task.status = data;
   };
 
-  info = {};
-  task = { status: "Done" }
+  task = { status: "Done" };
 
   //GET FROM STORE
-  cmpsOrder = [
-    "status-picker",
-    "member-picker",
-    "date-picker",
-    "priority-picker",
-  ];
 
   cmpInfo = (cmpType) => {
-    const { task } = this.props
+    console.log('cmpType:', cmpType);
+    
+    const { task, board } = this.props;
+    console.log('task:',task );
+    
     switch (cmpType) {
-      case 'status-picker':
-
+      case "status-picker":
         return {
-          type: 'status-picker',
+          type: "status-picker",
           info: {
-            selectedStatus: 'Done',
-            statuses: [{ "value": 'Done', "color": 'green' }, {}]
-          }
-        }
+            selectedStatus: task.status,
+            statuses: board.statuses,
+          },
+        };
+      case "member-picker":
+        return {
+          type: "member-picker",
+          info: {
+            selectedMembers: task.owner,
+            members: board.members,
+          },
+        };
+      case "date-picker":
+        return {
+          type: "date-picker",
+          info: {
+            selectedDate: task.timeline,
+          },
+        };
 
+      case "priority-picker":
+        return {
+          type: "priority-picker",
+          info: {
+            selectedStatus: task.priority,
+            priorities: board.priorities,
+          },
+        };
       default:
     }
-  }
+  };
+
   render() {
-    // const { task } = this.props;
+    console.log('this.props in render preview:', this.props);
+    
+    const { board } = this.props;
+    console.log('board:', board);
+    
+   const cmpsOrder = board.cmpsOrder;
     return (
       <section>
-        {this.cmpsOrder.map((cmp, idx) => {
-
+        {cmpsOrder.map((cmp, idx) => {
           return (
             <DynamicCmp
-              task={this.task}
-              cmp={cmp}
-              // info={this.cmpInfo}
+              cmpData={this.cmpInfo(cmp)}
               key={idx}
-              onUpdate={this.onUpdate}
+              updateTask={this.updateTask}
             />
           );
         })}
         <h1>TaskPreview</h1>
         <TaskDetails />
       </section>
-    )
+    );
   }
 }
 
+function mapStateToProps({ boardModule }) {
+  return {
+    board: boardModule.board,
+    //   currFilterBy: toyModule.currFilterBy
+  };
+}
+const mapDispatchToProps = {};
+
+export const TaskPreview = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_TaskPreview);
 
 // for monday
 

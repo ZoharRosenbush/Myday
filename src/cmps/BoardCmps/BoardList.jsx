@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 export function BoardList({ boards }) {
   console.log('boards:', boards);
+
   return (
     <section>
       {boards.map((board, idx) => {

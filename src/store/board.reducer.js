@@ -2,7 +2,7 @@
 
 const initialState = {
   boards: [],
-  board: {},
+  board: null,
   activities: [],
 };
 
