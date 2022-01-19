@@ -58,10 +58,10 @@ const board = {
     "_id": "b101",
     "title": "Robot dev proj",
     "createdAt": 1589983468418,
-    //DO WE NEED THE CREATED BY?
     "createdBy": {
         "_id": "u101",
         "fullname": "Abi Abambi",
+        "username": "Abush",
         "imgUrl": "http://some-img"
     },
     // "labels": [
@@ -75,7 +75,7 @@ const board = {
         {
             "_id": "u101",
             "fullname": "Tal Tarablus",
-            "username":"Talush",
+            "username": "Talus",
             "imgUrl": "https://www.google.com"
         }
     ],
