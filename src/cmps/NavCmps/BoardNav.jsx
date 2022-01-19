@@ -10,7 +10,6 @@ export class _BoardNav extends React.Component {
 
   componentDidMount() {
     this.props.loadBoards()
-    console.log('BoardApp loaded');
   }
 
 

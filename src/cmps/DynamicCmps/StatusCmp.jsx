@@ -6,28 +6,15 @@ export class StatusCmp extends React.Component {
   };
 
   openModal = () => {
-    console.log("open modal");
     this.setState({ isModalOpen: true });
   };
 
   handelChange = ({ target }) => {
     const { cmpData, onUpdateTask } = this.props;
-    console.log("target.className:", target.className);
     onUpdateTask(cmpData.type, target.className);
   };
 
-  // componentDidMount() {
-  //   const { task } = this.props;
-  //   this.setState({ selectedStatus: task.status });
-  // }
 
-  //   get colorStatus() {
-  //     const { selectedStatus, statuses } = this.state;
-  //     const color = statuses.map((status) => {
-  //       if (status.value === selectedStatus) return status.color;
-  //     });
-  //     return color
-  //   }
   render() {
     const { cmpData } = this.props;
     const { type, info } = cmpData;
@@ -56,16 +43,3 @@ export class StatusCmp extends React.Component {
     );
   }
 }
-
-// const cmp1 = {
-//   type: "status-picker",
-//   info: {
-//     selectedStatus: "Done",
-//     statuses: [
-//       { value: "", color: "grey" },
-//       { value: "Done", color: "green" },
-//       { value: "Stuck", color: "red" },
-//       { value: "Working on it", color: "orange" },
-//     ],
-//   },
-// };

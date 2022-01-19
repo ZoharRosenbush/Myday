@@ -6,16 +6,9 @@ import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 import {saveTask} from '../../store/board.action.js';
 
  class _TaskPreview extends React.Component {
-  state = {};
-
-  componentDidMount() {
-    console.log('this.props in task preview', this.props);
-  }
-  
 
   onUpdateTask = (cmpType, data) => {
   const {task, saveTask, groupId, board} = this.props
-    console.log("board", board);
     switch (cmpType) {
       case "status-picker":
         task.status = data
@@ -25,10 +18,8 @@ import {saveTask} from '../../store/board.action.js';
 }
 
   cmpInfo = (cmpType) => {
-    console.log('cmpType:', cmpType);
     
     const { task, board } = this.props;
-    console.log('task:',task );
     
     switch (cmpType) {
       case "status-picker":
@@ -69,10 +60,8 @@ import {saveTask} from '../../store/board.action.js';
   };
 
   render() {
-    console.log('this.props in render preview:', this.props);
     
     const { board } = this.props;
-    console.log('board:', board);
     
    const cmpsOrder = board.cmpsOrder;
     return (
@@ -109,44 +98,3 @@ export const TaskPreview = connect(
   mapDispatchToProps
 )(_TaskPreview);
 
-// for monday
-
-// function category(cmpsOrder){
-//     return{
-//         {cmpsOrder.map(cmp, idx)=>{
-//            if{cmp===="status-picker" } return {
-
-//         }}
-
-//     }
-// }
-
-// const cmp1 = {
-//     type: 'status-picker',
-//     info: {
-//         selectedStatus: 'Done',
-//         statuses: [{ "value": 'Done', "color": 'green' }, {}]
-//     }
-// }
-
-// const cmp2 = {
-//     type: 'member-picker',
-//     info: {
-//         selectedMembers: ['m1', 'm2'],
-//         members: ['m1', 'm2', 'm3']
-//     }
-// }
-
-// const cmp3 = {
-//     type: 'date-picker',
-//     info: {
-//         selectedDate: '2022-09-07',
-//     }
-// }
-// const cmp4 = {
-//     type: 'priority-picker',
-//     info: {
-//         selectedStatus: 'High',
-//         priorities: [{}, {}]
-//     }
-// }
