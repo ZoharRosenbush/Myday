@@ -1,17 +1,17 @@
 // import {userService} from '../services/user.service.js'
 
 const initialState = {
-    board: {},
-    activities: []
+  board: {},
+  activities: [],
+};
 
-}
+export function boardReducer(state = initialState, action) {
+  let newState = state;
 
+  switch (action.type) {
+    case "SET_BOARD":
+      return { ...state, board: { ...action.board } };
 
-export function BoardReducer(state = initialState, action) {
-
-    let newState = state
-
-    // switch (action.type) {
     //     case 'ADD_GROUP':
     //         return { ...state, board: { ...state.board, groups: [action.group, ...groups] } }
     //     case 'EDIT_GROUP':
@@ -44,15 +44,13 @@ export function BoardReducer(state = initialState, action) {
     //         return { ...state, filterBy: action.filterBy }
     //     default:
     //         newState = state
-    // }
-    // // groups[action.group].tasks:[...tasks]
-    return newState;
+  }
+  // // groups[action.group].tasks:[...tasks]
+  return newState;
 }
-
 
 // update task (groupIdtaskId){
 //     finds group
-
 
 //     dispatch(EDITGROUP)
 

@@ -1,43 +1,58 @@
-import {TaskDetails} from './TaskDetails.jsx'
-import {DynamicCmp} from '../DynamicCmps/DynamicCmp.jsx'
+import { TaskDetails } from "./TaskDetails.jsx";
+import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
+import React from "react";
 
+export class TaskPreview extends React.Component {
+  state = {};
 
-export function TaskPreview({task}){
+  onUpdate = (data) => {
+    // console.log("Updating: ", cmp, "with data:", data);
+    //Updating "status-peaker " with data: ""
+  };
 
-    
-    //GET FROM STORE
-    const cmpsOrder =["status-picker", "member-picker", "date-picker", "priority-picker"]
+  info = {};
+  task={status: "Done" }
+
+  //GET FROM STORE
+  cmpsOrder = [
+    "status-picker",
+    "member-picker",
+    "date-picker",
+    "priority-picker",
+  ];
+  render() {
+    // const { task } = this.props;
     return (
-        <section>
-        {cmpsOrder.map((cmp, idx)=>{
-           return <DynamicCmp cmp={cmp} key={idx} onUpdate={data => {
-               console.log('Updating: ', cmp, 'with data:', data)
-           }} />
+      <section>
+        {this.cmpsOrder.map((cmp, idx) => {
         
+          return (
+            <DynamicCmp
+              task={this.task}
+              cmp={cmp}
+              key={idx}
+              onUpdate={this.onUpdate}
+            />
+          );
         })}
         <h1>TaskPreview</h1>
-        <TaskDetails/>
-        </section>
-    )
+        <TaskDetails />
+      </section>
+    );
+  }
 }
 
-
-        // for monday
-
-
-
+// for monday
 
 // function category(cmpsOrder){
 //     return{
 //         {cmpsOrder.map(cmp, idx)=>{
 //            if{cmp===="status-picker" } return {
-           
+
 //         }}
-        
+
 //     }
 // }
-
-
 
 // const cmp1 = {
 //     type: 'status-picker',

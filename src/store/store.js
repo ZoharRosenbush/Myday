@@ -2,11 +2,11 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
 
-import { BoardReducer } from "./board.reducer.js"
+import { boardReducer } from "./board.reducer.js"
 
 
 const rootReducer = combineReducers({
-    BoardModule: BoardReducer,
+    boardModule: boardReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
