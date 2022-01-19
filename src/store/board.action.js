@@ -36,11 +36,6 @@ export function addBoard(board) {
       const savedBoard = await boardService.save({ ...board })
       dispatch({ type: "ADD_BOARD", board: { _id: savedBoard._id, title: savedBoard.title } });
     }
-    // dispatch({
-    //   type: "SET_MSG",
-    //   msg: { txt: "board added", type: "success" },
-    // });
-
     catch (err) {
       console.log('Cannot add board', err);
       // showErrorMsg("Cannot add board");
@@ -49,17 +44,30 @@ export function addBoard(board) {
 }
 
 
+export function removeBoard(boardId) {
+  return async (dispatch) => {
+    try {
+      await boardService.remove(boardId)
+      dispatch({ type: "REMOVE_BOARD", boardId: boardId });
+    }
+    catch (err) {
+      console.log('Cannot delete board', err);
+    }
+  };
+}
+
+
 // Store - saveTask
-export function  saveTask(task, groupId, boardId ) {
-    // const activity = {
-    //     "id": makeId(),
-    //     "txt": "Changed Color",
-    //     "createdAt": Date.now(),
-    //     "byMember": userService.getLoggedinUser(),
-    //     "task": task
-    // }
-   const board = boardService.saveTask(task, groupId, boardId )
-   
+export function saveTask(task, groupId, boardId) {
+  // const activity = {
+  //     "id": makeId(),
+  //     "txt": "Changed Color",
+  //     "createdAt": Date.now(),
+  //     "byMember": userService.getLoggedinUser(),
+  //     "task": task
+  // }
+  const board = boardService.saveTask(task, groupId, boardId)
+
 }
 
 // export function loadToys() {

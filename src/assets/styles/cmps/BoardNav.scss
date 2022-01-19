@@ -19,17 +19,22 @@
     border-radius: 4px;
     -webkit-align-self: center;
     align-self: center;
-    text-align: center;
+    // text-align: center;
     // font-family: roboto-light,helvetica,sans-serif;
   }
   .sidebar-nav-list a {
-    padding: 20px 16px 16px 14px;
+    padding: 8px;
+    margin-bottom: 20px;
     margin: auto;
     color: #323338;
+    font-weight: 800;
+    font-size: 0.875rem;
   }
 
   .side-bar-fetures {
-    padding: 20px 16px 16px 14px;
+    // align-items:
+    width: 100%;
+    padding: 5px;
     margin-bottom: 20px;
     border-bottom: 1px solid #e6e9ef;
     color: #323338;
