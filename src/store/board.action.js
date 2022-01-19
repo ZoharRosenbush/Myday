@@ -3,11 +3,9 @@ import { boardService } from "../services/board.service.js";
 
 
 export function loadBoards() {
-  console.log('hello boards')
   return async (dispatch) => {
     try {
       const boards = await boardService.query();
-      console.log('the boards', boards)
       dispatch({ type: "SET_BOARDS", boards: boards });
     } catch (err) {
       console.log("cannot find boards:", err);
@@ -36,7 +34,7 @@ export function addBoard(board) {
   return async (dispatch) => {
     try {
       const savedBoard = await boardService.save({ ...board })
-      dispatch({ type: "ADD_TOY", board: savedBoard });
+      dispatch({ type: "ADD_BOARD", board: { _id: savedBoard._id, title: savedBoard.title } });
     }
     // dispatch({
     //   type: "SET_MSG",

@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { BoardList } from "../BoardCmps/BoardList.jsx";
-import { loadBoards } from '../../store/board.action.js'
-
+import { loadBoards, addBoard } from '../../store/board.action.js'
+import { boardService } from "../../services/board.service.js";
+// import { addToy } from '../store/toy.action.js'
 
 export class _BoardNav extends React.Component {
 
@@ -12,16 +13,20 @@ export class _BoardNav extends React.Component {
     console.log('BoardApp loaded');
   }
 
+
   addBoard = () => {
-    console.log('adding new board');
+    const newBoard = boardService.getNewBoard()
+    this.props.addBoard(newBoard)
+    //TODO: NEVIGATE THE PAGE TO THE NEW BOARD LINK
+    // window.location.href = `/myday/board/${newBoard._id}`
   }
   render() {
-    const {boards}=this.props
+    const { boards } = this.props
     return (
       <section className="board-nav" >
         <h1>Main Workspace</h1>
         <i className="fas arrow arrow-left"></i>
-        <button onClick={() => this.addBoard()}>Add +</button>
+        <button onClick={() => this.addBoard()} className="side-bar-fetures">Add +</button>
         <BoardList boards={boards} />
       </section>
     )
@@ -37,6 +42,7 @@ function mapStateToProps({ boardModule }) {
   };
 }
 const mapDispatchToProps = {
-  loadBoards
+  loadBoards,
+  addBoard
 }
 export const BoardNav = connect(mapStateToProps, mapDispatchToProps)(_BoardNav);
