@@ -73,6 +73,12 @@ function _createBoards() {
     const boards = [
         {
             "_id": _makeId(),
+            cmpsOrder:[
+                "status-picker",
+                "member-picker",
+                "date-picker",
+                "priority-picker",
+            ],
             "title": "Sprint 4",
             "description": "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
             // "createdAt": 1589983468418,
@@ -82,24 +88,34 @@ function _createBoards() {
                 "username": "Abush",
                 "imgUrl": "http://some-img"
             },
-            "labels": [
-                {
-                    "id": "l101",
-                    "title": "Done",
-                    "color": "#61bd4f"
-                }
+            "status": [
+                { "id": "la123",value: "", color: "grey" },
+                { "id": "la555",value: "Done", color: "green" },
+                { "id": "la666",value: "Stuck", color: "red" },
+                { "id": "la777",value: "Working on it", color: "orange" },
+            ],
+            "Priority": [
+                { "id": "lb111",value: "Low", color: "grey" },
+                { "id": "lb222",value: "Medium", color: "green" },
+                { "id": "lb333",value: "High", color: "red" },
             ],
             "members": [
                 {
                     "_id": "u101",
-                    "fullname": "Tal Tarablus",
-                    "username": "Talus",
+                    "fullname": "May Elgrat",
+                    "username": "May Elgrat",
                     "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                 },
                 {
                     "_id": "u108",
-                    "fullname": "Abi Abambi",
-                    "username": "Abush",
+                    "fullname": "Lee Segal",
+                    "username": "Lee Segal",
+                    "imgUrl": "http://some-img"
+                },
+                {
+                    "_id": "u1099",
+                    "fullname": "Zohar Rosenbush",
+                    "username": "Zohar Rosenbush",
                     "imgUrl": "http://some-img"
                 }
             ],
@@ -146,7 +162,6 @@ function _createBoards() {
                                 "fullname": "Abi Abambi",
                                 "imgUrl": "http://some-img"
                             },
-
                         }
 
                     ],
