@@ -1,4 +1,5 @@
 import { Switch, Route } from 'react-router-dom'
+import { Home } from './pages/Home.jsx'
 
 import routes from './routes.js'
 
@@ -9,8 +10,10 @@ export function App() {
             {/* <AppHeader/> */}
             <main>
                 <Switch>
-                    {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
+                    {routes.map(route => <Route key={route.path} component={route.component} path={route.path} />)}
+                    <Route exact component={Home} path={"/"} />
                 </Switch>
+
             </main>
             {/* <AppFooter/> */}
             {/* <UserMsg/> */}
