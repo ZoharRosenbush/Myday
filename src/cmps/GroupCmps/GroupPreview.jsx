@@ -1,10 +1,12 @@
-import { TaskList } from '../TaskCmps/TaskList.jsx'
-export function GroupPreview() {
-    return (
-
-        <section>
-            <h1>group details</h1>
-            <TaskList />
-        </section>
-    )
+import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
+export function GroupPreview({ group }) {
+  const { tasks } = group;
+  return (
+    <section>
+      <h1>group details</h1>
+      {tasks.map((task, idx) => {
+        return <TaskPreview key={idx} task={task} groupId={group.id} />;
+      })}
+    </section>
+  );
 }

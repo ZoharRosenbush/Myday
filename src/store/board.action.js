@@ -1,13 +1,9 @@
 import { boardService } from "../services/board.service.js";
 
-
-
 export function loadBoards() {
-  console.log('hello boards')
   return async (dispatch) => {
     try {
       const boards = await boardService.query();
-      console.log('the boards', boards)
       dispatch({ type: "SET_BOARDS", boards: boards });
     } catch (err) {
       console.log("cannot find boards:", err);
@@ -17,12 +13,9 @@ export function loadBoards() {
 }
 
 export function loadBoard(boardId) {
-  console.log('in load board,boardId', boardId);
-
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
-      console.log('board:', board);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log("cannot find board:", err);
@@ -31,21 +24,48 @@ export function loadBoard(boardId) {
   };
 }
 
-
 export function addBoard(board) {
   return async (dispatch) => {
     try {
-      const savedBoard = await boardService.save({ ...board })
-      dispatch({ type: "ADD_TOY", board: savedBoard });
-    }
-    // dispatch({
-    //   type: "SET_MSG",
-    //   msg: { txt: "board added", type: "success" },
-    // });
-
-    catch (err) {
-      console.log('Cannot add board', err);
+      const savedBoard = await boardService.save({ ...board });
+      dispatch({
+        type: "ADD_BOARD",
+        board: { _id: savedBoard._id, title: savedBoard.title },
+      });
+    } catch (err) {
+      console.log("Cannot add board", err);
       // showErrorMsg("Cannot add board");
+    }
+  };
+}
+
+export function removeBoard(boardId) {
+  return async (dispatch) => {
+    try {
+      await boardService.remove(boardId);
+      dispatch({ type: "REMOVE_BOARD", boardId: boardId });
+    } catch (err) {
+      console.log("Cannot delete board", err);
+    }
+  };
+}
+
+// Store - saveTask
+export function saveTask(task, groupId, boardId) {
+
+  // const activity = {
+  //     "id": makeId(),
+  //     "txt": "Changed Color",
+  //     "createdAt": Date.now(),
+  //     "byMember": userService.getLoggedinUser(),
+  //     "task": task
+  // }
+  return async (dispatch) => {
+    try{
+      const board = await boardService.saveTask(task, groupId, boardId);
+      dispatch({ type: "SET_BOARD", board: board });
+    }catch(err){
+      console.log('err:', err);
     }
   };
 }
@@ -117,8 +137,6 @@ export function addBoard(board) {
 //     }
 //   };
 // }
-
-
 
 // export function closeMsg ()  {
 //   return (dispatch) => {

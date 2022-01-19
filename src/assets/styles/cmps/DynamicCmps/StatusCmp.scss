@@ -1,5 +1,18 @@
 .Done{
-    background-color: green;
+    background-color: $green;
     width: 100px;
     margin: auto;
+    cursor: pointer;
+}
+.Working.on.it{
+    background-color: $yellow;
+    width: 100px;
+    margin: auto;
+    cursor: pointer;
+}
+.Stuck{
+    background-color: $red;
+    width: 100px;
+    margin: auto;
+    cursor: pointer;
 }

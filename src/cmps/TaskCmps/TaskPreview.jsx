@@ -3,25 +3,24 @@ import { connect } from "react-redux";
 
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
+import {saveTask} from '../../store/board.action.js';
 
-export class _TaskPreview extends React.Component {
-  state = {};
+ class _TaskPreview extends React.Component {
 
-  updateTask = (cmpType, data) => {
-    console.log("updateTask");
-    // Switch
-    // task.members = data;
-    // task.status = data;
+  onUpdateTask = (cmpType, data) => {
+  const {task, saveTask, groupId, board} = this.props
+    switch (cmpType) {
+      case "status-picker":
+        task.status = data
+        saveTask(task, groupId, board._id )
+         break;
   };
-
-  task = { status: "Done" };
-
-  //GET FROM STORE
+}
 
   cmpInfo = (cmpType) => {
-    console.log('cmpType:', cmpType);
     
     const { task, board } = this.props;
+    
     switch (cmpType) {
       case "status-picker":
         return {
@@ -57,10 +56,13 @@ export class _TaskPreview extends React.Component {
         };
       default:
     }
+
   };
 
   render() {
+    
     const { board } = this.props;
+    
    const cmpsOrder = board.cmpsOrder;
     return (
       <section>
@@ -69,7 +71,7 @@ export class _TaskPreview extends React.Component {
             <DynamicCmp
               cmpData={this.cmpInfo(cmp)}
               key={idx}
-              updateTask={this.updateTask}
+              onUpdateTask={this.onUpdateTask}
             />
           );
         })}
@@ -80,57 +82,19 @@ export class _TaskPreview extends React.Component {
   }
 }
 
+
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     //   currFilterBy: toyModule.currFilterBy
   };
 }
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  saveTask
+};
 
 export const TaskPreview = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_TaskPreview);
 
-// for monday
-
-// function category(cmpsOrder){
-//     return{
-//         {cmpsOrder.map(cmp, idx)=>{
-//            if{cmp===="status-picker" } return {
-
-//         }}
-
-//     }
-// }
-
-// const cmp1 = {
-//     type: 'status-picker',
-//     info: {
-//         selectedStatus: 'Done',
-//         statuses: [{ "value": 'Done', "color": 'green' }, {}]
-//     }
-// }
-
-// const cmp2 = {
-//     type: 'member-picker',
-//     info: {
-//         selectedMembers: ['m1', 'm2'],
-//         members: ['m1', 'm2', 'm3']
-//     }
-// }
-
-// const cmp3 = {
-//     type: 'date-picker',
-//     info: {
-//         selectedDate: '2022-09-07',
-//     }
-// }
-// const cmp4 = {
-//     type: 'priority-picker',
-//     info: {
-//         selectedStatus: 'High',
-//         priorities: [{}, {}]
-//     }
-// }

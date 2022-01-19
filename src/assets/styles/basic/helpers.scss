@@ -1,0 +1,29 @@
+// flex helpers
+
+.flex {
+  display: flex;
+
+  > *.full {
+    flex: 1;
+  }
+  &.column {
+    flex-direction: column;
+  }
+  &.justify-center {
+    justify-content: center;
+  }
+  &.align-center {
+    align-items: center;
+  }
+  &.justify-space {
+    justify-content: space-evenly;
+  }
+  &.justify-between {
+    justify-content: space-between;
+  }
+}
+
+.clean-link {
+  list-style: none;
+  text-decoration: none;
+}

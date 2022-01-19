@@ -2,7 +2,7 @@
 
 const initialState = {
   boards: [],
-  board: {},
+  board: null,
   activities: [],
 };
 
@@ -17,7 +17,11 @@ export function boardReducer(state = initialState, action) {
 
     case "SET_BOARD":
       return { ...state, board: { ...action.board } };
-
+    case "ADD_BOARD":
+      return { ...state, boards: [...state.boards, action.board] }
+    case "REMOVE_BOARD":
+      newState = { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
+      break;
     //     case 'ADD_GROUP':
     //         return { ...state, board: { ...state.board, groups: [action.group, ...groups] } }
     //     case 'EDIT_GROUP':
@@ -37,9 +41,7 @@ export function boardReducer(state = initialState, action) {
     //     //                return (group._id === action.group._id)? action.group : group)
     //     //             })
     //     //         }
-    //     case 'REMOVE_TOY':
-    //         newState = { ...state, toys: state.toys.filter(toy => toy._id !== action.toyId) }
-    //         break;
+
     //     case 'UPDATE_TOY':
     //         return {
     //             ...state, toys: state.toys.map((toy) => {
