@@ -1,6 +1,6 @@
 import React from "react";
-import { BoardHeader } from "../cmps/BoardHeader.jsx";
-import { BoardNav } from "../cmps/BoardNav.jsx";
+import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
+import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 
 export function boardApp() {
   return (

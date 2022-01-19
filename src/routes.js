@@ -10,14 +10,14 @@ const routes = [
         component: LoginSignup,
     },
     {
+        path: '/myday/board/:boardId',
+        component: BoardDetails,
+    },
+    {
         path: '/myday/board',
         component: boardApp,
     }
-    ,
-    {
-        path: '/myday/board/:boardId',
-        component: BoardDetails,
-    }
+    
 ]
 
 export default routes;

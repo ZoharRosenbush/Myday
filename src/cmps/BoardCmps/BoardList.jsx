@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { boards } from "../helpers/monday.js";
+import { boards } from "../../helpers/monday.js";
 
 export function BoardList() {
   return (

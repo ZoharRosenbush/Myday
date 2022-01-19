@@ -1,5 +1,5 @@
 import React from "react";
-import { BoardList } from "../cmps/BoardList.jsx";
+import { BoardList } from "../BoardCmps/BoardList.jsx";
 
 export function BoardNav() {
   ///heloo

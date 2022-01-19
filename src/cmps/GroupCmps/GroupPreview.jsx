@@ -1,4 +1,4 @@
-import {TaskList} from './TaskList.jsx'
+import {TaskList} from '../TaskCmps/TaskList.jsx'
 export function GroupPreview(){
     return(
    

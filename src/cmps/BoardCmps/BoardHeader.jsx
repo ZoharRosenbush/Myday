@@ -1,4 +1,4 @@
-import {BoardControllers} from '../cmps/BoardControllers.jsx'
+import {BoardControllers} from './BoardControllers.jsx'
 export function BoardHeader() {
   return (
     <section className="board-header">

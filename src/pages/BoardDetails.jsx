@@ -1,8 +1,9 @@
 import React from 'react';
-import { BoardHeader } from '../cmps/BoardHeader.jsx'
-import { BoardNav } from '../cmps/BoardNav.jsx'
-import {GroupList} from '../cmps/GroupList.jsx'
-import { boards } from '../helpers/monday.js'
+import { BoardHeader } from '../cmps/BoardCmps/BoardHeader.jsx';
+import { BoardNav } from '../cmps/NavCmps/BoardNav.jsx';
+import {GroupList} from '../cmps/GroupCmps/GroupList.jsx'
+
+// import { boards } from '../helpers/monday.js'
 export class BoardDetails extends React.Component{
 
 
