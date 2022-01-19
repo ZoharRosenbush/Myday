@@ -1,9 +1,10 @@
-import {GroupDetails} from './GroupDetails.jsx'
+import {TaskList} from './TaskList.jsx'
 export function GroupPreview(){
     return(
-        <section>
-            <h1>Group Preview</h1>
-            <GroupDetails/>
-        </section>
+   
+            <section>
+                <h1>group detiled</h1>
+                <TaskList/>
+            </section>
     )
 }
