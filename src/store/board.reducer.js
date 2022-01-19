@@ -1,7 +1,7 @@
 // import {userService} from '../services/user.service.js'
 
 const initialState = {
-  boards:[],
+  boards: [],
   board: {},
   activities: [],
 };
@@ -11,10 +11,10 @@ export function boardReducer(state = initialState, action) {
 
   switch (action.type) {
 
-    
+
     case "SET_BOARDS":
-      return { ...state, boards: [ ...action.boards ] };
-    
+      return { ...state, boards: [...action.boards] };
+
     case "SET_BOARD":
       return { ...state, board: { ...action.board } };
 
@@ -48,8 +48,8 @@ export function boardReducer(state = initialState, action) {
     //         }
     //     case 'SET_FILTER':
     //         return { ...state, filterBy: action.filterBy }
-    //     default:
-    //         newState = state
+    default:
+      newState = state
   }
   // // groups[action.group].tasks:[...tasks]
   return newState;

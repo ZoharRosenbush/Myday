@@ -1,12 +1,11 @@
 export const storageService = {
     query,
     get,
-    // post,
-    // put,
+    post,
+    put,
     // remove,
 }
 
-//HELLO ASYNCD
 
 function query(entityType, filterBy, delay = 500) {
 
@@ -25,6 +24,31 @@ function get(entityType, entityId) {
         .then(entities => {
             const board = entities.find(entity => entity._id === entityId)
             return board
+        })
+}
+
+function put(entityType, updatedEntity) {
+    console.log('ENTERED UPDATE')
+    return query(entityType)
+        .then(entities => {
+            const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
+            entities.splice(idx, 1, updatedEntity)
+            _save(entityType, entities)
+            return updatedEntity
+        })
+}
+
+
+function post(entityType, newEntity) {
+    console.log('ENTERED ADD')
+    newEntity._id = _makeId()
+
+
+    return query(entityType)
+        .then(entities => {
+            entities.push(newEntity)
+            _save(entityType, entities)
+            return newEntity
         })
 }
 
