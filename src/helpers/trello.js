@@ -52,95 +52,96 @@ async function loadAndWatchBoard(boardId) {
     // subscribe to socket and commit to store
 }
 
-
-
-const board = {
-    "_id": "b101",
-    "title": "Sprint 4",
-    "description": "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
-    // "createdAt": 1589983468418,
-    "createdBy": {
-        "_id": "u108",
-        "fullname": "Abi Abambi",
-        "username": "Abush",
-        "imgUrl": "http://some-img"
-    },
-    // "labels": [
-    //     {
-    //         "id": "l101",
-    //         "title": "Done",
-    //         "color": "#61bd4f"
-    //     }
-    // ],
-    "members": [
-        {
-            "_id": "u101",
-            "fullname": "Tal Tarablus",
-            "username": "Talus",
-            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-        },
-        {
+const boards = [
+    {
+        "_id": "b101",
+        "title": "Sprint 4",
+        "description": "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
+        // "createdAt": 1589983468418,
+        "createdBy": {
             "_id": "u108",
             "fullname": "Abi Abambi",
             "username": "Abush",
             "imgUrl": "http://some-img"
-        }
-    ],
-    "groups": [
-        {
-            "id": "g101",
-            "title": "Group 1",
-            "tasks": [
-                {
-                    "id": "c101",
-                    "title": "Replace Logo",
-                    "status": "Done",
-                    "priority": "High",
-                    "timeline": "Jan 18-23",
-                    "owner": [{
-                        "_id": "u108",
-                        "fullname": "Abi Abambi",
-                        "username": "Abush",
-                        "imgUrl": "http://some-img"
-                    }],
-                    // "description": "description",
-                    // think about adding more features such as like, seen, reply
-                    "comments": [
-                        {
-                            "id": "ZdPnm",
-                            "txt": "also @yaronb please CR this",
-                            "createdAt": 15909998174360,
-                            "byMember": {
-                                "_id": "u101",
-                                "fullname": "Tal Tarablus",
-                                "username": "Talus",
-                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                            }
-                        }
-                    ],
-                }
-            ],
-            "style": { "groupColor": "red" },
-            "activities": [
-                {
-                    "id": "a101",
-                    "txt": "Changed Color",
-                    "createdAt": Date.now(),
-                    "byMember": {
-                        "_id": "u108",
-                        "fullname": "Abi Abambi",
-                        "imgUrl": "http://some-img"
-                    },
-
-                }
-
-            ],
         },
-    ],
+        // "labels": [
+        //     {
+        //         "id": "l101",
+        //         "title": "Done",
+        //         "color": "#61bd4f"
+        //     }
+        // ],
+        "members": [
+            {
+                "_id": "u101",
+                "fullname": "Tal Tarablus",
+                "username": "Talus",
+                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+            },
+            {
+                "_id": "u108",
+                "fullname": "Abi Abambi",
+                "username": "Abush",
+                "imgUrl": "http://some-img"
+            }
+        ],
+        "groups": [
+            {
+                "id": "g101",
+                "title": "Group 1",
+                "tasks": [
+                    {
+                        "id": "c101",
+                        "title": "Replace Logo",
+                        "status": "Done",
+                        "priority": "High",
+                        "timeline": "Jan 18-23",
+                        "owner": [{
+                            "_id": "u108",
+                            "fullname": "Abi Abambi",
+                            "username": "Abush",
+                            "imgUrl": "http://some-img"
+                        }],
+                        // "description": "description",
+                        // think about adding more features such as like, seen, reply
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 15909998174360,
+                                "byMember": {
+                                    "_id": "u101",
+                                    "fullname": "Tal Tarablus",
+                                    "username": "Talus",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                    }
+                ],
+                "style": { "groupColor": "red" },
+                "activities": [
+                    {
+                        "id": "a101",
+                        "txt": "Changed Color",
+                        "createdAt": Date.now(),
+                        "byMember": {
+                            "_id": "u108",
+                            "fullname": "Abi Abambi",
+                            "imgUrl": "http://some-img"
+                        },
 
-    // for monday
-    "cmpsOrder": ["status-picker", "member-picker", "date-picker", "priority-picker"]
-}
+                    }
+
+                ],
+            },
+        ],
+
+        // for monday
+        "cmpsOrder": ["status-picker", "member-picker", "date-picker", "priority-picker"]
+    }
+]
+
 
 
 
