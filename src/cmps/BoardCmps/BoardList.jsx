@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export function BoardList({boards}) {
-
+export function BoardList({ boards }) {
   console.log('boards:', boards);
   return (
-    
     <section>
       {boards.map((board, idx) => {
-          console.log('board._id:', board._id);
-          
+        console.log('board._id:', board._id);
+
         return (
           <ul key={idx}>
             <li key={board._id}>

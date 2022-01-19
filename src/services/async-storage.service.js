@@ -42,8 +42,7 @@ function put(entityType, updatedEntity) {
 function post(entityType, newEntity) {
     console.log('ENTERED ADD')
     newEntity._id = _makeId()
-
-
+    // newEntity = _getNewBoard()
     return query(entityType)
         .then(entities => {
             entities.push(newEntity)
@@ -78,12 +77,16 @@ function _makeId(length = 4) {
     return text
 }
 
+
+
+
+
 function _createBoards() {
     console.log('creating demo boards')
     const boards = [
         {
             "_id": _makeId(),
-            cmpsOrder: [
+            "cmpsOrder": [
                 "status-picker",
                 "member-picker",
                 "date-picker",

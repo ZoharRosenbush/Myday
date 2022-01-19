@@ -17,6 +17,8 @@ export function boardReducer(state = initialState, action) {
 
     case "SET_BOARD":
       return { ...state, board: { ...action.board } };
+    case "ADD_BOARD":
+      return { ...state, boards: [...state.boards, action.board] }
 
     //     case 'ADD_GROUP':
     //         return { ...state, board: { ...state.board, groups: [action.group, ...groups] } }
