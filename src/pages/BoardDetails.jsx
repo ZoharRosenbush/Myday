@@ -21,7 +21,6 @@ render(){
     return(
         <section>
 
-        <h1>board details</h1>
         <BoardHeader 
         // title={board.title}
         />

@@ -5,7 +5,6 @@ import { boards } from "../helpers/monday.js";
 export function BoardList() {
   return (
     <section>
-      <h1>Board List</h1>
       {boards.map((board, idx) => {
           console.log('board._id:', board._id);
           
