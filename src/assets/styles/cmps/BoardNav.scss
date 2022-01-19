@@ -1,13 +1,29 @@
 .board-nav{
-    width: 150px;
-    border: 1px solid rgba(0, 0, 0, 0.582);
+    width: 200px;
+    border-right: 1px solid rgba(0, 0, 0, 0.233);
     height: 158%;
     top: 0;
     position: fixed;
     z-index: 5;
-    background-color: rgb(221, 211, 211);
+    background-color: rgb(255, 255, 255);
     
     .fas .arrow .arrow-left{
         color: black;
     }
+
+    h1{
+        width: 168px;
+        font-size: 1rem;
+        border: 1px solid #e6e9ef;
+        padding: 10px 5px;
+        border-radius: 4px;
+        -webkit-align-self: center;
+        align-self: center;
+        text-align: center;
+        // font-family: roboto-light,helvetica,sans-serif;
+   
+    
+    }
+
+
 }
