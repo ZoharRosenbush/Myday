@@ -12,6 +12,10 @@
 // *. Same model for Monday style app (do not implement a generic columns feature)
 // *. We do not handle concurrent editing - needs versioning
 
+
+
+
+
 // Rendering performance:
 // Store Mutation - saveBoard
 // state.board = board
@@ -142,6 +146,15 @@ export const boards = [
 ]
 
 
+// function category(cmpsOrder){
+//     return{
+//         {cmpsOrder.map(cmp, idx)=>{
+//            if{cmp===="status-picker" } return {
+           
+//         }}
+        
+//     }
+// }
 
 
 
