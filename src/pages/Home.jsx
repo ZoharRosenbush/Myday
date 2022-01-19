@@ -4,7 +4,7 @@ export function Home() {
   return (
     <section className="home-page">
       <img src={HomeSvg} alt=""></img>
-      <Link to="/myday/board/:boardId">
+      <Link to="/myday/board">
         <button>Get Started</button>
       </Link>
     </section>

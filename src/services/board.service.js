@@ -13,5 +13,6 @@ function query(filterBy) {
 }
 
 function getById(boardId) {
-    return storageService.get(boardId)
+    console.log('the borad is in serivce',boardId)
+    return storageService.get(STORAGE_KEY,boardId)
 }

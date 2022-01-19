@@ -1,9 +1,13 @@
+import React from "react";
+
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
-import React from "react";
+
 
 export class TaskPreview extends React.Component {
   state = {};
+
+
 
   onUpdate = (data) => {
     // console.log("Updating: ", cmp, "with data:", data);
@@ -11,7 +15,7 @@ export class TaskPreview extends React.Component {
   };
 
   info = {};
-  task={status: "Done" }
+  task = { status: "Done" }
 
   //GET FROM STORE
   cmpsOrder = [
@@ -20,16 +24,34 @@ export class TaskPreview extends React.Component {
     "date-picker",
     "priority-picker",
   ];
+
+  cmpInfo = (cmpType) => {
+    const { task } = this.props
+    switch (cmpType) {
+      case 'status-picker':
+
+        return {
+          type: 'status-picker',
+          info: {
+            selectedStatus: 'Done',
+            statuses: [{ "value": 'Done', "color": 'green' }, {}]
+          }
+        }
+
+      default:
+    }
+  }
   render() {
     // const { task } = this.props;
     return (
       <section>
         {this.cmpsOrder.map((cmp, idx) => {
-        
+
           return (
             <DynamicCmp
               task={this.task}
               cmp={cmp}
+              // info={this.cmpInfo}
               key={idx}
               onUpdate={this.onUpdate}
             />
@@ -38,9 +60,10 @@ export class TaskPreview extends React.Component {
         <h1>TaskPreview</h1>
         <TaskDetails />
       </section>
-    );
+    )
   }
 }
+
 
 // for monday
 
