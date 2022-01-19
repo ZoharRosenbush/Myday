@@ -136,9 +136,8 @@ export const boards = [
                 ],
             },
         ],
-
         // for monday
-        "cmpsOrder": ["status-picker", "member-picker", "date-picker", "priority-picker"]
+        "ctgsOrder": ["status-picker", "member-picker", "date-picker", "priority-picker"]
     }
 ]
 
@@ -146,7 +145,7 @@ export const boards = [
 
 
 
-const cmp1 = {
+const ctg1 = {
     type: 'status-picker',
     info: {
         selectedStatus: 'Done',
@@ -154,7 +153,7 @@ const cmp1 = {
     }
 }
 
-const cmp2 = {
+const ctg2 = {
     type: 'member-picker',
     info: {
         selectedMembers: ['m1', 'm2'],
@@ -162,13 +161,13 @@ const cmp2 = {
     }
 }
 
-const cmp3 = {
+const ctg3 = {
     type: 'date-picker',
     info: {
         selectedDate: '2022-09-07',
     }
 }
-const cmp4 = {
+const ctg4 = {
     type: 'priority-picker',
     info: {
         selectedStatus: 'High',
