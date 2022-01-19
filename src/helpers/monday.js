@@ -52,7 +52,7 @@ async function loadAndWatchBoard(boardId) {
     // subscribe to socket and commit to store
 }
 
-const boards = [
+export const boards = [
     {
         "_id": "b101",
         "title": "Sprint 4",
