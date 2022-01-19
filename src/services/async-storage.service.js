@@ -6,6 +6,8 @@ export const storageService = {
     // remove,
 }
 
+//HELLO ASYNCD
+
 function query(entityType, filterBy, delay = 500) {
     let entities = JSON.parse(localStorage.getItem(entityType)) || _createBoards()
     return new Promise((resolve, reject) => {
