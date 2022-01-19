@@ -7,8 +7,8 @@ export function GroupList({ board }) {
   return (
     <section>
       <h1>Group List</h1>
-      {groups.map((group) => {
-       return <GroupPreview group={group} />;
+      {groups.map((group, idx) => {
+       return <GroupPreview key={idx} group={group} />;
       })}
     </section>
   );

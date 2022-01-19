@@ -51,6 +51,10 @@ export function addBoard(board) {
 
 // Store - saveTask
 export function  saveTask(task, groupId, boardId ) {
+  console.log('task in action :',task);
+  console.log('groupId in action:',groupId);
+  console.log('boardId in action:',boardId);
+  
     // const activity = {
     //     "id": makeId(),
     //     "txt": "Changed Color",
