@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store.js'
 
 import { App } from './App.jsx';
-// import './assets/styles/styles.scss';
+import './assets/styles/styles.scss';
 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';

@@ -1,6 +1,7 @@
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { Home } from './pages/Home.jsx'
-import { Board } from './pages/Board.jsx'
+import { MainApp } from './pages/MainApp.jsx'
+import { BoardDetails } from './pages/BoardDetails.jsx'
 
 
 const routes = [
@@ -14,8 +15,13 @@ const routes = [
         component: Home,
     },
     {
-        path: '/board/:boardId',
-        component: Board,
+        path: '/myday/board',
+        component: MainApp,
+    }
+    ,
+    {
+        path: '/myday/board/:boardId',
+        component: BoardDetails,
     }
 ]
 
