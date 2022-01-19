@@ -1,10 +1,29 @@
 export const storageService = {
     query,
-    // get,
+    get,
     // post,
     // put,
     // remove,
 }
+
+function query(entityType, filterBy, delay = 500) {
+    let entities = JSON.parse(localStorage.getItem(entityType)) || _createBoards()
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(entities)
+        }, delay)
+    })
+}
+
+
+function get(entityType, entityId) {
+    return query(entityType)
+        .then(entities => {
+            const board = entities.find(entity => entity._id === entityId)
+            return board
+        })
+}
+
 
 function _save(entityType, entities) {
     console.log('entityType:', entityType);
@@ -25,7 +44,7 @@ function _createBoards() {
     console.log('creating demo boards')
     const boards = [
         {
-            "_id": "b101",
+            "_id": _makeId(),
             "title": "Sprint 4",
             "description": "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
             // "createdAt": 1589983468418,
@@ -101,4 +120,6 @@ function _createBoards() {
             "cmpsOrder": ["status-picker", "member-picker", "date-picker", "priority-picker"]
         }
     ]
+    localStorage.setItem('boardDB', JSON.stringify(boards))
+    return boards;
 }
