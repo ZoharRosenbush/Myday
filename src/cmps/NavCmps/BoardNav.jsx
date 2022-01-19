@@ -18,7 +18,7 @@ export class _BoardNav extends React.Component {
     const newBoard = boardService.getNewBoard()
     this.props.addBoard(newBoard)
     //TODO: NEVIGATE THE PAGE TO THE NEW BOARD LINK
-    // window.location(`/myday/board/${newBoard._id}`)
+    // window.location.href = `/myday/board/${newBoard._id}`
   }
   render() {
     const { boards } = this.props
@@ -26,7 +26,7 @@ export class _BoardNav extends React.Component {
       <section className="board-nav" >
         <h1>Main Workspace</h1>
         <i className="fas arrow arrow-left"></i>
-        <button onClick={() => this.addBoard()}>Add +</button>
+        <button onClick={() => this.addBoard()} className="side-bar-fetures">Add +</button>
         <BoardList boards={boards} />
       </section>
     )

@@ -1,20 +1,19 @@
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 export function BoardList({ boards }) {
-  console.log('boards:', boards);
 
   return (
-    <section>
+    <section className="sidebar-nav-list">
       {boards.map((board, idx) => {
-        console.log('board._id:', board._id);
 
         return (
-          <ul key={idx}>
-            <li key={board._id}>
-              <Link to={`/myday/board/${board._id}`}>{board.title}</Link>
-            </li>
-          </ul>
+          <div className="flex" key={idx}>
+            {/* <ul key={idx}> */}
+            {/* <li key={board._id}> */}
+            <Link className="clean-link" to={`/myday/board/${board._id}`}>{board.title}</Link>
+            {/* </li> */}
+            {/* </ul> */}
+          </div>
         );
       })}
     </section>

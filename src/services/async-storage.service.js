@@ -8,9 +8,7 @@ export const storageService = {
 
 
 function query(entityType, filterBy, delay = 500) {
-
     let entities = JSON.parse(localStorage.getItem(entityType)) || _createBoards()
-    console.log('the entities', entities);
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(entities)
@@ -40,7 +38,6 @@ function put(entityType, updatedEntity) {
 
 
 function post(entityType, newEntity) {
-    console.log('ENTERED ADD')
     newEntity._id = _makeId()
     // newEntity = _getNewBoard()
     return query(entityType)
@@ -63,12 +60,10 @@ function remove(entityType, entityId) {
 
 
 function _save(entityType, entities) {
-    console.log('entityType:', entityType);
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
 
 function _makeId(length = 4) {
-    console.log('make randId')
     var text = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     for (var i = 0; i < length; i++) {
@@ -108,9 +103,10 @@ function _createBoards() {
                 { "id": "la777", value: "Working on it", color: "orange" },
             ],
             "Priorities": [
-                { "id": "lb111", value: "Low", color: "grey" },
-                { "id": "lb222", value: "Medium", color: "green" },
-                { "id": "lb333", value: "High", color: "red" },
+                { "id": "lb111", value: "", color: "grey" },
+                { "id": "lb222", value: "Low", color: "orange" },
+                { "id": "lb333", value: "Medium", color: "green" },
+                { "id": "lb444", value: "High", color: "red" },
             ],
             "members": [
                 {

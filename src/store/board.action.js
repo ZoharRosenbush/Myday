@@ -3,11 +3,9 @@ import { boardService } from "../services/board.service.js";
 
 
 export function loadBoards() {
-  console.log('hello boards')
   return async (dispatch) => {
     try {
       const boards = await boardService.query();
-      console.log('the boards', boards)
       dispatch({ type: "SET_BOARDS", boards: boards });
     } catch (err) {
       console.log("cannot find boards:", err);
