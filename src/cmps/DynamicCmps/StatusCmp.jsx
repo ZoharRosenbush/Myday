@@ -1,20 +1,15 @@
 import React from "react";
 
-export class StatusCmp extends React.Component {
+export class  StatusCmp {
+
   state = {
-    selectedStatus: null,
-    statuses: [
-      { value: "", color: "grey" },
-      { value: "Done", color: "green" },
-      { value: "Stuck", color: "red" },
-      { value: "Working on it", color: "orange" },
-    ],
+    isModalOpen: false,
   };
 
-  componentDidMount() {
-    const { task } = this.props;
-    this.setState({ selectedStatus: task.status });
-  }
+  // componentDidMount() {
+  //   const { task } = this.props;
+  //   this.setState({ selectedStatus: task.status });
+  // }
 
   //   get colorStatus() {
   //     const { selectedStatus, statuses } = this.state;
@@ -23,11 +18,11 @@ export class StatusCmp extends React.Component {
   //     });
   //     return color
   //   }
-
-  render() {
-    const { selectedStatus } = this.state;
-    return <div className={selectedStatus}>{selectedStatus}</div>;
-  }
+render(){
+const {cmpData} = this.props
+  const { type, info } = cmpData;
+  return <div className={info.selectedStatus}>{info.selectedStatus}</div>;
+}
 }
 
 // const cmp1 = {

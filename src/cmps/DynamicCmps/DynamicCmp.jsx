@@ -7,6 +7,7 @@ export function DynamicCmp({ cmpData, updateTask}) {
       return <StatusCmp cmpData={cmpData} />;
       // return <StatusCmp info={info} onUpdate={onUpdate}  />;
     case "member-picker":
+      // return <MembersCmp cmpData={cmpData} />;
     //   return <StatusCmp task={{ title: "Replace Logo", status: "Done" }} />;
       // return <MemberCmp info={info} onUpdate={onUpdate}  />;
     default:

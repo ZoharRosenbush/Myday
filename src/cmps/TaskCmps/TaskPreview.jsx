@@ -7,6 +7,11 @@ import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 export class _TaskPreview extends React.Component {
   state = {};
 
+  componentDidMount() {
+    console.log('this.props in task preview', this.props);
+  }
+  
+
   updateTask = (cmpType, data) => {
     console.log("updateTask");
     // Switch
@@ -22,6 +27,8 @@ export class _TaskPreview extends React.Component {
     console.log('cmpType:', cmpType);
     
     const { task, board } = this.props;
+    console.log('task:',task );
+    
     switch (cmpType) {
       case "status-picker":
         return {
@@ -60,7 +67,11 @@ export class _TaskPreview extends React.Component {
   };
 
   render() {
+    console.log('this.props in render preview:', this.props);
+    
     const { board } = this.props;
+    console.log('board:', board);
+    
    const cmpsOrder = board.cmpsOrder;
     return (
       <section>
