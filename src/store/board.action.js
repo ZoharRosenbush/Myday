@@ -50,6 +50,20 @@ export function addBoard(board) {
   };
 }
 
+
+// Store - saveTask
+export function  saveTask(task, groupId, boardId ) {
+    // const activity = {
+    //     "id": makeId(),
+    //     "txt": "Changed Color",
+    //     "createdAt": Date.now(),
+    //     "byMember": userService.getLoggedinUser(),
+    //     "task": task
+    // }
+   const board = boardService.saveTask(task, groupId, boardId )
+   
+}
+
 // export function loadToys() {
 //   return async (dispatch) => {
 //     try {

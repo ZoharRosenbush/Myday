@@ -7,7 +7,7 @@ export function GroupPreview({ group }) {
     <section>
       <h1>group details</h1>
       {tasks.map((task) => {
-        return <TaskPreview task={task} />;
+        return <TaskPreview task={task} groupId={group.id} />;
       })}
     </section>
   );

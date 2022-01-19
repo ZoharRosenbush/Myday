@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
+import {saveTask} from '../../store/board.action.js';
 
-export class _TaskPreview extends React.Component {
+ class _TaskPreview extends React.Component {
   state = {};
 
   componentDidMount() {
@@ -12,16 +13,16 @@ export class _TaskPreview extends React.Component {
   }
   
 
-  updateTask = (cmpType, data) => {
-    console.log("updateTask");
-    // Switch
-    // task.members = data;
-    // task.status = data;
+  onUpdateTask = (cmpType, data) => {
+  const {task, saveTask, groupId, board} = this.props
+    console.log("board", board);
+    switch (cmpType) {
+      case "status-picker":
+        task.status = data
+        saveTask(task, groupId, board._id )
+         break;
   };
-
-  task = { status: "Done" };
-
-  //GET FROM STORE
+}
 
   cmpInfo = (cmpType) => {
     console.log('cmpType:', cmpType);
@@ -64,6 +65,7 @@ export class _TaskPreview extends React.Component {
         };
       default:
     }
+
   };
 
   render() {
@@ -80,7 +82,7 @@ export class _TaskPreview extends React.Component {
             <DynamicCmp
               cmpData={this.cmpInfo(cmp)}
               key={idx}
-              updateTask={this.updateTask}
+              onUpdateTask={this.onUpdateTask}
             />
           );
         })}
@@ -91,13 +93,16 @@ export class _TaskPreview extends React.Component {
   }
 }
 
+
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     //   currFilterBy: toyModule.currFilterBy
   };
 }
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  saveTask
+};
 
 export const TaskPreview = connect(
   mapStateToProps,

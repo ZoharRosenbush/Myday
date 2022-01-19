@@ -1,9 +1,19 @@
 import React from "react";
 
-export class  StatusCmp {
-
+export class StatusCmp extends React.Component {
   state = {
     isModalOpen: false,
+  };
+
+  openModal = () => {
+    console.log("open modal");
+    this.setState({ isModalOpen: true });
+  };
+
+  handelChange = ({ target }) => {
+    const { cmpData, onUpdateTask } = this.props;
+    console.log("target.className:", target.className);
+    onUpdateTask(cmpData.type, target.className);
   };
 
   // componentDidMount() {
@@ -18,11 +28,33 @@ export class  StatusCmp {
   //     });
   //     return color
   //   }
-render(){
-const {cmpData} = this.props
-  const { type, info } = cmpData;
-  return <div className={info.selectedStatus}>{info.selectedStatus}</div>;
-}
+  render() {
+    const { cmpData } = this.props;
+    const { type, info } = cmpData;
+    const { isModalOpen } = this.state;
+    return (
+      <section>
+        <div className={info.selectedStatus} onClick={this.openModal}>
+          {info.selectedStatus}
+        </div>
+        {isModalOpen && (
+          <div className="labels-modal statuses">
+            {info.statuses.map((status, idx) => {
+              return (
+                <div
+                  className={status.value}
+                  key={idx}
+                  onClick={this.handelChange}
+                >
+                  {status.value}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+    );
+  }
 }
 
 // const cmp1 = {
