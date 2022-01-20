@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import { loadBoard } from "../store/board.action.js";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
-import { loadBoard } from "../store/board.action.js";
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
   componentDidMount() {
+    console.log("mount");
     const { boardId } = this.props.match.params;
     console.log("boardId in details", boardId);
     // const  board = await boardService.getById(boardId)
@@ -16,7 +17,19 @@ class _BoardDetails extends React.Component {
     //   this.setState({ board });
   }
 
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("updating");
+    if (prevProps.match.params.boardId !== this.props.match.params.boardId) {
+      console.log("updating inside condition");
+      this.props.loadBoard()
+    }
+  }
+
+
+
   render() {
+    console.log("rendering");
     const { board } = this.props;
     console.log('board:', board);
     
@@ -26,7 +39,7 @@ class _BoardDetails extends React.Component {
         // title={board.title}
         />
         <BoardNav />
-        {board && <GroupList board={board}/>}
+        {board && <GroupList board={board} />}
       </section>
     );
   }
