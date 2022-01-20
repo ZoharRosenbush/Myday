@@ -8,9 +8,10 @@
 @import './basic/typography';
 
 //CMPS
+//Board Cmps
+
 @import './cmps/BoardCmps/BoardHeader';
 @import './cmps/BoardCmps/BoardControllers';
-@import './cmps/BoardNav';
 @import './cmps/DynamicCmps/StatusCmp';
 @import './cmps/DynamicCmps/MemberCmp';
 @import './cmps/DynamicCmps/PriorityCmp';
@@ -18,3 +19,6 @@
 @import './cmps/GroupPreview';
 @import './cmps/GroupList';
 @import './cmps/TaskPreview';
+//Nav Cmps
+@import './cmps/NavCmps/MainNav';
+@import './cmps/BoardNav';
