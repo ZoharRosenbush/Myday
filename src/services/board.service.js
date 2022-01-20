@@ -63,16 +63,16 @@ function getNewBoard() {
       imgUrl: "http://some-img",
     },
     statuses: [
-      { id: "la123", value: "", color: "#c4c4c4" },
-      { id: "la555", value: "Done", color: "#00d647" },
-      { id: "la666", value: "Stuck", color: "#ff3d57" },
-      { id: "la777", value: "Working on it", color: "#ffcb00" },
+      { id: "la123", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
+      { id: "la555", value: "Done", bgColor: "#00d647", color: "#fff" },
+      { id: "la666", value: "Stuck", bgColor: "#ff3d57", color: "#fff" },
+      { id: "la777", value: "Working on it", bgColor: "#ffcb00", color: "#fff" },
     ],
     priorities: [
-      { id: "lb111", value: "", color: "#c4c4c4" },
-      { id: "lb222", value: "Low", color: "#66ccff" },
-      { id: "lb333", value: "Medium", color: "#0086c0" },
-      { id: "lb444", value: "High", color: "#225091" },
+      { id: "lb111", value: "Empty", bgColor: "#c4c4c4", color: " #c4c4c4" },
+      { id: "lb222", value: "Low", bgColor: "#66ccff", color: " #fff" },
+      { id: "lb333", value: "Medium", bgColor: "#0086c0", color: "#fff" },
+      { id: "lb444", value: "High", bgColor: "#225091", color: "#fff" },
     ],
     members: [
       {

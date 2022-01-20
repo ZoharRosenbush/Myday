@@ -16,7 +16,13 @@ export class PriorityCmp extends React.Component {
         this.setState({ isModalOpen: false });
     };
 
-    getLabelColor = (info) => {
+    getBgColor = (info) => {
+        const currPritority = info.priorities.filter((p) => {
+            return (p.value === info.selectedStatus)
+        })
+        return currPritority[0].bgColor
+    }
+    getTxtColor = (info) => {
         const currPritority = info.priorities.filter((p) => {
             return (p.value === info.selectedStatus)
         })
@@ -32,7 +38,7 @@ export class PriorityCmp extends React.Component {
         return (
             <section>
                 <div className={info.selectedStatus}
-                    style={{ backgroundColor: `${this.getLabelColor(info)}`, color: "white" }}
+                    style={{ backgroundColor: `${this.getBgColor(info)}`, color: `${this.getTxtColor(info)}` }}
                     onClick={this.openModal}>
                     {info.selectedStatus}
                 </div>
@@ -40,7 +46,7 @@ export class PriorityCmp extends React.Component {
                     <div className="labels-modal priorities">
                         {info.priorities.map((priority, idx) => {
                             return (<div
-                                style={{ backgroundColor: `${priority.color}`, color: "white" }}
+                                style={{ backgroundColor: `${priority.bgColor}`, color: `${priority.color}` }}
                                 className={priority.value}
                                 key={idx}
                                 onClick={this.handleChange}
