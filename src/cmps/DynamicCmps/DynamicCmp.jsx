@@ -2,9 +2,10 @@
 import { StatusCmp } from "./StatusCmp.jsx";
 import { MemberCmp } from "./MemberCmp.jsx";
 import { PriorityCmp } from "./PriorityCmp.jsx";
+import { DateCmp } from "./DateCmp.jsx";
 
 
-export function DynamicCmp({ cmpData, onUpdateTask,taskId, setActiveModal,activeModal }) {
+export function DynamicCmp({ cmpData, onUpdateTask,groupColor, taskId, setActiveModal, activeModal }) {
 
   switch (cmpData.type) {
     case "status-picker":
@@ -15,6 +16,8 @@ export function DynamicCmp({ cmpData, onUpdateTask,taskId, setActiveModal,active
 
     case "priority-picker":
       return <PriorityCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />
+    case "date-picker":
+      return <DateCmp cmpData={cmpData} groupColor={groupColor} onUpdateTask={onUpdateTask} />
     // return <MembersCmp cmpData={cmpData} />;
     //   return <StatusCmp task={{ title: "Replace Logo", status: "Done" }} />;
     // return <MemberCmp info={info} onUpdate={onUpdate}  />;
