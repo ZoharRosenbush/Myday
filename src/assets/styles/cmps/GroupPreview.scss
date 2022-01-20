@@ -1,8 +1,12 @@
 .group-preview {
     display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #00000040;
+    height: 30px;
+    background-color: #e6e9ef;
+    text-align: start;
 
 }
 
