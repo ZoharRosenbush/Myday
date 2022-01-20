@@ -3,26 +3,44 @@
   width: 100px;
   margin: auto;
   cursor: pointer;
+  height: 100%;
+  width: 100%;
+  border: none;
 }
 .Working.on.it {
   background-color: $yellow;
   width: 100px;
   margin: auto;
   cursor: pointer;
+  height: 100%;
+  width: 100%;
+  border: none;
 }
 .Stuck {
   background-color: $red;
   width: 100px;
   margin: auto;
   cursor: pointer;
+  height: 100%;
+  width: 100%;
+  border: none;
 }
 .Empty {
   width: 100px;
   margin: auto;
   cursor: pointer;
+  height: 100%;
+  width: 100%;
+  border: none;
 }
 
 
 .status-member-section{
-    width: 13%;
+  height: 100%;
+  flex-basis: 139px;
+  min-width: 139px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid white;
 }

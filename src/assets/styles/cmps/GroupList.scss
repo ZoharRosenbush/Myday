@@ -4,3 +4,14 @@
     justify-content: center;
     margin-left: 200px;
 }
+
+.add-task-div{
+    border: 1px solid #00000040;
+    height: 36px;
+    background-color: lighter($cell-color);
+    text-align: start;
+}
+.group-color{
+    height: 36px;
+    width: 10px;
+  }

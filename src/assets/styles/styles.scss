@@ -5,9 +5,11 @@
 @import './basic/variables';
 @import './basic/buttons';
 @import './basic/helpers';
+@import './basic/typography';
 
 //CMPS
 @import './cmps/BoardCmps/BoardHeader';
+@import './cmps/BoardCmps/BoardControllers';
 @import './cmps/BoardNav';
 @import './cmps/DynamicCmps/StatusCmp';
 @import './cmps/DynamicCmps/MemberCmp';

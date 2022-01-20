@@ -9,6 +9,8 @@ export const boardService = {
   getNewBoard,
   saveTask,
   saveGroup,
+  addTask,
+  addGroup
 };
 
 function query(filterBy) {
@@ -20,8 +22,6 @@ function getById(boardId) {
 }
 
 function save(boardToSave) {
-
-  
   if (boardToSave._id) {
     return storageService.put(STORAGE_KEY, boardToSave);
   } else {
@@ -29,8 +29,6 @@ function save(boardToSave) {
   }
 }
 async function saveTask(taskToSave, groupId, boardId) {
-
-
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
@@ -45,6 +43,77 @@ async function saveTask(taskToSave, groupId, boardId) {
     console.log("err:", err);
   }
 }
+
+async function addTask(value, groupId, boardId) {
+  try {
+    const taskToSave = {
+      id: _makeId(),
+      title: value,
+      status: "Empty",
+      priority: "Empty",
+      timeline: "Jan 18-23",
+      owner: [
+        {
+          _id: "u101",
+          acronyms: "ME",
+          fullname: "May Elgrat",
+          username: "May Elgrat",
+          imgUrl:
+            "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+        },
+      ],
+      comments: [],
+    };
+    const board = await getById(boardId);
+    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+    board.groups[groupIdx].tasks.push(taskToSave);
+    save(board);
+    return board;
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+
+async function addGroup( boardId) {
+  try {
+    const groupToSave = {
+      
+        id: _makeId(),
+        title: "New Group",
+        tasks: [
+          {
+            id: _makeId(),
+            title: "New Task",
+            status: "Empty",
+            priority: "Empty",
+            timeline: "Jan 18-23",
+            owner: [
+              {
+                _id: "u1099",
+                acronyms: "ZR",
+                fullname: "Zohar Rosenbush",
+                username: "Zohar Rosenbush",
+                imgUrl: "http://some-img",
+              },
+            ],
+            comments: [],
+          },
+        ],
+        style: { groupColor: getNiceRandomColor() },
+        activities: [],
+      
+    };
+    const board = await getById(boardId);
+    board.groups.push(groupToSave);
+    console.log('board:', board);
+    
+    save(board);
+    return board;
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+
 async function saveGroup(groupToSave, boardId) {
   try {
     const board = await getById(boardId);
@@ -170,7 +239,7 @@ function getNewBoard() {
             comments: [],
           },
         ],
-        style: { groupColor: "rgb(162, 93, 220)" },
+        style: { groupColor: getNiceRandomColor() },
         activities: [],
       },
       {
@@ -202,3 +271,32 @@ function getNewBoard() {
   };
   return newBoard;
 }
+
+function _makeId(length = 4) {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
+
+function getNiceRandomColor() {
+  let red = '#ff3d57';
+  let orange = '#ffcb00';
+  let green = '#00d647';
+  let blue = '#0073ea';
+  let darkblue = '#292f4c';
+ 
+  let niceColors = [ darkblue, blue, green, orange, red];
+  let drawnNum = getRandomIntInclusive(0, niceColors.length);
+  let randColor = niceColors[drawnNum];
+  return randColor;
+}
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
+

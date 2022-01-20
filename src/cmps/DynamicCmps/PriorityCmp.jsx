@@ -39,7 +39,7 @@ export class PriorityCmp extends React.Component {
         const { isEditMode } = this.state
 
         return (
-            <section>
+            <section className="status-member-section">
                 <div className={info.selectedStatus}
                     style={{ backgroundColor: `${this.getBgColor(info)}`, color: `${this.getTxtColor(info)}` }}
                     onClick={(ev) => {

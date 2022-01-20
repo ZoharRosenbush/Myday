@@ -35,9 +35,32 @@ export function addBoard(board) {
       });
     } catch (err) {
       console.log("Cannot add board", err);
-      // showErrorMsg("Cannot add board");
     }
   };
+}
+
+
+export function  addTask( value, groupId, boardId){
+  return async (dispatch) => {
+    try {
+      const board = await boardService.addTask( value, groupId, boardId);
+      dispatch({ type: "SET_BOARD", board: board });
+    } catch (err) {
+      console.log('err:', err);
+    }
+  };
+
+}
+export function  addGroup(boardId){
+  return async (dispatch) => {
+    try {
+      const board = await boardService.addGroup( boardId);
+      dispatch({ type: "SET_BOARD", board: board });
+    } catch (err) {
+      console.log('err:', err);
+    }
+  };
+
 }
 
 export function removeBoard(boardId) {
@@ -71,7 +94,7 @@ export function saveTask(task, groupId, boardId) {
   };
 }
 export function saveGroup(group, boardId) {
-// console.log('task:', task);
+
   // const activity = {
   //     "id": makeId(),
   //     "txt": "Changed Color",
