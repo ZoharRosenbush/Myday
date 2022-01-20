@@ -5,22 +5,47 @@
   margin: 0;
   margin-left: 205px;
   z-index: 0;
-  margin-bottom: 100px;
+  margin-bottom: 130px;
+  .title-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+  }
   .board-title {
     font-size: 1.5rem;
     height: 2.5rem;
     color: #323338;
     font-weight: 600;
+    font-family: roboto-regular;
     width: fit-content;
+    text-align: start;
+    margin: 5px;
+    height: fit-content;
+    line-height: 3;
     &:hover {
-      border: 1px dashed #000;
+      border: 0.5px dashed #000;
     }
+  }
+  div.board-header-btns {
+    line-height: 6;
   }
   .board-description {
     text-align: start;
     width: fit-content;
+    text-align: start;
+    margin: 5px;
+    padding: 0;
+    display: inline;
+    padding: 5px 10px;
+    font-size: 100%;
     &:hover {
-      border: 1px dashed #000;
+      border: 0.5px dashed #000;
     }
+  }
+  .board-header-top {
+    color: #323338;
+    margin: 20px 0 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e9ef;
   }
 }

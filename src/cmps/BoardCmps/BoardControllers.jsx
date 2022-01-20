@@ -1,10 +1,11 @@
 export function BoardControllers() {
   return (
-    <section className="board-controllers">
-      <button>Filter</button>
-      <button>Sort</button>
-      <button>Search</button>
-      <button>Persons</button>
+    <section className="board-controllers flex">
+      <button className="add-group-btn">New Group</button>
+      <button className="controller-opt">Filter</button>
+      <button className="controller-opt">Sort</button>
+      <button className="controller-opt">Search</button>
+      <button className="controller-opt">Persons</button>
     </section>
   );
 }
