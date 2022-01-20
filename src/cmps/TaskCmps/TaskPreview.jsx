@@ -3,24 +3,28 @@ import { connect } from "react-redux";
 
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
-import {saveTask} from '../../store/board.action.js';
+import { saveTask } from '../../store/board.action.js';
 
- class _TaskPreview extends React.Component {
+class _TaskPreview extends React.Component {
 
   onUpdateTask = (cmpType, data) => {
-  const {task, saveTask, groupId, board} = this.props
+    const { task, saveTask, groupId, board } = this.props
     switch (cmpType) {
       case "status-picker":
         task.status = data
-        saveTask(task, groupId, board._id )
-         break;
-  };
-}
+        saveTask(task, groupId, board._id)
+        break;
+      case "priority-picker":
+        task.priority = data
+        saveTask(task, groupId, board._id)
+        break;
+    };
+  }
 
   cmpInfo = (cmpType) => {
-    
+
     const { task, board } = this.props;
-    
+
     switch (cmpType) {
       case "status-picker":
         return {
@@ -60,10 +64,10 @@ import {saveTask} from '../../store/board.action.js';
   };
 
   render() {
-    
+
     const { board } = this.props;
-    
-   const cmpsOrder = board.cmpsOrder;
+
+    const cmpsOrder = board.cmpsOrder;
     return (
       <section>
         {cmpsOrder.map((cmp, idx) => {

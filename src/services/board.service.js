@@ -29,7 +29,7 @@ async function saveTask(taskToSave, groupId, boardId) {
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-  
+
     const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
       return task.id === taskToSave.id ? taskToSave : task;
     });
@@ -68,7 +68,7 @@ function getNewBoard() {
       { id: "la666", value: "Stuck", color: "red" },
       { id: "la777", value: "Working on it", color: "orange" },
     ],
-    Priorities: [
+    priorities: [
       { id: "lb111", value: "Low", color: "grey" },
       { id: "lb222", value: "Medium", color: "green" },
       { id: "lb333", value: "High", color: "red" },
