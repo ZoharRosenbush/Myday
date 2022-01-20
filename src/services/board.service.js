@@ -9,6 +9,7 @@ export const boardService = {
   getNewBoard,
   saveTask,
   saveGroup,
+  addTask,
 };
 
 function query(filterBy) {
@@ -20,8 +21,6 @@ function getById(boardId) {
 }
 
 function save(boardToSave) {
-
-  
   if (boardToSave._id) {
     return storageService.put(STORAGE_KEY, boardToSave);
   } else {
@@ -29,8 +28,6 @@ function save(boardToSave) {
   }
 }
 async function saveTask(taskToSave, groupId, boardId) {
-
-
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
@@ -39,6 +36,27 @@ async function saveTask(taskToSave, groupId, boardId) {
       return task.id === taskToSave.id ? taskToSave : task;
     });
     board.groups[groupIdx].tasks = tasksToSave;
+    save(board);
+    return board;
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+
+async function addTask(value, groupId, boardId) {
+  try {
+    const taskToSave = {
+      id: _makeId(),
+      title: value,
+      status: "Empty",
+      priority: "Empty",
+      timeline: "Jan 18-23",
+      owner: [],
+      comments: [],
+    };
+    const board = await getById(boardId);
+    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+    board.groups[groupIdx].tasks.push(taskToSave);
     save(board);
     return board;
   } catch (err) {
@@ -201,4 +219,14 @@ function getNewBoard() {
     ],
   };
   return newBoard;
+}
+
+function _makeId(length = 4) {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
 }
