@@ -16,16 +16,24 @@ export class PriorityCmp extends React.Component {
         this.setState({ isModalOpen: false });
     };
 
+    getLabelColor = (info) => {
+        const currPritority = info.priorities.filter((p) => {
+            return (p.value === info.selectedStatus)
+        })
+        return currPritority[0].color
+    }
+
+
     render() {
         const { cmpData } = this.props;
         const { info } = cmpData;
         const { isModalOpen } = this.state;
-        console.log(this.state);
-        console.log('info:', info);
-        console.log(cmpData);
+
         return (
             <section>
-                <div className={info.selectedStatus} onClick={this.openModal}>
+                <div className={info.selectedStatus}
+                    style={{ backgroundColor: `${this.getLabelColor(info)}` }}
+                    onClick={this.openModal}>
                     {info.selectedStatus}
                 </div>
                 {isModalOpen && (

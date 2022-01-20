@@ -14,14 +14,22 @@ export class StatusCmp extends React.Component {
     onUpdateTask(cmpData.type, target.className);
     this.setState({ isModalOpen: false });
   };
-
+  getLabelColor = (info) => {
+    const currStatus = info.statuses.filter((p) => {
+      return (p.value === info.selectedStatus)
+    })
+    return currStatus[0].color
+  }
   render() {
     const { cmpData } = this.props;
     const { type, info } = cmpData;
     const { isModalOpen } = this.state;
     return (
       <section>
-        <div className={info.selectedStatus} onClick={this.openModal}>
+        <div
+          style={{ backgroundColor: `${this.getLabelColor(info)}` }}
+          className={info.selectedStatus}
+          onClick={this.openModal}>
           {info.selectedStatus}
         </div>
         {isModalOpen && (
@@ -29,6 +37,7 @@ export class StatusCmp extends React.Component {
             {info.statuses.map((status, idx) => {
               return (
                 <div
+                  style={{ backgroundColor: `${status.color}` }}
                   className={status.value}
                   key={idx}
                   onClick={this.handleChange}
