@@ -128,10 +128,39 @@ function _createBoards() {
       ],
       groups: [
         {
-          id: "g101",
+          id: "p101",
           title: "Group 1",
           tasks: [
             {
+              id: "w101",
+              title: "Replace Logo",
+              status: "Done",
+              priority: "High",
+              timeline: "Jan 18-23",
+              owner: [
+                {
+                  _id: "u1099",
+                  acronyms: "ZR",
+                  fullname: "Zohar Rosenbush",
+                  username: "Zohar Rosenbush",
+                  imgUrl: "http://some-img",
+                },
+              ],
+              comments: [
+                {
+                  id: "Zdrnm",
+                  txt: "also @yaronb please CR this",
+                  createdAt: 15909998174360,
+                  byMember: {
+                    _id: "u108",
+                    acronyms: "LS",
+                    fullname: "Lee Segal",
+                    username: "Lee Segal",
+                    imgUrl: "http://some-img",
+                  },
+                },
+              ],
+            },  {
               id: "c101",
               title: "Replace Logo",
               status: "Done",
@@ -148,7 +177,7 @@ function _createBoards() {
               ],
               comments: [
                 {
-                  id: "ZdPnm",
+                  id: "ZdPkm",
                   txt: "also @yaronb please CR this",
                   createdAt: 15909998174360,
                   byMember: {
@@ -160,9 +189,9 @@ function _createBoards() {
                   },
                 },
               ],
-            },
+            }
           ],
-          style: { groupColor: "red" },
+          style: { groupColor:"red" },
           activities: [
             {
               id: "a101",

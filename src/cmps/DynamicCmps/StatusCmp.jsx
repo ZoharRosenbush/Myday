@@ -33,7 +33,7 @@ export class StatusCmp extends React.Component {
 
     const { isModalOpen } = this.state;
     return (
-      <section>
+<section className="status-member-section">
         <div
           style={{ backgroundColor: `${this.getBgColor(info)}`, color: `${this.getTxtColor(info)}` }}
           className={info.selectedStatus}

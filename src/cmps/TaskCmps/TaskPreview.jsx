@@ -72,13 +72,38 @@ class _TaskPreview extends React.Component {
     }
   };
 
+  onUpdateTitleContent= ({ target })=> {
+    console.log(' onUpdateTitleContent');
+    console.log('this.props:', this.props);
+    
+    const { task, board , groupId,saveTask} = this.props;
+    const value = target.textContent;
+    console.log("value:", value);
+
+    if (!value) return;
+    task.title = value
+    saveTask(task, groupId, board._id);
+    // updateTitleContent(value, todo);
+  }
+
   render() {
-
-    const { board } = this.props;
-
+    const { board, groupId } = this.props;
+    const group = board.groups.find(group=>{
+      return groupId === group.id
+    })
     const cmpsOrder = board.cmpsOrder;
+    const { task } = this.props;
     return (
-      <section>
+      <section className="task-preview">
+        <div className="group-color" style={{backgroundColor:`${group.style.groupColor}`}}></div>
+        <span
+          className="task-title"
+          contentEditable
+          suppressContentEditableWarning={true}
+          onBlur={this.onUpdateTitleContent}
+        >
+          {task.title}
+        </span>
         {cmpsOrder.map((cmp, idx) => {
           return (
             <DynamicCmp
@@ -88,7 +113,6 @@ class _TaskPreview extends React.Component {
             />
           );
         })}
-        <h1>TaskPreview</h1>
         <TaskDetails />
       </section>
     );

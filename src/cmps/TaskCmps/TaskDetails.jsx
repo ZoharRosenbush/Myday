@@ -1,3 +1,3 @@
 export function TaskDetails(){
-    return <h1>TaskDetails</h1>
+    return <h1>TaskEdit</h1>
 }

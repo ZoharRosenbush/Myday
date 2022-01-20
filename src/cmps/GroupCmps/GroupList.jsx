@@ -7,8 +7,7 @@ export function GroupList({ board }) {
   
 
   return (
-    <section>
-      <h1>Group List</h1>
+    <section className="group-list">
       {
       // groups &&
        groups.map((group, idx) => {

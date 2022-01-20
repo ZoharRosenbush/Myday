@@ -1,0 +1,33 @@
+.member-picker{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
+
+.labels-modal{
+    div{
+        cursor: pointer;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.459);
+    }
+}
+
+.ZR{
+    background-color: blueviolet;
+    color: white;
+}
+.LS{
+    background-color: rgb(90, 192, 104);
+    color: white;
+}
+.ME{
+    background-color: rgb(216, 156, 188);
+    color: white;
+}
+
+.ME, .ZR, .LS{
+    border-radius: 50%;
+    border: none;
+
+}

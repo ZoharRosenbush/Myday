@@ -26,6 +26,8 @@ function save(boardToSave) {
   }
 }
 async function saveTask(taskToSave, groupId, boardId) {
+  console.log('taskToSave:',taskToSave );
+  
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
