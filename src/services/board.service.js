@@ -51,7 +51,16 @@ async function addTask(value, groupId, boardId) {
       status: "Empty",
       priority: "Empty",
       timeline: "Jan 18-23",
-      owner: [],
+      owner: [
+        {
+          _id: "u101",
+          acronyms: "ME",
+          fullname: "May Elgrat",
+          username: "May Elgrat",
+          imgUrl:
+            "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+        },
+      ],
       comments: [],
     };
     const board = await getById(boardId);
