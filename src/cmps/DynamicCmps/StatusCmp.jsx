@@ -12,8 +12,8 @@ export class StatusCmp extends React.Component {
   handelChange = ({ target }) => {
     const { cmpData, onUpdateTask } = this.props;
     onUpdateTask(cmpData.type, target.className);
+    this.setState({ isModalOpen: false });
   };
-
 
   render() {
     const { cmpData } = this.props;

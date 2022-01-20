@@ -18,6 +18,8 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { board } = this.props;
+    console.log('board:', board);
+    
     return (
       <section>
         <BoardHeader
