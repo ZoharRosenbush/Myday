@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
-import { saveTask } from "../../store/board.action.js";
+import { saveTask,setActiveModal} from "../../store/board.action.js";
 
 class _TaskPreview extends React.Component {
   onUpdateTask = (cmpType, data) => {
@@ -72,11 +72,11 @@ class _TaskPreview extends React.Component {
     }
   };
 
-  onUpdateTitleContent= ({ target })=> {
+  onUpdateTitleContent = ({ target }) => {
     console.log(' onUpdateTitleContent');
     console.log('this.props:', this.props);
-    
-    const { task, board , groupId,saveTask} = this.props;
+
+    const { task, board, groupId, saveTask } = this.props;
     const value = target.textContent;
     console.log("value:", value);
 
@@ -87,15 +87,14 @@ class _TaskPreview extends React.Component {
   }
 
   render() {
-    const { board, groupId } = this.props;
-    const group = board.groups.find(group=>{
+    const { board, groupId, activeModal, setActiveModal,task } = this.props;
+    const group = board.groups.find(group => {
       return groupId === group.id
     })
     const cmpsOrder = board.cmpsOrder;
-    const { task } = this.props;
     return (
       <section className="task-preview">
-        <div className="group-color" style={{backgroundColor:`${group.style.groupColor}`}}></div>
+        <div className="group-color" style={{ backgroundColor: `${group.style.groupColor}` }}></div>
         <span
           className="task-title"
           contentEditable
@@ -109,7 +108,10 @@ class _TaskPreview extends React.Component {
             <DynamicCmp
               cmpData={this.cmpInfo(cmp)}
               key={idx}
+              taskId={task.id}
               onUpdateTask={this.onUpdateTask}
+              activeModal={activeModal}
+              setActiveModal={setActiveModal}
             />
           );
         })}
@@ -122,11 +124,13 @@ class _TaskPreview extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
+    activeModal: boardModule.activeModal
     //   currFilterBy: toyModule.currFilterBy
   };
 }
 const mapDispatchToProps = {
   saveTask,
+  setActiveModal
 };
 
 export const TaskPreview = connect(

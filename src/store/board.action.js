@@ -74,6 +74,14 @@ console.log('task:', task);
   };
 }
 
+export function setActiveModal(activeModal) {
+  console.log('the activ emodal in action is',activeModal)
+
+  return (dispatch) => {
+      dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
+  };
+}
+
 // export function loadToys() {
 //   return async (dispatch) => {
 //     try {

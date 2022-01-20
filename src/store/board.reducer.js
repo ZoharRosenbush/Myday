@@ -3,6 +3,7 @@
 const initialState = {
   boards: [],
   board: null,
+  activeModal: { cmpType: null, taskId: null },
   activities: [],
 };
 
@@ -20,8 +21,10 @@ export function boardReducer(state = initialState, action) {
     case "ADD_BOARD":
       return { ...state, boards: [...state.boards, action.board] }
     case "REMOVE_BOARD":
-      newState = { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
-      break;
+      return { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
+    case "SET_ACTIVE_MODAL":
+      return { ...state, activeModal: action.activeModal }
+
     //     case 'ADD_GROUP':
     //         return { ...state, board: { ...state.board, groups: [action.group, ...groups] } }
     //     case 'EDIT_GROUP':

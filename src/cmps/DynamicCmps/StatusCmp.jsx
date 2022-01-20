@@ -2,45 +2,53 @@ import React from "react";
 
 export class StatusCmp extends React.Component {
   state = {
-    isModalOpen: false,
+    isEditMode: false,
   };
 
   openModal = () => {
-    this.setState({ isModalOpen: true });
+    const { cmpData, setActiveModal,taskId } = this.props;
+    this.setState({ isEditMode: true });
+    const activeModal = { cmpType: cmpData.type, taskId }
+    setActiveModal(activeModal)
   };
 
   handleChange = ({ target }) => {
     const { cmpData, onUpdateTask } = this.props;
     onUpdateTask(cmpData.type, target.className);
-    this.setState({ isModalOpen: false });
+    this.setState({ isEditMode: false });
   };
+
   getBgColor = (info) => {
     const currStatus = info.statuses.filter((status) => {
       return (status.value === info.selectedStatus)
     })
     return currStatus[0].bgColor
   }
+
   getTxtColor = (info) => {
     const currStatus = info.statuses.filter((status) => {
       return (status.value === info.selectedStatus)
     })
     return currStatus[0].color
   }
-  render() {
-    const { cmpData } = this.props;
-    const { type, info } = cmpData;
-    console.log('info:', info);
 
-    const { isModalOpen } = this.state;
+  render() {
+    const { cmpData, activeModal, taskId } = this.props;
+    const { type, info } = cmpData;
+    const { isEditMode } = this.state
+
     return (
-<section className="status-member-section">
+      <section className="status-member-section">
         <div
           style={{ backgroundColor: `${this.getBgColor(info)}`, color: `${this.getTxtColor(info)}` }}
           className={info.selectedStatus}
-          onClick={this.openModal}>
+          onClick={(ev) => {
+            ev.stopPropagation()
+            this.openModal()
+          }}>
           {info.selectedStatus}
         </div>
-        {isModalOpen && (
+        {activeModal.cmpType === type && activeModal.taskId === taskId && isEditMode && (
           <div className="labels-modal statuses">
             {info.statuses.map((status, idx) => {
               return (

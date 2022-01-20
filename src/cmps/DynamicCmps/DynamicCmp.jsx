@@ -4,17 +4,17 @@ import { MemberCmp } from "./MemberCmp.jsx";
 import { PriorityCmp } from "./PriorityCmp.jsx";
 
 
-export function DynamicCmp({ cmpData, onUpdateTask }) {
+export function DynamicCmp({ cmpData, onUpdateTask,taskId, setActiveModal,activeModal }) {
 
   switch (cmpData.type) {
     case "status-picker":
-      return <StatusCmp cmpData={cmpData} onUpdateTask={onUpdateTask} />;
+      return <StatusCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />;
     // return <StatusCmp info={info} onUpdate={onUpdate}  />;
     case "member-picker":
-      return <MemberCmp cmpData={cmpData} onUpdateTask={onUpdateTask} />;
+      return <MemberCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />;
 
     case "priority-picker":
-      return <PriorityCmp cmpData={cmpData} onUpdateTask={onUpdateTask} />
+      return <PriorityCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />
     // return <MembersCmp cmpData={cmpData} />;
     //   return <StatusCmp task={{ title: "Replace Logo", status: "Done" }} />;
     // return <MemberCmp info={info} onUpdate={onUpdate}  />;

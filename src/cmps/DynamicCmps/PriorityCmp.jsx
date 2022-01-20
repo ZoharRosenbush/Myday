@@ -3,17 +3,20 @@ import React from "react";
 
 export class PriorityCmp extends React.Component {
     state = {
-        isModalOpen: false,
+        isEditMode: false,
     };
 
     openModal = () => {
-        this.setState({ isModalOpen: true })
+        const { cmpData, setActiveModal, taskId } = this.props;
+        this.setState({ isEditMode: true });
+        const activeModal = { cmpType: cmpData.type, taskId }
+        setActiveModal(activeModal)
     }
 
     handleChange = ({ target }) => {
         const { cmpData, onUpdateTask } = this.props;
         onUpdateTask(cmpData.type, target.className);
-        this.setState({ isModalOpen: false });
+        this.setState({ isEditMode: false });
     };
 
     getBgColor = (info) => {
@@ -31,19 +34,21 @@ export class PriorityCmp extends React.Component {
 
 
     render() {
-        const { cmpData } = this.props;
-        const { info } = cmpData;
-        const { isModalOpen } = this.state;
-        console.log('info:', info);
+        const { cmpData, activeModal, taskId } = this.props;
+        const { type, info } = cmpData;
+        const { isEditMode } = this.state
 
         return (
             <section>
                 <div className={info.selectedStatus}
                     style={{ backgroundColor: `${this.getBgColor(info)}`, color: `${this.getTxtColor(info)}` }}
-                    onClick={this.openModal}>
+                    onClick={(ev) => {
+                        ev.stopPropagation()
+                        this.openModal()
+                    }}>
                     {info.selectedStatus}
                 </div>
-                {isModalOpen && (
+                {activeModal.cmpType === type && activeModal.taskId === taskId && isEditMode && (
                     <div className="labels-modal priorities">
                         {info.priorities.map((priority, idx) => {
                             return (<div
