@@ -28,11 +28,11 @@ export function DateCmp({ cmpData, onUpdateTask,groupColor }) {
 
     return (
 
-        <div>
+        <div className="date-picker-div">
             <style>
                 {`.date-picker input {
-            width: 100%;
-            background-color:${groupColor};
+            width: 90%;
+            background-color:black;
             border-radius: 11px;
             color:white;
             border-color: transparent;
