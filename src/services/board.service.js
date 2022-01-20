@@ -69,9 +69,10 @@ function getNewBoard() {
       { id: "la777", value: "Working on it", color: "orange" },
     ],
     priorities: [
-      { id: "lb111", value: "Low", color: "grey" },
-      { id: "lb222", value: "Medium", color: "green" },
-      { id: "lb333", value: "High", color: "red" },
+      { id: "lb111", value: "", color: "grey" },
+      { id: "lb222", value: "Low", color: "yellow" },
+      { id: "lb333", value: "Medium", color: "green" },
+      { id: "lb444", value: "High", color: "red" },
     ],
     members: [
       {
