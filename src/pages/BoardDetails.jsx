@@ -1,20 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
 import { loadBoard } from "../store/board.action.js";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
 
-import {setActiveModal} from '../store/board.action.js'
+import { setActiveModal } from '../store/board.action.js'
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
   componentDidMount() {
     const { boardId } = this.props.match.params;
     this.props.loadBoard(boardId);
-    const activeModal = { cmpType: null, taskId:null}
-    document.addEventListener('click',()=>{this.props.setActiveModal(activeModal)});
+    const activeModal = { cmpType: null, taskId: null }
+    document.addEventListener('click', () => { this.props.setActiveModal(activeModal) });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,9 +25,9 @@ class _BoardDetails extends React.Component {
     }
   }
 
-  componentWillUnmount(){
-    const activeModal = { cmpType: null, taskId:null}
-    document.removeEventListener('click', ()=>{this.props.setActiveModal(activeModal)});
+  componentWillUnmount() {
+    const activeModal = { cmpType: null, taskId: null }
+    document.removeEventListener('click', () => { this.props.setActiveModal(activeModal) });
 
   }
 
@@ -38,6 +39,7 @@ class _BoardDetails extends React.Component {
 
     return (
       <section>
+        <MainNav />
         <BoardHeader
         board ={board}
         // title={board.title}
