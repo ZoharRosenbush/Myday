@@ -20,7 +20,7 @@ export class StatusCmp extends React.Component {
     const { type, info } = cmpData;
     const { isModalOpen } = this.state;
     return (
-      <section>
+      <section className="status-member-section">
         <div className={info.selectedStatus} onClick={this.openModal}>
           {info.selectedStatus}
         </div>

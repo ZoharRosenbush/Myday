@@ -34,10 +34,10 @@ export class MemberCmp extends React.Component {
     const { isModalOpen } = this.state;
     return (
       <section>
-        <div onClick={this.openModal}>
+        <div className="member-picker"onClick={this.openModal}>
           {info.selectedOwners &&
-            info.selectedOwners.map((owner) => {
-              return owner.acronyms;
+            info.selectedOwners.map((owner, idx) => {
+              return <div key={idx}className={owner.acronyms}>{owner.acronyms}</div>;
             })}
         </div>
         {isModalOpen && (
@@ -50,6 +50,7 @@ export class MemberCmp extends React.Component {
                   onClick={this.handelChange}
                 >
                   {member.fullname}
+            
                   {/* <img src={member.imgUrl} alt=""></img> */}
                 </div>
               );

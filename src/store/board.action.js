@@ -53,7 +53,7 @@ export function removeBoard(boardId) {
 
 // Store - saveTask
 export function saveTask(task, groupId, boardId) {
-
+console.log('task:', task);
   // const activity = {
   //     "id": makeId(),
   //     "txt": "Changed Color",
@@ -63,7 +63,10 @@ export function saveTask(task, groupId, boardId) {
   // }
   return async (dispatch) => {
     try {
+      console.log('hello task:', task );
       const board = await boardService.saveTask(task, groupId, boardId);
+      console.log('board:',board );
+      
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log('err:', err);
