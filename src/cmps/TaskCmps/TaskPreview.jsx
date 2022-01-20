@@ -98,7 +98,7 @@ class _TaskPreview extends React.Component {
             style={{ backgroundColor: `${group.style.groupColor}` }}
           ></div>
           <span
-            className="task-title"
+            className="task-title first-column"
             contentEditable
             suppressContentEditableWarning={true}
             onBlur={this.onUpdateTitleContent}

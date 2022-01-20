@@ -28,7 +28,7 @@ export function DateCmp({ cmpData, onUpdateTask,groupColor }) {
 
     return (
 
-        <div>
+        <div className="date-cmp-container">
             <style>
                 {`.date-picker input {
             width: 100%;
