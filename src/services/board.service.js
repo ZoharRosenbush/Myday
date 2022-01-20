@@ -58,6 +58,7 @@ function getNewBoard() {
       "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
     createdBy: {
       _id: "u108",
+      acronyms: "AA",
       fullname: "Abi Abambi",
       username: "Abush",
       imgUrl: "http://some-img",
@@ -69,8 +70,8 @@ function getNewBoard() {
       { id: "la777", value: "Working on it", bgColor: "#ffcb00", color: "#fff" },
     ],
     priorities: [
-      { id: "lb111", value: "Empty", bgColor: "#c4c4c4", color: " #c4c4c4" },
-      { id: "lb222", value: "Low", bgColor: "#66ccff", color: " #fff" },
+      { id: "lb111", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
+      { id: "lb222", value: "Low", bgColor: "#66ccff", color: "#fff" },
       { id: "lb333", value: "Medium", bgColor: "#0086c0", color: "#fff" },
       { id: "lb444", value: "High", bgColor: "#225091", color: "#fff" },
     ],
@@ -100,14 +101,14 @@ function getNewBoard() {
     ],
     groups: [
       {
-        id: "g1012",
+        id: "GJKN10",
         title: "Group 1",
         tasks: [
           {
-            id: "c101",
-            title: "Group Title",
+            id: "fdd2",
+            title: "New Task",
             status: "Empty",
-            priority: "High",
+            priority: "Empty",
             timeline: "Jan 18-23",
             owner: [
               {
@@ -118,31 +119,73 @@ function getNewBoard() {
                 imgUrl: "http://some-img",
               },
             ],
-          },
-          {
-            id: "g12112",
-            title: "Group 2",
-            tasks: [
-              {
-                id: "c101",
-                title: "Group Title",
-                status: "Empty",
-                priority: "High",
-                timeline: "Jan 18-23",
-                owner: [
-                  {
-                    _id: "u1099",
-                    acronyms: "ZR",
-                    fullname: "Zohar Rosenbush",
-                    username: "Zohar Rosenbush",
-                    imgUrl: "http://some-img",
-                  },
-                ],
-              },
+            comments: [
+
             ],
           },
         ],
         style: { groupColor: "red" },
+        activities: [
+
+        ],
+      },
+      {
+        id: "gds21",
+        title: "Group 2",
+        tasks: [
+          {
+            id: "csdf101",
+            title: "New Task",
+            status: "Empty",
+            priority: "Empty",
+            timeline: "Jan 18-23",
+            owner: [
+              {
+                _id: "u1099",
+                acronyms: "ZR",
+                fullname: "Zohar Rosenbush",
+                username: "Zohar Rosenbush",
+                imgUrl: "http://some-img",
+              },
+            ],
+            comments: [
+
+            ],
+          },
+        ],
+        style: { groupColor: "red" },
+        activities: [
+
+        ],
+      },
+      {
+        id: "gzcdsxsv101",
+        title: "Group 3",
+        tasks: [
+          {
+            id: "cdszxvc101",
+            title: "New Task",
+            status: "Empty",
+            priority: "Empty",
+            timeline: "Jan 18-23",
+            owner: [
+              {
+                _id: "u1099",
+                acronyms: "ZR",
+                fullname: "Zohar Rosenbush",
+                username: "Zohar Rosenbush",
+                imgUrl: "http://some-img",
+              },
+            ],
+            comments: [
+
+            ],
+          },
+        ],
+        style: { groupColor: "red" },
+        activities: [
+
+        ],
       },
     ],
   };

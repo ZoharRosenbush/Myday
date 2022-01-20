@@ -17,14 +17,14 @@ export class PriorityCmp extends React.Component {
     };
 
     getBgColor = (info) => {
-        const currPritority = info.priorities.filter((p) => {
-            return (p.value === info.selectedStatus)
+        const currPritority = info.priorities.filter((priority) => {
+            return (priority.value === info.selectedStatus)
         })
         return currPritority[0].bgColor
     }
     getTxtColor = (info) => {
-        const currPritority = info.priorities.filter((p) => {
-            return (p.value === info.selectedStatus)
+        const currPritority = info.priorities.filter((priority) => {
+            return (priority.value === info.selectedStatus)
         })
         return currPritority[0].color
     }
@@ -34,6 +34,7 @@ export class PriorityCmp extends React.Component {
         const { cmpData } = this.props;
         const { info } = cmpData;
         const { isModalOpen } = this.state;
+        console.log('info:', info);
 
         return (
             <section>

@@ -34,6 +34,7 @@ class _TaskPreview extends React.Component {
 
   cmpInfo = (cmpType) => {
     const { task, board } = this.props;
+    console.log('the task', task)
     switch (cmpType) {
       case "status-picker":
         return {

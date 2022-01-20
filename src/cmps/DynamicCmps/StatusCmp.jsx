@@ -15,20 +15,22 @@ export class StatusCmp extends React.Component {
     this.setState({ isModalOpen: false });
   };
   getBgColor = (info) => {
-    const currStatus = info.statuses.filter((s) => {
-      return (s.value === info.selectedStatus)
+    const currStatus = info.statuses.filter((status) => {
+      return (status.value === info.selectedStatus)
     })
     return currStatus[0].bgColor
   }
   getTxtColor = (info) => {
-    const currStatus = info.statuses.filter((s) => {
-      return (s.value === info.selectedStatus)
+    const currStatus = info.statuses.filter((status) => {
+      return (status.value === info.selectedStatus)
     })
     return currStatus[0].color
   }
   render() {
     const { cmpData } = this.props;
     const { type, info } = cmpData;
+    console.log('info:', info);
+
     const { isModalOpen } = this.state;
     return (
       <section>
