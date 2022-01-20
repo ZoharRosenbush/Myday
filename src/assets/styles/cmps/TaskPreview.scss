@@ -1,13 +1,6 @@
 .task-preview {
-  // border: none;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: space-between;
-  // align-items: center;
-  // border: 1px solid #ffffff;
-  // height: 36px;
-  // background-color: #F5F6F8;
-  // text-align: start;
+display: flex;
+
   position: relative;
   width: 100%;
   height: 36px;
@@ -15,32 +8,28 @@
   border-bottom: 1px solid #e6e9ef;
   box-shadow: 0 3px 4px -5px #484444;
   margin-bottom: 2px;
-  font-size: .8125rem;
+  font-size: 0.8125rem;
   text-align: center;
-  
-  
+
   .task-title {
-    min-width: 330px;
+    min-width: 380px;
     text-align: left;
-    
     border: 1px solid white;
-    background: ($cell-color);
-    
+    background: #f5f6f8;
   }
-  
-  .group-color{
+
+  .group-color {
     height: 100%;
-    width: 10px;
+    min-width: 7px;
   }
 }
 
 .task-preview {
-
-&:hover{
-  .task-title, .member-picker{
-    background-color: #E6E9EF;
+  &:hover {
+    .task-title,
+    .member-picker,
+    .date-picker-div {
+      background-color: #e6e9ef;
+    }
   }
-}
-
-
 }

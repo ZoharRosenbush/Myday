@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 200px;
+    margin-left: ($ml);
 }
 
 .add-task-div{
@@ -13,5 +13,5 @@
 }
 .group-color{
     height: 36px;
-    width: 10px;
+    width: 7px;
   }

@@ -1,0 +1,50 @@
+.main-nav {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  width: 66px;
+  background-color: $navy;
+  z-index: 10;
+  justify-content: space-between;
+
+  img {
+    width: 40px;
+    margin-left: 10px;
+  }
+
+  div.see-plans {
+    background-color: #258750;
+    color: #ffcb00;
+    min-height: 100px;
+    width: 34px;
+    border-radius: 0 16px 16px 0;
+    cursor: pointer;
+    transition: background-color 200ms ease, width 200ms ease;
+    -webkit-user-select: none;
+    user-select: none;
+    height: 130px;
+    line-height: 50vh;
+    h2 {
+      // font-family: Helvetica, Arial, sans-serif;
+      color: $white;
+      transform: rotate(270deg);
+      font-size: 0.875rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+  .user-avatar {
+    color: $white;
+    text-align: center;
+    width: 44px;
+    height: 44px;
+    border: $white 2px solid;
+    border-radius: 50%;
+    background-color: #66cdff;
+    line-height: 40px;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px 0px 30px 8px;
+  }
+}
