@@ -15,10 +15,7 @@ export class _GroupPreview extends React.Component {
 
   render() {
     const { group } = this.props;
-    console.log('group:',group );
-    console.log('group.tasks:', group.tasks);
-    
-    
+
     return (
       <section className="group-preview">
         <h1
@@ -27,7 +24,7 @@ export class _GroupPreview extends React.Component {
           suppressContentEditableWarning={true}
           onBlur={this.onUpdateTitleContent}
         >
-         {group.title}
+          {group.title}
         </h1>
         {group.tasks.map((task, idx) => {
           return <TaskPreview key={idx} task={task} groupId={group.id} />;
