@@ -29,7 +29,7 @@ export class MemberCmp extends React.Component {
   render() {
     const { cmpData } = this.props;
     const { type, info } = cmpData;
-    console.log('info:', info);
+
     
     const { isModalOpen } = this.state;
     return (
