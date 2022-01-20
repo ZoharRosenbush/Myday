@@ -4,7 +4,8 @@
   // border-bottom: 1px solid rgba(0, 0, 0, 0.233);
   margin: 0;
   margin-left: $ml;
-  z-index: 0;
+  z-index: 5;
+  position: fixed;
   margin-bottom: 130px;
   .title-btns {
     display: flex;
@@ -44,7 +45,7 @@
   }
   .board-header-top {
     color: #323338;
-    margin: 20px 0 10px;
+    margin: 0px 0px 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #e6e9ef;
   }
