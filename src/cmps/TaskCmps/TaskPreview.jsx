@@ -19,7 +19,7 @@ class _TaskPreview extends React.Component {
         break;
       case "member-picker":
         const isOwner = task.owner.findIndex((owner) => {
-          console.log("owner:", owner);
+         
           return owner._id === data._id;
         });
         if (isOwner !== -1) return;
@@ -34,7 +34,7 @@ class _TaskPreview extends React.Component {
 
   cmpInfo = (cmpType) => {
     const { task, board } = this.props;
-    console.log('the task', task)
+
     switch (cmpType) {
       case "status-picker":
         return {
@@ -73,13 +73,8 @@ class _TaskPreview extends React.Component {
   };
 
   onUpdateTitleContent = ({ target }) => {
-    console.log(' onUpdateTitleContent');
-    console.log('this.props:', this.props);
-
-    const { task, board, groupId, saveTask } = this.props;
+    const { task, board , groupId,saveTask} = this.props;
     const value = target.textContent;
-    console.log("value:", value);
-
     if (!value) return;
     task.title = value
     saveTask(task, groupId, board._id);
