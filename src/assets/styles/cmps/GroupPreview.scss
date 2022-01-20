@@ -22,8 +22,43 @@
   display: inline;
   padding: 5px 10px;
   font-size: 100%;
+  font-family: roboto-light,helvetica,sans-serif;
+
 
   &:hover {
     border: 1px dotted black;
   }
+}
+
+
+.add-task-div{
+  border: 1px solid #00000040;
+  height: 36px;
+  background-color: lighter(#e6e9ef);
+  text-align: start;
+}
+
+
+.add-task-container{
+  display: flex;
+  height: 36px;
+  width: 100%;
+}
+
+.add-task-div{
+  width: inherit;
+  cursor: pointer;
+}
+
+.task-title{
+  border: none;
+  /* padding: 10px 0 10px 40px; */
+  cursor: pointer;
+  font-family: roboto-light,helvetica,sans-serif;
+  position: sticky;
+}
+
+span{
+  font-family: roboto-light,helvetica,sans-serif;
+
 }
