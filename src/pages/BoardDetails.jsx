@@ -8,30 +8,24 @@ import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
   componentDidMount() {
-    console.log("mount");
     const { boardId } = this.props.match.params;
-    console.log("boardId in details", boardId);
     // const  board = await boardService.getById(boardId)
-    console.log("boardId details:", boardId);
     this.props.loadBoard(boardId);
     //   this.setState({ board });
   }
-
-
+  
+  
   componentDidUpdate(prevProps, prevState) {
-    console.log("updating");
+    const { boardId } = this.props.match.params;
     if (prevProps.match.params.boardId !== this.props.match.params.boardId) {
-      console.log("updating inside condition");
-      this.props.loadBoard()
+      this.props.loadBoard(boardId)
     }
   }
 
 
 
   render() {
-    console.log("rendering");
     const { board } = this.props;
-    console.log('board:', board);
     
     return (
       <section>

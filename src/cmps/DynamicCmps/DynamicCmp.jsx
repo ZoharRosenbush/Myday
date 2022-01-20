@@ -2,7 +2,6 @@
 import { StatusCmp } from "./StatusCmp.jsx";
 import { MemberCmp } from "./MemberCmp.jsx";
 export function DynamicCmp({ cmpData, onUpdateTask}) {
-  console.log('cmpData:', cmpData);
   
   switch (cmpData.type) {
     case "status-picker":

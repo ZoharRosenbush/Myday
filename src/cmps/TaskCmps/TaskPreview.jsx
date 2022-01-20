@@ -3,24 +3,31 @@ import { connect } from "react-redux";
 
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
-import {saveTask} from '../../store/board.action.js';
+import { saveTask } from "../../store/board.action.js";
 
- class _TaskPreview extends React.Component {
-
+class _TaskPreview extends React.Component {
   onUpdateTask = (cmpType, data) => {
-  const {task, saveTask, groupId, board} = this.props
+    const { task, saveTask, groupId, board } = this.props;
     switch (cmpType) {
       case "status-picker":
-        task.status = data
-        saveTask(task, groupId, board._id )
-         break;
+        task.status = data;
+        saveTask(task, groupId, board._id);
+        break;
+      case "member-picker":
+        const isOwner = task.owner.findIndex((owner) => {
+          console.log("owner:", owner);
+          return owner._id === data._id;
+        });
+        if (isOwner !== -1) return;
+        task.owner.push(data);
+        saveTask(task, groupId, board._id);
+        break;
+    }
   };
-}
 
   cmpInfo = (cmpType) => {
-    
     const { task, board } = this.props;
-    
+
     switch (cmpType) {
       case "status-picker":
         return {
@@ -34,7 +41,7 @@ import {saveTask} from '../../store/board.action.js';
         return {
           type: "member-picker",
           info: {
-            selectedMembers: task.owner,
+            selectedOwners: task.owner,
             members: board.members,
           },
         };
@@ -56,14 +63,12 @@ import {saveTask} from '../../store/board.action.js';
         };
       default:
     }
-
   };
 
   render() {
-    
     const { board } = this.props;
-    
-   const cmpsOrder = board.cmpsOrder;
+
+    const cmpsOrder = board.cmpsOrder;
     return (
       <section>
         {cmpsOrder.map((cmp, idx) => {
@@ -82,7 +87,6 @@ import {saveTask} from '../../store/board.action.js';
   }
 }
 
-
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
@@ -90,11 +94,10 @@ function mapStateToProps({ boardModule }) {
   };
 }
 const mapDispatchToProps = {
-  saveTask
+  saveTask,
 };
 
 export const TaskPreview = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_TaskPreview);
-

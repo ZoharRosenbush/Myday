@@ -3,6 +3,7 @@ import React from "react";
 export class MemberCmp extends React.Component {
   state = {
     isModalOpen: false,
+    owners: [],
   };
 
   // type: "member-picker",
@@ -15,37 +16,41 @@ export class MemberCmp extends React.Component {
     this.setState({ isModalOpen: true });
   };
 
-  handelChange = (ev) => {
-    console.log('ev.target.innerText:', ev.target.innerText);
-    
+  handelChange = ({target}) => {
     const { cmpData, onUpdateTask } = this.props;
-    onUpdateTask(cmpData.type, ev.target.innerText);
+    const { info } = cmpData;
+    const ownerToSave = info.members.find((member) => {
+      return member._id === target.className;
+    });
     this.setState({ isModalOpen: false });
+    onUpdateTask(cmpData.type, ownerToSave);
   };
 
   render() {
     const { cmpData } = this.props;
     const { type, info } = cmpData;
+    console.log('info:', info);
+    
     const { isModalOpen } = this.state;
     return (
       <section>
         <div onClick={this.openModal}>
-          {info.selectedMembers && info.selectedMembers.map(member=>{
-            console.log('member.username:', member.username);
-            return member.username
-          })}
+          {info.selectedOwners &&
+            info.selectedOwners.map((owner) => {
+              return owner.acronyms;
+            })}
         </div>
         {isModalOpen && (
-          <div className="labels-modal memners">
+          <div className="labels-modal members">
             {info.members.map((member, idx) => {
               return (
                 <div
-                  className={member.fullname}
+                  className={member._id}
                   key={idx}
                   onClick={this.handelChange}
                 >
                   {member.fullname}
-                  <img src={member.imgUrl} alt=""></img>
+                  {/* <img src={member.imgUrl} alt=""></img> */}
                 </div>
               );
             })}
