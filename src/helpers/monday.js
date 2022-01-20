@@ -1,32 +1,25 @@
 // Guidelines
 // boardStore (no need for groupStore, taskStore), boardService
-// *. Support saving the entire board and also on the task level, 
+// *. Support saving the entire board and also on the task level,
 // PUT /api/board/b123/task/t678
 
 //    (no need for seperate APIs for mini-updates of task parts like members or status)
 // *. No need for saving an activities array per task, those activities are easily filtered from the board activities
-// *. activites - when board is updated, the frontend does not send the activities array within the board 
+// *. activites - when board is updated, the frontend does not send the activities array within the board
 //    instead it only sends a new activity object: {txt, boardId, groupId, taskId}
 //    the backend adds this activity to the board with $push and can also emit socket notificatios
 // *. D & D Guidelines - vue-smooth-dnd / vuedraggable / react-beutiful-dnd
 // *. Same model for Monday style app (do not implement a generic columns feature)
 // *. We do not handle concurrent editing - needs versioning
 
-
-
-
-
 // Rendering performance:
 // Store Mutation - saveBoard
 // state.board = board
 // Later, support switching a specific task
 
-
 // <BoardDetails> => <BoardGroup v-for>
 // <BoardGroup> => <TaskPreview v-for>
 // <TaskDetails> (+edit) - initially can be loaded in seperate route (later on we can place it in a modal and nested route)
-
-
 
 // Store - saveTask
 // function storeSaveTask(task, activity) {
@@ -57,139 +50,146 @@
 // }
 ///helllo board
 export const boards = [
-    {
-        "_id": "b101",
-        "title": "Sprint 4",
-        "description": "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
-        // "createdAt": 1589983468418,
-        "createdBy": {
-            "_id": "u108",
-            "fullname": "Abi Abambi",
-            "username": "Abush",
-            "imgUrl": "http://some-img"
-        },
-        // "labels": [
-        //     {
-        //         "id": "l101",
-        //         "title": "Done",
-        //         "color": "#61bd4f"
-        //     }
-        // ],
-        "members": [
-            {
-                "_id": "u101",
-                "fullname": "Tal Tarablus",
-                "username": "Talus",
-                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-            },
-            {
-                "_id": "u108",
-                "fullname": "Abi Abambi",
-                "username": "Abush",
-                "imgUrl": "http://some-img"
-            }
+  {
+    _id: "b101",
+    title: "Sprint 4",
+    description:
+      "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
+    // "createdAt": 1589983468418,
+    createdBy: {
+      _id: "u108",
+      fullname: "Abi Abambi",
+      username: "Abush",
+      imgUrl: "http://some-img",
+    },
+    // "labels": [
+    //     {
+    //         "id": "l101",
+    //         "title": "Done",
+    //         "color": "#61bd4f"
+    //     }
+    // ],
+    members: [
+      {
+        _id: "u101",
+        acronyms: "TT",
+        fullname: "Tal Tarablus",
+        username: "Talus",
+        imgUrl:
+          "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+      },
+      {
+        _id: "u108",
+        acronyms: "AA",
+        fullname: "Abi Abambi",
+        username: "Abush",
+        imgUrl: "http://some-img",
+      },
+    ],
+    groups: [
+      {
+        id: "g101",
+        title: "Group 1",
+        tasks: [
+          {
+            id: "c101",
+            title: "Replace Logo",
+            status: "Done",
+            priority: "High",
+            timeline: "Jan 18-23",
+            owner: [
+              {
+                _id: "u108",
+                acronyms: "AA",
+                fullname: "Abi Abambi",
+                username: "Abush",
+                imgUrl: "http://some-img",
+              },
+            ],
+            // "description": "description",
+            // think about adding more features such as like, seen, reply
+            comments: [
+              {
+                id: "ZdPnm",
+                txt: "also @yaronb please CR this",
+                createdAt: 15909998174360,
+                byMember: {
+                  _id: "u101",
+                  fullname: "Tal Tarablus",
+                  username: "Talus",
+                  imgUrl:
+                    "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+                },
+              },
+            ],
+          },
         ],
-        "groups": [
-            {
-                "id": "g101",
-                "title": "Group 1",
-                "tasks": [
-                    {
-                        "id": "c101",
-                        "title": "Replace Logo",
-                        "status": "Done",
-                        "priority": "High",
-                        "timeline": "Jan 18-23",
-                        "owner": [{
-                            "_id": "u108",
-                            "fullname": "Abi Abambi",
-                            "username": "Abush",
-                            "imgUrl": "http://some-img"
-                        }],
-                        // "description": "description",
-                        // think about adding more features such as like, seen, reply
-                        "comments": [
-                            {
-                                "id": "ZdPnm",
-                                "txt": "also @yaronb please CR this",
-                                "createdAt": 15909998174360,
-                                "byMember": {
-                                    "_id": "u101",
-                                    "fullname": "Tal Tarablus",
-                                    "username": "Talus",
-                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                                }
-                            }
-                        ],
-                    }
-                ],
-                "style": { "groupColor": "red" },
-                "activities": [
-                    {
-                        "id": "a101",
-                        "txt": "Changed Color",
-                        "createdAt": Date.now(),
-                        "byMember": {
-                            "_id": "u108",
-                            "fullname": "Abi Abambi",
-                            "imgUrl": "http://some-img"
-                        },
-
-                    }
-
-                ],
+        style: { groupColor: "red" },
+        activities: [
+          {
+            id: "a101",
+            txt: "Changed Color",
+            createdAt: Date.now(),
+            byMember: {
+              _id: "u108",
+              acronyms: "AA",
+              fullname: "Abi Abambi",
+              username: "Abush",
+              imgUrl: "http://some-img",
             },
+          },
         ],
-        // for monday
-        "ctgsOrder": ["status-picker", "member-picker", "date-picker", "priority-picker"]
-    }
-]
-
+      },
+    ],
+    // for monday
+    ctgsOrder: [
+      "status-picker",
+      "member-picker",
+      "date-picker",
+      "priority-picker",
+    ],
+  },
+];
 
 // function category(cmpsOrder){
 //     return{
 //         {cmpsOrder.map(cmp, idx)=>{
 //            if{cmp===="status-picker" } return {
-           
+
 //         }}
-        
+
 //     }
 // }
 
-
-
 const ctg1 = {
-    type: 'status-picker',
-    info: {
-        selectedStatus: 'Done',
-        statuses: [{ "value": 'Done', "color": 'green' }, {}]
-    }
-}
+  type: "status-picker",
+  info: {
+    selectedStatus: "Done",
+    statuses: [{ value: "Done", color: "green" }, {}],
+  },
+};
 
 const ctg2 = {
-    type: 'member-picker',
-    info: {
-        selectedMembers: ['m1', 'm2'],
-        members: ['m1', 'm2', 'm3']
-    }
-}
+  type: "member-picker",
+  info: {
+    selectedMembers: ["m1", "m2"],
+    members: ["m1", "m2", "m3"],
+  },
+};
 
 const ctg3 = {
-    type: 'date-picker',
-    info: {
-        selectedDate: '2022-09-07',
-    }
-}
+  type: "date-picker",
+  info: {
+    selectedDate: "2022-09-07",
+  },
+};
 const ctg4 = {
-    type: 'priority-picker',
-    info: {
-        selectedStatus: 'High',
-        priorities: [{}, {}]
-    }
-}
-
-
-
+  type: "priority-picker",
+  info: {
+    selectedStatus: "High",
+    priorities: [{}, {}],
+  },
+};
 
 // {
 //     "id": "g102",
@@ -255,29 +255,30 @@ const ctg4 = {
 // }
 
 const user = {
-    "_id": "u108",
-    "fullname": "Abi Abambi",
-    // "username": "abi@ababmi.com",
-    "username": "Abush",
-    "password": "aBambi123",
-    "imgUrl": "http://some-img.jpg",
-    "mentions": [{
-        "id": "m101",
-        "boardId": "m101",
-        "taskId": "t101"
-    }]
-}
+  _id: "u108",
+  fullname: "Abi Abambi",
+  // "username": "abi@ababmi.com",
+  username: "Abush",
+  password: "aBambi123",
+  imgUrl: "http://some-img.jpg",
+  mentions: [
+    {
+      id: "m101",
+      boardId: "m101",
+      taskId: "t101",
+    },
+  ],
+};
 
 // For Monday Mostly:
-// Dynamic Components: 
-// <TaskPreview> => <tr> 
+// Dynamic Components:
+// <TaskPreview> => <tr>
 //    <td v-for="(cmpType) in cmpsOrder">
 //         <component :is="cmpType" :info="getCmpInfo(cmpType)" @updated="updateTask(cmpType, $event)">
 //    </td>
 
 function updateTask(cmpType, data) {
-    // Switch
-    // task.members = data;
-    // task.status = data;
+  // Switch
+  // task.members = data;
+  // task.status = data;
 }
-

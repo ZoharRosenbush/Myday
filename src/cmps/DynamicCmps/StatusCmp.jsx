@@ -9,7 +9,7 @@ export class StatusCmp extends React.Component {
     this.setState({ isModalOpen: true });
   };
 
-  handelChange = ({ target }) => {
+  handleChange = ({ target }) => {
     const { cmpData, onUpdateTask } = this.props;
     onUpdateTask(cmpData.type, target.className);
     this.setState({ isModalOpen: false });
@@ -31,7 +31,7 @@ export class StatusCmp extends React.Component {
                 <div
                   className={status.value}
                   key={idx}
-                  onClick={this.handelChange}
+                  onClick={this.handleChange}
                 >
                   {status.value}
                 </div>

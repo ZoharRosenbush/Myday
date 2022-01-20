@@ -29,13 +29,13 @@ async function saveTask(taskToSave, groupId, boardId) {
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-  
+
     const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
       return task.id === taskToSave.id ? taskToSave : task;
     });
     board.groups[groupIdx].tasks = tasksToSave;
     save(board);
-    return board
+    return board;
   } catch (err) {
     console.log("err:", err);
   }
@@ -68,14 +68,16 @@ function getNewBoard() {
       { id: "la666", value: "Stuck", color: "red" },
       { id: "la777", value: "Working on it", color: "orange" },
     ],
-    Priorities: [
-      { id: "lb111", value: "Low", color: "grey" },
-      { id: "lb222", value: "Medium", color: "green" },
-      { id: "lb333", value: "High", color: "red" },
+    priorities: [
+      { id: "lb111", value: "", color: "grey" },
+      { id: "lb222", value: "Low", color: "yellow" },
+      { id: "lb333", value: "Medium", color: "green" },
+      { id: "lb444", value: "High", color: "red" },
     ],
     members: [
       {
         _id: "u101",
+        acronyms: "ME",
         fullname: "May Elgrat",
         username: "May Elgrat",
         imgUrl:
@@ -83,12 +85,14 @@ function getNewBoard() {
       },
       {
         _id: "u108",
+        acronyms: "LS",
         fullname: "Lee Segal",
         username: "Lee Segal",
         imgUrl: "http://some-img",
       },
       {
         _id: "u1099",
+        acronyms: "ZR",
         fullname: "Zohar Rosenbush",
         username: "Zohar Rosenbush",
         imgUrl: "http://some-img",
@@ -107,9 +111,10 @@ function getNewBoard() {
             timeline: "Jan 18-23",
             owner: [
               {
-                _id: "u108",
-                fullname: "Abi Abambi",
-                username: "Abush",
+                _id: "u1099",
+                acronyms: "ZR",
+                fullname: "Zohar Rosenbush",
+                username: "Zohar Rosenbush",
                 imgUrl: "http://some-img",
               },
             ],
@@ -126,9 +131,10 @@ function getNewBoard() {
                 timeline: "Jan 18-23",
                 owner: [
                   {
-                    _id: "u108",
-                    fullname: "Abi Abambi",
-                    username: "Abush",
+                    _id: "u1099",
+                    acronyms: "ZR",
+                    fullname: "Zohar Rosenbush",
+                    username: "Zohar Rosenbush",
                     imgUrl: "http://some-img",
                   },
                 ],
