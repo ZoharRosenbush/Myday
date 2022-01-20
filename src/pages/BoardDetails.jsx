@@ -9,9 +9,7 @@ import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
 class _BoardDetails extends React.Component {
   componentDidMount() {
     const { boardId } = this.props.match.params;
-    // const  board = await boardService.getById(boardId)
     this.props.loadBoard(boardId);
-    //   this.setState({ board });
   }
   
   
