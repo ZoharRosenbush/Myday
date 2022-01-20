@@ -27,7 +27,7 @@ export class StatusCmp extends React.Component {
     return (
       <section>
         <div
-          style={{ backgroundColor: `${this.getLabelColor(info)}` }}
+          style={{ backgroundColor: `${this.getLabelColor(info)}`, color: "white" }}
           className={info.selectedStatus}
           onClick={this.openModal}>
           {info.selectedStatus}
@@ -37,7 +37,7 @@ export class StatusCmp extends React.Component {
             {info.statuses.map((status, idx) => {
               return (
                 <div
-                  style={{ backgroundColor: `${status.color}` }}
+                  style={{ backgroundColor: `${status.color}`, color: "white" }}
                   className={status.value}
                   key={idx}
                   onClick={this.handleChange}

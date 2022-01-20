@@ -32,7 +32,7 @@ export class PriorityCmp extends React.Component {
         return (
             <section>
                 <div className={info.selectedStatus}
-                    style={{ backgroundColor: `${this.getLabelColor(info)}` }}
+                    style={{ backgroundColor: `${this.getLabelColor(info)}`, color: "white" }}
                     onClick={this.openModal}>
                     {info.selectedStatus}
                 </div>
@@ -40,7 +40,7 @@ export class PriorityCmp extends React.Component {
                     <div className="labels-modal priorities">
                         {info.priorities.map((priority, idx) => {
                             return (<div
-                                style={{ backgroundColor: `${priority.color}` }}
+                                style={{ backgroundColor: `${priority.color}`, color: "white" }}
                                 className={priority.value}
                                 key={idx}
                                 onClick={this.handleChange}
