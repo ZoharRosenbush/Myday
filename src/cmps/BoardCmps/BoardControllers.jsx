@@ -4,10 +4,10 @@ import { BiSortAlt2, BiColorFill } from 'react-icons/bi'
 import { FiFilter, FiEyeOff } from 'react-icons/fi'
 // import { IoColorFillOutline } from 'react-icons/io'
 
-export function BoardControllers() {
+export function BoardControllers({onAddGroup}) {
   return (
     <section className="board-controllers flex">
-      <button className="add-group-btn">New Group</button>
+     <button className="add-group-btn" onClick={onAddGroup}>New Group</button>
       <div className="controller-opt">
         <CgSearch />
         <button>Search</button>

@@ -135,7 +135,7 @@ function _createBoards() {
               title: "Replace Logo",
               status: "Done",
               priority: "High",
-              timeline: "Jan 18-23",
+              timeline: ["Jan 18-22","Jan 20-22"],
               owner: [
                 {
                   _id: "u1099",
@@ -164,7 +164,7 @@ function _createBoards() {
               title: "Replace Logo",
               status: "Done",
               priority: "High",
-              timeline: "Jan 18-23",
+              timeline: ["Jan 30-22","Feb 02-22"],
               owner: [
                 {
                   _id: "u1099",
