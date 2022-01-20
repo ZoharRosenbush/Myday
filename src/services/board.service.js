@@ -106,7 +106,7 @@ function getNewBoard() {
           {
             id: "c101",
             title: "Group Title",
-            status: "",
+            status: "Empty",
             priority: "High",
             timeline: "Jan 18-23",
             owner: [
@@ -126,7 +126,7 @@ function getNewBoard() {
               {
                 id: "c101",
                 title: "Group Title",
-                status: "",
+                status: "Empty",
                 priority: "High",
                 timeline: "Jan 18-23",
                 owner: [
