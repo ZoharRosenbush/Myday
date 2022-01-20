@@ -13,7 +13,6 @@ class _BoardDetails extends React.Component {
     this.props.loadBoard(boardId);
   }
 
-
   componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     if (prevProps.match.params.boardId !== this.props.match.params.boardId) {

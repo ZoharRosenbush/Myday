@@ -26,6 +26,8 @@ function save(boardToSave) {
   }
 }
 async function saveTask(taskToSave, groupId, boardId) {
+  console.log('taskToSave:',taskToSave );
+  
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
@@ -58,21 +60,22 @@ function getNewBoard() {
       "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
     createdBy: {
       _id: "u108",
+      acronyms: "AA",
       fullname: "Abi Abambi",
       username: "Abush",
       imgUrl: "http://some-img",
     },
     statuses: [
-      { id: "la123", value: "", color: "grey" },
-      { id: "la555", value: "Done", color: "green" },
-      { id: "la666", value: "Stuck", color: "red" },
-      { id: "la777", value: "Working on it", color: "orange" },
+      { id: "la123", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
+      { id: "la555", value: "Done", bgColor: "#00d647", color: "#fff" },
+      { id: "la666", value: "Stuck", bgColor: "#ff3d57", color: "#fff" },
+      { id: "la777", value: "Working on it", bgColor: "#ffcb00", color: "#fff" },
     ],
     priorities: [
-      { id: "lb111", value: "", color: "grey" },
-      { id: "lb222", value: "Low", color: "yellow" },
-      { id: "lb333", value: "Medium", color: "green" },
-      { id: "lb444", value: "High", color: "red" },
+      { id: "lb111", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
+      { id: "lb222", value: "Low", bgColor: "#66ccff", color: "#fff" },
+      { id: "lb333", value: "Medium", bgColor: "#0086c0", color: "#fff" },
+      { id: "lb444", value: "High", bgColor: "#225091", color: "#fff" },
     ],
     members: [
       {
@@ -100,14 +103,14 @@ function getNewBoard() {
     ],
     groups: [
       {
-        id: "g1012",
+        id: "GJKN10",
         title: "Group 1",
         tasks: [
           {
-            id: "c101",
-            title: "Group Title",
-            status: "",
-            priority: "High",
+            id: "fdd2",
+            title: "New Task",
+            status: "Empty",
+            priority: "Empty",
             timeline: "Jan 18-23",
             owner: [
               {
@@ -118,31 +121,73 @@ function getNewBoard() {
                 imgUrl: "http://some-img",
               },
             ],
-          },
-          {
-            id: "g12112",
-            title: "Group 2",
-            tasks: [
-              {
-                id: "c101",
-                title: "Group Title",
-                status: "",
-                priority: "High",
-                timeline: "Jan 18-23",
-                owner: [
-                  {
-                    _id: "u1099",
-                    acronyms: "ZR",
-                    fullname: "Zohar Rosenbush",
-                    username: "Zohar Rosenbush",
-                    imgUrl: "http://some-img",
-                  },
-                ],
-              },
+            comments: [
+
             ],
           },
         ],
         style: { groupColor: "red" },
+        activities: [
+
+        ],
+      },
+      {
+        id: "gds21",
+        title: "Group 2",
+        tasks: [
+          {
+            id: "csdf101",
+            title: "New Task",
+            status: "Empty",
+            priority: "Empty",
+            timeline: "Jan 18-23",
+            owner: [
+              {
+                _id: "u1099",
+                acronyms: "ZR",
+                fullname: "Zohar Rosenbush",
+                username: "Zohar Rosenbush",
+                imgUrl: "http://some-img",
+              },
+            ],
+            comments: [
+
+            ],
+          },
+        ],
+        style: { groupColor: "red" },
+        activities: [
+
+        ],
+      },
+      {
+        id: "gzcdsxsv101",
+        title: "Group 3",
+        tasks: [
+          {
+            id: "cdszxvc101",
+            title: "New Task",
+            status: "Empty",
+            priority: "Empty",
+            timeline: "Jan 18-23",
+            owner: [
+              {
+                _id: "u1099",
+                acronyms: "ZR",
+                fullname: "Zohar Rosenbush",
+                username: "Zohar Rosenbush",
+                imgUrl: "http://some-img",
+              },
+            ],
+            comments: [
+
+            ],
+          },
+        ],
+        style: { groupColor: "red" },
+        activities: [
+
+        ],
       },
     ],
   };

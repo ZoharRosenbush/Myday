@@ -1,18 +1,28 @@
-.Done{
-    background-color: $green;
-    width: 100px;
-    margin: auto;
-    cursor: pointer;
+.Done {
+  background-color: $green;
+  width: 100px;
+  margin: auto;
+  cursor: pointer;
 }
-.Working.on.it{
-    background-color: $yellow;
-    width: 100px;
-    margin: auto;
-    cursor: pointer;
+.Working.on.it {
+  background-color: $yellow;
+  width: 100px;
+  margin: auto;
+  cursor: pointer;
 }
-.Stuck{
-    background-color: $red;
-    width: 100px;
-    margin: auto;
-    cursor: pointer;
+.Stuck {
+  background-color: $red;
+  width: 100px;
+  margin: auto;
+  cursor: pointer;
+}
+.Empty {
+  width: 100px;
+  margin: auto;
+  cursor: pointer;
+}
+
+
+.status-member-section{
+    width: 13%;
 }
