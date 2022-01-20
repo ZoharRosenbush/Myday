@@ -16,6 +16,7 @@ export function loadBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
+
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log("cannot find board:", err);

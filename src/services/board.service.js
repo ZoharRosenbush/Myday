@@ -35,7 +35,7 @@ async function saveTask(taskToSave, groupId, boardId) {
     });
     board.groups[groupIdx].tasks = tasksToSave;
     save(board);
-    return board
+    return board;
   } catch (err) {
     console.log("err:", err);
   }
@@ -76,6 +76,7 @@ function getNewBoard() {
     members: [
       {
         _id: "u101",
+        acronyms: "ME",
         fullname: "May Elgrat",
         username: "May Elgrat",
         imgUrl:
@@ -83,12 +84,14 @@ function getNewBoard() {
       },
       {
         _id: "u108",
+        acronyms: "LS",
         fullname: "Lee Segal",
         username: "Lee Segal",
         imgUrl: "http://some-img",
       },
       {
         _id: "u1099",
+        acronyms: "ZR",
         fullname: "Zohar Rosenbush",
         username: "Zohar Rosenbush",
         imgUrl: "http://some-img",
@@ -107,9 +110,10 @@ function getNewBoard() {
             timeline: "Jan 18-23",
             owner: [
               {
-                _id: "u108",
-                fullname: "Abi Abambi",
-                username: "Abush",
+                _id: "u1099",
+                acronyms: "ZR",
+                fullname: "Zohar Rosenbush",
+                username: "Zohar Rosenbush",
                 imgUrl: "http://some-img",
               },
             ],
@@ -126,9 +130,10 @@ function getNewBoard() {
                 timeline: "Jan 18-23",
                 owner: [
                   {
-                    _id: "u108",
-                    fullname: "Abi Abambi",
-                    username: "Abush",
+                    _id: "u1099",
+                    acronyms: "ZR",
+                    fullname: "Zohar Rosenbush",
+                    username: "Zohar Rosenbush",
                     imgUrl: "http://some-img",
                   },
                 ],
