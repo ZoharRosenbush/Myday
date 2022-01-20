@@ -102,7 +102,7 @@ function _createBoards() {
                 { "id": "la666", value: "Stuck", color: "red" },
                 { "id": "la777", value: "Working on it", color: "orange" },
             ],
-            "Priorities": [
+            "priorities": [
                 { "id": "lb111", value: "", color: "grey" },
                 { "id": "lb222", value: "Low", color: "orange" },
                 { "id": "lb333", value: "Medium", color: "green" },
