@@ -63,10 +63,28 @@ console.log('task:', task);
   // }
   return async (dispatch) => {
     try {
-      console.log('hello task:', task );
+
       const board = await boardService.saveTask(task, groupId, boardId);
-      console.log('board:',board );
-      
+      dispatch({ type: "SET_BOARD", board: board });
+    } catch (err) {
+      console.log('err:', err);
+    }
+  };
+}
+export function saveGroup(group, boardId) {
+  console.log('group in action:', group);
+  
+// console.log('task:', task);
+  // const activity = {
+  //     "id": makeId(),
+  //     "txt": "Changed Color",
+  //     "createdAt": Date.now(),
+  //     "byMember": userService.getLoggedinUser(),
+  //     "task": task
+  // }
+  return async (dispatch) => {
+    try {
+      const board = await boardService.saveGroup(group, boardId);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log('err:', err);

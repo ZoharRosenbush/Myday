@@ -13,3 +13,17 @@
 .labels-modal {
   position: fixed;
 }
+
+.group-title {
+  text-align: start;
+  margin: 5px;
+  /* margin: 0; */
+  padding: 0;
+  display: inline;
+  padding: 5px 10px;
+  font-size: 100%;
+
+  &:hover {
+    border: 1px dotted black;
+  }
+}
