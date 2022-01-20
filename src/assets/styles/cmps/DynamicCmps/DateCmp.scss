@@ -1,21 +1,13 @@
 .date-picker-div{
-    background-color:($cell-color) ;
+    background-color: #F5F6F8;
+    min-width: 200px;
     .react-datepicker-wrapper{
         display: inline-block;
         padding: 0;
-        border: 0;
+     border: 1px solid white;
         width: 100%;
         background-color: ($cell-color);
-        .react-datepicker__input-container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            border: 1px solid white;
-            background-color: ($cell-color);
-        }
+     
     }
 }
 
-.date-picker-div {
-    background-color:($cell-color);
-  }
