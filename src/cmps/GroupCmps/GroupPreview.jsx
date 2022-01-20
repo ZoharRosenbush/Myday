@@ -43,7 +43,7 @@ export class _GroupPreview extends React.Component {
       <section className="group-preview">
         <div className= "div-headline-container">
         <h1
-          className="group-title"
+          className="group-title first-column"
           contentEditable
           suppressContentEditableWarning={true}
           onBlur={this.onUpdateTitleContent}
@@ -59,14 +59,14 @@ export class _GroupPreview extends React.Component {
         })}
         <div className="add-task-container">
           <div
-            className="group-color"
+            className="group-color first-column"
             style={{ backgroundColor: `${group.style.groupColor}` }}
           ></div>
           <div className="add-task-div">
             {" "}
-            <form onSubmit={this.onAddTask}>
+            <form onSubmit={this.onAddTask} className="first-column">
               <input
-                className="task-title"
+                className="task-title first-column"
                 placeholder="Add task +"
                 onChange={this.onHandleChange}
                 value={this.state.taskValue}
