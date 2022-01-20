@@ -16,6 +16,8 @@ export function loadBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
+      console.log('board:', board);
+
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log("cannot find board:", err);
@@ -61,10 +63,10 @@ export function saveTask(task, groupId, boardId) {
   //     "task": task
   // }
   return async (dispatch) => {
-    try{
+    try {
       const board = await boardService.saveTask(task, groupId, boardId);
       dispatch({ type: "SET_BOARD", board: board });
-    }catch(err){
+    } catch (err) {
       console.log('err:', err);
     }
   };
