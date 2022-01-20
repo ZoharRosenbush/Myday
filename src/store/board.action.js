@@ -53,7 +53,6 @@ export function removeBoard(boardId) {
 
 // Store - saveTask
 export function saveTask(task, groupId, boardId) {
-console.log('task:', task);
   // const activity = {
   //     "id": makeId(),
   //     "txt": "Changed Color",
@@ -72,8 +71,6 @@ console.log('task:', task);
   };
 }
 export function saveGroup(group, boardId) {
-  console.log('group in action:', group);
-  
 // console.log('task:', task);
   // const activity = {
   //     "id": makeId(),
@@ -93,8 +90,6 @@ export function saveGroup(group, boardId) {
 }
 
 export function setActiveModal(activeModal) {
-  console.log('the activ emodal in action is',activeModal)
-
   return (dispatch) => {
       dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
   };

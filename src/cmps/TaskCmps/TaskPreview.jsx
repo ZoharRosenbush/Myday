@@ -80,7 +80,7 @@ class _TaskPreview extends React.Component {
     saveTask(task, groupId, board._id);
     // updateTitleContent(value, todo);
   }
-
+git 
   render() {
     const { board, groupId, activeModal, setActiveModal,task } = this.props;
     const group = board.groups.find(group => {

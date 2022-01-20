@@ -68,7 +68,6 @@ function _makeId(length = 4) {
 }
 
 function _createBoards() {
-  console.log("creating demo boards");
   const boards = [
     {
       _id: _makeId(),
