@@ -51,6 +51,17 @@ export function  addTask( value, groupId, boardId){
   };
 
 }
+export function  addGroup(boardId){
+  return async (dispatch) => {
+    try {
+      const board = await boardService.addGroup( boardId);
+      dispatch({ type: "SET_BOARD", board: board });
+    } catch (err) {
+      console.log('err:', err);
+    }
+  };
+
+}
 
 export function removeBoard(boardId) {
   return async (dispatch) => {

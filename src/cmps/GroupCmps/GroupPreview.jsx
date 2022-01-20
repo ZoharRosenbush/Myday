@@ -5,7 +5,7 @@ import { addTask, saveGroup } from "../../store/board.action.js";
 
 export class _GroupPreview extends React.Component {
   state = {
-    taskValue: "Add Task +",
+    taskValue: "",
   };
 
   onUpdateTitleContent = ({ target }) => {
@@ -25,6 +25,7 @@ export class _GroupPreview extends React.Component {
     ev.preventDefault();
     const { group, board, addTask } = this.props;
     addTask(this.state.taskValue, group.id, board._id);
+    this.setState({ taskValue: "Add Task +"});
   };
 
   cmpTitle = (cmpType) => {
@@ -68,10 +69,11 @@ export class _GroupPreview extends React.Component {
                 className="task-title"
                 placeholder="Add task +"
                 onChange={this.onHandleChange}
+                value={this.state.taskValue}
                 // contentEditable
                 // suppressContentEditableWarning={true}
               ></input>
-              <button>Add</button>
+              <button className="add-task-btn">Add</button>
             </form>
           </div>
         </div>
