@@ -63,16 +63,16 @@ function getNewBoard() {
       imgUrl: "http://some-img",
     },
     statuses: [
-      { id: "la123", value: "", color: "grey" },
-      { id: "la555", value: "Done", color: "green" },
-      { id: "la666", value: "Stuck", color: "red" },
-      { id: "la777", value: "Working on it", color: "orange" },
+      { id: "la123", value: "", color: "#c4c4c4" },
+      { id: "la555", value: "Done", color: "#00d647" },
+      { id: "la666", value: "Stuck", color: "#ff3d57" },
+      { id: "la777", value: "Working on it", color: "#ffcb00" },
     ],
     priorities: [
-      { id: "lb111", value: "", color: "grey" },
-      { id: "lb222", value: "Low", color: "yellow" },
-      { id: "lb333", value: "Medium", color: "green" },
-      { id: "lb444", value: "High", color: "red" },
+      { id: "lb111", value: "", color: "#c4c4c4" },
+      { id: "lb222", value: "Low", color: "#66ccff" },
+      { id: "lb333", value: "Medium", color: "#0086c0" },
+      { id: "lb444", value: "High", color: "#225091" },
     ],
     members: [
       {
