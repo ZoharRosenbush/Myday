@@ -124,7 +124,7 @@ function getNewBoard() {
             ],
           },
         ],
-        style: { groupColor: "red" },
+        style: { groupColor: "rgb(255 21 138)" },
         activities: [
 
         ],
@@ -153,7 +153,7 @@ function getNewBoard() {
             ],
           },
         ],
-        style: { groupColor: "red" },
+        style: { groupColor: "rgb(162, 93, 220)" },
         activities: [
 
         ],
@@ -182,7 +182,7 @@ function getNewBoard() {
             ],
           },
         ],
-        style: { groupColor: "red" },
+        style: { groupColor: "rgb(0, 134, 192)" },
         activities: [
 
         ],
