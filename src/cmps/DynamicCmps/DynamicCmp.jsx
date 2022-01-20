@@ -2,11 +2,14 @@
 import { StatusCmp } from "./StatusCmp.jsx";
 import { MemberCmp } from "./MemberCmp.jsx";
 export function DynamicCmp({ cmpData, onUpdateTask}) {
+  console.log('cmpData:', cmpData);
+  
   switch (cmpData.type) {
     case "status-picker":
       return <StatusCmp cmpData={cmpData} onUpdateTask={onUpdateTask} />;
       // return <StatusCmp info={info} onUpdate={onUpdate}  />;
-    case "member-picker":
+      case "member-picker":
+      return <MemberCmp cmpData={cmpData} onUpdateTask={onUpdateTask} />;
       // return <MembersCmp cmpData={cmpData} />;
     //   return <StatusCmp task={{ title: "Replace Logo", status: "Done" }} />;
       // return <MemberCmp info={info} onUpdate={onUpdate}  />;
