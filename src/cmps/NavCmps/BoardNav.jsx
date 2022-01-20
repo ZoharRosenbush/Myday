@@ -17,7 +17,7 @@ export class _BoardNav extends React.Component {
     const newBoard = boardService.getNewBoard()
     this.props.addBoard(newBoard)
     //TODO: NEVIGATE THE PAGE TO THE NEW BOARD LINK
-    window.location.href = `/myday/board/${newBoard._id}`
+    // window.location.href = `/myday/board/${newBoard._id}`
   }
 
   onRemoveBoard = (boardId) => {
