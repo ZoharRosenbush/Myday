@@ -7,11 +7,15 @@ import { saveTask } from "../../store/board.action.js";
 
 class _TaskPreview extends React.Component {
   onUpdateTask = (cmpType, data) => {
-    const { task, saveTask, groupId, board } = this.props;
+    const { task, saveTask, groupId, board } = this.props
     switch (cmpType) {
       case "status-picker":
-        task.status = data;
-        saveTask(task, groupId, board._id);
+        task.status = data
+        saveTask(task, groupId, board._id)
+        break;
+      case "priority-picker":
+        task.priority = data
+        saveTask(task, groupId, board._id)
         break;
       case "member-picker":
         const isOwner = task.owner.findIndex((owner) => {
@@ -22,12 +26,15 @@ class _TaskPreview extends React.Component {
         task.owner.push(data);
         saveTask(task, groupId, board._id);
         break;
-    }
-  };
+      default:
+    };
+  }
+
+
 
   cmpInfo = (cmpType) => {
     const { task, board } = this.props;
-
+    console.log('the task', task)
     switch (cmpType) {
       case "status-picker":
         return {

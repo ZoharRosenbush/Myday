@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import { loadBoard } from "../store/board.action.js";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
@@ -11,8 +12,7 @@ class _BoardDetails extends React.Component {
     const { boardId } = this.props.match.params;
     this.props.loadBoard(boardId);
   }
-  
-  
+
   componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     if (prevProps.match.params.boardId !== this.props.match.params.boardId) {
@@ -24,7 +24,8 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { board } = this.props;
-    
+
+
     return (
       <section>
         <BoardHeader
