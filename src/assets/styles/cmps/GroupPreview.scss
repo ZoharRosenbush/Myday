@@ -1,15 +1,29 @@
-.group-preview {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #00000040;
-    height: 30px;
-    background-color: #e6e9ef;
-    text-align: start;
+// .group-preview {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-around;
+//     align-items: center;
+//     border: 1px solid #00000040;
+//     height: 30px;
+//     background-color: #e6e9ef;
+//     text-align: start;
 
-}
+// }
 
 .labels-modal {
   position: fixed;
+}
+
+.group-title{
+    text-align: start;
+    margin: 5px;
+    /* margin: 0; */
+    padding: 0;
+   display: inline; 
+    padding: 5px 10px;
+    font-size: 100%;
+ 
+    &:hover{
+        border: 1px dotted black;
+    }
 }

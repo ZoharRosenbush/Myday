@@ -8,6 +8,7 @@ export const boardService = {
   remove,
   getNewBoard,
   saveTask,
+  saveGroup,
 };
 
 function query(filterBy) {
@@ -19,6 +20,8 @@ function getById(boardId) {
 }
 
 function save(boardToSave) {
+
+  
   if (boardToSave._id) {
     return storageService.put(STORAGE_KEY, boardToSave);
   } else {
@@ -26,8 +29,8 @@ function save(boardToSave) {
   }
 }
 async function saveTask(taskToSave, groupId, boardId) {
-  console.log('taskToSave:',taskToSave );
-  
+
+
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
@@ -36,6 +39,19 @@ async function saveTask(taskToSave, groupId, boardId) {
       return task.id === taskToSave.id ? taskToSave : task;
     });
     board.groups[groupIdx].tasks = tasksToSave;
+    save(board);
+    return board;
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+async function saveGroup(groupToSave, boardId) {
+  try {
+    const board = await getById(boardId);
+    const groupIdx = board.groups.findIndex(
+      (group) => groupToSave.id === group.id
+    );
+    board.groups[groupIdx] = groupToSave;
     save(board);
     return board;
   } catch (err) {
@@ -69,7 +85,12 @@ function getNewBoard() {
       { id: "la123", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
       { id: "la555", value: "Done", bgColor: "#00d647", color: "#fff" },
       { id: "la666", value: "Stuck", bgColor: "#ff3d57", color: "#fff" },
-      { id: "la777", value: "Working on it", bgColor: "#ffcb00", color: "#fff" },
+      {
+        id: "la777",
+        value: "Working on it",
+        bgColor: "#ffcb00",
+        color: "#fff",
+      },
     ],
     priorities: [
       { id: "lb111", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
@@ -121,15 +142,11 @@ function getNewBoard() {
                 imgUrl: "http://some-img",
               },
             ],
-            comments: [
-
-            ],
+            comments: [],
           },
         ],
         style: { groupColor: "rgb(255 21 138)" },
-        activities: [
-
-        ],
+        activities: [],
       },
       {
         id: "gds21",
@@ -150,15 +167,11 @@ function getNewBoard() {
                 imgUrl: "http://some-img",
               },
             ],
-            comments: [
-
-            ],
+            comments: [],
           },
         ],
         style: { groupColor: "rgb(162, 93, 220)" },
-        activities: [
-
-        ],
+        activities: [],
       },
       {
         id: "gzcdsxsv101",
@@ -179,15 +192,11 @@ function getNewBoard() {
                 imgUrl: "http://some-img",
               },
             ],
-            comments: [
-
-            ],
+            comments: [],
           },
         ],
         style: { groupColor: "rgb(0, 134, 192)" },
-        activities: [
-
-        ],
+        activities: [],
       },
     ],
   };

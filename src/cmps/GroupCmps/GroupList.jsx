@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { GroupPreview } from "./GroupPreview.jsx";
 export function GroupList({ board }) {
   const { groups } = board;
@@ -11,7 +11,7 @@ export function GroupList({ board }) {
       {
       // groups &&
        groups.map((group, idx) => {
-       return <GroupPreview key={idx} group={group} />;
+       return <GroupPreview key={idx} group={group} board={board} />;
       })}
     </section>
   );

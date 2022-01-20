@@ -3,24 +3,22 @@ import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { connect } from "react-redux";
 import { saveGroup } from "../../store/board.action.js";
 
-export class GroupPreview extends React.Component {
+export class _GroupPreview extends React.Component {
   onUpdateTitleContent = ({ target }) => {
-    console.log(" onUpdateTitleContent");
-    console.log("this.props:", this.props);
+    const { group, board, saveGroup } = this.props;
 
-    const { task, board, groupId, saveTask } = this.props;
     const value = target.textContent;
-    console.log("value:", value);
-
     if (!value) return;
-    task.title = value;
-    // saveGroup(task, groupId, board._id);
-    // updateTitleContent(value, todo);
+    group.title = value;
+    saveGroup(group, board._id);
   };
 
   render() {
     const { group } = this.props;
-    const { tasks } = group;
+    console.log('group:',group );
+    console.log('group.tasks:', group.tasks);
+    
+    
     return (
       <section className="group-preview">
         <h1
@@ -29,12 +27,25 @@ export class GroupPreview extends React.Component {
           suppressContentEditableWarning={true}
           onBlur={this.onUpdateTitleContent}
         >
-          New Group
+         {group.title}
         </h1>
-        {tasks.map((task, idx) => {
+        {group.tasks.map((task, idx) => {
           return <TaskPreview key={idx} task={task} groupId={group.id} />;
         })}
       </section>
     );
   }
 }
+function mapStateToProps({ boardModule }) {
+  return {
+    board: boardModule.board,
+  };
+}
+const mapDispatchToProps = {
+  saveGroup,
+};
+
+export const GroupPreview = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_GroupPreview);
