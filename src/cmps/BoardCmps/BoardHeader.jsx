@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
 import { BsPersonPlus } from "react-icons/bs";
 import { BoardControllers } from "./BoardControllers.jsx";
-import {  addGroup } from "../../store/board.action.js";
+import { addGroup } from "../../store/board.action.js";
 export function _BoardHeader({ board, addGroup }) {
   console.log("board:", board);
 
   function onAddGroup() {
     addGroup(board._id);
   }
-  
 
   return (
     <section className="board-header">
@@ -28,22 +27,20 @@ export function _BoardHeader({ board, addGroup }) {
               <button>Activity</button>
             </div>
           </div>
-          <pד
+          <p
             className="board-description"
             contentEditable
             suppressContentEditableWarning={true}
           >
             {board.description}
-          </pד>
+          </p>
         </div>
       )}
       {/* <h1>{board.title}</h1> */}
-      {board &&  <BoardControllers 
-    onAddGroup={onAddGroup}
-       />}
+      {board && <BoardControllers onAddGroup={onAddGroup} />}
     </section>
   );
-      }
+}
 
 function mapStateToProps({ boardModule }) {
   return {
@@ -51,7 +48,7 @@ function mapStateToProps({ boardModule }) {
   };
 }
 const mapDispatchToProps = {
-  addGroup
+  addGroup,
 };
 
 export const BoardHeader = connect(
