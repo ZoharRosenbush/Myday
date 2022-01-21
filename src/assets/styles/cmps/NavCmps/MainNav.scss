@@ -1,4 +1,5 @@
 .main-nav {
+  top: 0;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -7,6 +8,14 @@
   background-color: $navy;
   z-index: 10;
   justify-content: space-between;
+  .grid-container {
+    background-color: #6a6e82;
+    width: 36px;
+    height: 36px;
+    margin-left: 14px;
+    border-radius: 8px;
+    // position: absolute;
+  }
 
   img {
     width: 40px;
