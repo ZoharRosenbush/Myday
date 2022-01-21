@@ -16,14 +16,12 @@ export function loadBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
-console.log('board in action:', board);
-
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log("cannot find board:", err);
       throw err;
     }
-  };
+  }
 }
 
 export function addBoard(board) {
@@ -40,15 +38,29 @@ export function addBoard(board) {
   };
 }
 
-export function   deleteTask(taskId, groupId, boardId){
-  console.log('taskId:',taskId );
-  console.log('groupId:',groupId );
-  console.log('boardId:',boardId );
-  
+export function updateBoard(board) {
   return async (dispatch) => {
-   
     try {
-      const board = await boardService.deleteTask( taskId, groupId, boardId);
+      const savedBoard = await boardService.save({ ...board });
+      dispatch({
+        type: "UPDATE_BOARD",
+        board: savedBoard,
+      });
+    } catch (err) {
+      console.log("Cannot update board", err);
+    }
+  }
+}
+
+export function deleteTask(taskId, groupId, boardId) {
+  console.log('taskId:', taskId);
+  console.log('groupId:', groupId);
+  console.log('boardId:', boardId);
+
+  return async (dispatch) => {
+
+    try {
+      const board = await boardService.deleteTask(taskId, groupId, boardId);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log('err:', err);
@@ -56,13 +68,12 @@ export function   deleteTask(taskId, groupId, boardId){
   };
 }
 
-
-export function  addTask( value, groupId, boardId){
+export function addTask(value, groupId, boardId) {
   return async (dispatch) => {
     console.log('value:', value);
-    
+
     try {
-      const board = await boardService.addTask( value, groupId, boardId);
+      const board = await boardService.addTask(value, groupId, boardId);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log('err:', err);
@@ -70,10 +81,10 @@ export function  addTask( value, groupId, boardId){
   };
 
 }
-export function  addGroup(boardId){
+export function addGroup(boardId) {
   return async (dispatch) => {
     try {
-      const board = await boardService.addGroup( boardId);
+      const board = await boardService.addGroup(boardId);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log('err:', err);
@@ -82,7 +93,7 @@ export function  addGroup(boardId){
 
 }
 
-export function removeBoard( boardId) {
+export function removeBoard(boardId) {
   return async (dispatch) => {
     try {
       await boardService.remove(boardId);
@@ -151,9 +162,17 @@ export function saveGroup(group, boardId) {
 
 export function setActiveModal(activeModal) {
   return (dispatch) => {
-      dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
+    dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
   };
 }
+
+
+export function setBoardNav(isBoardNavOpen) {
+  return (dispatch) => {
+    dispatch({ type: "SET_BOARD_NAV", isBoardNavOpen: !isBoardNavOpen })
+  }
+}
+
 
 // export function loadToys() {
 //   return async (dispatch) => {

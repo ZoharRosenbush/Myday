@@ -1,13 +1,17 @@
-// BASIC
+//SETUP
+@import 'setup/functions';
+@import 'setup/mixins';
+@import 'setup/variables';
 
+// BASIC
+@import "setup/functions";
+@import "setup/mixins";
 @import './basic/_fonts';
 @import './basic/_basic';
 @import './basic/_variables';
 @import './basic/_buttons';
 @import './basic/_helpers';
 @import './basic/_typography';
-
-
 
 //CMPS
 //Board Cmps
@@ -24,7 +28,7 @@
 @import './cmps/_task-preview';
 //Nav Cmps
 @import './cmps/NavCmps/_main-nav';
-@import './cmps/_board-nav';
+@import './cmps/NavCmps/board-nav';
 
 //PAGES
 @import './pages/_board-details';

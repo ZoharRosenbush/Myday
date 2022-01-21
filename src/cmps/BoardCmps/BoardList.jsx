@@ -1,32 +1,97 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { RiBookLine } from 'react-icons/ri'
 import { BsThreeDots } from 'react-icons/bs'
-export function BoardList({ boards, onRemoveBoard }) {
+import { RiDeleteBinLine } from "react-icons/ri";
 
-  return (
-    <section className="sidebar-nav-list">
-      {boards.map((board, idx) => {
-        return (
-          <div className="flex" key={idx}>
-            {/* <ul key={idx}> */}
-            {/* <li key={board._id}> */}
-            {/* <svg>
-              <path d="M7.5 4.5H16C16.2761 4.5 16.5 4.72386 16.5 5V15C16.5 15.2761 16.2761 15.5 16 15.5H7.5L7.5 4.5ZM6 4.5H4C3.72386 4.5 3.5 4.72386 3.5 5V15C3.5 15.2761 3.72386 15.5 4 15.5H6L6 4.5ZM2 5C2 3.89543 2.89543 3 4 3H16C17.1046 3 18 3.89543 18 5V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V5Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
-            </svg> */}
-            <div className="board-title flex">
-              <Link className="clean-link" to={`/myday/board/${board._id}`}>
-                {/* <RiBookLine size="19" style={{ transform: 'rotate(90px)' }} /> */}
-                {board.title}
-              </Link>
-              <button className="delete-board-btn" onClick={() => { onRemoveBoard(board._id) }}>
-                <BsThreeDots size="25px" style={{ marginLeft: "100px" }} />
-              </button>
+export class BoardList extends React.Component {
+  state = {
+    openModal: {
+      isBoardModalOpen: false,
+      boardId: null
+    },
+    isModalToDelete: false,
+  };
+
+  toggleBoardModal = (boardId) => {
+    console.log('boardId:', boardId);
+    const { openModal } = this.state
+    this.setState({ openModal: { isBoardModalOpen: !openModal.isBoardModalOpen, boardId: boardId } }, () => {
+      console.log('this.state:', this.state);
+    });
+  };
+
+  toggleModalDelete = () => {
+    this.setState({ isBoardModalOpen: false });
+    this.setState({ isModalToDelete: !this.state.isModalToDelete });
+  };
+
+
+
+
+  render() {
+    const { boards, onRemoveBoard } = this.props
+    const { openModal } = this.state
+    console.log('openModal:', openModal);
+    // console.log(board._id);
+
+    return (
+      <section className="sidebar-nav-list">
+        {boards.map((board, idx) => {
+          return (
+            <div className="flex" key={idx}>
+
+              <div className="board-title flex">
+                <Link className="clean-link" to={`/myday/board/${board._id}`}>
+                  {/* <RiBookLine size="19" style={{ transform: 'rotate(90px)' }} /> */}
+                  {board.title}
+                </Link>
+                <button className="delete-board-btn" onClick={() => {
+                  this.toggleBoardModal(board._id)
+                  // onRemoveBoard(board._id)
+                }}>
+                  <BsThreeDots size="25px" style={{ marginLeft: "100px" }} />
+                </button>
+              </div>
+              {openModal.isBoardModalOpen && (openModal.boardId === board._id) &&
+                <div className="board-modal">
+                  <div
+                    className="flex modal-board-items"
+                    onClick={this.toggelModalDelete}
+                  >
+                    <div>
+                      <RiDeleteBinLine color="#323338c2" />{" "}
+                    </div>
+                    <span>Delete group</span>
+                  </div>
+
+                </div>
+              }
+
+              {/* {isModalToDelete && (
+          <section className="modal-delete">
+            <div className="flex title-modal-delete">
+              <div>
+                <GrCircleAlert />
+              </div>
+              <span>Are you sure you want to delete?</span>
             </div>
-            {/* </li> */}
-            {/* </ul> */}
-          </div>
-        );
-      })}
-    </section>
-  );
+            <button onClick={this.toggelModalDelete} className="no-ans-delete">
+              No
+            </button>
+            <button onClick={this.deleteGroup} className="yes-ans-delete">
+              Yes
+            </button>
+          </section>
+        )} */}
+
+
+
+            </div>
+          );
+        })}
+      </section>
+    );
+  }
+
 }
