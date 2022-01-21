@@ -11,7 +11,7 @@ import { boardService } from "../../services/board.service.js";
 
 export class _BoardNav extends React.Component {
   state = {
-    isBoardNavOpen: false
+    isBoardNavOpen: true
   }
   componentDidMount() {
     this.props.loadBoards()

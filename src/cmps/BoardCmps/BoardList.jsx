@@ -39,9 +39,9 @@ class _BoardList extends React.Component {
 
 
   render() {
-    const { boards } = this.props
+    const { boards, board } = this.props
     const { openModal, isModalToDelete } = this.state
-
+    // const className = (board._id===)
     return (
       <section className="sidebar-nav-list">
         {boards.map((board, idx) => {
@@ -57,7 +57,9 @@ class _BoardList extends React.Component {
                   this.toggleBoardModal(board._id)
                   // onRemoveBoard(board._id)
                 }}>
-                  <BsThreeDots size="25px" style={{ marginLeft: "100px" }} />
+                  <BsThreeDots size="25px"
+                    style={{ margin: "-9.5px", marginLeft: "-14px" }}
+                  />
                 </button>
               </div>
               {openModal.isBoardModalOpen && (openModal.boardId === board._id) &&
@@ -103,9 +105,9 @@ class _BoardList extends React.Component {
 }
 
 
-function mapStateToProps() {
+function mapStateToProps({ boardModule }) {
   return {
-
+    board: boardModule.board,
   };
 }
 const mapDispatchToProps = {

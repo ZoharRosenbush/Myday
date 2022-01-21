@@ -92,21 +92,25 @@
   }
 }
 
-.board-title:active {
-  background-color: #cce5ff;
+.board-title {
+  align-items: center;
+  justify-content: space-between;
+  &:active {
+    background-color: #cce5ff;
+  }
+
+  &:hover {
+    background-color: #cce5ff;
+    .delete-board-btn {
+      color: #323338;
+      width: 10px;
+      // &:hover {
+      //   color: #323338;
+      // }
+    }
+  }
 }
 
 .board-nav.closed {
   transform: translateX(-80%);
-}
-
-div.board-title:hover {
-  background-color: #cce5ff;
-  .delete-board-btn {
-    color: #323338;
-    width: 10px;
-    // &:hover {
-    //   color: #323338;
-    // }
-  }
 }
