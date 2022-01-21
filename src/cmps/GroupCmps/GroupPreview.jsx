@@ -62,14 +62,14 @@ export class _GroupPreview extends React.Component {
         {group.tasks.map((task, idx) => {
           return <TaskPreview key={idx} task={task} groupId={group.id} />;
         })}
-        <div className="add-task-container">
+        <div className="add-task-container first-column flex">
           <div
-            className="group-color first-column"
+            className="group-color"
             style={{ backgroundColor: `${group.style.groupColor}` }}
           ></div>
           <div className="add-task-div first-column">
             {" "}
-            <form onSubmit={this.onAddTask} className="first-column flex justify-between align-center">
+            <form onSubmit={this.onAddTask} className="flex justify-between align-center">
               <input
                 className="task-title first-column"
                 placeholder="Add task +"

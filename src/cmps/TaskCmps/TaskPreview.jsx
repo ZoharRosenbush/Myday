@@ -89,23 +89,28 @@ class _TaskPreview extends React.Component {
     })
     const groupColor = group.style.groupColor
     const cmpsOrder = board.cmpsOrder;
-    
+
     return (
       <section className="task-preview flex">
-     
+
+        <div className="task-title-cell flex first-column">
           <div
-            className="group-color first-column"
+            className="group-color"
             style={{ backgroundColor: `${group.style.groupColor}` }}
           ></div>
           <span
-            className="task-title first-column"
+            className="task-title"
             contentEditable
             suppressContentEditableWarning={true}
             onBlur={this.onUpdateTitleContent}
           >
             {task.title}
           </span>
-       
+
+        </div>
+
+
+
         {cmpsOrder.map((cmp, idx) => {
           return (
             <DynamicCmp

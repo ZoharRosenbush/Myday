@@ -51,6 +51,7 @@
   background-color: lighter($cell-color);
   text-align: start;
   left:$first-column-left ;
+  cursor: pointer;
 }
 
 
@@ -59,18 +60,11 @@
   height: 36px;
   width: 100%;
 
-.group-color{
-  // margin-left: 24px;
-}
+
 .add-task-form{
   margin-left: 32px;
 }
 
-}
-
-.add-task-div{
-  width: inherit;
-  cursor: pointer;
 }
 
 .task-title{
