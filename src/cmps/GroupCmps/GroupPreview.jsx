@@ -28,7 +28,7 @@ export class _GroupPreview extends React.Component {
     this.setState({ isGroupModalOpen: false });
     this.setState({ isModalToDelete: !this.state.isModalToDelete });
   };
-
+  
   onUpdateTitleContent = ({ target }) => {
     const { group, board, saveGroup } = this.props;
     const value = target.textContent;
@@ -36,8 +36,9 @@ export class _GroupPreview extends React.Component {
     group.title = value;
     saveGroup(group, board._id);
   };
-
+  
   deleteGroup = () => {
+    this.setState({ isModalToDelete:false});
     const { deleteGroup, group, board } = this.props;
     deleteGroup(group.id, board._id);
   };
