@@ -12,6 +12,7 @@ export const boardService = {
   addTask,
   addGroup,
   deleteGroup,
+  deleteTask,
 };
 
 function query(filterBy) {
@@ -145,6 +146,25 @@ async function deleteGroup(groupId, boardId) {
   }
 }
 
+async function deleteTask(taskId, groupId, boardId) {
+  try {
+    const board = await getById(boardId);
+    console.log('board in service:', board);
+    
+    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+    const newTasks = board.groups[groupIdx].tasks.filter((task) => {
+      return task.id !== taskId;
+    });
+    console.log('newTasks:', newTasks);
+    board.groups[groupIdx].tasks = newTasks;
+
+    save(board);
+    return board;
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+
 function remove(boardId) {
   return storageService.remove(STORAGE_KEY, boardId);
 }
@@ -231,7 +251,7 @@ function getNewBoard() {
             comments: [],
           },
         ],
-        style: { groupColor: "rgb(255 21 138)" },
+        style: { groupColor: getNiceRandomColor() },
         activities: [],
       },
       {
@@ -281,7 +301,7 @@ function getNewBoard() {
             comments: [],
           },
         ],
-        style: { groupColor: "rgb(0, 134, 192)" },
+        style: { groupColor: getNiceRandomColor() },
         activities: [],
       },
     ],

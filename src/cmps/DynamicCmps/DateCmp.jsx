@@ -29,7 +29,6 @@ export function DateCmp({ cmpData, onUpdateTask,groupColor }) {
             <style>
                 {`.date-picker input {
             width: 90%;
-            background-color:black;
             border-radius: 11px;
             text-align: center;
             color:white;
