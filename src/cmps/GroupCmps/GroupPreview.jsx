@@ -37,11 +37,10 @@ export class _GroupPreview extends React.Component {
     saveGroup(group, board._id);
   };
 
-
   deleteGroup = () => {
     const { deleteGroup, group, board } = this.props;
     deleteGroup(group.id, board._id);
-  }
+  };
 
   onHandleChange = ({ target }) => {
     const value = target.value;
@@ -73,7 +72,6 @@ export class _GroupPreview extends React.Component {
             <div
               className="flex modal-group-items"
               onClick={this.toggelModalDelete}
-
             >
               <div>
                 <RiDeleteBinLine color="#323338c2" />{" "}
@@ -89,41 +87,52 @@ export class _GroupPreview extends React.Component {
           </div>
         )}
         {isModalToDelete && (
-          <section className="modalDelete">
-            <div className="flex title-modal-delete"><div><GrCircleAlert /></div><span>Are toy sure you want to delete?</span></div>
-            <button onClick={this.toggelModalDelete}>No</button>
-            <button onClick={this.deleteGroup}>Yes, Im sure</button>
+          <section className="modal-delete">
+            <div className="flex title-modal-delete">
+              <div>
+                <GrCircleAlert />
+              </div>
+              <span>Are you sure you want to delete?</span>
+            </div>
+            <button onClick={this.toggelModalDelete} className="no-ans-delete">
+              No
+            </button>
+            <button onClick={this.deleteGroup} className="yes-ans-delete">
+              Yes
+            </button>
           </section>
         )}
-        <div className="flex">
-          <IoMdArrowDropdownCircle
-            style={{
-              color: `${group.style.groupColor}`,
-              fontSize: "1.1em",
-              cursor: "pointer",
-              transform: "translateX(-127%)",
-            }}
-            onClick={this.toggleGroupModal}
-          />
-          <div className="group-title container first-column ">
+
+        <div className="div-headline-container">
+          <div className="group-title-container first-column">
+            <IoMdArrowDropdownCircle
+              style={{
+                color: `${group.style.groupColor}`,
+                fontSize: "1.1em",
+                cursor: "pointer",
+                transform: "translateY(4.8px)",
+              }}
+              onClick={this.toggleGroupModal}
+            />
+
             <h1
-              className="group-title"
+              className="group-title first-column"
               contentEditable
               suppressContentEditableWarning={true}
               onBlur={this.onUpdateTitleContent}
               style={{ color: `${group.style.groupColor}` }}
             >
-
-
               {" "}
               {group.title}
             </h1>
           </div>
-          <div className="div-headline-container flex justify-between align-center">
-            {cmpsOrder.map((cmp, idx) => {
-              return <div key={idx}>{this.cmpTitle(cmp)}</div>;
-            })}
-          </div>
+          {cmpsOrder.map((cmp, idx) => {
+            return (
+              <div className={this.cmpTitle(cmp)} key={idx}>
+                {this.cmpTitle(cmp)}
+              </div>
+            );
+          })}
         </div>
 
 
@@ -171,7 +180,7 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
   saveGroup,
   addTask,
-  deleteGroup
+  deleteGroup,
 };
 
 export const GroupPreview = connect(

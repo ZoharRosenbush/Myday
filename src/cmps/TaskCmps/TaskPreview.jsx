@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 import { saveTask, setActiveModal } from "../../store/board.action.js";
+import { MdArrowDropDownCircle } from "react-icons/md";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { CgArrowDownR } from "react-icons/cg";
 
 class _TaskPreview extends React.Component {
   onUpdateTask = (cmpType, data) => {
@@ -91,19 +94,21 @@ class _TaskPreview extends React.Component {
     const cmpsOrder = board.cmpsOrder;
 
     return (
+      <div className="flex task-icon">
+      <div className="icon-down-task"><IoMdArrowDropdown style={{backgroundColor:"#C8E1FA" ,color:"black", borderRadius: "5px"}}/></div>
       <section className="task-preview flex">
 
         <div className="task-title-cell flex first-column">
           <div
             className="group-color"
             style={{ backgroundColor: `${group.style.groupColor}` }}
-          ></div>
+            ></div>
           <span
             className="task-title"
             contentEditable
             suppressContentEditableWarning={true}
             onBlur={this.onUpdateTitleContent}
-          >
+            >
             {task.title}
           </span>
 
@@ -114,18 +119,19 @@ class _TaskPreview extends React.Component {
         {cmpsOrder.map((cmp, idx) => {
           return (
             <DynamicCmp
-              cmpData={this.cmpInfo(cmp)}
-              key={idx}
-              taskId={task.id}
-              groupColor={groupColor}
-              onUpdateTask={this.onUpdateTask}
-              activeModal={activeModal}
-              setActiveModal={setActiveModal}
+            cmpData={this.cmpInfo(cmp)}
+            key={idx}
+            taskId={task.id}
+            groupColor={groupColor}
+            onUpdateTask={this.onUpdateTask}
+            activeModal={activeModal}
+            setActiveModal={setActiveModal}
             />
-          );
-        })}
+            );
+          })}
         <TaskDetails />
       </section>
+          </div>
     );
   }
 }

@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import { IoIosArrowForward } from 'react-icons/io'
+import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai'
+import { BiFilterAlt } from 'react-icons/bi'
 
 import { BoardList } from "../BoardCmps/BoardList.jsx";
 import { loadBoards, addBoard, removeBoard } from '../../store/board.action.js'
 import { boardService } from "../../services/board.service.js";
-import { IoIosArrowForward } from 'react-icons/io'
+
 // import { addToy } from '../store/toy.action.js'
 
 export class _BoardNav extends React.Component {
@@ -40,18 +43,37 @@ export class _BoardNav extends React.Component {
     console.log(isBoardNavOpen);
     return (
       <section>
-        {!isBoardNavOpen && <section className="board-nav-closed">
+        {!isBoardNavOpen && <section className="board-nav">
           <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
             <IoIosArrowForward color="#67686b" />
 
           </button>
         </section>}
         {isBoardNavOpen &&
-          <section className="board-nav-open" >
-            <h1>Main Workspace</h1>
-            <i className="fas arrow arrow-left"></i>
-            <button onClick={() => this.onAddBoard()} className="side-bar-fetures">Add +</button>
-            <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} />
+          <section className="board-nav board-nav-open" >
+            <div>
+              <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
+                <IoIosArrowForward color="#67686b" />
+              </button>
+              <p className="workspace">Workspace</p>
+              <p className="main-workspace">Main Workspace</p>
+              <div className="side-bar-features-container">
+
+                <button className="side-bar-features" onClick={() => this.onAddBoard()}>
+                  <AiOutlinePlus size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
+                  Add</button>
+
+                <button className="side-bar-features">
+                  <BiFilterAlt size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
+                  Filters</button>
+
+                <button className="side-bar-features">
+                  <AiOutlineSearch size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
+                  Search</button>
+
+              </div>
+              <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} />
+            </div>
           </section>}
       </section>
 
