@@ -3,16 +3,12 @@
     flex-direction: column;
     justify-content: center;
     margin-left: ($ml);
+    margin-top: 100px;
 }
 
-// .add-task-div{
-//     border: 1px solid #00000040;
-//     height: 36px;
-//     background-color: lighter($cell-color);
-//     text-align: start;
-// }
-.group-color{
+.add-task-div{
+    border: 1px solid #00000040;
     height: 36px;
-    width: 7px;
-    // margin-left: 24px;
-  }
+    background-color: lighter($cell-color);
+    text-align: start;
+}

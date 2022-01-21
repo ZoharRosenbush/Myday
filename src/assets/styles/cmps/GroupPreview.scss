@@ -1,6 +1,16 @@
 .group-preview {
   margin-bottom: 50px;
 
+  input.task-title{
+    left: $first-column-left;
+    max-width: fit-content;
+  }
+
+  div.group-title-container{
+    background-color: #f5f6f8ed;
+    width: 398px;
+  }
+
 }
 
 .labels-modal {
@@ -24,6 +34,8 @@
   display: inline;
   padding: 5px 10px;
   font-size: 100%;
+  position: sticky;
+  left: 266px;
   font-family: roboto-light,helvetica,sans-serif;
 
 
@@ -34,10 +46,11 @@
 
 
 .add-task-div{
-     border-bottom: 1px solid #00000040;
-    height: 36px;
-    background-color: lighter(#F5F6F8);
-    text-align: start;
+  border: 1px solid #00000040;
+  height: 36px;
+  background-color: lighter($cell-color);
+  text-align: start;
+  left:$first-column-left ;
 }
 
 
@@ -47,7 +60,7 @@
   width: 100%;
 
 .group-color{
-  margin-left: 24px;
+  // margin-left: 24px;
 }
 .add-task-form{
   margin-left: 32px;
@@ -66,6 +79,7 @@
   font-family: roboto-light, helvetica, sans-serif;
   position: sticky;
   width: 95%;
+  padding-inline-start: 15px;
 }
 
 span{
@@ -91,6 +105,11 @@ span{
   width: 50px;
 }
 
+div.group-color {
+  height: 100%;
+  min-width: 7px;
+  left: $grop-color-left;
+}
 .add-task-form{
   display: flex;
 }
