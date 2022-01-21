@@ -1,10 +1,7 @@
 .group-preview {
   margin-bottom: 50px;
 
-  input.task-title{
-    left: $first-column-left;
-    max-width: fit-content;
-  }
+ 
 
   div.group-title-container{
     background-color: #f5f6f8ed;
@@ -12,6 +9,7 @@
   }
 
 }
+
 
 .labels-modal {
   display: flex;
@@ -28,20 +26,28 @@
 .group-title {
   text-align: start;
   margin: 5px;
-  /* margin: 0; */
+  // /* margin: 0; */
   padding: 0;
   white-space: nowrap;
   display: inline;
   padding: 5px 10px;
   font-size: 100%;
   position: sticky;
-  left: 266px;
-  font-family: roboto-light,helvetica,sans-serif;
+  // left: 266px;
+  // font-family: roboto-light,helvetica,sans-serif;
 
+  border: 1px solid transparent;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0 5px;
 
   &:hover {
     border: 1px dotted black;
   }
+  &:focus-visible {
+    outline: none;
+}
 }
 
 
@@ -52,6 +58,33 @@
   text-align: start;
   left:$first-column-left ;
   cursor: pointer;
+  width:100%;
+
+  div.group-color{
+  height: 7px;
+  width: 3px ;
+  }
+  .btn-placeholder{
+    height: 100%;
+    width: 40px;
+  }
+  form{
+    width: 100%;
+    height: 100%;
+
+    
+  }
+  
+}
+
+input.add-task{
+  // left: $first-column-left;
+  // max-width: fit-content;
+  width: 100%;
+  &:focus-visible {
+    outline: none;
+}
+  border: none;
 }
 
 
@@ -74,6 +107,10 @@
   position: sticky;
   width: 95%;
   padding-inline-start: 15px;
+
+  &:focus-visible {
+    outline: none;
+}
 }
 
 span{
@@ -97,13 +134,45 @@ span{
   background-color: #0073ea;
   color: #fff;
   width: 50px;
+  // margin-left: 90%;
 }
 
 div.group-color {
   height: 100%;
   min-width: 7px;
-  left: $grop-color-left;
+  // left: $grop-color-left;
 }
 .add-task-form{
   display: flex;
+}
+
+.group-modal{
+  animation: fade-in 0.5s ease-in-out both;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 5px 20px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
+  border-radius: 4px;
+  cursor: pointer;
+  width: 130px;
+  position: absolute;
+  z-index: 10;
+  top: 24%;
+  left: 22%;
+}
+
+.modal-group-items{
+  gap: 10px;
+  div, span{
+    cursor: pointer;
+  }
+
+}
+
+.title-modal-delete{
+  flex-direction: column;
+  div{
+    margin: 0 auto;
+  }
 }

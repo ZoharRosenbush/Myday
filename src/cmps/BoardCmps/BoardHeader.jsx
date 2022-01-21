@@ -3,7 +3,6 @@ import { BsPersonPlus } from "react-icons/bs";
 import { BoardControllers } from "./BoardControllers.jsx";
 import { addGroup } from "../../store/board.action.js";
 export function _BoardHeader({ board, addGroup }) {
-  console.log("board:", board);
 
   function onAddGroup() {
     addGroup(board._id);
