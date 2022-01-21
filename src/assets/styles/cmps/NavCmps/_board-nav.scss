@@ -1,6 +1,6 @@
 .board-nav {
   width: 254px;
-  transform: translateX(-80%);
+  transform: translateX(0%);
   border-right: 1px solid #e8eaf0;
   background-color: #f5f6f8;
   height: 158%;
@@ -8,7 +8,8 @@
   position: fixed;
   z-index: 5;
   left: 66px;
-  transition: transform 0.2s;
+
+  // transition: 0.2s;
   button.open-nav-btn {
     background-color: #fff;
     width: 26px;
@@ -86,6 +87,13 @@
         &:hover,
         &:active {
           background-color: #cce5ff;
+          .delete-board-btn {
+            color: #323338;
+            width: 10px;
+            // &:hover {
+            //   color: #323338;
+            // }
+          }
         }
       }
       a {
@@ -93,4 +101,8 @@
       }
     }
   }
+}
+
+.board-nav.closed {
+  transform: translateX(-80%);
 }

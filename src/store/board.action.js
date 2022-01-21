@@ -16,7 +16,7 @@ export function loadBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
-console.log('board in action:', board);
+      console.log('board in action:', board);
 
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
@@ -41,10 +41,10 @@ export function addBoard(board) {
 }
 
 
-export function  addTask( value, groupId, boardId){
+export function addTask(value, groupId, boardId) {
   return async (dispatch) => {
     try {
-      const board = await boardService.addTask( value, groupId, boardId);
+      const board = await boardService.addTask(value, groupId, boardId);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log('err:', err);
@@ -52,10 +52,10 @@ export function  addTask( value, groupId, boardId){
   };
 
 }
-export function  addGroup(boardId){
+export function addGroup(boardId) {
   return async (dispatch) => {
     try {
-      const board = await boardService.addGroup( boardId);
+      const board = await boardService.addGroup(boardId);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log('err:', err);
@@ -64,7 +64,7 @@ export function  addGroup(boardId){
 
 }
 
-export function removeBoard( boardId) {
+export function removeBoard(boardId) {
   return async (dispatch) => {
     try {
       await boardService.remove(boardId);
@@ -133,9 +133,17 @@ export function saveGroup(group, boardId) {
 
 export function setActiveModal(activeModal) {
   return (dispatch) => {
-      dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
+    dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
   };
 }
+
+
+export function setBoardNav(isBoardNavOpen) {
+  return (dispatch) => {
+    dispatch({ type: "SET_BOARD_NAV", isBoardNavOpen: !isBoardNavOpen })
+  }
+}
+
 
 // export function loadToys() {
 //   return async (dispatch) => {
