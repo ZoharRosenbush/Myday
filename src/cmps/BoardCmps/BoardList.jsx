@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { RiBookLine } from 'react-icons/ri'
+import { connect } from "react-redux";
 import { BsThreeDots } from 'react-icons/bs'
 import { RiDeleteBinLine } from "react-icons/ri";
+import { GrCircleAlert } from "react-icons/gr";
+import { removeBoard } from '../../store/board.action.js'
 
-export class BoardList extends React.Component {
+
+class _BoardList extends React.Component {
   state = {
     openModal: {
       isBoardModalOpen: false,
@@ -14,26 +17,30 @@ export class BoardList extends React.Component {
   };
 
   toggleBoardModal = (boardId) => {
-    console.log('boardId:', boardId);
     const { openModal } = this.state
     this.setState({ openModal: { isBoardModalOpen: !openModal.isBoardModalOpen, boardId: boardId } }, () => {
-      console.log('this.state:', this.state);
     });
   };
 
   toggleModalDelete = () => {
-    this.setState({ isBoardModalOpen: false });
+    this.setState({
+      openModal: {
+        isBoardModalOpen: false,
+        boardId: null
+      }
+    });
     this.setState({ isModalToDelete: !this.state.isModalToDelete });
   };
 
-
+  onRemoveBoard = (boardId) => {
+    this.setState({ isModalToDelete: false })
+    this.props.removeBoard(boardId)
+  }
 
 
   render() {
-    const { boards, onRemoveBoard } = this.props
-    const { openModal } = this.state
-    console.log('openModal:', openModal);
-    // console.log(board._id);
+    const { boards } = this.props
+    const { openModal, isModalToDelete } = this.state
 
     return (
       <section className="sidebar-nav-list">
@@ -57,36 +64,35 @@ export class BoardList extends React.Component {
                 <div className="board-modal">
                   <div
                     className="flex modal-board-items"
-                    onClick={this.toggelModalDelete}
+
                   >
-                    <div>
-                      <RiDeleteBinLine color="#323338c2" />{" "}
+                    <div className="delete-board-container flex"
+                      onClick={this.toggleModalDelete}>
+                      <div>
+                        <RiDeleteBinLine color="#323338c2" />{" "}
+                      </div>
+                      <span>Delete board</span>
                     </div>
-                    <span>Delete group</span>
                   </div>
 
                 </div>
               }
-
-              {/* {isModalToDelete && (
-          <section className="modal-delete">
-            <div className="flex title-modal-delete">
-              <div>
-                <GrCircleAlert />
-              </div>
-              <span>Are you sure you want to delete?</span>
-            </div>
-            <button onClick={this.toggelModalDelete} className="no-ans-delete">
-              No
-            </button>
-            <button onClick={this.deleteGroup} className="yes-ans-delete">
-              Yes
-            </button>
-          </section>
-        )} */}
-
-
-
+              {isModalToDelete && (
+                <section className="modal-delete">
+                  <div className="flex title-modal-delete">
+                    <div>
+                      <GrCircleAlert />
+                    </div>
+                    <span>Are you sure you want to delete?</span>
+                  </div>
+                  <button onClick={this.toggleModalDelete} className="no-ans-delete">
+                    No
+                  </button>
+                  <button onClick={() => { this.onRemoveBoard(board._id) }} className="yes-ans-delete">
+                    Yes
+                  </button>
+                </section>
+              )}
             </div>
           );
         })}
@@ -95,3 +101,16 @@ export class BoardList extends React.Component {
   }
 
 }
+
+
+function mapStateToProps() {
+  return {
+
+  };
+}
+const mapDispatchToProps = {
+  removeBoard
+}
+export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList);
+
+
