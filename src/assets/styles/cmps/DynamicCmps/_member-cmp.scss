@@ -22,19 +22,20 @@
 }
 
 .ZR{
-    background-color: blueviolet;
+    background-color: rgb(126,59,138);
     color: white;
 }
 .LS{
-    background-color: rgb(90, 192, 104);
+    background-color: #037F4C;
     color: white;
 }
 .ME{
-    background-color: rgb(216, 156, 188);
+    background-color: #FAA1F1;
     color: white;
 }
 
 .ME, .ZR, .LS{
+    font-family: 'roboto-regular';
     border-radius: 50%;
     border: none;
     height: 30px;

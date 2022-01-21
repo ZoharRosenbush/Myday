@@ -8,17 +8,8 @@
   cursor: pointer;
   height: 34px;
   border: none;
+  font-family: 'roboto-regular';
 }
-.Done {
-  background-color: $green;
-}
-.Working.on.it {
-  background-color: $yellow;
-}
-.Stuck {
-  background-color: $red;
-}
-
 
 .status-member-section{
   height: 34px;
