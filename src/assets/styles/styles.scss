@@ -6,6 +6,15 @@
 @import './basic/buttons';
 @import './basic/helpers';
 
+//SETUP
+@import './setup/typography';
+@import './setup/variables';
+@import './setup/functions';
+@import './setup/mixins';
+
+//PAGES
+@import './pages/BoardDetails';
+
 //CMPS
 //Board Cmps
 
@@ -22,11 +31,3 @@
 //Nav Cmps
 @import './cmps/NavCmps/MainNav';
 @import './cmps/BoardNav';
-
-//SETUP
-@import './setup/typography';
-@import './setup/variables';
-@import './setup/functions';
-@import './setup/mixins';
-//PAGES
-@import './pages/BoardDetails';

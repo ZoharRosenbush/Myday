@@ -1,5 +1,5 @@
 .board-nav {
-  width: $nav-bar-width;
+  width: 254px;
   transform: translateX(-80%);
   border-right: 1px solid #e8eaf0;
   background-color: #f5f6f8;
@@ -28,31 +28,67 @@
   &.board-nav-open {
     transform: translateX(0);
     transition: transform 0.2s;
-
-    h2.main-workspace {
-      width: 168px;
+    & > * {
+      margin-left: em(15px);
+    }
+    p.workspace {
+      margin-top: em(-30px);
+      padding: 0px;
+      font-size: rem(14px);
+      color: #676879;
+      font-family: roboto-regular;
+    }
+    p.main-workspace {
+      font-family: roboto-bold;
+      width: rem(210px);
       font-size: 1rem;
-      border: 1px solid #e6e9ef;
+      border: 1px solid #8a8b99;
       padding: 10px 5px;
       border-radius: 4px;
-      -webkit-align-self: center;
-      align-self: center;
+      text-align: center;
     }
-    .sidebar-nav-list a {
-      padding: 8px;
-      margin-bottom: 20px;
-      margin: auto;
-      color: #323338;
-      font-weight: 800;
-      font-size: 0.875rem;
-    }
-
-    .side-bar-fetures {
-      width: 100%;
-      padding: 5px;
-      margin-bottom: 20px;
+    .side-bar-features-container {
       border-bottom: 1px solid #e6e9ef;
-      color: #323338;
+
+      .side-bar-features {
+        width: 100%;
+        height: em(40px);
+        color: #323338;
+        font-size: rem(14px);
+        font-family: roboto-regular;
+        border-radius: 4px;
+        width: rem(224px);
+        text-align: start;
+        padding-bottom: em(10px);
+
+        &:hover {
+          background-color: #e6e9ef;
+        }
+      }
+    }
+    .sidebar-nav-list {
+      margin-top: rem(15px);
+
+      .board-title,
+      a.board-title {
+        width: 100%;
+        height: em(40px);
+        color: #323338;
+        font-size: rem(14px);
+        font-family: roboto-regular;
+        border-radius: 4px;
+        width: rem(224px);
+        text-align: start;
+        padding: em(8px);
+
+        &:hover,
+        &:active {
+          background-color: #cce5ff;
+        }
+      }
+      a {
+        padding-top: 2px;
+      }
     }
   }
 }
