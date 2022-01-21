@@ -13,11 +13,17 @@ export class _GroupPreview extends React.Component {
     taskValue: "",
     isGroupModalOpen: false,
     isModalToDelete: false,
-    isAddTaskActive: false
+    isAddTaskActive: false,
   };
 
   toggleAddTask = () => {
-    this.setState((prevState) => ({ ...prevState, isAddTaskActive: !prevState.isAddTaskActive }), console.log('changing active', this.state));
+    this.setState(
+      (prevState) => ({
+        ...prevState,
+        isAddTaskActive: !prevState.isAddTaskActive,
+      }),
+      console.log("changing active", this.state)
+    );
   };
 
   toggleGroupModal = () => {
@@ -28,7 +34,7 @@ export class _GroupPreview extends React.Component {
     this.setState({ isGroupModalOpen: false });
     this.setState({ isModalToDelete: !this.state.isModalToDelete });
   };
-  
+
   onUpdateTitleContent = ({ target }) => {
     const { group, board, saveGroup } = this.props;
     const value = target.textContent;
@@ -36,9 +42,9 @@ export class _GroupPreview extends React.Component {
     group.title = value;
     saveGroup(group, board._id);
   };
-  
+
   deleteGroup = () => {
-    this.setState({ isModalToDelete:false});
+    this.setState({ isModalToDelete: false });
     const { deleteGroup, group, board } = this.props;
     deleteGroup(group.id, board._id);
   };
@@ -52,7 +58,7 @@ export class _GroupPreview extends React.Component {
     ev.preventDefault();
     const { group, board, addTask } = this.props;
     addTask(this.state.taskValue, group.id, board._id);
-    this.setState({ taskValue: "Add Task +" });
+    this.setState({ taskValue: "" });
   };
 
   cmpTitle = (cmpType) => {
@@ -66,6 +72,8 @@ export class _GroupPreview extends React.Component {
     const { group, board } = this.props;
     const cmpsOrder = board.cmpsOrder;
     const { isGroupModalOpen, isModalToDelete, isAddTaskActive } = this.state;
+    console.log('group.style.groupColor:', group.style.groupColor);
+    
     return (
       <section className="group-preview">
         {isGroupModalOpen && (
@@ -109,9 +117,9 @@ export class _GroupPreview extends React.Component {
             <IoMdArrowDropdownCircle
               style={{
                 color: `${group.style.groupColor}`,
-                fontSize: "1.1em",
+                fontSize: "19px",
                 cursor: "pointer",
-                transform: "translateY(4.8px)",
+                transform: "translateY(4.5px)",
               }}
               onClick={this.toggleGroupModal}
             />
@@ -136,20 +144,15 @@ export class _GroupPreview extends React.Component {
           })}
         </div>
 
-
-        {
-          group.tasks.map((task, idx) => {
-            return <TaskPreview key={idx} task={task} groupId={group.id} />;
-          })
-        }
+        {group.tasks.map((task, idx) => {
+          return <TaskPreview key={idx} task={task} groupId={group.id} />;
+        })}
         <div className="add-task-container first-column flex">
-
           <div className="add-task-div justify-between first-column flex">
             <div
               className="group-color"
               style={{ backgroundColor: `${group.style.groupColor}` }}
-            ></div>
-            {" "}
+            ></div>{" "}
             <form
               onSubmit={this.onAddTask}
               className="flex justify-between align-center"
@@ -161,15 +164,15 @@ export class _GroupPreview extends React.Component {
                 value={this.state.taskValue}
                 onFocus={this.toggleAddTask}
                 onBlur={this.toggleAddTask}
-              // contentEditable
-              // suppressContentEditableWarning={true}
+                // contentEditable
+                // suppressContentEditableWarning={true}
               />
               {isAddTaskActive && <button className="add-task-btn">Add</button>}
               {!isAddTaskActive && <div className="btn-placeholder"></div>}
             </form>
           </div>
         </div>
-      </section >
+      </section>
     );
   }
 }

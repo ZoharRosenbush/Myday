@@ -40,9 +40,27 @@ export function addBoard(board) {
   };
 }
 
+export function   deleteTask(taskId, groupId, boardId){
+  console.log('taskId:',taskId );
+  console.log('groupId:',groupId );
+  console.log('boardId:',boardId );
+  
+  return async (dispatch) => {
+   
+    try {
+      const board = await boardService.deleteTask( taskId, groupId, boardId);
+      dispatch({ type: "SET_BOARD", board: board });
+    } catch (err) {
+      console.log('err:', err);
+    }
+  };
+}
+
 
 export function  addTask( value, groupId, boardId){
   return async (dispatch) => {
+    console.log('value:', value);
+    
     try {
       const board = await boardService.addTask( value, groupId, boardId);
       dispatch({ type: "SET_BOARD", board: board });
