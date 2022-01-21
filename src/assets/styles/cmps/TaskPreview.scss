@@ -18,27 +18,25 @@
     background-color: #f5f6f8ed;
     left: 273px;
   }
-
 }
-.icon-down-task{
-  display: none;
+.icon-down-task {
+  visibility: hidden;
 }
 
 .task-preview {
   &:hover {
     .task-title,
-
     .react-datepicker-wrapper,
     .member-picher-section {
       background-color: #e6e9ef;
     }
-    .icon-down-task{
-      display: block;
+    .icon-down-task {
+      visibility: visible;
     }
   }
 }
 
-.task-icon{
+.task-icon {
   gap: 10px;
-  align-items: center
+  align-items: center;
 }
