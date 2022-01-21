@@ -21,7 +21,7 @@ export function loadBoard(boardId) {
       console.log("cannot find board:", err);
       throw err;
     }
-  };
+  }
 }
 
 export function addBoard(board) {
@@ -68,10 +68,6 @@ export function deleteTask(taskId, groupId, boardId) {
   };
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 073da99319ef61d5ad923ead5ecc1e12497b8b00
 export function addTask(value, groupId, boardId) {
   return async (dispatch) => {
     console.log('value:', value);
