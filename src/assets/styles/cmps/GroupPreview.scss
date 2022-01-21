@@ -68,9 +68,7 @@
   width: 100%;
   margin-inline-start: 25px;
 
-  .group-color {
-    // margin-left: 24px;
-  }
+
   .add-task-form {
     margin-left: 32px;
   }
@@ -133,7 +131,9 @@ div.group-color {
   box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
   border-radius: 4px;
   cursor: pointer;
-  width: 130px;
+  width: 155px;
+  /* height: 65px; */
+  padding: 15px;
   position: absolute;
   z-index: 10;
   margin-inline: 0.6%;
