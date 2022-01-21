@@ -4,6 +4,9 @@
   input.task-title{
     left: $first-column-left;
     max-width: fit-content;
+    &:focus-visible {
+      outline: none;
+  }
   }
 
   div.group-title-container{
@@ -28,20 +31,28 @@
 .group-title {
   text-align: start;
   margin: 5px;
-  /* margin: 0; */
+  // /* margin: 0; */
   padding: 0;
   white-space: nowrap;
   display: inline;
   padding: 5px 10px;
   font-size: 100%;
   position: sticky;
-  left: 266px;
-  font-family: roboto-light,helvetica,sans-serif;
+  // left: 266px;
+  // font-family: roboto-light,helvetica,sans-serif;
 
+  border: 1px solid transparent;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0 5px;
 
   &:hover {
     border: 1px dotted black;
   }
+  &:focus-visible {
+    outline: none;
+}
 }
 
 
@@ -80,6 +91,10 @@
   position: sticky;
   width: 95%;
   padding-inline-start: 15px;
+
+  &:focus-visible {
+    outline: none;
+}
 }
 
 span{
@@ -112,4 +127,35 @@ div.group-color {
 }
 .add-task-form{
   display: flex;
+}
+
+.group-modal{
+  animation: fade-in 0.5s ease-in-out both;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 5px 20px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
+  border-radius: 4px;
+  cursor: pointer;
+  width: 130px;
+  position: absolute;
+  z-index: 10;
+  top: 24%;
+  left: 22%;
+}
+
+.modal-group-items{
+  gap: 10px;
+  div, span{
+    cursor: pointer;
+  }
+
+}
+
+.title-modal-delete{
+  flex-direction: column;
+  div{
+    margin: 0 auto;
+  }
 }

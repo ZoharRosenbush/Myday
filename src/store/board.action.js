@@ -16,6 +16,7 @@ export function loadBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
+console.log('board in action:', board);
 
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
@@ -63,7 +64,7 @@ export function  addGroup(boardId){
 
 }
 
-export function removeBoard(boardId) {
+export function removeBoard( boardId) {
   return async (dispatch) => {
     try {
       await boardService.remove(boardId);
@@ -73,6 +74,24 @@ export function removeBoard(boardId) {
     }
   };
 }
+export function deleteGroup(groupId, boardId) {
+  return async (dispatch) => {
+    try {
+      const board = await boardService.deleteGroup(groupId, boardId);
+      dispatch({ type: "SET_BOARD", board: board });
+    } catch (err) {
+      console.log('err:', err);
+    }
+  };
+}
+
+
+
+
+
+
+
+
 
 // Store - saveTask
 export function saveTask(task, groupId, boardId) {

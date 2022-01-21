@@ -26,6 +26,9 @@
     &:hover {
       border: 0.5px dashed #000;
     }
+    &:focus-visible {
+      outline:none;
+  }
   }
   div.board-header-btns {
     line-height: 6;
@@ -42,6 +45,9 @@
     &:hover {
       border: 0.5px dashed #000;
     }
+    &:focus-visible {
+      outline: none;
+  }
   }
   .board-header-top {
     color: #323338;

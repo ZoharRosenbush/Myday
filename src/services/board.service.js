@@ -10,7 +10,8 @@ export const boardService = {
   saveTask,
   saveGroup,
   addTask,
-  addGroup
+  addGroup,
+  deleteGroup,
 };
 
 function query(filterBy) {
@@ -51,7 +52,7 @@ async function addTask(value, groupId, boardId) {
       title: value,
       status: "Empty",
       priority: "Empty",
-      timeline: ["Jan 30-22","Feb 02-22"],
+      timeline: ["Jan 30-22", "Feb 02-22"],
       owner: [
         {
           _id: "u101",
@@ -74,39 +75,37 @@ async function addTask(value, groupId, boardId) {
   }
 }
 
-async function addGroup( boardId) {
+async function addGroup(boardId) {
   try {
     const groupToSave = {
-      
-        id: _makeId(),
-        title: "New Group",
-        tasks: [
-          {
-            id: _makeId(),
-            title: "New Task",
-            status: "Empty",
-            priority: "Empty",
-            timeline: ["Jan 30-22","Feb 02-22"],
-            owner: [
-              {
-                _id: "u1099",
-                acronyms: "ZR",
-                fullname: "Zohar Rosenbush",
-                username: "Zohar Rosenbush",
-                imgUrl: "http://some-img",
-              },
-            ],
-            comments: [],
-          },
-        ],
-        style: { groupColor: getNiceRandomColor() },
-        activities: [],
-      
+      id: _makeId(),
+      title: "New Group",
+      tasks: [
+        {
+          id: _makeId(),
+          title: "New Task",
+          status: "Empty",
+          priority: "Empty",
+          timeline: ["Jan 30-22", "Feb 02-22"],
+          owner: [
+            {
+              _id: "u1099",
+              acronyms: "ZR",
+              fullname: "Zohar Rosenbush",
+              username: "Zohar Rosenbush",
+              imgUrl: "http://some-img",
+            },
+          ],
+          comments: [],
+        },
+      ],
+      style: { groupColor: getNiceRandomColor() },
+      activities: [],
     };
     const board = await getById(boardId);
     board.groups.push(groupToSave);
-    console.log('board:', board);
-    
+    console.log("board:", board);
+
     save(board);
     return board;
   } catch (err) {
@@ -121,6 +120,24 @@ async function saveGroup(groupToSave, boardId) {
       (group) => groupToSave.id === group.id
     );
     board.groups[groupIdx] = groupToSave;
+    save(board);
+    return board;
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+
+async function deleteGroup(groupId, boardId) {
+  try {
+    const board = await getById(boardId);
+    const newGroups = board.groups.filter((group) => {
+      return group.id !== groupId;
+    });
+    board.groups = newGroups;
+    // const newReviews = book.reviews.filter((review) => review.id !== reviewId);
+    // book.reviews = newReviews;
+    // books[bookIdx] = book;
+
     save(board);
     return board;
   } catch (err) {
@@ -201,7 +218,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            timeline: ["Jan 30-22","Feb 02-22"],
+            timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
                 _id: "u1099",
@@ -226,7 +243,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            timeline: ["Jan 30-22","Feb 02-22"],
+            timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
                 _id: "u1099",
@@ -251,7 +268,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            timeline: ["Jan 30-22","Feb 02-22"],
+            timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
                 _id: "u1099",
@@ -283,13 +300,13 @@ function _makeId(length = 4) {
 }
 
 function getNiceRandomColor() {
-  let red = '#ff3d57';
-  let orange = '#ffcb00';
-  let green = '#00d647';
-  let blue = '#0073ea';
-  let darkblue = '#292f4c';
- 
-  let niceColors = [ darkblue, blue, green, orange, red];
+  let red = "#ff3d57";
+  let orange = "#ffcb00";
+  let green = "#00d647";
+  let blue = "#0073ea";
+  let darkblue = "#292f4c";
+
+  let niceColors = [darkblue, blue, green, orange, red];
   let drawnNum = getRandomIntInclusive(0, niceColors.length);
   let randColor = niceColors[drawnNum];
   return randColor;
@@ -297,6 +314,5 @@ function getNiceRandomColor() {
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
-
