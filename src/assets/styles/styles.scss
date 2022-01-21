@@ -1,33 +1,30 @@
 // BASIC
 
-@import './basic/fonts';
-@import './basic/basic';
-@import './basic/variables';
-@import './basic/buttons';
-@import './basic/helpers';
+@import './basic/_fonts';
+@import './basic/_basic';
+@import './basic/_variables';
+@import './basic/_buttons';
+@import './basic/_helpers';
+@import './basic/_typography';
 
-//SETUP
-@import './setup/typography';
-@import './setup/variables';
-@import './setup/functions';
-@import './setup/mixins';
 
-//PAGES
-@import './pages/BoardDetails';
 
 //CMPS
 //Board Cmps
 
-@import './cmps/BoardCmps/BoardHeader';
-@import './cmps/BoardCmps/BoardControllers';
-@import './cmps/DynamicCmps/StatusCmp';
-@import './cmps/DynamicCmps/MemberCmp';
-@import './cmps/DynamicCmps/PriorityCmp';
-@import './cmps/DynamicCmps/DateCmp';
-@import './cmps/BoardList';
-@import './cmps/GroupPreview';
-@import './cmps/GroupList';
-@import './cmps/TaskPreview';
+@import './cmps/BoardCmps/_board-header';
+@import './cmps/BoardCmps/_board-controllers';
+@import './cmps/DynamicCmps/_status-cmp';
+@import './cmps/DynamicCmps/_member-cmp';
+@import './cmps/DynamicCmps/_priority-cmp';
+@import './cmps/DynamicCmps/_date-cmp';
+@import './cmps/_board-list';
+@import './cmps/_group-preview';
+@import './cmps/_group-list';
+@import './cmps/_task-preview';
 //Nav Cmps
-@import './cmps/NavCmps/MainNav';
-@import './cmps/BoardNav';
+@import './cmps/NavCmps/_main-nav';
+@import './cmps/_board-nav';
+
+//PAGES
+@import './pages/_board-details';

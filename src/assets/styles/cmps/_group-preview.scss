@@ -1,18 +1,6 @@
 .group-preview {
   margin-bottom: 50px;
 
-<<<<<<< HEAD
- 
-=======
-  input.task-title {
-    left: $first-column-left;
-    max-width: fit-content;
-    &:focus-visible {
-      outline: none;
-    }
-  }
->>>>>>> 44eb92431c992a61c948b5349d469c9560bfe371
-
   div.group-title-container {
     // background-color: #f5f6f8ed;
     min-width: 425px;
@@ -64,7 +52,6 @@
   height: 36px;
   background-color: lighter($cell-color);
   text-align: start;
-<<<<<<< HEAD
   left:$first-column-left ;
   cursor: pointer;
   width:100%;
@@ -94,9 +81,6 @@ input.add-task{
     outline: none;
 }
   border: none;
-=======
-  left: $first-column-left;
->>>>>>> 44eb92431c992a61c948b5349d469c9560bfe371
 }
 
 .add-task-container {
@@ -105,19 +89,10 @@ input.add-task{
   width: 100%;
   margin-inline-start: 25px;
 
-<<<<<<< HEAD
 
 .add-task-form{
   margin-left: 32px;
 }
-
-}
-
-.task-title{
-=======
-  .add-task-form {
-    margin-left: 32px;
-  }
 }
 
 .add-task-div {
@@ -126,7 +101,6 @@ input.add-task{
 }
 
 .task-title {
->>>>>>> 44eb92431c992a61c948b5349d469c9560bfe371
   border: none;
   cursor: pointer;
   font-family: roboto-light, helvetica, sans-serif;
