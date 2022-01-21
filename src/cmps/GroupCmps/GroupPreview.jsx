@@ -84,10 +84,10 @@ export class _GroupPreview extends React.Component {
           </div>
         )}
         {isModalToDelete && (
-          <section className="modalDelete">
-            <div className="flex title-modal-delete"><div><GrCircleAlert/></div><span>Are toy sure you want to delete?</span></div>
-            <button onClick={this.toggelModalDelete}>No</button>
-            <button onClick={this.deleteGroup}>Yes, Im sure</button>
+          <section className="modal-delete">
+            <div className="flex title-modal-delete"><div><GrCircleAlert/></div><span>Are you sure you want to delete?</span></div>
+            <button onClick={this.toggelModalDelete} className="no-ans-delete">No</button>
+            <button onClick={this.deleteGroup} className="yes-ans-delete">Yes</button>
           </section>
         )}
         <div className="group-title-container first-column">
@@ -96,7 +96,6 @@ export class _GroupPreview extends React.Component {
               color: `${group.style.groupColor}`,
               fontSize: "1.1em",
               cursor: "pointer",
-              transform: "translateX(-127%)",
             }}
             onClick={this.toggleGroupModal}
           />
