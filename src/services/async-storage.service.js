@@ -190,7 +190,7 @@ function _createBoards() {
               ],
             }
           ],
-          style: { groupColor:"red" },
+          style: { groupColor:getNiceRandomColor() },
           activities: [
             {
               id: "a101",
@@ -211,4 +211,22 @@ function _createBoards() {
   ];
   localStorage.setItem("boardDB", JSON.stringify(boards));
   return boards;
+}
+
+function getNiceRandomColor() {
+  let red = "#ff3d57";
+  let orange = "#ffcb00";
+  let green = "#00d647";
+  let blue = "#0073ea";
+  let darkblue = "#292f4c";
+
+  let niceColors = [darkblue, blue, green, orange, red];
+  let drawnNum = getRandomIntInclusive(0, niceColors.length);
+  let randColor = niceColors[drawnNum];
+  return randColor;
+}
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
