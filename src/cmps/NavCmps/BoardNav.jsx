@@ -5,10 +5,9 @@ import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai'
 import { BiFilterAlt } from 'react-icons/bi'
 
 import { BoardList } from "../BoardCmps/BoardList.jsx";
-import { loadBoards, addBoard, removeBoard } from '../../store/board.action.js'
+import { loadBoards, addBoard, removeBoard, setBoardNav } from '../../store/board.action.js'
 import { boardService } from "../../services/board.service.js";
 
-// import { addToy } from '../store/toy.action.js'
 
 export class _BoardNav extends React.Component {
   state = {
@@ -22,7 +21,10 @@ export class _BoardNav extends React.Component {
     const { isBoardNavOpen } = this.state
     console.log('opening');
     console.log(isBoardNavOpen);
-    this.setState({ isBoardNavOpen: !isBoardNavOpen })
+    this.setState({ isBoardNavOpen: !isBoardNavOpen }, () => {
+      this.props.setBoardNav(isBoardNavOpen)
+
+    })
   }
 
   onAddBoard = () => {
@@ -40,22 +42,24 @@ export class _BoardNav extends React.Component {
   render() {
     const { boards } = this.props
     const { isBoardNavOpen } = this.state
+    const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-open closed'
     console.log(isBoardNavOpen);
     return (
-      <section>
-        {!isBoardNavOpen && <section className="board-nav">
+      // <section>
+      //   {!isBoardNavOpen && <section className="board-nav">
+      //     <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
+      //       <IoIosArrowForward color="#67686b" />
+
+      //     </button>
+      //   </section>}
+      // isBoardNavOpen &&
+      <section className={className} >
+        <div>
           <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
             <IoIosArrowForward color="#67686b" />
-
           </button>
-        </section>}
-        {isBoardNavOpen &&
-          <section className="board-nav board-nav-open" >
-            <div>
-              <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
-                <IoIosArrowForward color="#67686b" />
-              </button>
-              <p className="workspace">Workspace</p>
+          {
+            isBoardNavOpen && <React.Fragment> <p className="workspace">Workspace</p>
               <p className="main-workspace">Main Workspace</p>
               <div className="side-bar-features-container">
 
@@ -72,10 +76,13 @@ export class _BoardNav extends React.Component {
                   Search</button>
 
               </div>
-              <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} />
-            </div>
-          </section>}
+              <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} /></React.Fragment>
+          }
+
+        </div>
+
       </section>
+      // </section>
 
     )
 
@@ -92,6 +99,9 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
   loadBoards,
   addBoard,
-  removeBoard
+  removeBoard,
+  setBoardNav
 }
 export const BoardNav = connect(mapStateToProps, mapDispatchToProps)(_BoardNav);
+
+

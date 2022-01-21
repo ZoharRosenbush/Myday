@@ -16,8 +16,6 @@ export function loadBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
-      // console.log('board in action:', board);
-
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log("cannot find board:", err);
@@ -70,6 +68,10 @@ export function deleteTask(taskId, groupId, boardId) {
   };
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 073da99319ef61d5ad923ead5ecc1e12497b8b00
 export function addTask(value, groupId, boardId) {
   return async (dispatch) => {
     console.log('value:', value);
@@ -167,6 +169,14 @@ export function setActiveModal(activeModal) {
     dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
   };
 }
+
+
+export function setBoardNav(isBoardNavOpen) {
+  return (dispatch) => {
+    dispatch({ type: "SET_BOARD_NAV", isBoardNavOpen: !isBoardNavOpen })
+  }
+}
+
 
 // export function loadToys() {
 //   return async (dispatch) => {
