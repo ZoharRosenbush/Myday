@@ -20,6 +20,9 @@
   }
 
 }
+.icon-down-task{
+  display: none;
+}
 
 .task-preview {
   &:hover {
@@ -29,5 +32,13 @@
     .member-picher-section {
       background-color: #e6e9ef;
     }
+    .icon-down-task{
+      display: block;
+    }
   }
+}
+
+.task-icon{
+  gap: 10px;
+  align-items: center
 }
