@@ -1,0 +1,30 @@
+// BASIC
+
+@import './basic/_fonts';
+@import './basic/_basic';
+@import './basic/_variables';
+@import './basic/_buttons';
+@import './basic/_helpers';
+@import './basic/_typography';
+
+
+
+//CMPS
+//Board Cmps
+
+@import './cmps/BoardCmps/_board-header';
+@import './cmps/BoardCmps/_board-controllers';
+@import './cmps/DynamicCmps/_status-cmp';
+@import './cmps/DynamicCmps/_member-cmp';
+@import './cmps/DynamicCmps/_priority-cmp';
+@import './cmps/DynamicCmps/_date-cmp';
+@import './cmps/_board-list';
+@import './cmps/_group-preview';
+@import './cmps/_group-list';
+@import './cmps/_task-preview';
+//Nav Cmps
+@import './cmps/NavCmps/_main-nav';
+@import './cmps/_board-nav';
+
+//PAGES
+@import './pages/_board-details';
