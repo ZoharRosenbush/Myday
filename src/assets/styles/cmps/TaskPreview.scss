@@ -11,11 +11,12 @@
   text-align: center;
 
   .task-title {
-    min-width: 380px;
+    min-width: 390px;
+    width: 390px;
     text-align: left;
     border: 1px solid white;
     background-color: #f5f6f8ed;
-    left: $first-column-left;
+    left: 273px;
   }
 
 }
