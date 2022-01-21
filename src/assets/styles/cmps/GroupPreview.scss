@@ -1,6 +1,16 @@
 .group-preview {
   margin-bottom: 50px;
 
+  input.task-title{
+    left: $first-column-left;
+    max-width: fit-content;
+  }
+
+  div.group-title-container{
+    background-color: #f5f6f8ed;
+    width: 398px;
+  }
+
 }
 
 .labels-modal {
@@ -23,6 +33,8 @@
   display: inline;
   padding: 5px 10px;
   font-size: 100%;
+  position: sticky;
+  left: 266px;
   font-family: roboto-light,helvetica,sans-serif;
 
 
@@ -37,6 +49,7 @@
   height: 36px;
   background-color: lighter($cell-color);
   text-align: start;
+  left:$first-column-left ;
 }
 
 
@@ -57,6 +70,7 @@
   font-family: roboto-light, helvetica, sans-serif;
   position: sticky;
   width: 95%;
+  padding-inline-start: 15px;
 }
 
 span{
@@ -80,4 +94,10 @@ span{
   background-color: #0073ea;
   color: #fff;
   width: 50px;
+}
+
+div.group-color {
+  height: 100%;
+  min-width: 7px;
+  left: $grop-color-left;
 }

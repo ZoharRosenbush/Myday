@@ -94,7 +94,7 @@ class _TaskPreview extends React.Component {
       <section className="task-preview flex">
      
           <div
-            className="group-color"
+            className="group-color first-column"
             style={{ backgroundColor: `${group.style.groupColor}` }}
           ></div>
           <span

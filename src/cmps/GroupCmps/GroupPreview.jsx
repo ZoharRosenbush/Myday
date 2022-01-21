@@ -25,7 +25,7 @@ export class _GroupPreview extends React.Component {
     ev.preventDefault();
     const { group, board, addTask } = this.props;
     addTask(this.state.taskValue, group.id, board._id);
-    this.setState({ taskValue: "Add Task +"});
+    this.setState({ taskValue: "Add Task +" });
   };
 
   cmpTitle = (cmpType) => {
@@ -41,18 +41,20 @@ export class _GroupPreview extends React.Component {
 
     return (
       <section className="group-preview">
-        <div className= "div-headline-container">
-        <h1
-          className="group-title first-column"
-          contentEditable
-          suppressContentEditableWarning={true}
-          onBlur={this.onUpdateTitleContent}
+        <div className="group-title-container first-column">
+          <h1
+            className="group-title first-column"
+            contentEditable
+            suppressContentEditableWarning={true}
+            onBlur={this.onUpdateTitleContent}
           >
-          {group.title}
-        </h1>
-        {cmpsOrder.map((cmp, idx) => {
-          return <div key={idx}>{this.cmpTitle(cmp)}</div>;
-        })}
+            {group.title}
+          </h1>
+        </div>
+        <div className="div-headline-container">
+          {cmpsOrder.map((cmp, idx) => {
+            return <div key={idx}>{this.cmpTitle(cmp)}</div>;
+          })}
         </div>
         {group.tasks.map((task, idx) => {
           return <TaskPreview key={idx} task={task} groupId={group.id} />;
@@ -62,16 +64,16 @@ export class _GroupPreview extends React.Component {
             className="group-color first-column"
             style={{ backgroundColor: `${group.style.groupColor}` }}
           ></div>
-          <div className="add-task-div">
+          <div className="add-task-div first-column">
             {" "}
-            <form onSubmit={this.onAddTask} className="first-column">
+            <form onSubmit={this.onAddTask} className="first-column flex justify-between align-center">
               <input
                 className="task-title first-column"
                 placeholder="Add task +"
                 onChange={this.onHandleChange}
                 value={this.state.taskValue}
-                // contentEditable
-                // suppressContentEditableWarning={true}
+              // contentEditable
+              // suppressContentEditableWarning={true}
               ></input>
               <button className="add-task-btn">Add</button>
             </form>

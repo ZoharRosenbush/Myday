@@ -40,12 +40,17 @@ class _BoardDetails extends React.Component {
     return (
       <section>
         <MainNav />
-        <BoardHeader
-        board ={board}
-        // title={board.title}
-        />
         <BoardNav />
-        {board && <GroupList board={board} />}
+        <section className="board-container">
+          <BoardHeader
+            board={board}
+          // title={board.title}
+          />
+
+          {board && <GroupList board={board} />}
+
+        </section>
+
       </section>
     );
   }
