@@ -40,16 +40,22 @@ export class _BoardNav extends React.Component {
     console.log(isBoardNavOpen);
     return (
       <section>
-        {!isBoardNavOpen && <section className="board-nav-closed">
+        {!isBoardNavOpen && <section className="board-nav">
           <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
             <IoIosArrowForward color="#67686b" />
 
           </button>
         </section>}
         {isBoardNavOpen &&
-          <section className="board-nav-open" >
-            <h1>Main Workspace</h1>
-            <i className="fas arrow arrow-left"></i>
+          <section className="board-nav board-nav-open" >
+            <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
+              <IoIosArrowForward color="#67686b" />
+            </button>
+            <h2>Workspace</h2>
+            <h2 className="main-workspace">Main Workspace</h2>
+            <button>Add</button>
+            <button>Filters</button>
+            <button>Search</button>
             <button onClick={() => this.onAddBoard()} className="side-bar-fetures">Add +</button>
             <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} />
           </section>}

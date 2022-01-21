@@ -9,11 +9,11 @@ export function MainNav() {
 
             <img className="2day-logo" src="https://cdn.monday.com/images/logos/monday_logo_icon.png" alt=""></img>
            <div className='grid-container'>
-            <BiGridAlt color='white' size='23px' style={{marginLeft: "6px", marginRight: "6px"}} />
+            <BiGridAlt color='white' size='23px' style={{marginLeft: "6px", marginTop: "6px", cursor: "pointer"}} />
             </div>
-            <AiOutlineBell color='white' size='23px'  style={{marginLeft: "19px"}}  />
-            <BsInbox color='white' size='23px' style={{marginLeft: "19px"}}  />
-            <BsCalendar2Check color='white' size='23px' style={{marginLeft: "19px"}}  />
+            <AiOutlineBell color='white' size='23px'  style={{marginLeft: "19px", cursor: "pointer"}}  />
+            <BsInbox color='white' size='23px' style={{marginLeft: "19px", cursor: "pointer"}}  />
+            <BsCalendar2Check color='white' size='23px' style={{marginLeft: "19px", cursor: "pointer"}}  />
             <div className="see-plans flex align-center justify-center">
                 <h2><HiSparkles color='white'
                     style={{
@@ -21,10 +21,10 @@ export function MainNav() {
                     }} />
                     See Plans  </h2>
             </div>
-            <HiOutlinePuzzle color='white' size='23px' style={{marginLeft: "19px"}}  />
-            <RiUserAddLine color='white' size='23px' style={{marginLeft: "19px"}}  />
-            <AiOutlineSearch color='white' size='23px' style={{marginLeft: "19px"}}  />
-            <RiQuestionMark color='white' size='23px' style={{marginLeft: "19px"}}  />
+            <HiOutlinePuzzle color='white' size='23px' style={{marginLeft: "19px", cursor: "pointer"}}  />
+            <RiUserAddLine color='white' size='23px' style={{marginLeft: "19px", cursor: "pointer"}}  />
+            <AiOutlineSearch color='white' size='23px' style={{marginLeft: "19px", cursor: "pointer"}}  />
+            <RiQuestionMark color='white' size='23px' style={{marginLeft: "19px", cursor: "pointer"}}  />
 <div className='user-avatar'>MZL</div>
         </section>
     )
