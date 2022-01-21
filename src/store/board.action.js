@@ -16,7 +16,7 @@ export function loadBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
-console.log('board in action:', board);
+// console.log('board in action:', board);
 
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
@@ -39,6 +39,22 @@ export function addBoard(board) {
     }
   };
 }
+
+export function updateBoard(board) {
+  return async (dispatch) => {
+    try {
+      const savedBoard = await boardService.save({ ...board });
+      dispatch({
+        type: "UPDATE_BOARD",
+        board: savedBoard,
+      });
+    } catch (err) {
+      console.log("Cannot update board", err);
+    }
+  };
+}
+
+
 
 
 export function  addTask( value, groupId, boardId){

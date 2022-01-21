@@ -7,7 +7,7 @@ import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
 
-import { setActiveModal } from '../store/board.action.js'
+import { setActiveModal, updateBoard } from '../store/board.action.js'
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
@@ -34,7 +34,7 @@ class _BoardDetails extends React.Component {
 
 
   render() {
-    const { board } = this.props;
+    const { board , updateBoard } = this.props;
 
 
     return (
@@ -43,8 +43,7 @@ class _BoardDetails extends React.Component {
         <BoardNav />
         <section className="board-container">
           <BoardHeader
-            board={board}
-          // title={board.title}
+          updateBoard={updateBoard}
           />
 
           {board && <GroupList board={board} />}
@@ -64,7 +63,8 @@ function mapStateToProps({ boardModule }) {
 }
 const mapDispatchToProps = {
   loadBoard,
-  setActiveModal
+  setActiveModal,
+  updateBoard 
 };
 
 export const BoardDetails = connect(

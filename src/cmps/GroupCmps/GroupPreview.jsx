@@ -48,6 +48,7 @@ export class _GroupPreview extends React.Component {
   };
 
   onAddTask = (ev) => {
+    console.log('adding task')
     ev.preventDefault();
     const { group, board, addTask } = this.props;
     addTask(this.state.taskValue, group.id, board._id);
@@ -163,8 +164,9 @@ export class _GroupPreview extends React.Component {
               // contentEditable
               // suppressContentEditableWarning={true}
               />
-              {isAddTaskActive && <button className="add-task-btn">Add</button>}
-              {!isAddTaskActive && <div className="btn-placeholder"></div>}
+              <button className="add-task-btn">Add</button>
+              {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
+              {!isAddTaskActive && <div className="btn-placeholder"></div>} */}
             </form>
           </div>
         </div>

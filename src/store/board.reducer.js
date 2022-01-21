@@ -20,11 +20,12 @@ export function boardReducer(state = initialState, action) {
       return { ...state, board: { ...action.board } };
     case "ADD_BOARD":
       return { ...state, boards: [...state.boards, action.board] }
+    case "UPDATE_BOARD":
+      return { ...state, board: { ...action.board } }
     case "REMOVE_BOARD":
       return { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
     case "SET_ACTIVE_MODAL":
       return { ...state, activeModal: action.activeModal }
-
     //     case 'ADD_GROUP':
     //         return { ...state, board: { ...state.board, groups: [action.group, ...groups] } }
     //     case 'EDIT_GROUP':
