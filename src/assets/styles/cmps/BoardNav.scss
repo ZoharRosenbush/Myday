@@ -1,4 +1,4 @@
-.board-nav {
+.board-nav-open {
   width: $nav-bar-width;
   border-right: 1px solid rgba(0, 0, 0, 0.233);
   height: 158%;
@@ -7,6 +7,7 @@
   z-index: 10;
   background-color: $white;
   left: 66px;
+  transition: 0.5px;
   .fas .arrow .arrow-left {
     color: black;
   }
@@ -38,5 +39,40 @@
     margin-bottom: 20px;
     border-bottom: 1px solid #e6e9ef;
     color: #323338;
+  }
+}
+
+.board-nav-closed {
+  width: 29px;
+  border-right: 1px solid #e8eaf0;
+  background-color: #f5f6f8;
+  height: 158%;
+  top: 0;
+  position: fixed;
+  z-index: 5;
+  background-color: $white;
+  left: 66px;
+
+  button.open-nav-btn {
+    background-color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #e2e7ec;
+    margin-left: 15px;
+    margin-top: 20px;
+    transition: width 0.2s;
+    &:hover {
+      width: 33.44px;
+      border-radius: 20px;
+      background-color: #0085ff;
+      z-index: 100;
+      transition: background-color 100ms ease, padding-left 100ms ease,
+        padding-right 100ms ease, border-color 100ms ease, color 100ms ease;
+      animation-name: slideInFromLeft;
+      animation-duration: 0.15s;
+      animation-timing-function: cubic-bezier(0, 0, 0.35, 1);
+      animation-delay: 0s;
+    }
   }
 }

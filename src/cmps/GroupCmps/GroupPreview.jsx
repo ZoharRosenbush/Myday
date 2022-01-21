@@ -2,6 +2,7 @@ import React from "react";
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { connect } from "react-redux";
 import { addTask, saveGroup } from "../../store/board.action.js";
+import { IoMdArrowDropdownCircle } from 'react-icons/io'
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -47,10 +48,12 @@ export class _GroupPreview extends React.Component {
             contentEditable
             suppressContentEditableWarning={true}
             onBlur={this.onUpdateTitleContent}
-          >
-            {group.title}
-          </h1>
+            style={{ color: `${group.style.groupColor}` }}
+
+          > {group.title}</h1>
+          <IoMdArrowDropdownCircle style={{ color: `${group.style.groupColor}` }} />
         </div>
+
         <div className="div-headline-container">
           {cmpsOrder.map((cmp, idx) => {
             return <div key={idx}>{this.cmpTitle(cmp)}</div>;
@@ -74,12 +77,12 @@ export class _GroupPreview extends React.Component {
                 value={this.state.taskValue}
               // contentEditable
               // suppressContentEditableWarning={true}
-              ></input>
+              />
               <button className="add-task-btn">Add</button>
             </form>
           </div>
-        </div>
-      </section>
+        </div >
+      </section >
     );
   }
 }

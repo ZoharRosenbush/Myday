@@ -30,6 +30,7 @@
   margin: 5px;
   /* margin: 0; */
   padding: 0;
+  white-space: nowrap;
   display: inline;
   padding: 5px 10px;
   font-size: 100%;
@@ -57,6 +58,14 @@
   display: flex;
   height: 36px;
   width: 100%;
+
+.group-color{
+  margin-left: 24px;
+}
+.add-task-form{
+  margin-left: 32px;
+}
+
 }
 
 .add-task-div{
@@ -100,4 +109,7 @@ div.group-color {
   height: 100%;
   min-width: 7px;
   left: $grop-color-left;
+}
+.add-task-form{
+  display: flex;
 }

@@ -8,7 +8,9 @@ export function MainNav() {
         <section className="main-nav">
 
             <img className="2day-logo" src="https://cdn.monday.com/images/logos/monday_logo_icon.png" alt=""></img>
-            <BiGridAlt color='white' size='23px' style={{marginLeft: "19px"}} />
+           <div className='grid-container'>
+            <BiGridAlt color='white' size='23px' style={{marginLeft: "6px", marginRight: "6px"}} />
+            </div>
             <AiOutlineBell color='white' size='23px'  style={{marginLeft: "19px"}}  />
             <BsInbox color='white' size='23px' style={{marginLeft: "19px"}}  />
             <BsCalendar2Check color='white' size='23px' style={{marginLeft: "19px"}}  />
