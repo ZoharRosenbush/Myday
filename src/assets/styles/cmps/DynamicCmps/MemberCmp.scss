@@ -1,12 +1,18 @@
+.member-picher-section{
+    background-color: #F5F6F8;
+    height: 34px;
+    min-width: 150px;
+    border: 1px solid white;
+   
+}
+
 .member-picker{
     display: flex;
     flex-direction: row;
     justify-content: center;
     cursor: pointer;
     align-items: center;
-    min-width: 150px;
-    border: 1px solid white;
-    background-color: ($cell-color);
+    height: 100%;
 }
 
 .labels-modal{
@@ -31,7 +37,13 @@
 .ME, .ZR, .LS{
     border-radius: 50%;
     border: none;
+    height: 30px;
+    width: 30px;
+    margin-left: -5px;
+    display: inline;
 
 }
+
+
 
 

@@ -51,7 +51,7 @@ async function addTask(value, groupId, boardId) {
       title: value,
       status: "Empty",
       priority: "Empty",
-      timeline: "Jan 18-23",
+      timeline: ["Jan 30-22","Feb 02-22"],
       owner: [
         {
           _id: "u101",
@@ -86,7 +86,7 @@ async function addGroup( boardId) {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            timeline: "Jan 18-23",
+            timeline: ["Jan 30-22","Feb 02-22"],
             owner: [
               {
                 _id: "u1099",
@@ -201,7 +201,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            timeline: "Jan 18-23",
+            timeline: ["Jan 30-22","Feb 02-22"],
             owner: [
               {
                 _id: "u1099",
@@ -226,7 +226,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            timeline: "Jan 18-23",
+            timeline: ["Jan 30-22","Feb 02-22"],
             owner: [
               {
                 _id: "u1099",
@@ -251,7 +251,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            timeline: "Jan 18-23",
+            timeline: ["Jan 30-22","Feb 02-22"],
             owner: [
               {
                 _id: "u1099",
