@@ -1,7 +1,7 @@
 import React from "react";
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { connect } from "react-redux";
-import { addTask, saveGroup , deleteGroup} from "../../store/board.action.js";
+import { addTask, saveGroup, deleteGroup } from "../../store/board.action.js";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -18,7 +18,7 @@ export class _GroupPreview extends React.Component {
   toggleGroupModal = () => {
     this.setState({ isGroupModalOpen: !this.state.isGroupModalOpen });
   };
-  
+
   toggelModalDelete = () => {
     this.setState({ isGroupModalOpen: false });
     this.setState({ isModalToDelete: !this.state.isModalToDelete });
@@ -32,11 +32,10 @@ export class _GroupPreview extends React.Component {
     saveGroup(group, board._id);
   };
 
-
-  deleteGroup = () =>{
-    const {deleteGroup,  group, board } = this.props;
+  deleteGroup = () => {
+    const { deleteGroup, group, board } = this.props;
     deleteGroup(group.id, board._id);
-  }
+  };
 
   onHandleChange = ({ target }) => {
     const value = target.value;
@@ -68,7 +67,6 @@ export class _GroupPreview extends React.Component {
             <div
               className="flex modal-group-items"
               onClick={this.toggelModalDelete}
-     
             >
               <div>
                 <RiDeleteBinLine color="#323338c2" />{" "}
@@ -85,35 +83,50 @@ export class _GroupPreview extends React.Component {
         )}
         {isModalToDelete && (
           <section className="modal-delete">
-            <div className="flex title-modal-delete"><div><GrCircleAlert/></div><span>Are you sure you want to delete?</span></div>
-            <button onClick={this.toggelModalDelete} className="no-ans-delete">No</button>
-            <button onClick={this.deleteGroup} className="yes-ans-delete">Yes</button>
+            <div className="flex title-modal-delete">
+              <div>
+                <GrCircleAlert />
+              </div>
+              <span>Are you sure you want to delete?</span>
+            </div>
+            <button onClick={this.toggelModalDelete} className="no-ans-delete">
+              No
+            </button>
+            <button onClick={this.deleteGroup} className="yes-ans-delete">
+              Yes
+            </button>
           </section>
         )}
-        <div className="group-title-container first-column">
-          <IoMdArrowDropdownCircle
-            style={{
-              color: `${group.style.groupColor}`,
-              fontSize: "1.1em",
-              cursor: "pointer",
-            }}
-            onClick={this.toggleGroupModal}
-          />
-          <h1
-            className="group-title first-column"
-            contentEditable
-            suppressContentEditableWarning={true}
-            onBlur={this.onUpdateTitleContent}
-            style={{ color: `${group.style.groupColor}` }}
-          >
-            {" "}
-            {group.title}
-          </h1>
-        </div>
 
         <div className="div-headline-container">
+          <div className="group-title-container first-column">
+            <IoMdArrowDropdownCircle
+              style={{
+                color: `${group.style.groupColor}`,
+                fontSize: "1.1em",
+                cursor: "pointer",
+                transform: "translateY(4.8px)",
+              }}
+              onClick={this.toggleGroupModal}
+            />
+
+            <h1
+              className="group-title first-column"
+              contentEditable
+              suppressContentEditableWarning={true}
+              onBlur={this.onUpdateTitleContent}
+              style={{ color: `${group.style.groupColor}` }}
+            >
+              {" "}
+              {group.title}
+            </h1>
+          </div>
           {cmpsOrder.map((cmp, idx) => {
-            return <div key={idx}>{this.cmpTitle(cmp)}</div>;
+            return (
+              <div className={this.cmpTitle(cmp)} key={idx}>
+                {this.cmpTitle(cmp)}
+              </div>
+            );
           })}
         </div>
         {group.tasks.map((task, idx) => {
@@ -154,7 +167,7 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
   saveGroup,
   addTask,
-  deleteGroup
+  deleteGroup,
 };
 
 export const GroupPreview = connect(

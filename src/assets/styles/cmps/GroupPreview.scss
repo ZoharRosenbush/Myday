@@ -10,8 +10,8 @@
   }
 
   div.group-title-container {
-    background-color: #f5f6f8ed;
-    width: 398px;
+    // background-color: #f5f6f8ed;
+    min-width: 425px;
   }
 }
 
@@ -68,7 +68,6 @@
   width: 100%;
   margin-inline-start: 25px;
 
-
   .add-task-form {
     margin-left: 32px;
   }
@@ -97,8 +96,7 @@ span {
 }
 .div-headline-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: unset;
 }
 
 .add-task-btn {
@@ -189,3 +187,26 @@ div.group-color {
   background-color: ($red);
   margin-inline-end: 5px;
 }
+
+.Owners {
+  min-width: 148px;
+  text-align: center;
+}
+
+.Timeline {
+  min-width: 198px;
+  text-align: center;
+}
+.Priority {
+  min-width: 137px;
+  text-align: center;
+}
+
+.Status {
+  min-width: 139px;
+  text-align: center;
+}
+
+// .icon-group {
+//   transform: translateY(4.5px);
+// }
