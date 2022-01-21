@@ -34,8 +34,9 @@ export function DateCmp({ cmpData, onUpdateTask,groupColor }) {
             width: 90%;
             background-color:black;
             border-radius: 11px;
+            text-align: center;
             color:white;
-            border-color: transparent;
+            border: none;
         }`}
             </style>
             <DatePicker

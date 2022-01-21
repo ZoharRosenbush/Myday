@@ -2,6 +2,7 @@ import React from "react";
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { connect } from "react-redux";
 import { addTask, saveGroup } from "../../store/board.action.js";
+import {IoMdArrowDropdownCircle} from 'react-icons/io'
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -42,7 +43,10 @@ export class _GroupPreview extends React.Component {
     return (
       <section className="group-preview">
         <div className= "div-headline-container">
+        <IoMdArrowDropdownCircle style={{ color: `${group.style.groupColor}` }} />
         <h1
+       
+       style={{ color: `${group.style.groupColor}` }}
           className="group-title first-column"
           contentEditable
           suppressContentEditableWarning={true}
@@ -64,7 +68,7 @@ export class _GroupPreview extends React.Component {
           ></div>
           <div className="add-task-div">
             {" "}
-            <form onSubmit={this.onAddTask} className="first-column">
+            <form onSubmit={this.onAddTask} className="add-task-form first-column">
               <input
                 className="task-title first-column"
                 placeholder="Add task +"
