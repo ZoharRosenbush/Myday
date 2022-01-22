@@ -19,7 +19,7 @@
     min-width: 390px;
     width: 390px;
     text-align: left;
-   
+
     background-color: #f5f6f8ed;
     left: 273px;
   }
@@ -27,7 +27,6 @@
 .icon-down-task {
   visibility: hidden;
   cursor: pointer;
-
 }
 .drag-icon {
   visibility: hidden;
@@ -35,38 +34,37 @@
 }
 
 .task-preview {
+  & > *:not(:first-child) {
+    border-inline-start: 2px solid $white;
+  }
   &:hover {
     .task-title,
     .react-datepicker-wrapper,
     .member-picher-section {
       background-color: #e6e9ef;
     }
-  
   }
 }
 
-.task-icon{
-&:hover{
-  .icon-down-task {
-    visibility: visible;
-    transform: translateX(10px);
+.task-icon {
+  &:hover {
+    .icon-down-task {
+      visibility: visible;
+      transform: translateX(10px);
+    }
   }
   .drag-icon {
     visibility: visible;
     width: 0px;
   }
 }
-}
-
-
 
 .task-icon {
   gap: 10px;
   align-items: center;
 }
 
-
-.task-modal{
+.task-modal {
   font-size: 14px;
   padding: 5px 20px;
   background-color: #fff;
