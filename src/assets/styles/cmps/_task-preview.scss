@@ -28,6 +28,7 @@
   visibility: hidden;
   cursor: pointer;
 }
+
 .drag-icon {
   visibility: hidden;
   width: 0px;
@@ -52,10 +53,10 @@
       visibility: visible;
       transform: translateX(10px);
     }
-  }
-  .drag-icon {
-    visibility: visible;
-    width: 0px;
+    .drag-icon {
+      visibility: visible;
+      width: 0px;
+    }
   }
 }
 

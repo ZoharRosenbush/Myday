@@ -6,7 +6,7 @@ import { IoIosColorFilter } from "react-icons/io";
 import { GrCircleAlert } from "react-icons/gr";
 import { Draggable } from "react-beautiful-dnd";
 import { DragDropContext } from "react-beautiful-dnd";
-import {GrDrag} from "react-icons/gr";
+import { GrDrag } from "react-icons/gr";
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { ColorInput } from "./ColorInput.jsx";
 import {
@@ -16,6 +16,7 @@ import {
   setActiveModal,
 } from "../../store/board.action.js";
 import { Droppable } from "react-beautiful-dnd";
+import { logDOM } from "@testing-library/react";
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -113,6 +114,9 @@ export class _GroupPreview extends React.Component {
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     const { group, board, saveGroup } = this.props;
+    console.log('destination:', destination);
+    console.log('source:', source);
+    
     if (!destination) return;
     if (
       destination.droppableId === source.droppableId &&
@@ -122,25 +126,19 @@ export class _GroupPreview extends React.Component {
     }
     const task = group.tasks.find((task) => task.id === draggableId);
 
-
     group.tasks.splice(source.index, 1);
     group.tasks.splice(destination.index, 0, task);
     saveGroup(group, board._id);
-    
   };
 
   render() {
     const { group, board, activeModal } = this.props;
     const cmpsOrder = board.cmpsOrder;
     const { isGroupModalOpen, isModalToDelete, isAddTaskActive } = this.state;
-    // console.log('group.style.groupColor:', group.style.groupColor);
-
-    // eventLogger = (e: MouseEvent, data: Object) => {
-    //   console.log('Event: ', e);
-    //   console.log('Data: ', data);
-    // };
-
     return (
+      <Droppable droppableId={group.id} >
+      {(provided) => (
+        <section ref={provided.innerRef}>
       <section className="group-preview">
         {activeModal.cmpType === "groupEdit" &&
           activeModal.groupId === group.id && (
@@ -213,19 +211,35 @@ export class _GroupPreview extends React.Component {
                 <ColorInput onUpdateGroupColor={this.onUpdateGroupColor} />
               )}
           </div>
-          {cmpsOrder.map((cmp, idx) => {
-            return (
-              <div className={this.cmpTitle(cmp)} key={idx}>
-                {this.cmpTitle(cmp)}
-              </div>
-            );
-          })}
+          {/* <DragDropContext onDragEnd={this.onDragEnd}> */}
+            {/* <Droppable droppableId="ctg"> */}
+              {/* {(provided) => ( */}
+                {/* <section ref={provided.innerRef}> */}
+                  {cmpsOrder.map((cmp, idx) => {
+                    return (
+                      // <Draggable key={idx} draggableId={cmp} index={idx}>
+                        // {(provided) => (
+                          <div key={idx}
+                            // {...provided.draggableProps}
+                            // {...provided.dragHandleProps}
+                            // ref={provided.innerRef}
+                            className={this.cmpTitle(cmp)}
+                          >
+                            {this.cmpTitle(cmp)}
+                          </div>
+                        // )}
+                      // </Draggable>
+                    );
+                  })}
+                {/* </section> */}
+              {/* )} */}
+            {/* </Droppable> */}
+          {/* </DragDropContext> */}
         </div>
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="tasks">
-            {(provided) => (
-              <section ref={provided.innerRef}>
-                
+        {/* <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId="tasks"> */}
+            {/* {(provided) => (
+              <section ref={provided.innerRef}> */}
                 {group.tasks.map((task, idx) => {
                   return (
                     <Draggable key={idx} draggableId={task.id} index={idx}>
@@ -235,18 +249,17 @@ export class _GroupPreview extends React.Component {
                           {...provided.dragHandleProps}
                           ref={provided.innerRef}
                         >
-                         
                           <TaskPreview task={task} groupId={group.id} />
-                          {provided.placeholder}
+                          {/* {provided.placeholder} */}
                         </section>
                       )}
                     </Draggable>
                   );
                 })}
-              </section>
-            )}
-          </Droppable>
-        </DragDropContext>
+              {/* </section> */}
+            {/* )} */}
+          {/* </Droppable>
+        </DragDropContext> */}
 
         <div className="add-task-container first-column flex">
           <div className="add-task-div justify-between first-column flex">
@@ -275,8 +288,13 @@ export class _GroupPreview extends React.Component {
           </div>
         </div>
       </section>
-    );
+      </section>
+                  )}
+              </Droppable>
+    )
+    
   }
+  
 }
 function mapStateToProps({ boardModule }) {
   return {
