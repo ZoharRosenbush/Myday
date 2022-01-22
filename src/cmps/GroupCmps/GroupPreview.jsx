@@ -7,6 +7,9 @@ import { GrCircleAlert } from "react-icons/gr";
 import { Draggable } from "react-beautiful-dnd";
 import { DragDropContext } from "react-beautiful-dnd";
 import { GrDrag } from "react-icons/gr";
+import { Droppable } from "react-beautiful-dnd";
+import { logDOM } from "@testing-library/react";
+
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { ColorInput } from "./ColorInput.jsx";
 import {
@@ -15,8 +18,7 @@ import {
   deleteGroup,
   setActiveModal,
 } from "../../store/board.action.js";
-import { Droppable } from "react-beautiful-dnd";
-import { logDOM } from "@testing-library/react";
+
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -54,8 +56,7 @@ export class _GroupPreview extends React.Component {
       (prevState) => ({
         ...prevState,
         isAddTaskActive: !prevState.isAddTaskActive,
-      }),
-      console.log("changing active", this.state)
+      }),()=>{console.log("changing active", this.state)} 
     );
   };
 
@@ -134,6 +135,7 @@ export class _GroupPreview extends React.Component {
     const { group, board, activeModal } = this.props;
     const cmpsOrder = board.cmpsOrder;
     const { isGroupModalOpen, isModalToDelete, isAddTaskActive } = this.state;
+    const btnClassName = isAddTaskActive? 'add-task-btn-visible':'add-task-btn'
     return (
       <Droppable droppableId={group.id} >
       {(provided) => (
@@ -261,9 +263,9 @@ export class _GroupPreview extends React.Component {
           {/* </Droppable>
         </DragDropContext> */}
 
-        <div className="add-task-container first-column flex">
+        <div className="add-task-container first-column flex" onFocus={this.toggleAddTask} onBlur={this.toggleAddTask}>
           <div className="add-task-div justify-between first-column flex">
-            <div
+            <div 
               className="group-color"
               style={{ backgroundColor: `${group.style.groupColor}` }}
             ></div>{" "}
@@ -276,12 +278,12 @@ export class _GroupPreview extends React.Component {
                 className="add-task"
                 onChange={this.onHandleChange}
                 value={this.state.taskValue}
-                onFocus={this.toggleAddTask}
-                onBlur={this.toggleAddTask}
+                // onFocus={this.toggleAddTask}
+                // onBlur={this.toggleAddTask}
                 // contentEditable
                 // suppressContentEditableWarning={true}
               />
-              <button className="add-task-btn">Add</button>
+              <button className={btnClassName}>Add</button>
               {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
               {!isAddTaskActive && <div className="btn-placeholder"></div>} */}
             </form>
