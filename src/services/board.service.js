@@ -150,7 +150,7 @@ async function deleteTask(taskId, groupId, boardId) {
   try {
     const board = await getById(boardId);
     console.log('board in service:', board);
-    
+
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
     const newTasks = board.groups[groupIdx].tasks.filter((task) => {
       return task.id !== taskId;
@@ -174,8 +174,10 @@ function getNewBoard() {
     cmpsOrder: [
       "status-picker",
       "member-picker",
+      "type-picker",
       "date-picker",
       "priority-picker",
+      "role-picker",
     ],
     title: "New Board",
     description:
@@ -228,6 +230,20 @@ function getNewBoard() {
         imgUrl: "http://some-img",
       },
     ],
+    types: [
+      { id: "tp111", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
+      { id: "tp222", value: "Quality", bgColor: "#fcc4f7", color: "#fff" },
+      { id: "tp333", value: "Feature", bgColor: "#00c875", color: "#fff" },
+      { id: "tp444", value: "Bug", bgColor: "#e2445c", color: "#fff" },
+      { id: "tp555", value: "Improvement", bgColor: "#a25ddc", color: "#fff" },
+      { id: "tp666", value: "Security", bgColor: "#ffadad", color: "#fff" },
+    ],
+    roles: [
+      { id: "rl111", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
+      { id: "rl222", value: "Dev", bgColor: "#279165", color: "#fff" },
+      { id: "rl333", value: "Design", bgColor: "#0086c0", color: "#fff" },
+      { id: "rl444", value: "Product", bgColor: "#a25ddc", color: "#fff" },
+    ],
     groups: [
       {
         id: "GJKN10",
@@ -238,6 +254,8 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
+            role: "Empty",
+            type: "Empty",
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -263,6 +281,8 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
+            role: "Empty",
+            type: "Empty",
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -288,6 +308,8 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
+            role: "Empty",
+            type: "Empty",
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -327,8 +349,8 @@ function getNiceRandomColor() {
   let pink = "#FAA1F1";
   let darkblue = "#292f4c";
 
-  let niceColors = [darkblue, pink,blue, green, orange, red];
-  let drawnNum = getRandomIntInclusive(0, niceColors.length-1);
+  let niceColors = [darkblue, pink, blue, green, orange, red];
+  let drawnNum = getRandomIntInclusive(0, niceColors.length - 1);
   let randColor = niceColors[drawnNum];
   return randColor;
 }

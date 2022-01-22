@@ -19,14 +19,19 @@
 @import './cmps/BoardCmps/_board-header';
 @import './cmps/color-input';
 @import './cmps/BoardCmps/_board-controllers';
-@import './cmps/DynamicCmps/_status-cmp';
-@import './cmps/DynamicCmps/_member-cmp';
-@import './cmps/DynamicCmps/_priority-cmp';
-@import './cmps/DynamicCmps/_date-cmp';
 @import './cmps/_board-list';
 @import './cmps/_group-preview';
 @import './cmps/_group-list';
 @import './cmps/_task-preview';
+
+//Dynamic CMPS
+@import './cmps/DynamicCmps/_status-cmp';
+@import './cmps/DynamicCmps/_member-cmp';
+@import './cmps/DynamicCmps/_priority-cmp';
+@import './cmps/DynamicCmps/_date-cmp';
+@import './cmps/DynamicCmps/role-cmp';
+@import './cmps/DynamicCmps/type-cmp';
+
 //Nav Cmps
 @import './cmps/NavCmps/_main-nav';
 @import './cmps/NavCmps/board-nav';

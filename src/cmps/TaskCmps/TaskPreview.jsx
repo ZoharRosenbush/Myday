@@ -54,6 +54,14 @@ class _TaskPreview extends React.Component {
         task.owner.push(data);
         saveTask(task, groupId, board._id);
         break;
+      case "role-picker":
+        task.role = data;
+        saveTask(task, groupId, board._id);
+        break;
+      case "type-picker":
+        task.type = data;
+        saveTask(task, groupId, board._id);
+        break;
       case "date-picker":
         task.timeline = data;
         saveTask(task, groupId, board._id);
@@ -89,13 +97,28 @@ class _TaskPreview extends React.Component {
             selectedDate: task.timeline,
           },
         };
-
       case "priority-picker":
         return {
           type: "priority-picker",
           info: {
             selectedStatus: task.priority,
             priorities: board.priorities,
+          },
+        };
+      case "role-picker":
+        return {
+          type: "role-picker",
+          info: {
+            selectedStatus: task.role,
+            roles: board.roles,
+          },
+        };
+      case "type-picker":
+        return {
+          type: "type-picker",
+          info: {
+            selectedStatus: task.type,
+            types: board.types,
           },
         };
       default:
@@ -133,13 +156,13 @@ class _TaskPreview extends React.Component {
           this.openModal(task.id)
         }}>
           {/* {activeModal.taskId !== task.id && */}
-           <IoMdArrowDropdown
-           style={{
-             backgroundColor: "#C8E1FA",
-             color: "black",
-             borderRadius: "5px",
-           }}
-         />
+          <IoMdArrowDropdown
+            style={{
+              backgroundColor: "#C8E1FA",
+              color: "black",
+              borderRadius: "5px",
+            }}
+          />
           {/* {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
             <IoMdArrowDropdown
               style={{
@@ -152,9 +175,9 @@ class _TaskPreview extends React.Component {
               className="active-arrow-down"
             />} */}
         </div>
-       
+
         <div className="drag-icon">
-          <MdDragIndicator color="#c4c4c4" style={{height:"1.3em", width:"1.3em"}} />
+          <MdDragIndicator color="#c4c4c4" style={{ height: "1.3em", width: "1.3em" }} />
         </div>
         {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
           <div className="task-modal">
