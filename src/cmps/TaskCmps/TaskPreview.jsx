@@ -21,8 +21,10 @@ class _TaskPreview extends React.Component {
     isModalTaskOpen: false,
   };
 
-  toggelModalTask = () => {
-    this.setState({ isModalTaskOpen: !this.state.isModalTaskOpen });
+
+  openModal = (taskId) => {
+    const activeModal = { cmpType: 'taskEdit', taskId: taskId }
+    this.props.setActiveModal(activeModal)
   };
 
   deleteTask = () => {
@@ -99,7 +101,7 @@ class _TaskPreview extends React.Component {
   };
 
   onUpdateTitleContent = ({ target }) => {
-    const { task, board, groupId, saveTask } = this.props;
+    const { task, board, groupId, saveTask, activeModal } = this.props;
     const value = target.textContent;
     if (!value) return;
     task.title = value;
@@ -124,20 +126,35 @@ class _TaskPreview extends React.Component {
       //  {...provided.dragHandleProps}
       //  ref={provided.innerRef}          >
       <div className="flex task-icon">
-        <div className="icon-down-task" onClick={this.toggelModalTask}>
-          <IoMdArrowDropdown
-            style={{
-              backgroundColor: "#C8E1FA",
-              color: "black",
-              borderRadius: "5px",
-            }}
-          />
+        <div className="icon-down-task" onClick={(ev) => {
+          ev.stopPropagation()
+          this.openModal(task.id)
+        }}>
+          {/* {activeModal.taskId !== task.id && */}
+           <IoMdArrowDropdown
+           style={{
+             backgroundColor: "#C8E1FA",
+             color: "black",
+             borderRadius: "5px",
+           }}
+         />
+          {/* {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
+            <IoMdArrowDropdown
+              style={{
+                backgroundColor: "#C8E1FA",
+                color: "black",
+                borderRadius: "5px",
+                visibility: 'visible',
+                position:'sticky'
+              }}
+              className="active-arrow-down"
+            />} */}
         </div>
+       
         <div className="drag-icon">
-          {" "}
           <MdDragIndicator color="#c4c4c4" style={{height:"1.3em", width:"1.3em"}} />
         </div>
-        {isModalTaskOpen && (
+        {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
           <div className="task-modal">
             <div className="flex modal-group-items" onClick={this.deleteTask}>
               <div>
@@ -146,8 +163,7 @@ class _TaskPreview extends React.Component {
               <span>Delete task</span>
             </div>
           </div>
-        )}
-
+        }
         <section className="task-preview flex">
           <div className="task-title-cell flex first-column">
             <div
