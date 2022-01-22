@@ -3,11 +3,12 @@ import { AiOutlineBell, AiOutlineSearch } from 'react-icons/ai'
 import { BiGridAlt } from 'react-icons/bi'
 import { BsCalendar2Check, BsInbox } from 'react-icons/bs'
 import { RiUserAddLine, RiQuestionMark } from 'react-icons/ri'
+import logo from '../../assets/imgs/logo.png'
 export function MainNav() {
     return (
         <section className="main-nav">
 
-            <img className="2day-logo" src="https://cdn.monday.com/images/logos/monday_logo_icon.png" alt=""></img>
+            <img className="2day-logo" src={logo} alt=""></img>
            <div className='grid-container'>
             <BiGridAlt color='white' size='23px' style={{marginLeft: "6px", marginTop: "6px", cursor: "pointer"}} />
             </div>
