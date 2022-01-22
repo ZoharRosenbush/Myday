@@ -4,24 +4,26 @@ import { connect } from "react-redux";
 import { BsThreeDots } from 'react-icons/bs'
 import { RiDeleteBinLine } from "react-icons/ri";
 import { GrCircleAlert } from "react-icons/gr";
-import { removeBoard } from '../../store/board.action.js'
+import { removeBoard,setActiveModal } from '../../store/board.action.js'
+
 
 
 class _BoardList extends React.Component {
   state = {
-    openModal: {
-      isBoardModalOpen: false,
-      boardId: null
-    },
     isModalToDelete: false,
   };
   
 
-  toggleBoardModal = (boardId) => {
-    const { openModal } = this.state
-    this.setState({ openModal: { isBoardModalOpen: !openModal.isBoardModalOpen, boardId: boardId } }, () => {
-    });
+  openModal = (boardId) => {
+    const activeModal = { cmpType: 'boardEdit', boardId:boardId }
+    this.props.setActiveModal(activeModal)
   };
+
+  // toggleBoardModal = (boardId) => {
+  //   const { openModal } = this.state
+  //   this.setState({ openModal: { isBoardModalOpen: !openModal.isBoardModalOpen, boardId: boardId } }, () => {
+  //   });
+  // };
 
   toggleModalDelete = () => {
     this.setState({
@@ -46,9 +48,9 @@ class _BoardList extends React.Component {
   }
 
   render() {
-    const { boards, board } = this.props
-    const { openModal, isModalToDelete } = this.state
-    console.log('board:', board);
+    const { boards, board, activeModal} = this.props
+    const {isModalToDelete } = this.state
+    // console.log('board:', board);
 
     return (
       <section className="sidebar-nav-list">
@@ -60,16 +62,16 @@ class _BoardList extends React.Component {
                   {/* <RiBookLine size="19" style={{ transform: 'rotate(90px)' }} /> */}
                   {board.title}
                 </Link>
-                <button className="delete-board-btn" onClick={() => {
-                  this.toggleBoardModal(board._id)
-                  // onRemoveBoard(board._id)
+                <button className="edit-board-btn" onClick={(ev) => {
+                  ev.stopPropagation()
+                  this.openModal(board._id)
                 }}>
                   <BsThreeDots size="25px"
                     style={{ margin: "-9.5px", marginLeft: "-14px" }}
                   />
                 </button>
               </div>
-              {openModal.isBoardModalOpen && (openModal.boardId === board._id) &&
+              {activeModal.cmpType === 'boardEdit' && activeModal.boardId === board._id &&
                 <div className="board-modal">
                   <div
                     className="flex modal-board-items"
@@ -115,12 +117,14 @@ class _BoardList extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
+    activeModal: boardModule.activeModal
   
 
   };
 }
 const mapDispatchToProps = {
-  removeBoard
+  removeBoard,
+  setActiveModal
 }
 export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList);
 

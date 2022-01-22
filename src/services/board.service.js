@@ -328,7 +328,7 @@ function getNiceRandomColor() {
   let darkblue = "#292f4c";
 
   let niceColors = [darkblue, pink,blue, green, orange, red];
-  let drawnNum = getRandomIntInclusive(0, niceColors.length);
+  let drawnNum = getRandomIntInclusive(0, niceColors.length-1);
   let randColor = niceColors[drawnNum];
   return randColor;
 }
