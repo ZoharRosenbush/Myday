@@ -15,12 +15,16 @@ export class _BoardNav extends React.Component {
   }
   componentDidMount() {
     this.props.loadBoards()
+    // const { isBoardNavOpen } = this.state
+    this.setState({ isBoardNavOpen: true }, () => {
+      this.props.setBoardNav(this.state.isBoardNavOpen)
+    })
   }
 
   onToggleBoardNav() {
     const { isBoardNavOpen } = this.state
     this.setState({ isBoardNavOpen: !isBoardNavOpen }, () => {
-      this.props.setBoardNav(isBoardNavOpen)
+      this.props.setBoardNav(this.state.isBoardNavOpen)
 
     })
   }

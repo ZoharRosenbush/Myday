@@ -3,7 +3,7 @@
 const initialState = {
   boards: [],
   board: null,
-  activeModal: { cmpType: null, taskId: null },
+  activeModal: { cmpType: null, taskId: null, groupId:null },
   isBoardNavOpen: false,
   activities: [],
 };

@@ -161,6 +161,7 @@ export function saveGroup(group, boardId) {
 }
 
 export function setActiveModal(activeModal) {
+  console.log('active modal',activeModal);
   return (dispatch) => {
     dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
   };
@@ -169,7 +170,7 @@ export function setActiveModal(activeModal) {
 
 export function setBoardNav(isBoardNavOpen) {
   return (dispatch) => {
-    dispatch({ type: "SET_BOARD_NAV", isBoardNavOpen: !isBoardNavOpen })
+    dispatch({ type: "SET_BOARD_NAV", isBoardNavOpen:isBoardNavOpen })
   }
 }
 

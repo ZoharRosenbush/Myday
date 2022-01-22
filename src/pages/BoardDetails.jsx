@@ -35,6 +35,7 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { board , updateBoard,isBoardNavOpen } = this.props;
+    console.log('board nav',isBoardNavOpen);
     const boardContainerClassName = (isBoardNavOpen)? "board-container-open-nav" :"board-container"
 
 
