@@ -74,8 +74,10 @@ function _createBoards() {
       cmpsOrder: [
         "status-picker",
         "member-picker",
+        "type-picker",
         "date-picker",
         "priority-picker",
+        "role-picker",
       ],
       title: "Sprint 4",
       description:
@@ -125,6 +127,20 @@ function _createBoards() {
           imgUrl: "http://some-img",
         },
       ],
+      types: [
+        { id: "tp111", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
+        { id: "tp222", value: "Quality", bgColor: "#fcc4f7", color: "#fff" },
+        { id: "tp333", value: "Feature", bgColor: "#00c875", color: "#fff" },
+        { id: "tp444", value: "Bug", bgColor: "#e2445c", color: "#fff" },
+        { id: "tp555", value: "Improvement", bgColor: "#a25ddc", color: "#fff" },
+        { id: "tp666", value: "Security", bgColor: "#ffadad", color: "#fff" },
+      ],
+      roles: [
+        { id: "rl111", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
+        { id: "rl222", value: "Dev", bgColor: "#279165", color: "#fff" },
+        { id: "rl333", value: "Design", bgColor: "#0086c0", color: "#fff" },
+        { id: "rl444", value: "Product", bgColor: "#a25ddc", color: "#fff" },
+      ],
       groups: [
         {
           id: "p101",
@@ -135,7 +151,9 @@ function _createBoards() {
               title: "Replace Logo",
               status: "Done",
               priority: "High",
-              timeline: ["Jan 18-22","Jan 20-22"],
+              role: "Dev",
+              type: "Security",
+              timeline: ["Jan 18-22", "Jan 20-22"],
               owner: [
                 {
                   _id: "u1099",
@@ -159,12 +177,14 @@ function _createBoards() {
                   },
                 },
               ],
-            },  {
+            }, {
               id: "c101",
               title: "Replace Logo",
               status: "Done",
               priority: "High",
-              timeline: ["Jan 30-22","Feb 02-22"],
+              role: "Design",
+              type: "Bug",
+              timeline: ["Jan 30-22", "Feb 02-22"],
               owner: [
                 {
                   _id: "u1099",
@@ -190,7 +210,7 @@ function _createBoards() {
               ],
             }
           ],
-          style: { groupColor:getNiceRandomColor() },
+          style: { groupColor: getNiceRandomColor() },
           activities: [
             {
               id: "a101",
@@ -221,7 +241,7 @@ function getNiceRandomColor() {
   let blue = "#0073ea";
   let darkblue = "#292f4c";
 
-  let niceColors = [darkblue, lightgreen,blue, green, orange, red];
+  let niceColors = [darkblue, lightgreen, blue, green, orange, red];
   let drawnNum = getRandomIntInclusive(0, niceColors.length);
   let randColor = niceColors[drawnNum];
   return randColor;

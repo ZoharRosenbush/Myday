@@ -79,7 +79,7 @@ input.add-task {
 .add-task-container {
   display: flex;
   height: 36px;
-  width: 1149px;
+  width: 1460px;
   margin-inline-start: 46px;
 
   .add-task-form {
@@ -235,11 +235,19 @@ div.group-color {
 .Status {
   min-width: 137px;
 }
+.Role {
+  min-width: 137px;
+}
+.Type {
+  min-width: 137px;
+}
 
 .Owners,
 .Timeline,
 .Priority,
-.Status {
+.Status,
+.Role,
+.Type {
   height: 100%;
   text-align: center;
   line-height: 3;
