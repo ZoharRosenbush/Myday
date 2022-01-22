@@ -34,18 +34,19 @@ class _BoardDetails extends React.Component {
 
 
   render() {
-    const { board , updateBoard,isBoardNavOpen } = this.props;
-    console.log('board nav',isBoardNavOpen);
-    const boardContainerClassName = (isBoardNavOpen)? "board-container-open-nav" :"board-container"
+    const { board, updateBoard, isBoardNavOpen } = this.props;
+    console.log('board nav', isBoardNavOpen);
+    const boardContainerClassName = (isBoardNavOpen) ? "board-container-open-nav" : "board-container"
 
 
     return (
       <section>
+
         <MainNav />
         <BoardNav />
         <section className={boardContainerClassName}>
           <BoardHeader
-          updateBoard={updateBoard}
+            updateBoard={updateBoard}
           />
 
           {board && <GroupList board={board} />}
@@ -67,7 +68,7 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
   loadBoard,
   setActiveModal,
-  updateBoard 
+  updateBoard
 };
 
 export const BoardDetails = connect(

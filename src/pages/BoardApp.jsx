@@ -9,6 +9,7 @@ export function BoardApp() {
 
     return (
         <section>
+
             <MainNav />
             <BoardHeader />
             <BoardNav />

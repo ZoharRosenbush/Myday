@@ -182,6 +182,7 @@ export class _GroupPreview extends React.Component {
             </button>
           </section>
         )}
+        {isModalToDelete && <div className="main-screen"></div>}
         <div className="div-headline-container">
           <div className="group-title-container first-column">
             <IoMdArrowDropdownCircle
