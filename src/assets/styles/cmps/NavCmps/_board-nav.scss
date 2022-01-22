@@ -83,22 +83,30 @@
         width: rem(224px);
         text-align: start;
         padding: em(8px);
-
-        &:hover,
-        &:active {
-          background-color: #cce5ff;
-          .delete-board-btn {
-            color: #323338;
-            width: 10px;
-            // &:hover {
-            //   color: #323338;
-            // }
-          }
-        }
       }
       a {
         padding-top: 2px;
+        color: inherit;
       }
+    }
+  }
+}
+
+.board-title {
+  align-items: center;
+  justify-content: space-between;
+  &:active {
+    background-color: #cce5ff;
+  }
+
+  &:hover {
+    background-color: #cce5ff;
+    .delete-board-btn {
+      color: #323338;
+      width: 10px;
+      // &:hover {
+      //   color: #323338;
+      // }
     }
   }
 }
