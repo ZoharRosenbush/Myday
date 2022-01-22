@@ -59,6 +59,8 @@ class _TaskPreview extends React.Component {
         saveTask(task, groupId, board._id);
         break;
       case "type-picker":
+        console.log('data:', data);
+        
         task.type = data;
         saveTask(task, groupId, board._id);
         break;

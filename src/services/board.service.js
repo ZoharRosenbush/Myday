@@ -53,6 +53,8 @@ async function addTask(value, groupId, boardId) {
       title: value,
       status: "Empty",
       priority: "Empty",
+      role: "Empty",
+      type: "Empty",
       timeline: ["Jan 30-22", "Feb 02-22"],
       owner: [
         {
@@ -87,6 +89,8 @@ async function addGroup(boardId) {
           title: "New Task",
           status: "Empty",
           priority: "Empty",
+          role: "Empty",
+          type: "Empty",
           timeline: ["Jan 30-22", "Feb 02-22"],
           owner: [
             {

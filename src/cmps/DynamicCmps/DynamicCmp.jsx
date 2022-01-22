@@ -23,9 +23,7 @@ export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiv
       return <RoleCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />
     case "date-picker":
       return <DateCmp cmpData={cmpData} groupColor={groupColor} onUpdateTask={onUpdateTask} />
-    // return <MembersCmp cmpData={cmpData} />;
-    //   return <StatusCmp task={{ title: "Replace Logo", status: "Done" }} />;
-    // return <MemberCmp info={info} onUpdate={onUpdate}  />;
+
     default:
 
 
@@ -40,5 +38,5 @@ export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiv
 
 
   }
-  return <h1>Ctgs</h1>;
+return <h1></h1>
 }
