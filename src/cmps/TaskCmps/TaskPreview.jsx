@@ -1,12 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { TaskDetails } from "./TaskDetails.jsx";
-import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
-import {
-  saveTask,
-  setActiveModal,
-  deleteTask,
-} from "../../store/board.action.js";
 import { MdArrowDropDownCircle } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CgArrowDownR } from "react-icons/cg";
@@ -15,6 +8,15 @@ import { IoIosColorFilter } from "react-icons/io";
 import { Droppable } from "react-beautiful-dnd";
 import { Draggable } from "react-beautiful-dnd";
 import { MdDragIndicator } from "react-icons/md";
+
+import { TaskDetails } from "./TaskDetails.jsx";
+import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
+import {
+  saveTask,
+  setActiveModal,
+  deleteTask,
+} from "../../store/board.action.js";
+
 
 class _TaskPreview extends React.Component {
   state = {

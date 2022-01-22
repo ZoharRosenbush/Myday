@@ -35,7 +35,7 @@ export class MemberCmp extends React.Component {
     const { isEditMode } = this.state
 
     return (
-      <section className="member-picher-section">
+      <section className="member-picher-section" >
         <div className="member-picker" onClick={(ev) => {
           ev.stopPropagation()
           this.openModal()

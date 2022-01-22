@@ -14,6 +14,7 @@
 .status-member-section {
   height: 34px;
   flex-basis: 139px;
+  position: relative;
   min-width: 139px;
   text-align: center;
   cursor: pointer;
@@ -28,3 +29,16 @@
     }
   }
 }
+
+// .dog-ear{
+//   visibility: hidden;
+// }
+
+// .status-member-section{
+//   &:hover{
+//     .dog-ear{
+//       visibility: visible;
+//     }
+    
+//   } 
+//   }

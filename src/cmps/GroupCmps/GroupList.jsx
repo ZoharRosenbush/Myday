@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { GroupPreview } from "./GroupPreview.jsx";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Droppable } from "react-beautiful-dnd";
+
+import { GroupPreview } from "./GroupPreview.jsx";
 import { updateBoard } from "../../store/board.action.js";
 
 export class _GroupList extends React.Component {

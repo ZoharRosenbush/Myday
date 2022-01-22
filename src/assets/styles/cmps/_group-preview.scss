@@ -124,6 +124,23 @@ span {
   background-color: #0073ea;
   color: #fff;
   width: 50px;
+  opacity: 0;
+  // margin-left: 90%;
+}
+
+.add-task-btn-visible {
+  font-family: roboto-regular, helvetica, sans-serif;
+  height: 100%;
+  font-size: 0.875rem;
+  padding: 4px 8px;
+  font-weight: 400;
+  line-height: 27px;
+  border: none;
+  background-color: #0073ea;
+  color: #fff;
+  width: 50px;
+  transition: opacity 0.4s;
+  opacity: 1;
   // margin-left: 90%;
 }
 
