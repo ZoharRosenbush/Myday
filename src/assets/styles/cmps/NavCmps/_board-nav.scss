@@ -39,7 +39,7 @@
       color: #676879;
       font-family: roboto-regular;
     }
-    p.main-workspace {
+    div.main-workspace {
       font-family: roboto-bold;
       width: rem(210px);
       font-size: 1rem;
@@ -47,6 +47,27 @@
       padding: 10px 5px;
       border-radius: 4px;
       text-align: center;
+      display: inline;
+    }
+    p.main-p {
+      font-family: roboto-bold;
+      width: rem(210px);
+      font-size: 1rem;
+     
+      padding: 10px 5px;
+      border-radius: 4px;
+      text-align: center;
+      display: inline;
+    }
+
+    span.main-m{
+      display: inline;
+      border-radius: 10px;
+      background-color: #F279F2;
+      width: 10px;
+      height: 10px;
+      color: white;
+    
     }
     .side-bar-features-container {
       border-bottom: 1px solid #e6e9ef;

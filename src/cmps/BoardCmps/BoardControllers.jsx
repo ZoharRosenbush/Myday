@@ -41,9 +41,9 @@ openFilterModal = ()=>{
             <div className="flex column-filter">
               <h4>Status</h4>
               <ul className="filter-list">
-                <li>Done</li>
-                <li>Stuck</li>
-                <li>Working on it</li>
+                <li> <span>Done</span></li>
+                <li><span>Stuck</span></li>
+                <li><span>Working on it</span></li>
               </ul>
             </div>
             <div className="flex column-filter">
