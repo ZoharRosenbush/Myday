@@ -8,6 +8,13 @@
   background-color: $navy;
   z-index: 10;
   justify-content: space-between;
+  .top-opt,
+  .bottom-opt {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25%;
+  }
+
   .grid-container {
     background-color: #6a6e82;
     width: 36px;
