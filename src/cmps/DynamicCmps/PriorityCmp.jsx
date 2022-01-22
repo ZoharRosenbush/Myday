@@ -31,17 +31,24 @@ export class PriorityCmp extends React.Component {
         })
         return currPritority[0].color
     }
-
+    addDogEarClassName = () => {
+        this.setState({ isMouseOver: true })
+    }
+    removeDogEarClassName = () => {
+        this.setState({ isMouseOver: false })
+    }
 
     render() {
         const { cmpData, activeModal, taskId } = this.props;
         const { type, info } = cmpData;
-        const { isEditMode } = this.state
+        const { isEditMode, isMouseOver } = this.state
 
         return (
             <section className="status-member-section ">
-                <div className={info.selectedStatus}
+                <div className={`${info.selectedStatus} ${isMouseOver && 'dog-ear'}`}
                     style={{ backgroundColor: `${this.getBgColor(info)}`, color: `${this.getTxtColor(info)}` }}
+                    onMouseOver={() => this.addDogEarClassName()}
+                    onMouseLeave={() => this.removeDogEarClassName()}
                     onClick={(ev) => {
                         ev.stopPropagation()
                         this.openModal()
@@ -53,7 +60,7 @@ export class PriorityCmp extends React.Component {
                         {info.priorities.map((priority, idx) => {
                             return (<div
                                 style={{ backgroundColor: `${priority.bgColor}`, color: `${priority.color}` }}
-                                className={priority.value }
+                                className={priority.value}
                                 key={idx}
                                 onClick={this.handleChange}
                             >

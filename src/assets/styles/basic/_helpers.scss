@@ -35,7 +35,7 @@
 // }
 
 .dog-ear:before,
-.dog-ear:after{
+.dog-ear:after {
   content: '';
   display: block;
   right: 0;
@@ -43,12 +43,13 @@
   position: absolute;
 }
 
-.dog-ear:after{
-border-top: 20px solid rgb(0,0,0,.08);
-border-left: 20px solid rgb(0,0,0,.08);
-
+.dog-ear:after {
+  border-top: 13px solid #e6e9ef;
+  border-left: 13px solid rgb(0, 0, 0, 0.08);
+  transition: 0.7s;
 }
-.dog-ear:before{
-  border-bottom: 20px solid rgb(0,0,0,.08);
-  border-right: 20px solid white;
+.dog-ear:before {
+  border-bottom: 13px solid rgb(0, 0, 0, 0.08);
+  border-right: 13px solid $white;
+  transition: 0.7s;
 }

@@ -1,17 +1,17 @@
-
-
-
-
-.Empty,.Stuck, .Working.on.it, .Done{
+.Empty,
+.Stuck,
+.Working.on.it,
+.Done {
   width: 100%;
   margin: auto;
   cursor: pointer;
   height: 34px;
   border: none;
   font-family: 'roboto-regular';
+  position: relative;
 }
 
-.status-member-section{
+.status-member-section {
   height: 34px;
   flex-basis: 139px;
   position: relative;
@@ -30,6 +30,6 @@
 //     .dog-ear{
 //       visibility: visible;
 //     }
-    
-//   } 
+
+//   }
 //   }
