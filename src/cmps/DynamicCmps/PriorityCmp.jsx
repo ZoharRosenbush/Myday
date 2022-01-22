@@ -49,11 +49,11 @@ export class PriorityCmp extends React.Component {
                     {info.selectedStatus}
                 </div>
                 {activeModal.cmpType === type && activeModal.taskId === taskId && isEditMode && (
-                    <div className="labels-modal priorities">
+                    <div className="labels-modal priorities ">
                         {info.priorities.map((priority, idx) => {
                             return (<div
                                 style={{ backgroundColor: `${priority.bgColor}`, color: `${priority.color}` }}
-                                className={priority.value}
+                                className={priority.value }
                                 key={idx}
                                 onClick={this.handleChange}
                             >

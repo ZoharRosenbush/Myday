@@ -1,6 +1,7 @@
 .board-controllers {
   .add-group-btn {
-    font-family: roboto-light, helvetica, sans-serif;
+    // font-family: 'roboto-regular';
+    font-family: roboto-regular, helvetica, sans-serif;
     height: 32px;
     font-size: 0.875rem;
     padding: 4px 8px;
@@ -15,7 +16,7 @@
   }
 
   .controller-opt {
-    font-family: roboto-light, helvetica, sans-serif;
+    font-family: roboto-regular, helvetica, sans-serif;
     height: 32px;
     font-size: 0.875rem;
     padding: 4px 8px;

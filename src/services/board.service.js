@@ -189,12 +189,12 @@ function getNewBoard() {
     },
     statuses: [
       { id: "la123", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
-      { id: "la555", value: "Done", bgColor: "#00d647", color: "#fff" },
-      { id: "la666", value: "Stuck", bgColor: "#ff3d57", color: "#fff" },
+      { id: "la555", value: "Done", bgColor: "#00C875", color: "#fff" },
+      { id: "la666", value: "Stuck", bgColor: "#E2445C", color: "#fff" },
       {
         id: "la777",
         value: "Working on it",
-        bgColor: "#ffcb00",
+        bgColor: "#FDAB3D",
         color: "#fff",
       },
     ],
@@ -320,13 +320,14 @@ function _makeId(length = 4) {
 }
 
 function getNiceRandomColor() {
-  let red = "#ff3d57";
-  let orange = "#ffcb00";
-  let green = "#00d647";
+  let red = "#E2445C";
+  let orange = "#FDAB3D";
+  let green = "#00C875";
   let blue = "#0073ea";
+  let pink = "#FAA1F1";
   let darkblue = "#292f4c";
 
-  let niceColors = [darkblue, blue, green, orange, red];
+  let niceColors = [darkblue, pink,blue, green, orange, red];
   let drawnNum = getRandomIntInclusive(0, niceColors.length);
   let randColor = niceColors[drawnNum];
   return randColor;
