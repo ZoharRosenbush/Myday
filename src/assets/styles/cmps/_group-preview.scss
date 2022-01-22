@@ -3,7 +3,7 @@
 
   div.group-title-container {
     // background-color: #f5f6f8ed;
-    min-width: 436px;
+    min-width: 446px;
   }
 }
 
@@ -80,7 +80,7 @@ input.add-task {
   display: flex;
   height: 36px;
   width: 1149px;
-  margin-inline-start: 36px;
+  margin-inline-start: 46px;
 
   .add-task-form {
     margin-left: 32px;
@@ -149,8 +149,8 @@ div.group-color {
   padding: 15px;
   position: absolute;
   z-index: 10;
-  margin-inline: 1.3%;
-  margin-block: 1.8%;
+  margin-inline: 0.6em;
+  margin-block: 1.9em;
 }
 
 .modal-group-items {
@@ -159,18 +159,6 @@ div.group-color {
   span {
     cursor: pointer;
   }
-}
-
-.modal-delete {
-  padding: 1%;
-  width: 328px;
-  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
-  text-align: center;
-  z-index: 20;
-  position: fixed;
-  top: 5%;
-  left: 40%;
-  background-color: white;
 }
 
 .title-modal-delete {
@@ -203,6 +191,19 @@ div.group-color {
   margin-inline-end: 5px;
 }
 
+.modal-delete {
+  // padding: 7%;
+  padding: 15px;
+  padding-bottom: 20px;
+  width: 328px;
+  box-shadow: -1px 1px 8px 0px rgb(16 15 15 / 26%);
+  text-align: center;
+  position: fixed;
+  top: 8vh;
+  left: 40vw;
+  background-color: $white;
+  z-index: 100;
+}
 .Owners {
   min-width: 148px;
 }

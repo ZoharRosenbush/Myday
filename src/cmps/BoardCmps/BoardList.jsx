@@ -11,6 +11,7 @@ import { removeBoard,setActiveModal } from '../../store/board.action.js'
 class _BoardList extends React.Component {
   state = {
     isModalToDelete: false,
+
   };
   
 
@@ -104,6 +105,7 @@ class _BoardList extends React.Component {
                   </button>
                 </section>
               )}
+              {isModalToDelete && <div className="main-screen"></div>}
             </div>
           );
         })}
