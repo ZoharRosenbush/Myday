@@ -46,7 +46,8 @@ class _BoardDetails extends React.Component {
         <BoardNav />
         <section className={boardContainerClassName}>
           <BoardHeader
-            updateBoard={updateBoard}
+          board ={board}
+          updateBoard={updateBoard}
           />
 
           {board && <GroupList board={board} />}

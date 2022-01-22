@@ -5,6 +5,7 @@ export function loadBoards() {
     try {
       const boards = await boardService.query();
       dispatch({ type: "SET_BOARDS", boards: boards });
+      
     } catch (err) {
       console.log("cannot find boards:", err);
       throw err;
@@ -161,7 +162,7 @@ export function saveGroup(group, boardId) {
 }
 
 export function setActiveModal(activeModal) {
-  console.log('active modal',activeModal);
+  // console.log('active modal',activeModal);
   return (dispatch) => {
     dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
   };
