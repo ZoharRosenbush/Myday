@@ -100,7 +100,7 @@
   }
 
   &:hover {
-    background-color: #cce5ff;
+    background-color: #e6e9ef;
     .delete-board-btn {
       color: #323338;
       width: 10px;
@@ -108,6 +108,9 @@
       //   color: #323338;
       // }
     }
+  }
+  &.active {
+    background-color: #cce5ff;
   }
 }
 

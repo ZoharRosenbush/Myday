@@ -90,7 +90,7 @@ export class _BoardNav extends React.Component {
                   Search</button>
 
               </div>
-              <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} /></React.Fragment>
+              {boards && <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} />}</React.Fragment>
           }
 
         </div>

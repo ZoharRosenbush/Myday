@@ -38,19 +38,25 @@ class _BoardList extends React.Component {
     this.props.removeBoard(boardId)
   }
 
+  setClassName = (boardId) => {
+    const { board } = this.props
+    if (!board) return
+    const className = (board._id === boardId) ? 'active' : ''
+    return className
+  }
 
   render() {
     const { boards, board } = this.props
     const { openModal, isModalToDelete } = this.state
-    // const className = (board._id===)
+    console.log('board:', board);
+
     return (
       <section className="sidebar-nav-list">
         {boards.map((board, idx) => {
           return (
             <div className="flex" key={idx}>
-
-              <div className="board-title flex">
-                <Link className="clean-link" to={`/myday/board/${board._id}`}>
+              <div className={`board-title flex ${this.setClassName(board._id)}`}>
+                <Link className="clean-link" to={`/myday/board/${board._id}`} >
                   {/* <RiBookLine size="19" style={{ transform: 'rotate(90px)' }} /> */}
                   {board.title}
                 </Link>
