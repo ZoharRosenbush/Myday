@@ -44,11 +44,12 @@
 }
 
 .dog-ear:after {
-  border-top: 15px solid $white;
-  border-left: 15px solid rgb(0, 0, 0, 0.08);
+  border-top: 13px solid #e6e9ef;
+  border-left: 13px solid rgb(0, 0, 0, 0.08);
+  transition: 0.7s;
 }
 .dog-ear:before {
-  border-bottom: 15px solid rgb(0, 0, 0, 0.08);
-  border-right: 15px solid $white;
-  transition: all 0.3s;
+  border-bottom: 13px solid rgb(0, 0, 0, 0.08);
+  border-right: 13px solid $white;
+  transition: 0.7s;
 }

@@ -33,24 +33,25 @@ export class StatusCmp extends React.Component {
     return currStatus[0].color
   }
 
-  // addDogEarClassName = () => {
-  //   this.setState({ isMouseOver: true }, () => {
-
-  //   })
-  //   return 'dog-ear'
-  // }
+  addDogEarClassName = () => {
+    this.setState({ isMouseOver: true })
+  }
+  removeDogEarClassName = () => {
+    this.setState({ isMouseOver: false })
+  }
 
   render() {
     const { cmpData, activeModal, taskId } = this.props;
     const { type, info } = cmpData;
-    const { isEditMode } = this.state
+    const { isEditMode, isMouseOver } = this.state
 
     return (
       <section className="status-member-section">
         <div
           style={{ backgroundColor: `${this.getBgColor(info)}`, color: `${this.getTxtColor(info)}` }}
-          className={`${info.selectedStatus} ${this.addDogEarClassName()}`}
-          onMouseOver={this.addClassName}
+          className={`${info.selectedStatus} ${isMouseOver && 'dog-ear'}`}
+          onMouseOver={() => this.addDogEarClassName()}
+          onMouseLeave={() => this.removeDogEarClassName()}
           onClick={(ev) => {
             ev.stopPropagation()
             this.openModal()
