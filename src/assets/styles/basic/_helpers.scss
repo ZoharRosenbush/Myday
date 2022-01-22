@@ -35,7 +35,7 @@
 // }
 
 .dog-ear:before,
-.dog-ear:after{
+.dog-ear:after {
   content: '';
   display: block;
   right: 0;
@@ -43,12 +43,12 @@
   position: absolute;
 }
 
-.dog-ear:after{
-border-top: 20px solid rgb(0,0,0,.08);
-border-left: 20px solid rgb(0,0,0,.08);
-
+.dog-ear:after {
+  border-top: 15px solid $white;
+  border-left: 15px solid rgb(0, 0, 0, 0.08);
 }
-.dog-ear:before{
-  border-bottom: 20px solid rgb(0,0,0,.08);
-  border-right: 20px solid white;
+.dog-ear:before {
+  border-bottom: 15px solid rgb(0, 0, 0, 0.08);
+  border-right: 15px solid $white;
+  transition: all 0.3s;
 }

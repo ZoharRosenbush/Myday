@@ -3,10 +3,11 @@ import React from "react";
 export class StatusCmp extends React.Component {
   state = {
     isEditMode: false,
+    isMouseOver: false,
   };
 
   openModal = () => {
-    const { cmpData, setActiveModal,taskId } = this.props;
+    const { cmpData, setActiveModal, taskId } = this.props;
     this.setState({ isEditMode: true });
     const activeModal = { cmpType: cmpData.type, taskId }
     setActiveModal(activeModal)
@@ -32,6 +33,13 @@ export class StatusCmp extends React.Component {
     return currStatus[0].color
   }
 
+  // addDogEarClassName = () => {
+  //   this.setState({ isMouseOver: true }, () => {
+
+  //   })
+  //   return 'dog-ear'
+  // }
+
   render() {
     const { cmpData, activeModal, taskId } = this.props;
     const { type, info } = cmpData;
@@ -41,7 +49,8 @@ export class StatusCmp extends React.Component {
       <section className="status-member-section">
         <div
           style={{ backgroundColor: `${this.getBgColor(info)}`, color: `${this.getTxtColor(info)}` }}
-          className={info.selectedStatus}
+          className={`${info.selectedStatus} ${this.addDogEarClassName()}`}
+          onMouseOver={this.addClassName}
           onClick={(ev) => {
             ev.stopPropagation()
             this.openModal()
