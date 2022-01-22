@@ -5,13 +5,13 @@ import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai'
 import { BiFilterAlt } from 'react-icons/bi'
 
 import { BoardList } from "../BoardCmps/BoardList.jsx";
-import { loadBoards, addBoard, removeBoard, setBoardNav } from '../../store/board.action.js'
+import { loadBoards, addBoard, setBoardNav } from '../../store/board.action.js'
 import { boardService } from "../../services/board.service.js";
 
 
 export class _BoardNav extends React.Component {
   state = {
-    isBoardNavOpen: false
+    isBoardNavOpen: true
   }
   componentDidMount() {
     this.props.loadBoards()
@@ -19,8 +19,6 @@ export class _BoardNav extends React.Component {
 
   onToggleBoardNav() {
     const { isBoardNavOpen } = this.state
-    console.log('opening');
-    console.log(isBoardNavOpen);
     this.setState({ isBoardNavOpen: !isBoardNavOpen }, () => {
       this.props.setBoardNav(isBoardNavOpen)
 
@@ -93,13 +91,11 @@ export class _BoardNav extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     boards: boardModule.boards,
-    //   currFilterBy: toyModule.currFilterBy
   };
 }
 const mapDispatchToProps = {
   loadBoards,
   addBoard,
-  removeBoard,
   setBoardNav
 }
 export const BoardNav = connect(mapStateToProps, mapDispatchToProps)(_BoardNav);
