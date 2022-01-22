@@ -14,6 +14,7 @@ class _BoardList extends React.Component {
       boardId: null
     },
     isModalToDelete: false,
+
   };
 
   toggleBoardModal = (boardId) => {
@@ -101,6 +102,7 @@ class _BoardList extends React.Component {
                   </button>
                 </section>
               )}
+              {isModalToDelete && <div className="main-screen"></div>}
             </div>
           );
         })}

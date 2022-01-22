@@ -24,7 +24,7 @@
   white-space: nowrap;
   display: inline;
   font-size: rem(18px);
-  position: sticky;
+  // position: sticky;
   font-family: roboto, helvetica, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -91,7 +91,7 @@ input.add-task {
   border: none;
   cursor: pointer;
   font-family: roboto-regular, helvetica, sans-serif;
-  position: sticky;
+  // position: sticky;
   width: 95%;
   padding-inline-start: 15px;
 
@@ -161,18 +161,6 @@ div.group-color {
   }
 }
 
-.modal-delete {
-  padding: 1%;
-  width: 328px;
-  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
-  text-align: center;
-  z-index: 20;
-  position: fixed;
-  top: 5%;
-  left: 40%;
-  background-color: white;
-}
-
 .title-modal-delete {
   flex-direction: column;
   div {
@@ -203,6 +191,19 @@ div.group-color {
   margin-inline-end: 5px;
 }
 
+.modal-delete {
+  // padding: 7%;
+  padding: 15px;
+  padding-bottom: 20px;
+  width: 328px;
+  box-shadow: -1px 1px 8px 0px rgb(16 15 15 / 26%);
+  text-align: center;
+  position: fixed;
+  top: 8vh;
+  left: 40vw;
+  background-color: $white;
+  z-index: 100;
+}
 .Owners {
   min-width: 148px;
 }

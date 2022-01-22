@@ -152,6 +152,7 @@ export class _GroupPreview extends React.Component {
             </button>
           </section>
         )}
+        {isModalToDelete && <div className="main-screen"></div>}
         <div className="div-headline-container">
           <div className="group-title-container first-column">
             <IoMdArrowDropdownCircle
@@ -177,7 +178,7 @@ export class _GroupPreview extends React.Component {
               {group.title}
             </h1>
             {activeModal.cmpType === 'ColorInput' && activeModal.groupId === group.id &&
-          <ColorInput onUpdateGroupColor={this.onUpdateGroupColor} />}
+              <ColorInput onUpdateGroupColor={this.onUpdateGroupColor} />}
           </div>
           {cmpsOrder.map((cmp, idx) => {
             return (
