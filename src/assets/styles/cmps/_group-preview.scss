@@ -23,9 +23,9 @@
   text-align: start;
   white-space: nowrap;
   display: inline;
-  font-size: 100%;
+  font-size: rem(18px);
   position: sticky;
-  font-family: roboto-light helvetica, sans-serif;
+  font-family: roboto, helvetica, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -45,6 +45,7 @@
   height: 36px;
   background-color: lighter($cell-color);
   text-align: start;
+
   // left:$first-column-left ;
   cursor: pointer;
   width: 89.4%;
@@ -67,6 +68,7 @@
 input.add-task {
   // left: $first-column-left;
   // max-width: fit-content;
+  padding-left: 20px;
   width: 100%;
   &:focus-visible {
     outline: none;
