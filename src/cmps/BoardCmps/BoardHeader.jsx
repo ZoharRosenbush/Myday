@@ -4,19 +4,23 @@ import { BsGraphUp } from 'react-icons/bs';
 
 
 import { BoardControllers } from "./BoardControllers.jsx";
-import { addGroup, updateBoard } from "../../store/board.action.js";
-export function _BoardHeader({ board, updateBoard, addGroup }) {
-
+import { addGroup,loadBoards } from "../../store/board.action.js";
+export function _BoardHeader({ board, updateBoard,loadBoards, addGroup }) {
   function onAddGroup() {
     addGroup(board._id);
   }
   
 
-  function onUpdateBoardTitle({ target }) {
+  async function onUpdateBoardTitle({ target }) {
     const value = target.textContent;
     if (!value) return;
     board.title = value;
-    updateBoard(board);
+    try{
+     await updateBoard(board);
+     loadBoards()
+    }catch(err){
+      console.log('error in updating board');
+    }
   };
 
   function onUpdateBoardDesc({ target }) {
@@ -72,11 +76,12 @@ export function _BoardHeader({ board, updateBoard, addGroup }) {
 
 function mapStateToProps({ boardModule }) {
   return {
-    board: boardModule.board,
+    // board: boardModule.board,
   };
 }
 const mapDispatchToProps = {
   addGroup,
+  loadBoards
 };
 
 export const BoardHeader = connect(

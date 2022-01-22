@@ -21,6 +21,18 @@ export class _BoardNav extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const prevBoards = prevProps.boards
+    if (prevBoards.length) {
+      const { boards } = this.props
+      boards.forEach((board, idx) => {
+        if (board.title !== prevBoards[idx].title) {
+          this.props.loadBoards()
+        }
+      })
+    }
+  }
+
   onToggleBoardNav() {
     const { isBoardNavOpen } = this.state
     this.setState({ isBoardNavOpen: !isBoardNavOpen }, () => {

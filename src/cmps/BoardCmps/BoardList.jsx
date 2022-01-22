@@ -15,6 +15,7 @@ class _BoardList extends React.Component {
     },
     isModalToDelete: false,
   };
+  
 
   toggleBoardModal = (boardId) => {
     const { openModal } = this.state
@@ -108,6 +109,8 @@ class _BoardList extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
+  
+
   };
 }
 const mapDispatchToProps = {

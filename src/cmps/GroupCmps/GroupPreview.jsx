@@ -20,7 +20,6 @@ export class _GroupPreview extends React.Component {
 
   openModal = (modal) => {
     const { group, setActiveModal } = this.props;
-    console.log('the moda', modal);
     let activeModal;
     switch (modal) {
       case 'colorModal':

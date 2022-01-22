@@ -45,6 +45,7 @@ class _BoardDetails extends React.Component {
         <BoardNav />
         <section className={boardContainerClassName}>
           <BoardHeader
+          board ={board}
           updateBoard={updateBoard}
           />
 
