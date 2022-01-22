@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 import {
@@ -13,6 +12,9 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { CgArrowDownR } from "react-icons/cg";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosColorFilter } from "react-icons/io";
+import { Droppable } from "react-beautiful-dnd";
+import { Draggable } from "react-beautiful-dnd";
+import { MdDragIndicator } from "react-icons/md";
 
 class _TaskPreview extends React.Component {
   state = {
@@ -113,8 +115,14 @@ class _TaskPreview extends React.Component {
     });
     const groupColor = group.style.groupColor;
     const cmpsOrder = board.cmpsOrder;
-
+    const id = "123";
     return (
+      // <Draggable draggableId={task.id} index={this.props.key}>
+      // {(provided) => (
+      // <section
+      //  {...provided.draggableProps}
+      //  {...provided.dragHandleProps}
+      //  ref={provided.innerRef}          >
       <div className="flex task-icon">
         <div className="icon-down-task" onClick={this.toggelModalTask}>
           <IoMdArrowDropdown
@@ -125,6 +133,10 @@ class _TaskPreview extends React.Component {
             }}
           />
         </div>
+        <div className="drag-icon">
+          {" "}
+          <MdDragIndicator color="#c4c4c4" style={{height:"1.3em", width:"1.3em"}} />
+        </div>
         {isModalTaskOpen && (
           <div className="task-modal">
             <div className="flex modal-group-items" onClick={this.deleteTask}>
@@ -133,14 +145,9 @@ class _TaskPreview extends React.Component {
               </div>
               <span>Delete task</span>
             </div>
-            {/* <div className="flex modal-group-items">
-              <div>
-                <IoIosColorFilter color="#323338c2" />{" "}
-              </div>
-              <span>Change color</span>
-            </div> */}
           </div>
         )}
+
         <section className="task-preview flex">
           <div className="task-title-cell flex first-column">
             <div
@@ -156,7 +163,6 @@ class _TaskPreview extends React.Component {
               {task.title}
             </span>
           </div>
-
           {cmpsOrder.map((cmp, idx) => {
             return (
               <DynamicCmp
@@ -173,6 +179,8 @@ class _TaskPreview extends React.Component {
           <TaskDetails />
         </section>
       </div>
+      // </section>
+      // )}
     );
   }
 }

@@ -1,15 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import { IoIosArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosColorFilter } from "react-icons/io";
 import { GrCircleAlert } from "react-icons/gr";
-
+import { Draggable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
+import {GrDrag} from "react-icons/gr";
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { ColorInput } from "./ColorInput.jsx";
-import { addTask, saveGroup, deleteGroup, setActiveModal } from "../../store/board.action.js";
-
+import {
+  addTask,
+  saveGroup,
+  deleteGroup,
+  setActiveModal,
+} from "../../store/board.action.js";
+import { Droppable } from "react-beautiful-dnd";
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -20,28 +26,27 @@ export class _GroupPreview extends React.Component {
 
   openModal = (modal) => {
     const { group, setActiveModal } = this.props;
-    console.log('the moda', modal);
+    console.log("the moda", modal);
     let activeModal;
     switch (modal) {
-      case 'colorModal':
+      case "colorModal":
         activeModal = {
-          cmpType: 'ColorInput',
+          cmpType: "ColorInput",
           taskId: null,
-          groupId: group.id
-        }
-        setActiveModal(activeModal)
+          groupId: group.id,
+        };
+        setActiveModal(activeModal);
         break;
-      case 'groupEdit':
+      case "groupEdit":
         activeModal = {
-          cmpType: 'groupEdit',
+          cmpType: "groupEdit",
           taskId: null,
-          groupId: group.id
-        }
-        setActiveModal(activeModal)
+          groupId: group.id,
+        };
+        setActiveModal(activeModal);
         break;
       default:
     }
-
   };
 
   toggleAddTask = () => {
@@ -91,7 +96,7 @@ export class _GroupPreview extends React.Component {
   };
 
   onAddTask = (ev) => {
-    console.log('adding task')
+    console.log("adding task");
     ev.preventDefault();
     const { group, board, addTask } = this.props;
     addTask(this.state.taskValue, group.id, board._id);
@@ -105,37 +110,64 @@ export class _GroupPreview extends React.Component {
     else return "Status";
   };
 
+  onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+    const { group, board, saveGroup } = this.props;
+    if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+    const task = group.tasks.find((task) => task.id === draggableId);
+
+
+    group.tasks.splice(source.index, 1);
+    group.tasks.splice(destination.index, 0, task);
+    saveGroup(group, board._id);
+    
+  };
+
   render() {
     const { group, board, activeModal } = this.props;
     const cmpsOrder = board.cmpsOrder;
     const { isGroupModalOpen, isModalToDelete, isAddTaskActive } = this.state;
     // console.log('group.style.groupColor:', group.style.groupColor);
 
+    // eventLogger = (e: MouseEvent, data: Object) => {
+    //   console.log('Event: ', e);
+    //   console.log('Data: ', data);
+    // };
+
     return (
       <section className="group-preview">
-        {activeModal.cmpType === 'groupEdit' && activeModal.groupId === group.id &&
-          <div className="group-modal">
-            <div
-              className="flex modal-group-items"
-              onClick={this.toggelModalDelete}
-            >
-              <div>
-                <RiDeleteBinLine color="#323338c2" />{" "}
+        {activeModal.cmpType === "groupEdit" &&
+          activeModal.groupId === group.id && (
+            <div className="group-modal">
+              <div
+                className="flex modal-group-items"
+                onClick={this.toggelModalDelete}
+              >
+                <div>
+                  <RiDeleteBinLine color="#323338c2" />{" "}
+                </div>
+                <span>Delete group</span>
               </div>
-              <span>Delete group</span>
-            </div>
-            <div className="flex modal-group-items"
-              onClick={(ev) => {
-                ev.stopPropagation()
-                this.openModal('colorModal')
-              }}>
-              <div>
-                <IoIosColorFilter color="#323338c2" />{" "}
+              <div
+                className="flex modal-group-items"
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  this.openModal("colorModal");
+                }}
+              >
+                <div>
+                  <IoIosColorFilter color="#323338c2" />{" "}
+                </div>
+                <span>Change color</span>
               </div>
-              <span>Change color</span>
             </div>
-          </div>
-        }
+          )}
         {isModalToDelete && (
           <section className="modal-delete">
             <div className="flex title-modal-delete">
@@ -162,8 +194,8 @@ export class _GroupPreview extends React.Component {
                 transform: "translateY(4.5px)",
               }}
               onClick={(ev) => {
-                ev.stopPropagation()
-                this.openModal('groupEdit')
+                ev.stopPropagation();
+                this.openModal("groupEdit");
               }}
             />
             <h1
@@ -176,8 +208,10 @@ export class _GroupPreview extends React.Component {
               {" "}
               {group.title}
             </h1>
-            {activeModal.cmpType === 'ColorInput' && activeModal.groupId === group.id &&
-          <ColorInput onUpdateGroupColor={this.onUpdateGroupColor} />}
+            {activeModal.cmpType === "ColorInput" &&
+              activeModal.groupId === group.id && (
+                <ColorInput onUpdateGroupColor={this.onUpdateGroupColor} />
+              )}
           </div>
           {cmpsOrder.map((cmp, idx) => {
             return (
@@ -187,10 +221,33 @@ export class _GroupPreview extends React.Component {
             );
           })}
         </div>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId="tasks">
+            {(provided) => (
+              <section ref={provided.innerRef}>
+                
+                {group.tasks.map((task, idx) => {
+                  return (
+                    <Draggable key={idx} draggableId={task.id} index={idx}>
+                      {(provided) => (
+                        <section
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          ref={provided.innerRef}
+                        >
+                         
+                          <TaskPreview task={task} groupId={group.id} />
+                          {provided.placeholder}
+                        </section>
+                      )}
+                    </Draggable>
+                  );
+                })}
+              </section>
+            )}
+          </Droppable>
+        </DragDropContext>
 
-        {group.tasks.map((task, idx) => {
-          return <TaskPreview key={idx} task={task} groupId={group.id} />;
-        })}
         <div className="add-task-container first-column flex">
           <div className="add-task-div justify-between first-column flex">
             <div
@@ -208,8 +265,8 @@ export class _GroupPreview extends React.Component {
                 value={this.state.taskValue}
                 onFocus={this.toggleAddTask}
                 onBlur={this.toggleAddTask}
-              // contentEditable
-              // suppressContentEditableWarning={true}
+                // contentEditable
+                // suppressContentEditableWarning={true}
               />
               <button className="add-task-btn">Add</button>
               {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
@@ -224,14 +281,14 @@ export class _GroupPreview extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
-    activeModal: boardModule.activeModal
+    activeModal: boardModule.activeModal,
   };
 }
 const mapDispatchToProps = {
   saveGroup,
   addTask,
   deleteGroup,
-  setActiveModal
+  setActiveModal,
 };
 
 export const GroupPreview = connect(

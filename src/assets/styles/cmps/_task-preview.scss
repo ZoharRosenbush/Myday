@@ -29,6 +29,10 @@
   cursor: pointer;
 
 }
+.drag-icon {
+  visibility: hidden;
+  width: 0px;
+}
 
 .task-preview {
   &:hover {
@@ -47,6 +51,10 @@
     visibility: visible;
     transform: translateX(10px);
   }
+  .drag-icon {
+    visibility: visible;
+    width: 0px;
+  }
 }
 }
 
@@ -60,17 +68,15 @@
 
 .task-modal{
   font-size: 14px;
-
   padding: 5px 20px;
   background-color: #fff;
   box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
   border-radius: 4px;
   cursor: pointer;
   width: 155px;
-
   padding: 15px;
   position: absolute;
   z-index: 10;
-  margin-top: 7%;
-  margin-left: 1.6%;
+  margin-top: 4.5em;
+  margin-left: 1.3em;
 }
