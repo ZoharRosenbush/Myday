@@ -1,0 +1,22 @@
+.main-board {
+  line-height: 50px;
+  min-width: 500px;
+  height: 100vh;
+  margin-left: 320px;
+  //   background-color: rgb(229, 192, 192);
+
+  .title {
+    font-size: 5.625rem;
+    margin: inherit;
+    font-family: roboto-medium;
+  }
+
+  .subtitle {
+    font-size: 1.5625rem;
+    margin: inherit;
+  }
+  img {
+    height: 80px;
+    // width: 80px;
+  }
+}
