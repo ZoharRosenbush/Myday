@@ -1,12 +1,16 @@
 import { connect } from "react-redux";
 import { BsPersonPlus } from "react-icons/bs";
+import { BsGraphUp } from 'react-icons/bs';
+
+
 import { BoardControllers } from "./BoardControllers.jsx";
-import { addGroup,updateBoard } from "../../store/board.action.js";
-export function _BoardHeader({ board,updateBoard, addGroup }) {
-  
+import { addGroup, updateBoard } from "../../store/board.action.js";
+export function _BoardHeader({ board, updateBoard, addGroup }) {
+
   function onAddGroup() {
     addGroup(board._id);
   }
+  
 
   function onUpdateBoardTitle({ target }) {
     const value = target.textContent;
@@ -26,7 +30,7 @@ export function _BoardHeader({ board,updateBoard, addGroup }) {
     <section className="board-header">
       {board && (
         <div className="board-header-top">
-          <div className="flex justify-between title-btns">
+          <div className="flex justify-between board-main-title">
             <h1
               className="board-title"
               contentEditable
@@ -35,25 +39,33 @@ export function _BoardHeader({ board,updateBoard, addGroup }) {
             >
               {board.title}
             </h1>
-            <div className="board-header-btns">
-              <BsPersonPlus />
-              <button>Invite/4</button>
+            <div className="board-header-btns flex">
+              <div className="icon-btn-container flex">
+              <BsPersonPlus /> 
+              <button>  Invite / 4</button>
+              </div>
+              <div className="icon-btn-container flex">
+              <BsGraphUp />
               <button>Activity</button>
+              </div>
             </div>
           </div>
-          <p
-            className="board-description"
-            contentEditable
-            suppressContentEditableWarning={true}
-            onBlur={onUpdateBoardDesc}
+          <div className="desc-container">
+            <p
+              className="board-description"
+              contentEditable
+              suppressContentEditableWarning={true}
+              onBlur={onUpdateBoardDesc}
 
-          >
-            {board.description}
-          </p>
+            >
+              {board.description}
+            </p>
+
+          </div>
         </div>
       )}
       {/* <h1>{board.title}</h1> */}
-      {board&& <BoardControllers onAddGroup={onAddGroup} />}
+      {board && <BoardControllers onAddGroup={onAddGroup} />}
     </section>
   );
 }

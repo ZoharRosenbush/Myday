@@ -2,39 +2,71 @@
   width: 100%;
   height: 70px;
   position: sticky;
-  left:320px;
+  // left:320px;
   // border-bottom: 1px solid rgba(0, 0, 0, 0.233);
   margin: 0;
-  margin-left: $ml;
   // z-index: 5;
   // position: fixed;
   margin-bottom: 130px;
-  .title-btns {
-    display: flex;
-    justify-content: space-between;
-    width: 85%;
-  }
-  .board-title {
-    font-size: 1.5rem;
-    height: 2.5rem;
-    color: #323338;
-    font-weight: 600;
-    font-family: roboto-regular;
-    width: fit-content;
-    text-align: start;
-    margin: 5px;
-    height: fit-content;
-    line-height: 3;
-    &:hover {
-      border: 0.5px dashed #000;
+  .board-main-title {
+    align-items: center;
+    width: 100%;
+    height: 55px;
+
+    .board-title {
+      font-size: 1.5rem;
+      margin: 0;
+      padding: 5px;
+      // height: 2.5rem;
+      color: #323338;
+      font-weight: 600;
+      font-family: roboto-regular;
+      // width: fit-content;
+      // text-align: start;
+      // height: fit-content;
+      // line-height: 3;
+      // margin-block-start: 0;
+      // margin-block-end: 0;
+      &:hover {
+        border: 0.5px dashed #000;
+      }
+      &:focus-visible {
+        outline:none;
     }
-    &:focus-visible {
-      outline:none;
+    }
   }
+  .desc-container{
+    // height: ;
+    padding: 5px 5px 5px 5px;
+    max-width: 75ch;
+    white-space: pre-wrap;
+    p{
+      color: rgb(103, 104, 121);
+      line-height: 1.5;
+      font-family:roboto-regular,Arial, Helvetica, sans-serif;
+      padding: 0;
+      margin: 0;
+      font-size: em(14px);
+    }
+    &:hover {
+      border: 0.5px dashed rgb(0, 0, 0);
+    }
+
+
   }
+
   div.board-header-btns {
     line-height: 6;
     margin-right: 7%;
+    gap: 18px;
+    align-items: center;
+
+    .icon-btn-container{
+      gap: 4px;
+      button{
+        font-size: em(14px);
+      }
+    }
   }
   .board-description {
     text-align: start;
@@ -45,16 +77,16 @@
     display: inline;
     padding: 5px 10px;
     font-size: 100%;
-    &:hover {
-      border: 0.5px dashed #000;
-    }
+    // &:hover {
+    //   border: 0.5px dashed #000;
+    // }
     &:focus-visible {
       outline: none;
   }
   }
   .board-header-top {
     color: #323338;
-    margin: 0px 0px 10px;
+    margin: 10px 0px;
     padding-bottom: 10px;
     border-bottom: 1px solid #e6e9ef;
   }
