@@ -1,7 +1,7 @@
 $red: #ff3d57;
 $yellow: #ffcb00;
 $green: #00d647;
-$lightgreen: #45D29A;;
+$lightgreen: #45d29a;
 
 $blue: #0073ea;
 $white: #fff;
@@ -11,7 +11,16 @@ $nav-bar-width: 200px;
 $nav-bar-width: 200px;
 $ml: 290px;
 $board-header-top: 70px;
-$cell-color : #F5F6F8;
-$first-column-left:273px;
-$grop-color-left:266px;
+$cell-color: #f5f6f8;
+$first-column-left: 273px;
+$grop-color-left: 266px;
 // $padding-inline-start:15px;
+
+// Breakpoints
+$break-narrow: 460px;
+$break-normal: 720px;
+$break-wide: 960px;
+
+$padded-break-narrow: $break-narrow + $layoutPadding * 2;
+$padded-break-normal: $break-normal + $layoutPadding * 2;
+$padded-break-wide: $break-wide + $layoutPadding * 2;

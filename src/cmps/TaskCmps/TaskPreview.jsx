@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { MdArrowDropDownCircle } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CgArrowDownR } from "react-icons/cg";
@@ -10,13 +11,13 @@ import { Droppable } from "react-beautiful-dnd";
 import { Draggable } from "react-beautiful-dnd";
 import { MdDragIndicator } from "react-icons/md";
 
-import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 import {
   saveTask,
   setActiveModal,
   deleteTask,
 } from "../../store/board.action.js";
+
 
 
 class _TaskPreview extends React.Component {
@@ -206,10 +207,11 @@ class _TaskPreview extends React.Component {
               >
                 {task.title}
               </span>
-              <div className="chat-icon-container">
-                <BsChat color="#c5c7d0" />
-              </div>
-
+              <Link to={`/myday/board/${board._id}/${task._id}`}>
+                <div className="chat-icon-container">
+                  <BsChat color="#c5c7d0" />
+                </div>
+              </Link>
             </div>
           </div>
           {cmpsOrder.map((cmp, idx) => {
@@ -225,7 +227,6 @@ class _TaskPreview extends React.Component {
               />
             );
           })}
-          <TaskDetails />
         </section>
       </div>
       // </section>
