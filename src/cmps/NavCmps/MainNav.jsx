@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { HiSparkles, HiOutlinePuzzle } from "react-icons/hi";
 import { AiOutlineBell, AiOutlineSearch } from "react-icons/ai";
 import { BiGridAlt } from "react-icons/bi";
@@ -8,7 +9,7 @@ export function MainNav() {
   return (
     <section className="main-nav">
       <div className="top-opt flex">
-        <img className="2day-logo" src={logo} alt=""></img>
+        <Link exact to={'/'}><img className="2day-logo" src={logo} alt="" /></Link>
         <div className="grid-container">
           <BiGridAlt
             color="white"
