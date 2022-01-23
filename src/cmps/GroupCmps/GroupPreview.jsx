@@ -12,13 +12,16 @@ import { logDOM } from "@testing-library/react";
 
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { ColorInput } from "./ColorInput.jsx";
+import { ProgressBarStatus } from "../DynamicCmps/ProgressBarStatus.jsx";
+import { ProgressBarPriority } from "../DynamicCmps/ProgressBarPriority.jsx";
+import { ProgressBarType } from "../DynamicCmps/ProgressBarType.jsx";
+import { ProgressBarRole } from "../DynamicCmps/ProgressBarRole.jsx";
 import {
   addTask,
   saveGroup,
   deleteGroup,
   setActiveModal,
 } from "../../store/board.action.js";
-
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -56,7 +59,10 @@ export class _GroupPreview extends React.Component {
       (prevState) => ({
         ...prevState,
         isAddTaskActive: !prevState.isAddTaskActive,
-      }), () => { console.log("changing active", this.state) }
+      }),
+      () => {
+        console.log("changing active", this.state);
+      }
     );
   };
 
@@ -116,8 +122,8 @@ export class _GroupPreview extends React.Component {
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     const { group, board, saveGroup } = this.props;
-    console.log('destination:', destination);
-    console.log('source:', source);
+    console.log("destination:", destination);
+    console.log("source:", source);
 
     if (!destination) return;
     if (
@@ -137,9 +143,11 @@ export class _GroupPreview extends React.Component {
     const { group, board, activeModal } = this.props;
     const cmpsOrder = board.cmpsOrder;
     const { isGroupModalOpen, isModalToDelete, isAddTaskActive } = this.state;
-    const btnClassName = isAddTaskActive ? 'add-task-btn-visible' : 'add-task-btn'
+    const btnClassName = isAddTaskActive
+      ? "add-task-btn-visible"
+      : "add-task-btn";
     return (
-      <Droppable droppableId={group.id} >
+      <Droppable droppableId={group.id}>
         {(provided) => (
           <section ref={provided.innerRef}>
             <section className="group-preview">
@@ -177,7 +185,10 @@ export class _GroupPreview extends React.Component {
                     </div>
                     <span>Are you sure you want to delete?</span>
                   </div>
-                  <button onClick={this.toggelModalDelete} className="no-ans-delete">
+                  <button
+                    onClick={this.toggelModalDelete}
+                    className="no-ans-delete"
+                  >
                     No
                   </button>
                   <button onClick={this.deleteGroup} className="yes-ans-delete">
@@ -212,7 +223,9 @@ export class _GroupPreview extends React.Component {
                   </h1>
                   {activeModal.cmpType === "ColorInput" &&
                     activeModal.groupId === group.id && (
-                      <ColorInput onUpdateGroupColor={this.onUpdateGroupColor} />
+                      <ColorInput
+                        onUpdateGroupColor={this.onUpdateGroupColor}
+                      />
                     )}
                 </div>
                 {/* <DragDropContext onDragEnd={this.onDragEnd}> */}
@@ -223,7 +236,8 @@ export class _GroupPreview extends React.Component {
                   return (
                     // <Draggable key={idx} draggableId={cmp} index={idx}>
                     // {(provided) => (
-                    <div key={idx}
+                    <div
+                      key={idx}
                       // {...provided.draggableProps}
                       // {...provided.dragHandleProps}
                       // ref={provided.innerRef}
@@ -265,7 +279,11 @@ export class _GroupPreview extends React.Component {
               {/* </Droppable>
         </DragDropContext> */}
 
-              <div className="add-task-container first-column flex" onFocus={this.toggleAddTask} onBlur={this.toggleAddTask}>
+              <div
+                className="add-task-container first-column flex"
+                onFocus={this.toggleAddTask}
+                onBlur={this.toggleAddTask}
+              >
                 <div className="add-task-div justify-between first-column flex">
                   <div
                     className="group-color"
@@ -280,10 +298,10 @@ export class _GroupPreview extends React.Component {
                       className="add-task"
                       onChange={this.onHandleChange}
                       value={this.state.taskValue}
-                    // onFocus={this.toggleAddTask}
-                    // onBlur={this.toggleAddTask}
-                    // contentEditable
-                    // suppressContentEditableWarning={true}
+                      // onFocus={this.toggleAddTask}
+                      // onBlur={this.toggleAddTask}
+                      // contentEditable
+                      // suppressContentEditableWarning={true}
                     />
                     <button className={btnClassName}>Add</button>
                     {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
@@ -291,14 +309,33 @@ export class _GroupPreview extends React.Component {
                   </form>
                 </div>
               </div>
+              <div className="bar-container">
+                {cmpsOrder.map((cmpType, idx) => {
+                  switch (cmpType) {
+                    case "status-picker":
+                      return <ProgressBarStatus key={idx} groupId={group.id} />;
+
+                    case "priority-picker":
+                      return <ProgressBarPriority key={idx} groupId={group.id} />
+
+
+                    case "type-picker":
+                      return <ProgressBarType key={idx} groupId={group.id} />;
+                    case "role-picker":
+                      return <ProgressBarRole key={idx} groupId={group.id} />;
+                    case "member-picker":
+                      return <div key={idx}  className="member-container"></div>
+                    case "date-picker":
+                      return <div key={idx}  className="date-container"></div>
+                  }
+                })}
+              </div>
             </section>
           </section>
         )}
       </Droppable>
-    )
-
+    );
   }
-
 }
 function mapStateToProps({ boardModule }) {
   return {

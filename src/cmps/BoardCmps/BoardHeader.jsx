@@ -63,7 +63,7 @@ export function _BoardHeader({ board, updateBoard, loadBoards, addGroup }) {
 
               <div className="icon-btn-container flex">
                 <BsPersonPlus />
-                <button>  Invite / 4</button>
+                <button>  Invite / 3</button>
               </div>
               <div className="icon-btn-container flex">
                 <BsGraphUp />
