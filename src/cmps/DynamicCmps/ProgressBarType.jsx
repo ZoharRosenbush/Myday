@@ -69,7 +69,7 @@ class _ProgressBarType extends React.Component {
       <div className="type-bar">
         <div
           className="progress-div"
-          title={Quality}
+          // title={Quality}
           style={{
             width: Quality + "%",
             
@@ -78,7 +78,7 @@ class _ProgressBarType extends React.Component {
           ></div>
         <div
           className="progress-div"
-          title={Feature}
+          // title={Feature}
           style={{
             width: Feature + "%",
             backgroundColor: "#00c875",
@@ -86,7 +86,7 @@ class _ProgressBarType extends React.Component {
           ></div>
         <div
           className="progress-div"
-          title={Bug}
+          // title={Bug}
           style={{
             width: Bug + "%",
             
@@ -95,7 +95,7 @@ class _ProgressBarType extends React.Component {
           ></div>
         <div
           className="progress-div"
-          title={Improvement}
+          // title={Improvement}
           style={{
             width: Improvement + "%",
             
@@ -104,7 +104,7 @@ class _ProgressBarType extends React.Component {
           ></div>
         <div
           className="progress-div"
-          title={Security}
+          // title={Security}
           style={{
             width: Security + "%",
             
@@ -113,7 +113,7 @@ class _ProgressBarType extends React.Component {
           ></div>
         <div
           className="progress-div"
-          title={Empty}
+          // title={Empty}
           style={{
             width: Empty + "%",
             

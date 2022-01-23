@@ -324,9 +324,9 @@ export class _GroupPreview extends React.Component {
                     case "role-picker":
                       return <ProgressBarRole key={idx} groupId={group.id} />;
                     case "member-picker":
-                      return <div className="member-container"></div>
+                      return <div key={idx}  className="member-container"></div>
                     case "date-picker":
-                      return <div className="date-container"></div>
+                      return <div key={idx}  className="date-container"></div>
                   }
                 })}
               </div>

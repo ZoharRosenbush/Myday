@@ -31,7 +31,7 @@ class _ProgressBarRole extends React.Component {
     const countDev = board.groups[groupIdx].tasks.filter(
       (task) => task.role === "Dev"
     );
-    console.log("countDev:", countDev);
+  
 
     const countDesign = board.groups[groupIdx].tasks.filter(
       (task) => task.role === "Design"
@@ -58,7 +58,7 @@ class _ProgressBarRole extends React.Component {
         <div className="type-bar">
           <div
             className="progress-div"
-            title={Dev}
+            // title={Dev}
             style={{
               width: Dev + "%",
               backgroundColor: "#279165",
@@ -66,7 +66,7 @@ class _ProgressBarRole extends React.Component {
           ></div>
           <div
             className="progress-div"
-            title={Design}
+            // title={Design}
             style={{
               width: Design + "%",
               backgroundColor: "#0086c0",
@@ -74,7 +74,7 @@ class _ProgressBarRole extends React.Component {
           ></div>
           <div
             className="progress-div"
-            title={Product}
+            // title={Product}
             style={{
               width: Product + "%",
 
@@ -83,7 +83,7 @@ class _ProgressBarRole extends React.Component {
           ></div>
           <div
             className="progress-div"
-            title={Empty}
+            // title={Empty}
             style={{
               width: Empty + "%",
 

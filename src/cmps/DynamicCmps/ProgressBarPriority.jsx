@@ -11,6 +11,14 @@ class _ProgressBarPriority extends React.Component {
   componentDidMount() {
     this.countLabels();
   }
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { board } = this.props
+  //   if (prevProps.board !== this.props.board) {
+  //     this.countLabels()    
+  //   }
+  // }
+
+
 
   get totalTaskCount() {
     const { board } = this.props;
@@ -51,18 +59,18 @@ class _ProgressBarPriority extends React.Component {
     const Medium = (this.state.Medium.length / this.totalTaskCount) * 100;
     const Low = (this.state.Low.length / this.totalTaskCount) * 100;
     const Empty = 100 - High - Medium - Low;
-    console.log("Empty:", Empty);
+    // console.log("Empty:", Empty);
 
-    console.log("High:", High);
-    console.log("Medium:", Medium);
-    console.log("Stuck:", Low);
+    // console.log("High:", High);
+    // console.log("Medium:", Medium);
+    // console.log("Stuck:", Low);
 
     return (
       <div className="priority-container">
         <div className="priority-bar">
           <div
             className="progress-div"
-            title={High}
+            // title={High}
             style={{
               width: High + "%",
               backgroundColor: "#225091",
@@ -70,7 +78,7 @@ class _ProgressBarPriority extends React.Component {
           ></div>
           <div
             className="progress-div"
-            title={Medium}
+            // title={Medium}
             style={{
               width: Medium + "%",
               backgroundColor: "#0086c0",
@@ -78,7 +86,7 @@ class _ProgressBarPriority extends React.Component {
           ></div>
           <div
             className="progress-div"
-            title={Low}
+            // title={Low}
             style={{
               width: Low + "%",
 
@@ -87,7 +95,7 @@ class _ProgressBarPriority extends React.Component {
           ></div>
           <div
             className="progress-div"
-            title={Empty}
+            // title={Empty}
             style={{
               width: Empty + "%",
 

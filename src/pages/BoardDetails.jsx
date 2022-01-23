@@ -12,6 +12,7 @@ import { setActiveModal, updateBoard } from '../store/board.action.js'
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
   componentDidMount() {
+  
     const { boardId } = this.props.match.params;
     this.props.loadBoard(boardId);
     const activeModal = { cmpType: null, taskId: null }
@@ -34,6 +35,7 @@ class _BoardDetails extends React.Component {
 
 
   render() {
+    console.log("board");
     const { board, updateBoard, isBoardNavOpen } = this.props;
     const boardContainerClassName = (isBoardNavOpen) ? "board-container-open-nav" : "board-container"
 

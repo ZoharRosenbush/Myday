@@ -21,7 +21,7 @@ class _BoardControllers extends React.Component {
     const { onAddGroup } = this.props;
     const { isModalTaskOpen } = this.state;
     const { board } = this.props
-    console.log('board:', board);
+
 
     return (
       <section className="board-controllers flex">
