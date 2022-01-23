@@ -9,7 +9,7 @@ export function MainNav() {
   return (
     <section className="main-nav">
       <div className="top-opt flex">
-        <Link exact to={'/'}><img className="2day-logo" src={logo} alt="" /></Link>
+        <Link to={'/'}><img className="2day-logo" src={logo} alt="" /></Link>
         <div className="grid-container">
           <BiGridAlt
             color="white"
@@ -65,7 +65,7 @@ export function MainNav() {
           size="23px"
           style={{ marginLeft: "19px", cursor: "pointer" }}
         />
-        <div className="user-avatar">MZL</div>
+        <div className="user-avatar ME">ME</div>
       </div>
     </section>
   );

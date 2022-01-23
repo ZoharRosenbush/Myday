@@ -47,58 +47,55 @@ class _ProgressBarStatus extends React.Component {
 
   render() {
     const { groupId } = this.props;
-    const Done = ((this.state.Done.length / this.totalTaskCount) * 100)
-    const Working = (
-      (this.state.Working.length / this.totalTaskCount) *
-      100
-    )
-    const Stuck = (
-      (this.state.Stuck.length / this.totalTaskCount) *
-      100
-    )
+    const Done = (this.state.Done.length / this.totalTaskCount) * 100;
+    const Working = (this.state.Working.length / this.totalTaskCount) * 100;
+    const Stuck = (this.state.Stuck.length / this.totalTaskCount) * 100;
     const Empty = 100 - Done - Working - Stuck;
-    console.log('Empty:',Empty );
-    
+    console.log("Empty:", Empty);
+
     console.log("Done:", Done);
     console.log("Working:", Working);
     console.log("Stuck:", Stuck);
 
     return (
+      <div className="status-container">
       <div className="status-bar">
         <div
-          title={{Done}+"%"}
+          className="progress-div"
+          title={Done}
           style={{
-            width: Done+"%",
-            height:"34px",
+            width: Done + "%",
+
             backgroundColor: "#00C875",
           }}
-        ></div>{" "}
+        ></div>
         <div
-          title={{Working}+"%"}
+          className="progress-div"
+          title={Working}
           style={{
-            width: Working+"%",
-            height:"34px",
+            width: Working + "%",
             backgroundColor: "#ffcb00",
           }}
-        ></div>{" "}
+        ></div>
         <div
+          className="progress-div"
           title={Stuck}
           style={{
-            width: Stuck+"%",
-            height:"34px",
+            width: Stuck + "%",
+
             backgroundColor: "#E2445C",
           }}
-        ></div>{" "}
+        ></div>
         <div
+          className="progress-div"
           title={Empty}
           style={{
-            width: 
-              Empty+"%"
-            ,
-            height:"34px",
+            width: Empty + "%",
+
             backgroundColor: "#c4c4c4",
           }}
         ></div>{" "}
+      </div>
       </div>
     );
   }

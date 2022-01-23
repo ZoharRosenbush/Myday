@@ -13,6 +13,9 @@ import { logDOM } from "@testing-library/react";
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { ColorInput } from "./ColorInput.jsx";
 import { ProgressBarStatus } from "../DynamicCmps/ProgressBarStatus.jsx";
+import { ProgressBarPriority } from "../DynamicCmps/ProgressBarPriority.jsx";
+import { ProgressBarType } from "../DynamicCmps/ProgressBarType.jsx";
+import { ProgressBarRole } from "../DynamicCmps/ProgressBarRole.jsx";
 import {
   addTask,
   saveGroup,
@@ -306,136 +309,27 @@ export class _GroupPreview extends React.Component {
                   </form>
                 </div>
               </div>
-              {/* <div>
+              <div className="bar-container">
                 {cmpsOrder.map((cmpType, idx) => {
                   switch (cmpType) {
                     case "status-picker":
-                      console.log('status:');
-                      
-                      return (<ProgressBarStatus key={idx}
-                          type={cmpType}
-                          groupId={group.id}
-                        />
-                      );
+                      return <ProgressBarStatus key={idx} groupId={group.id} />;
 
                     case "priority-picker":
-                      return (
-                        <ProgressBarPriority
-                        key={idx}
-                          type={cmpType}
-                          labels={[
-                            {
-                              id: "lb111",
-                              value: "Empty",
-                              bgColor: "#c4c4c4",
-                              color: " #c4c4c4",
-                            },
-                            {
-                              id: "lb222",
-                              value: "Low",
-                              bgColor: "#66ccff",
-                              color: " #fff",
-                            },
-                            {
-                              id: "lb333",
-                              value: "Medium",
-                              bgColor: "#0086c0",
-                              color: "#fff",
-                            },
-                            {
-                              id: "lb444",
-                              value: "High",
-                              bgColor: "#225091",
-                              color: "#fff",
-                            },
-                          ]}
-                          groupId={group.id}
-                        />
-                      );
+                      return <ProgressBarPriority key={idx} groupId={group.id} />
+
 
                     case "type-picker":
-                      return (
-                        <ProgressBarType
-                        key={idx}
-                          type={cmpType}
-                          labels={[
-                            {
-                              id: "tp111",
-                              value: "Empty",
-                              bgColor: "#c4c4c4",
-                              color: "#c4c4c4",
-                            },
-                            {
-                              id: "tp222",
-                              value: "Quality",
-                              bgColor: "#fcc4f7",
-                              color: "#fff",
-                            },
-                            {
-                              id: "tp333",
-                              value: "Feature",
-                              bgColor: "#00c875",
-                              color: "#fff",
-                            },
-                            {
-                              id: "tp444",
-                              value: "Bug",
-                              bgColor: "#e2445c",
-                              color: "#fff",
-                            },
-                            {
-                              id: "tp555",
-                              value: "Improvement",
-                              bgColor: "#a25ddc",
-                              color: "#fff",
-                            },
-                            {
-                              id: "tp666",
-                              value: "Security",
-                              bgColor: "#ffadad",
-                              color: "#fff",
-                            },
-                          ]}
-                          groupId={group.id}
-                        />
-                      );
+                      return <ProgressBarType key={idx} groupId={group.id} />;
                     case "role-picker":
-                      return (
-                        <ProgressBarRole
-                        key={idx}
-                          type={cmpType}
-                          labels={[
-                            {
-                              id: "rl111",
-                              value: "Empty",
-                              bgColor: "#c4c4c4",
-                              color: "#c4c4c4",
-                            },
-                            {
-                              id: "rl222",
-                              value: "Dev",
-                              bgColor: "#279165",
-                              color: "#fff",
-                            },
-                            {
-                              id: "rl333",
-                              value: "Design",
-                              bgColor: "#0086c0",
-                              color: "#fff",
-                            },
-                            {
-                              id: "rl444",
-                              value: "Product",
-                              bgColor: "#a25ddc",
-                              color: "#fff",
-                            },
-                          ]}
-                          groupId={group.id}
-                        />
-                      );
+                      return <ProgressBarRole key={idx} groupId={group.id} />;
+                    case "member-picker":
+                      return <div className="member-container"></div>
+                    case "date-picker":
+                      return <div className="date-container"></div>
                   }
                 })}
-              </div> */}
+              </div>
             </section>
           </section>
         )}

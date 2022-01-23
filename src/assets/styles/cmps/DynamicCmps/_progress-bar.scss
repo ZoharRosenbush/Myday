@@ -1,5 +1,68 @@
-.status-bar{
-    display: flex;
-    width: 137px;
-    margin-left: 450px;
+.bar-container {
+  display: flex;
+  width: inherit;
+  height: 40px;
+  margin-left: 440px;
+}
+
+.status-bar,
+.priority-bar,
+.type-bar,
+.role-bar {
+  display: flex;
+  width: 123px;
+  // margin-left: 440px;
+
+  .progress-div {
+    height: 24px;
+    &:hover {
+      border-radius: 2px;
+      height: 30px;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+.role-container,
+.status-container,
+.priority-container,
+.type-container {
+  background-color: #f5f6f8;
+  height: 40px;
+  padding: 0 8px;
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.status-container {
+  width: 139px;
+
+}
+
+.priority-container {
+  width: 140px;
+}
+.date-container {
+  min-width: 199px;
+  background-color: #fff;
+  height: 40px;
+
+}
+.member-container {
+  min-width: 148px;
+  background-color: #fff;
+  height: 40px;
+
+}
+
+.type-container {
+  width: 139px;
+
+}
+.role-container {
+  width: 139px;
+
 }
