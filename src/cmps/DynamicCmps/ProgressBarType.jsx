@@ -14,6 +14,12 @@ class _ProgressBarType extends React.Component {
     this.countLabels();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.board !== this.props.board) {
+      this.countLabels();
+    }
+  }
+
   get totalTaskCount() {
     const { board } = this.props;
     const { groupId } = this.props;

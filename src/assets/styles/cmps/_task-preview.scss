@@ -47,7 +47,7 @@
 
 .task-preview {
   & > *:not(:first-child) {
-    border-inline-start: 2px solid $white;
+    border-inline-start: 1px solid #fff;
   }
   &:hover {
     .task-title-cell,

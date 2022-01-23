@@ -11,12 +11,11 @@ class _ProgressBarPriority extends React.Component {
   componentDidMount() {
     this.countLabels();
   }
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { board } = this.props
-  //   if (prevProps.board !== this.props.board) {
-  //     this.countLabels()    
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.board !== this.props.board) {
+      this.countLabels();
+    }
+  }
 
 
 
