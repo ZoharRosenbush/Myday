@@ -1,23 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
 import { BsPersonCircle, BsPinAngle } from "react-icons/bs";
 import { CgSearch } from "react-icons/cg";
 import { BiSortAlt2, BiColorFill } from "react-icons/bi";
 import { FiFilter, FiEyeOff } from "react-icons/fi";
+import { BoardFilterListCmp } from './BoardFilterListCmp'
 // import { IoColorFillOutline } from 'react-icons/io'
 
-export class BoardControllers extends React.Component {
+class _BoardControllers extends React.Component {
 
-state={
-  isModalTaskOpen:false
-}
+  state = {
+    isModalTaskOpen: false
+  }
 
-openFilterModal = ()=>{
-  this.setState({isModalTaskOpen: !this.state.isModalTaskOpen})
-}
+  openFilterModal = () => {
+    this.setState({ isModalTaskOpen: !this.state.isModalTaskOpen })
+  }
 
   render() {
     const { onAddGroup } = this.props;
     const { isModalTaskOpen } = this.state;
+    const { board } = this.props
+    console.log('board:', board);
+
     return (
       <section className="board-controllers flex">
         <button className="add-group-btn" onClick={onAddGroup}>
@@ -39,24 +44,24 @@ openFilterModal = ()=>{
         {isModalTaskOpen && (
           <div className="filter-modal">
             <div className="flex column-filter">
-              <h4>Status</h4>
-              <ul className="filter-list">
-                <li> <span>Done</span></li>
-                <li><span>Stuck</span></li>
-                <li><span>Working on it</span></li>
-              </ul>
+              <span className="filterBy">Status</span>
+              <BoardFilterListCmp labels={"statuses"} />
             </div>
             <div className="flex column-filter">
-              <h4>Priority</h4>
-              <ul className="filter-list">
-          
-                <li>High</li>
-                <li>Medium</li>
-                <li>Low</li>
-              </ul>
+              <span className="filterBy">Type</span>
+              <BoardFilterListCmp labels={"types"} />
+            </div>
+            <div className="flex column-filter">
+              <span className="filterBy">Priority</span>
+              <BoardFilterListCmp labels={"priorities"} />
+            </div>
+            <div className="flex column-filter">
+              <span className="filterBy">Role</span>
+              <BoardFilterListCmp labels={"roles"} />
             </div>
           </div>
-        )}
+        )
+        }
         <div className="controller-opt">
           {" "}
           <BiSortAlt2 />
@@ -71,7 +76,24 @@ openFilterModal = ()=>{
         <div className="controller-opt">
           <BiColorFill />
         </div>
-      </section>
+      </section >
     );
   }
 }
+
+
+function mapStateToProps({ boardModule }) {
+  return {
+    board: boardModule.board,
+  };
+}
+const mapDispatchToProps = {
+  // addGroup,
+  // loadBoards
+};
+
+export const BoardControllers = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_BoardControllers);
+
