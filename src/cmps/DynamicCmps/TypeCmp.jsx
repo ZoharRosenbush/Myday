@@ -20,13 +20,10 @@ export class TypeCmp extends React.Component {
     };
 
     getBgColor = (info) => {
-        console.log('info:', info);
-        
         const currType = info.types.filter((type) => {
             return (type.value === info.selectedStatus)
         })
-        console.log('currType:', currType);
-        
+
         return currType[0].bgColor
     }
     getTxtColor = (info) => {

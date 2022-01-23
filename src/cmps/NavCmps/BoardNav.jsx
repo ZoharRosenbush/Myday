@@ -24,13 +24,13 @@ export class _BoardNav extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const prevBoards = prevProps.boards
-    
+
     if (prevBoards.length) {
       const { boards } = this.props
       // console.log('the boards',boards)
       // console.log('prevboards',prevBoards)
       boards.forEach((board, idx) => {
-        if(!prevBoards[idx])return
+        if (!prevBoards[idx]) return
         else if (board.title !== prevBoards[idx].title) {
           this.props.loadBoards()
         }
@@ -62,7 +62,6 @@ export class _BoardNav extends React.Component {
     const { boards } = this.props
     const { isBoardNavOpen } = this.state
     const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-open closed'
-    console.log(isBoardNavOpen);
     return (
       // <section>
       //   {!isBoardNavOpen && <section className="board-nav">

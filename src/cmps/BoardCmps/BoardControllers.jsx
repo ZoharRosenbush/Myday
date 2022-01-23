@@ -59,7 +59,21 @@ class _BoardControllers extends React.Component {
               <span className="filterBy">Role</span>
               <BoardFilterListCmp labels={"roles"} />
             </div>
+
+            <div className="flex column-filter">
+              <span className="filterBy">Member</span>
+              <ul className="filter-list">
+                {board.members.map((member) => {
+                  return (
+                    <li key={member.id} className="flex">
+                      <div className={`owner-name-circle ${member.acronyms}`} >{member.acronyms}
+                      </div>{(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}</li>
+                  )
+                })}
+              </ul>
+            </div>
           </div>
+
         )
         }
         <div className="controller-opt">

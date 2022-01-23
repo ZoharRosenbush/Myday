@@ -35,7 +35,6 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { board, updateBoard, isBoardNavOpen } = this.props;
-    console.log('board nav', isBoardNavOpen);
     const boardContainerClassName = (isBoardNavOpen) ? "board-container-open-nav" : "board-container"
 
 
@@ -46,8 +45,8 @@ class _BoardDetails extends React.Component {
         <BoardNav />
         <section className={boardContainerClassName}>
           <BoardHeader
-          board ={board}
-          updateBoard={updateBoard}
+            board={board}
+            updateBoard={updateBoard}
           />
 
           {board && <GroupList board={board} />}
