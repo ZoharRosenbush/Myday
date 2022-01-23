@@ -18,17 +18,14 @@ import {
   deleteTask,
 } from "../../store/board.action.js";
 
-
-
 class _TaskPreview extends React.Component {
   state = {
     isModalTaskOpen: false,
   };
 
-
   openModal = (taskId) => {
-    const activeModal = { cmpType: 'taskEdit', taskId: taskId }
-    this.props.setActiveModal(activeModal)
+    const activeModal = { cmpType: "taskEdit", taskId: taskId };
+    this.props.setActiveModal(activeModal);
   };
 
   deleteTask = () => {
@@ -61,13 +58,17 @@ class _TaskPreview extends React.Component {
         saveTask(task, groupId, board._id);
         break;
       case "type-picker":
-        console.log('data:', data);
+        console.log("data:", data);
 
         task.type = data;
         saveTask(task, groupId, board._id);
         break;
       case "date-picker":
         task.timeline = data;
+        saveTask(task, groupId, board._id);
+        break;
+      case "text":
+        task.text = data;
         saveTask(task, groupId, board._id);
         break;
       default:
@@ -84,6 +85,14 @@ class _TaskPreview extends React.Component {
           info: {
             selectedStatus: task.status,
             statuses: board.statuses,
+          },
+        };
+      case "text":
+        return {
+          type: "text",
+          info: {
+            // selectedStatus: task.status,
+            text: task.text,
           },
         };
       case "member-picker":
@@ -153,20 +162,24 @@ class _TaskPreview extends React.Component {
       //  {...provided.draggableProps}
       //  {...provided.dragHandleProps}
       //  ref={provided.innerRef}          >
-      <div className="flex task-icon">
-        <div className="icon-down-task" onClick={(ev) => {
-          ev.stopPropagation()
-          this.openModal(task.id)
-        }}>
-          {/* {activeModal.taskId !== task.id && */}
-          <IoMdArrowDropdown
-            style={{
-              backgroundColor: "#C8E1FA",
-              color: "black",
-              borderRadius: "5px",
+      <section className="task-preview-section">
+        <div className="flex task-icon">
+          <div
+            className="icon-down-task"
+            onClick={(ev) => {
+              ev.stopPropagation();
+              this.openModal(task.id);
             }}
-          />
-          {/* {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
+          >
+            {/* {activeModal.taskId !== task.id && */}
+            <IoMdArrowDropdown
+              style={{
+                backgroundColor: "#C8E1FA",
+                color: "black",
+                borderRadius: "5px",
+              }}
+            />
+            {/* {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
             <IoMdArrowDropdown
               style={{
                 backgroundColor: "#C8E1FA",
@@ -177,59 +190,72 @@ class _TaskPreview extends React.Component {
               }}
               className="active-arrow-down"
             />} */}
-        </div>
+          </div>
 
-        <div className="drag-icon">
-          <MdDragIndicator color="#c4c4c4" style={{ height: "1.3em", width: "1.3em" }} />
-        </div>
-        {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
-          <div className="task-modal">
-            <div className="flex modal-group-items" onClick={this.deleteTask}>
-              <div>
-                <RiDeleteBinLine color="#323338c2" />{" "}
-              </div>
-              <span>Delete task</span>
-            </div>
+          <div className="drag-icon">
+            <MdDragIndicator
+              color="#c4c4c4"
+              style={{ height: "1.3em", width: "1.3em" }}
+            />
           </div>
-        }
-        <section className="task-preview flex">
-          <div className="task-title-cell flex first-column">
-            <div
-              className="group-color"
-              style={{ backgroundColor: `${group.style.groupColor}` }}
-            ></div>
-            <div className="task-title-content flex justify-between ">
-              <span
-                className="task-title"
-                contentEditable
-                suppressContentEditableWarning={true}
-                onBlur={this.onUpdateTitleContent}
-              >
-                {task.title}
-              </span>
-              <Link to={`/myday/board/${board._id}/${task._id}`}>
-                <div className="chat-icon-container">
-                  <BsChat color="#c5c7d0" />
+          {activeModal.cmpType === "taskEdit" &&
+            activeModal.taskId === task.id && (
+              <div className="task-modal">
+                <div
+                  className="flex modal-group-items"
+                  onClick={this.deleteTask}
+                >
+                  <div>
+                    <RiDeleteBinLine color="#323338c2" />{" "}
+                  </div>
+                  <span>Delete task</span>
                 </div>
-              </Link>
+              </div>
+            )}
+          <section className="task-preview flex">
+            <div className="task-title-cell flex first-column">
+              <div
+                className="group-color"
+                style={{ backgroundColor: `${group.style.groupColor}` }}
+              ></div>
+              <div className="task-title-content flex justify-between ">
+                <span
+                  className="task-title"
+                  contentEditable
+                  suppressContentEditableWarning={true}
+                  onBlur={this.onUpdateTitleContent}
+                >
+                  {task.title}
+                </span>
+                <Link to={`/myday/board/${board._id}/${task._id}`}>
+                  <div className="chat-icon-container">
+                    <BsChat color="#c5c7d0" />
+                  </div>
+                </Link>
+              </div>
             </div>
-          </div>
-          {cmpsOrder.map((cmp, idx) => {
-            return (
-              <DynamicCmp
-                cmpData={this.cmpInfo(cmp)}
-                key={idx}
-                taskId={task.id}
-                groupColor={groupColor}
-                onUpdateTask={this.onUpdateTask}
-                activeModal={activeModal}
-                setActiveModal={setActiveModal}
-              />
-            );
-          })}
-        </section>
-      </div>
-      // </section>
+            {cmpsOrder.map((cmp, idx) => {
+   
+              
+              return (
+                <DynamicCmp
+                  cmpData={this.cmpInfo(cmp)}
+                  key={idx}
+                  taskId={task.id}
+                  groupColor={groupColor}
+                  onUpdateTask={this.onUpdateTask}
+                  activeModal={activeModal}
+                  setActiveModal={setActiveModal}
+                />
+              );
+            })}
+          </section>
+        </div>
+        <div className="finish-task">
+     
+        </div>
+      </section>
+
       // )}
     );
   }

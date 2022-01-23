@@ -2,8 +2,9 @@
   margin-bottom: 50px;
 
   div.group-title-container {
-    // background-color: #f5f6f8ed;
-    min-width: 437px;
+    min-width: 421px;
+    
+    margin-inline-start: 16px;
   }
 }
 
@@ -76,9 +77,9 @@ input.add-task {
 
 .add-task-container {
   display: flex;
-  height: 36px;
-  width: 1460px;
-  margin-inline-start: 46px;
+    height: 36px;
+    width: 1659px;
+    margin-inline-start: 46px;
 
   .add-task-form {
     margin-left: 32px;
@@ -235,7 +236,7 @@ div.group-color {
 .Status {
   min-width: 137px;
   background-color: #f5f6f8;
-  border-radius: 8px 8px 0 0;
+  border-radius: 6px 6px 0 0;
 }
 .Role {
   min-width: 137px;
@@ -253,6 +254,7 @@ div.group-color {
 .Priority,
 .Status,
 .Role,
+.Text,
 .Type {
   height: 100%;
 

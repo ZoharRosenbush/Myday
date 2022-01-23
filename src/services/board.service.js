@@ -52,6 +52,7 @@ async function addTask(value, groupId, boardId) {
       id: _makeId(),
       title: value,
       status: "Empty",
+      text: "",
       priority: "Empty",
       role: "Empty",
       type: "Empty",
@@ -89,6 +90,7 @@ async function addGroup(boardId) {
           title: "New Task",
           status: "Empty",
           priority: "Empty",
+          text: "",
           role: "Empty",
           type: "Empty",
           timeline: ["Jan 30-22", "Feb 02-22"],
@@ -182,6 +184,7 @@ function getNewBoard() {
       "date-picker",
       "priority-picker",
       "role-picker",
+      "text"
     ],
     title: "New Board",
     description:
@@ -259,6 +262,7 @@ function getNewBoard() {
             status: "Empty",
             priority: "Empty",
             role: "Empty",
+            text: "",
             type: "Empty",
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
@@ -284,6 +288,7 @@ function getNewBoard() {
             id: "csdf101",
             title: "New Task",
             status: "Empty",
+            text: "",
             priority: "Empty",
             role: "Empty",
             type: "Empty",
@@ -312,6 +317,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
+            text: "",
             role: "Empty",
             type: "Empty",
             timeline: ["Jan 30-22", "Feb 02-22"],
