@@ -54,7 +54,6 @@ export class _BoardNav extends React.Component {
   }
 
   onRemoveBoard = (boardId) => {
-    console.log('removing', boardId);
     this.props.removeBoard(boardId)
   }
 
@@ -62,7 +61,6 @@ export class _BoardNav extends React.Component {
     const { boards } = this.props
     const { isBoardNavOpen } = this.state
     const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-open closed'
-    console.log(isBoardNavOpen);
     return (
       // <section>
       //   {!isBoardNavOpen && <section className="board-nav">
