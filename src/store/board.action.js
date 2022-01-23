@@ -29,6 +29,7 @@ export function addBoard(board) {
   return async (dispatch) => {
     try {
       const savedBoard = await boardService.save({ ...board });
+      console.log('savedboard',savedBoard);
       dispatch({
         type: "ADD_BOARD",
         board: { _id: savedBoard._id, title: savedBoard.title },
