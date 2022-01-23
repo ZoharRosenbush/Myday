@@ -9,7 +9,7 @@ export function MainNav() {
   return (
     <section className="main-nav">
       <div className="top-opt flex">
-        <Link exact to={'/'}><img className="2day-logo" src={logo} alt="" /></Link>
+        <Link to={'/'}><img className="2day-logo" src={logo} alt="" /></Link>
         <div className="grid-container">
           <BiGridAlt
             color="white"
