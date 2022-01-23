@@ -1,24 +1,28 @@
 import { connect } from "react-redux";
 import { BsPersonPlus } from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
 import { BsGraphUp } from 'react-icons/bs';
+import { AiFillInfoCircle } from 'react-icons/ai';
+import { AiOutlineStar } from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 
 import { BoardControllers } from "./BoardControllers.jsx";
-import { addGroup,loadBoards } from "../../store/board.action.js";
-export function _BoardHeader({ board, updateBoard,loadBoards, addGroup }) {
+import { addGroup, loadBoards } from "../../store/board.action.js";
+export function _BoardHeader({ board, updateBoard, loadBoards, addGroup }) {
   function onAddGroup() {
     addGroup(board._id);
   }
-  
+
 
   async function onUpdateBoardTitle({ target }) {
     const value = target.textContent;
     if (!value) return;
     board.title = value;
-    try{
-     await updateBoard(board);
-     loadBoards()
-    }catch(err){
+    try {
+      await updateBoard(board);
+      loadBoards()
+    } catch (err) {
       console.log('error in updating board');
     }
   };
@@ -35,22 +39,42 @@ export function _BoardHeader({ board, updateBoard,loadBoards, addGroup }) {
       {board && (
         <div className="board-header-top">
           <div className="flex justify-between board-main-title">
-            <h1
-              className="board-title"
-              contentEditable
-              suppressContentEditableWarning={true}
-              onBlur={onUpdateBoardTitle}
-            >
-              {board.title}
-            </h1>
+            <div className="board-title-container flex justify-between align-center">
+              <h1
+                className="board-header-title"
+                contentEditable
+                suppressContentEditableWarning={true}
+                onBlur={onUpdateBoardTitle}
+              >
+                {board.title}
+              </h1>
+              <button className="icon-btn-container"><AiFillInfoCircle color="#676879" /></button>
+              <button className="icon-btn-container"><AiOutlineStar color="#676879" /></button>
+            </div>
+
             <div className="board-header-btns flex">
+              <div className="last-seen-members icon-btn-container flex">
+                <p>Last seen</p>
+                {board.members &&
+                  board.members.map((member, idx) => {
+                    return <div key={idx} className={member.acronyms}>{member.acronyms}</div>
+                  })}
+              </div>
+
               <div className="icon-btn-container flex">
-              <BsPersonPlus /> 
-              <button>  Invite / 4</button>
+                <BsPersonPlus />
+                <button>  Invite / 4</button>
               </div>
               <div className="icon-btn-container flex">
-              <BsGraphUp />
-              <button>Activity</button>
+                <BsGraphUp />
+                <button>Activity</button>
+              </div>
+              <div className="icon-btn-container plus-board flex">
+                <AiOutlinePlus />
+                <button>Add to board</button>
+              </div>
+              <div className="icon-btn-container flex">
+                <button className="flex align-center dots" ><BsThreeDots /></button>
               </div>
             </div>
           </div>
@@ -67,10 +91,11 @@ export function _BoardHeader({ board, updateBoard,loadBoards, addGroup }) {
 
           </div>
         </div>
-      )}
+      )
+      }
       {/* <h1>{board.title}</h1> */}
       {board && <BoardControllers onAddGroup={onAddGroup} />}
-    </section>
+    </section >
   );
 }
 

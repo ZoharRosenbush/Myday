@@ -4,6 +4,7 @@ import { MdArrowDropDownCircle } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CgArrowDownR } from "react-icons/cg";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { BsChat } from "react-icons/bs";
 import { IoIosColorFilter } from "react-icons/io";
 import { Droppable } from "react-beautiful-dnd";
 import { Draggable } from "react-beautiful-dnd";
@@ -60,7 +61,7 @@ class _TaskPreview extends React.Component {
         break;
       case "type-picker":
         console.log('data:', data);
-        
+
         task.type = data;
         saveTask(task, groupId, board._id);
         break;
@@ -138,7 +139,6 @@ class _TaskPreview extends React.Component {
 
   render() {
     const { board, groupId, activeModal, setActiveModal, task } = this.props;
-    const { isModalTaskOpen } = this.state;
     const group = board.groups.find((group) => {
       return groupId === group.id;
     });
@@ -197,14 +197,20 @@ class _TaskPreview extends React.Component {
               className="group-color"
               style={{ backgroundColor: `${group.style.groupColor}` }}
             ></div>
-            <span
-              className="task-title"
-              contentEditable
-              suppressContentEditableWarning={true}
-              onBlur={this.onUpdateTitleContent}
-            >
-              {task.title}
-            </span>
+            <div className="task-title-content flex justify-between ">
+              <span
+                className="task-title"
+                contentEditable
+                suppressContentEditableWarning={true}
+                onBlur={this.onUpdateTitleContent}
+              >
+                {task.title}
+              </span>
+              <div className="chat-icon-container">
+                <BsChat color="#c5c7d0" />
+              </div>
+
+            </div>
           </div>
           {cmpsOrder.map((cmp, idx) => {
             return (
