@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-export function DateCmp({ cmpData, onUpdateTask,groupColor }) {
+export function DateCmp({ cmpData, onUpdateTask, groupColor }) {
 
     const { type } = cmpData
     const { selectedDate } = cmpData.info
@@ -12,20 +12,37 @@ export function DateCmp({ cmpData, onUpdateTask,groupColor }) {
 
 
     const [dateRange, setDateRange] = useState([userStartDate, userEndDate]);
+    // console.log('the date range',dateRange);
+    let [remainingTime, setRemainingTime] = useState(0);
+    const [inputValue, setInputValue] = useState(dateRange);
     const [startDate, endDate] = dateRange;
+    // console.log('the start date',typeof startDate);
+
 
     useEffect(() => {
         if (startDate !== userStartDate && endDate !== userEndDate) {
             if (!startDate || !endDate) return
             onUpdateTask(type, dateRange)
+            remainingTime = (endDate.getUTCDate()+1)- (startDate.getUTCDate()+1)
+            // console.log('the ramaining',remainingTime);
+            setRemainingTime(remainingTime)
         }
+
     }, [dateRange]);
 
+    useEffect(() => {
+    //   console.log('the value in use effect',inputValue);
+    }, [inputValue]);
 
+    const replaceInputValue = () => {
+        // console.log('replaicing value!');
+        // console.log('the remaining in input finc',remainingTime);
+        setInputValue(remainingTime)
+    }
 
+    console.log('rendering',inputValue)
     return (
-
-        <div className="date-picker-div">
+        <div className="date-picker-div" onMouseEnter={replaceInputValue}>
             <style>
                 {`.date-picker input {
             width: 90%;
@@ -39,10 +56,21 @@ export function DateCmp({ cmpData, onUpdateTask,groupColor }) {
                 selectsRange={true}
                 startDate={startDate}
                 endDate={endDate}
+                // tileContent={(remainingTime)=>{
+                //     return <div>
+                //         {remainingTime}
+                //     </div>
+                // }}
                 dateFormat="dd/MM/yyyy"
                 onChange={(update) => {
                     setDateRange(update);
                 }}
+                // placeholderText="hello"
+                // value={[startDate,endDate]}
+                // value={'0','8'}
+                // value={0}
+                // inputValue
+                // onCalendarHover={handleCalendarHover}
                 wrapperClassName="date-picker"
                 isClearable={false}
             />
