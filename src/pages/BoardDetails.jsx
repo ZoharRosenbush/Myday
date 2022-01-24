@@ -1,13 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Droppable } from "react-beautiful-dnd";
 import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
 import { loadBoard } from "../store/board.action.js";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
-import { Draggable } from "react-beautiful-dnd";
-import { DragDropContext } from "react-beautiful-dnd";
+import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
 
 import { setActiveModal, updateBoard } from "../store/board.action.js";
 
@@ -36,17 +34,41 @@ class _BoardDetails extends React.Component {
     });
   }
 
-  onDragEnd = (result) => {
-
-    const { destination, source, draggableId } = result;
-    const { group, board, updateBoard } = this.props;
-    console.log('destination:', destination);
-    console.log('source:', source);
-    console.log('draggableId:', draggableId);
-
- 
-
+  onDragEnd = ({ type, ...result }) => {
+    if (!result.destination) return;
+    if (type === 'board') {
+      this._onGroupDragEnd(result);
+    } else if (type === 'group') {
+      this._onTaskDragEnd(result);
+    }
   };
+
+  _onGroupDragEnd({ source, destination }) {
+    const { board, updateBoard } = this.props;
+    const boardCopy = { ...board };
+    const [group] = boardCopy.groups.splice(source.index, 1);
+    boardCopy.groups.splice(destination.index, 0, group);
+    updateBoard(boardCopy);
+  }
+
+  _onTaskDragEnd({ source, destination, draggableId }) {
+    const { board, updateBoard } = this.props;
+    const boardCopy = { ...board };
+    const groupSourceIdx = boardCopy.groups.findIndex(
+      (group) => group.id === source.droppableId
+    );
+
+    const task = boardCopy.groups[groupSourceIdx].tasks.find(
+      (task) => task.id === draggableId
+    );
+    const groupDestinationIdx = boardCopy.groups.findIndex(
+      (group) => group.id === destination.droppableId
+    );
+
+    boardCopy.groups[groupSourceIdx].tasks.splice(source.index, 1);
+    boardCopy.groups[groupDestinationIdx].tasks.splice(destination.index, 0, task);
+    updateBoard(boardCopy);
+  }
 
   render() {
     const { board, updateBoard, isBoardNavOpen } = this.props;
@@ -62,11 +84,29 @@ class _BoardDetails extends React.Component {
         <section className={boardContainerClassName}>
           <BoardHeader board={board} updateBoard={updateBoard} />
 
-          {board?.groups && (
-                    <GroupList board={board} />   
-         )} 
-     </section> 
-      </section> 
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            {board?.groups && (
+              <Droppable
+                droppableId={board._id}
+                type='board'
+              >
+                {(provided) => (
+                  <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    className="group-list-wrapper"
+                  >
+                    <GroupList
+                      board={board}
+                    />
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            )}
+          </DragDropContext>
+        </section>
+      </section >
     );
   }
 }
