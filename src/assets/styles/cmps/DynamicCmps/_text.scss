@@ -1,18 +1,17 @@
 
 
-.Text{
-    width: 139px;
+.Text, .Cost{
+    width: 150px;
     // padding: 2px;
 }
-.text-cmp{
-    width: 139px;
+.text-cmp, .cost-cmp{
+    width: 150px;
     background-color: #f5f6f8;
     padding: 6px 6px 6px 6px;
-
-
 }
 
-.task-text{
+
+.task-text, .cost-text{
     background-color: #f5f6f8;
     margin: 0;
     padding: 0;
@@ -27,3 +26,5 @@
         outline: 1px dotted black;
     }
 }
+
+

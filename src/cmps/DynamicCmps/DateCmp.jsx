@@ -40,7 +40,7 @@ export function DateCmp({ cmpData, onUpdateTask, groupColor }) {
         setInputValue(remainingTime)
     }
 
-    console.log('rendering',inputValue)
+ 
     return (
         <div className="date-picker-div" onMouseEnter={replaceInputValue}>
             <style>
