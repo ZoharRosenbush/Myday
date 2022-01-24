@@ -54,7 +54,6 @@ export class _BoardNav extends React.Component {
   }
 
   onRemoveBoard = (boardId) => {
-    console.log('removing', boardId);
     this.props.removeBoard(boardId)
   }
 

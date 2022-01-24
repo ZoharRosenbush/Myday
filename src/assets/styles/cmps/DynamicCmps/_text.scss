@@ -1,0 +1,29 @@
+
+
+.Text{
+    width: 139px;
+    // padding: 2px;
+}
+.text-cmp{
+    width: 139px;
+    background-color: #f5f6f8;
+    padding: 6px 6px 6px 6px;
+
+
+}
+
+.task-text{
+    background-color: #f5f6f8;
+    margin: 0;
+    padding: 0;
+    height: 23px;
+ 
+
+    &:focus-visible {
+        outline: 1px dotted black;
+        background-color: white;
+    }
+    &:hover {
+        outline: 1px dotted black;
+    }
+}

@@ -2,8 +2,9 @@
   margin-bottom: 50px;
 
   div.group-title-container {
-    // background-color: #f5f6f8ed;
-    min-width: 446px;
+    min-width: 421px;
+    
+    margin-inline-start: 16px;
   }
 }
 
@@ -43,12 +44,10 @@
 .add-task-div {
   border: 1px solid #00000040;
   height: 36px;
-  background-color: lighter($cell-color);
+  background-color: lighter(#f5f6f8);
   text-align: start;
-
-  // left:$first-column-left ;
   cursor: pointer;
-  width: 89.4%;
+  width: 88.86%;
   cursor: pointer;
 
   div.group-color {
@@ -78,9 +77,9 @@ input.add-task {
 
 .add-task-container {
   display: flex;
-  height: 36px;
-  width: 1460px;
-  margin-inline-start: 46px;
+    height: 36px;
+    width: 1659px;
+    margin-inline-start: 46px;
 
   .add-task-form {
     margin-left: 32px;
@@ -227,6 +226,8 @@ div.group-color {
 
 .Timeline {
   min-width: 198px;
+  background-color: #f5f6f8;
+  border-radius: 8px 8px 0 0;
 }
 .Priority {
   min-width: 137px;
@@ -234,6 +235,8 @@ div.group-color {
 
 .Status {
   min-width: 137px;
+  background-color: #f5f6f8;
+  border-radius: 6px 6px 0 0;
 }
 .Role {
   min-width: 137px;
@@ -242,13 +245,19 @@ div.group-color {
   min-width: 137px;
 }
 
+.drag-icon-cmp {
+  display: none;
+  position: absolute;
+}
 .Owners,
 .Timeline,
 .Priority,
 .Status,
 .Role,
+.Text,
 .Type {
   height: 100%;
+
   text-align: center;
   line-height: 3;
   // margin-inline-end: 1px;
@@ -256,9 +265,46 @@ div.group-color {
   &:hover {
     background-color: #f5f6f8;
     cursor: pointer;
+
+    .dog-ear:after {
+      border-top: 13px solid #e6e9ef;
+      border-left: 13px solid rgb(0, 0, 0, 0.08);
+    }
+    .dog-ear:before {
+      border-bottom: 13px solid rgb(0, 0, 0, 0.08);
+      border-right: 13px solid $white;
+    }
+  
+  }
+  &:hover{
+    .drag-icon-cmp {
+      display: block;
+      position: absolute;
+    }
+   
+  }
+}
+
+.cmp-title-container {
+  display: flex;
+}
+
+.status-member-section{
+  &:hover{
+    .dog-ear:after {
+      border-top: 13px solid #e6e9ef;
+      border-left: 13px solid rgb(0, 0, 0, 0.08);
+      transition: all 0.6s;
+    }
+    .dog-ear:before {
+      border-bottom: 13px solid rgb(0, 0, 0, 0.08);
+      border-right: 13px solid $white;
+      transition: all 0.6s;
+    }
   }
 }
 
 // .icon-group {
 //   transform: translateY(4.5px);
 // }
+

@@ -12,13 +12,19 @@ import { logDOM } from "@testing-library/react";
 
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { ColorInput } from "./ColorInput.jsx";
+import { ProgressBarStatus } from "../DynamicCmps/ProgressBarStatus.jsx";
+import { ProgressBarPriority } from "../DynamicCmps/ProgressBarPriority.jsx";
+import { ProgressBarType } from "../DynamicCmps/ProgressBarType.jsx";
+import { ProgressBarRole } from "../DynamicCmps/ProgressBarRole.jsx";
+import { MdDragIndicator } from "react-icons/md";
+
 import {
   addTask,
   saveGroup,
   deleteGroup,
   setActiveModal,
+  updateBoard,
 } from "../../store/board.action.js";
-
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -56,7 +62,10 @@ export class _GroupPreview extends React.Component {
       (prevState) => ({
         ...prevState,
         isAddTaskActive: !prevState.isAddTaskActive,
-      }), () => { console.log("changing active", this.state) }
+      }),
+      () => {
+        console.log("changing active", this.state);
+      }
     );
   };
 
@@ -110,36 +119,50 @@ export class _GroupPreview extends React.Component {
     else if (cmpType === "role-picker") return "Role";
     else if (cmpType === "date-picker") return "Timeline";
     else if (cmpType === "type-picker") return "Type";
+    else if (cmpType === "text") return "Text";
     else return "Status";
   };
 
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    const { group, board, saveGroup } = this.props;
-    console.log('destination:', destination);
-    console.log('source:', source);
+    const { group, board, updateBoard } = this.props;
 
     if (!destination) return;
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-    const task = group.tasks.find((task) => task.id === draggableId);
+    //  if (
+    //    destination.droppableId === source.droppableId &&
+    //    destination.index === source.index
+    //  ) {
+    //    return;
+    //  }
+    const cmpsOrder = board.cmpsOrder;
+    console.log("cmpsOrder:", cmpsOrder);
 
-    group.tasks.splice(source.index, 1);
-    group.tasks.splice(destination.index, 0, task);
-    saveGroup(group, board._id);
+    const cmpIdx = cmpsOrder.findIndex((cmp) => {
+      return cmp === draggableId;
+    });
+
+    board.cmpsOrder.splice(source.index, 1);
+    board.cmpsOrder.splice(destination.index, 0, draggableId);
+    console.log("board.cmpsOrder:", board.cmpsOrder);
+    updateBoard(board);
   };
 
   render() {
     const { group, board, activeModal } = this.props;
     const cmpsOrder = board.cmpsOrder;
     const { isGroupModalOpen, isModalToDelete, isAddTaskActive } = this.state;
-    const btnClassName = isAddTaskActive ? 'add-task-btn-visible' : 'add-task-btn'
+    const btnClassName = isAddTaskActive
+      ? "add-task-btn-visible"
+      : "add-task-btn";
     return (
-      <Droppable droppableId={group.id} >
+      // <Draggable  draggableId={group.id} index={0}>
+      //   {(provided) => (
+      //     <section
+      //       {...provided.draggableProps}
+      //       {...provided.dragHandleProps}
+      //       ref={provided.innerRef}
+      //     >
+      <Droppable droppableId={group.id}>
         {(provided) => (
           <section ref={provided.innerRef}>
             <section className="group-preview">
@@ -177,7 +200,10 @@ export class _GroupPreview extends React.Component {
                     </div>
                     <span>Are you sure you want to delete?</span>
                   </div>
-                  <button onClick={this.toggelModalDelete} className="no-ans-delete">
+                  <button
+                    onClick={this.toggelModalDelete}
+                    className="no-ans-delete"
+                  >
                     No
                   </button>
                   <button onClick={this.deleteGroup} className="yes-ans-delete">
@@ -186,64 +212,83 @@ export class _GroupPreview extends React.Component {
                 </section>
               )}
               {isModalToDelete && <div className="main-screen"></div>}
-              <div className="div-headline-container">
-                <div className="group-title-container first-column">
-                  <IoMdArrowDropdownCircle
-                    style={{
-                      color: `${group.style.groupColor}`,
-                      fontSize: "19px",
-                      cursor: "pointer",
-                      transform: "translateY(4.5px)",
-                    }}
-                    onClick={(ev) => {
-                      ev.stopPropagation();
-                      this.openModal("groupEdit");
-                    }}
-                  />
-                  <h1
-                    className="group-title first-column"
-                    contentEditable
-                    suppressContentEditableWarning={true}
-                    onBlur={this.onUpdateTitleContent}
-                    style={{ color: `${group.style.groupColor}` }}
-                  >
-                    {" "}
-                    {group.title}
-                  </h1>
-                  {activeModal.cmpType === "ColorInput" &&
-                    activeModal.groupId === group.id && (
-                      <ColorInput onUpdateGroupColor={this.onUpdateGroupColor} />
-                    )}
-                </div>
-                {/* <DragDropContext onDragEnd={this.onDragEnd}> */}
-                {/* <Droppable droppableId="ctg"> */}
-                {/* {(provided) => ( */}
-                {/* <section ref={provided.innerRef}> */}
-                {cmpsOrder.map((cmp, idx) => {
-                  return (
-                    // <Draggable key={idx} draggableId={cmp} index={idx}>
-                    // {(provided) => (
-                    <div key={idx}
-                      // {...provided.draggableProps}
-                      // {...provided.dragHandleProps}
-                      // ref={provided.innerRef}
-                      className={this.cmpTitle(cmp)}
-                    >
-                      {this.cmpTitle(cmp)}
-                    </div>
-                    // )}
-                    // </Draggable>
-                  );
-                })}
-                {/* </section> */}
-                {/* )} */}
-                {/* </Droppable> */}
-                {/* </DragDropContext> */}
-              </div>
-              {/* <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="tasks"> */}
-              {/* {(provided) => (
-              <section ref={provided.innerRef}> */}
+              <DragDropContext onDragEnd={this.onDragEnd}>
+                <Droppable droppableId="cmp">
+                  {(provided) => (
+                    <section className="flex" ref={provided.innerRef}>
+                      {provided.placeholder}
+                      <div className="div-headline-container">
+                        <div className="group-title-container first-column">
+                          <IoMdArrowDropdownCircle
+                            style={{
+                              color: `${group.style.groupColor}`,
+                              fontSize: "19px",
+                              cursor: "pointer",
+                              transform: "translateY(4.5px)",
+                            }}
+                            onClick={(ev) => {
+                              ev.stopPropagation();
+                              this.openModal("groupEdit");
+                            }}
+                          />
+                          <h1
+                            className="group-title first-column"
+                            contentEditable
+                            suppressContentEditableWarning={true}
+                            onBlur={this.onUpdateTitleContent}
+                            style={{ color: `${group.style.groupColor}` }}
+                          >
+                            {" "}
+                            {group.title}
+                          </h1>
+                          {activeModal.cmpType === "ColorInput" &&
+                            activeModal.groupId === group.id && (
+                              <ColorInput
+                                onUpdateGroupColor={this.onUpdateGroupColor}
+                              />
+                            )}
+                        </div>
+                        {/* <DragDropContext onDragEnd={this.onDragEnd}>
+                <Droppable droppableId="cmp">
+                  {(provided) => (
+                    <section className="flex" ref={provided.innerRef}> */}
+                        {cmpsOrder.map((cmp, idx) => {
+                          return (
+                            <Draggable key={idx} draggableId={cmp} index={idx}>
+                              {(provided) => (
+                                <section
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  ref={provided.innerRef}
+                                >
+                                  <div className={this.cmpTitle(cmp)}>
+                                    <div className="cmp-title-container">
+                                      <div className="drag-icon-cmp">
+                                        <MdDragIndicator
+                                          color="#6F7080"
+                                          style={{
+                                            height: "20px",
+                                            width: "20px",
+                                          }}
+                                        />
+                                      </div>
+                                      <div className={this.cmpTitle(cmp)}>{this.cmpTitle(cmp)}</div>
+                                    </div>
+                                  </div>
+                                  {provided.placeholder}
+                                </section>
+                              )}
+                            </Draggable>
+                          );
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    </section>
+                  )}
+                </Droppable>
+              </DragDropContext>
+              
+
               {group.tasks.map((task, idx) => {
                 return (
                   <Draggable key={idx} draggableId={task.id} index={idx}>
@@ -254,22 +299,24 @@ export class _GroupPreview extends React.Component {
                         ref={provided.innerRef}
                       >
                         <TaskPreview task={task} groupId={group.id} />
-                        {/* {provided.placeholder} */}
+                        {provided.placeholder}
                       </section>
                     )}
                   </Draggable>
                 );
               })}
-              {/* </section> */}
-              {/* )} */}
-              {/* </Droppable>
-        </DragDropContext> */}
 
-              <div className="add-task-container first-column flex" onFocus={this.toggleAddTask} onBlur={this.toggleAddTask}>
+              <div
+                className="add-task-container first-column flex"
+                onFocus={this.toggleAddTask}
+                onBlur={this.toggleAddTask}
+              >
                 <div className="add-task-div justify-between first-column flex">
                   <div
                     className="group-color"
-                    style={{ backgroundColor: `${group.style.groupColor}` }}
+                    style={{
+                      backgroundColor: `${group.style.groupColor}`,
+                    }}
                   ></div>{" "}
                   <form
                     onSubmit={this.onAddTask}
@@ -280,10 +327,10 @@ export class _GroupPreview extends React.Component {
                       className="add-task"
                       onChange={this.onHandleChange}
                       value={this.state.taskValue}
-                    // onFocus={this.toggleAddTask}
-                    // onBlur={this.toggleAddTask}
-                    // contentEditable
-                    // suppressContentEditableWarning={true}
+                      // onFocus={this.toggleAddTask}
+                      // onBlur={this.toggleAddTask}
+                      // contentEditable
+                      // suppressContentEditableWarning={true}
                     />
                     <button className={btnClassName}>Add</button>
                     {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
@@ -291,14 +338,40 @@ export class _GroupPreview extends React.Component {
                   </form>
                 </div>
               </div>
+              <div className="bar-container">
+                {cmpsOrder.map((cmpType, idx) => {
+                  switch (cmpType) {
+                    case "status-picker":
+                      return <ProgressBarStatus key={idx} groupId={group.id} />;
+
+                    case "priority-picker":
+                      return (
+                        <ProgressBarPriority key={idx} groupId={group.id} />
+                      );
+
+                    case "type-picker":
+                      return <ProgressBarType key={idx} groupId={group.id} />;
+                    case "role-picker":
+                      return <ProgressBarRole key={idx} groupId={group.id} />;
+                    case "member-picker":
+                      return <div key={idx} className="member-container"></div>;
+                    case "date-picker":
+                      return <div key={idx} className="date-container"></div>;
+                    case "text":
+                      return <div key={idx} className="text-container"></div>;
+                  }
+                })}
+              </div>
             </section>
+            {provided.placeholder}
           </section>
         )}
       </Droppable>
-    )
-
+      //     </section>
+      //   )}
+      // </Draggable>
+    );
   }
-
 }
 function mapStateToProps({ boardModule }) {
   return {
@@ -311,6 +384,7 @@ const mapDispatchToProps = {
   addTask,
   deleteGroup,
   setActiveModal,
+  updateBoard,
 };
 
 export const GroupPreview = connect(

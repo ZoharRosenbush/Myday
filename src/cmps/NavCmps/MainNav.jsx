@@ -65,7 +65,7 @@ export function MainNav() {
           size="23px"
           style={{ marginLeft: "19px", cursor: "pointer" }}
         />
-        <div className="user-avatar">MZL</div>
+        <div className="user-avatar ME">ME</div>
       </div>
     </section>
   );

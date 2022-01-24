@@ -78,6 +78,7 @@ function _createBoards() {
         "date-picker",
         "priority-picker",
         "role-picker",
+        "text"
       ],
       title: "Sprint 4",
       description:
@@ -152,6 +153,7 @@ function _createBoards() {
               status: "Done",
               priority: "High",
               role: "Dev",
+              text: "hello",
               type: "Security",
               timeline: ["Jan 18-22", "Jan 20-22"],
               owner: [
@@ -182,6 +184,7 @@ function _createBoards() {
               title: "Replace Logo",
               status: "Done",
               priority: "High",
+              text: "lalaa",
               role: "Design",
               type: "Bug",
               timeline: ["Jan 30-22", "Feb 02-22"],

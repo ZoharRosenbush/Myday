@@ -20,6 +20,7 @@
   .task-title-content{
 
     width: 390px;
+    align-items: center;
 
     .chat-icon-container{
       display: flex;
@@ -47,11 +48,12 @@
 
 .task-preview {
   & > *:not(:first-child) {
-    border-inline-start: 2px solid $white;
+    border-inline-start: 1px solid #fff;
   }
   &:hover {
     .task-title-cell,
     .react-datepicker-wrapper,
+    .text-cmp,.task-text:not(:focus-visible),
     .member-picher-section {
       background-color: #e6e9ef;
     }
@@ -89,4 +91,17 @@
   z-index: 10;
   margin-top: 4.5em;
   margin-left: 1.3em;
+}
+
+.finish-task{
+  width: 38px;
+  border-left: 1px solid white;
+  height: 34px;
+  background-color: #F5F6F8;
+  border-right: 8px solid #E6E9EF;
+}
+
+.task-preview-section{
+  display: flex;
+    width: fit-content;
 }

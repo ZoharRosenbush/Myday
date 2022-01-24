@@ -5,11 +5,14 @@ import { PriorityCmp } from "./PriorityCmp.jsx";
 import { RoleCmp } from "./RoleCmp.jsx";
 import { TypeCmp } from "./TypeCmp.jsx";
 import { DateCmp } from "./DateCmp.jsx";
+import { TextCmp } from "./TextCmp.jsx";
 
 
 export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiveModal, activeModal }) {
 
+  console.log('cmpData:',cmpData );
   switch (cmpData.type) {
+    
     case "status-picker":
       return <StatusCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />;
     // return <StatusCmp info={info} onUpdate={onUpdate}  />;
@@ -23,6 +26,8 @@ export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiv
       return <RoleCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />
     case "date-picker":
       return <DateCmp cmpData={cmpData} groupColor={groupColor} onUpdateTask={onUpdateTask} />
+    case "text":
+      return <TextCmp taskId={taskId} cmpData={cmpData} onUpdateTask={onUpdateTask} />
 
     default:
 
