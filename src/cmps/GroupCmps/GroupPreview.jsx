@@ -131,11 +131,11 @@ export class _GroupPreview extends React.Component {
 
 
     if (!destination) return;
-     if (
-       destination.index === source.index
-     ) {
-       return;
-     }
+    if (
+      destination.index === source.index
+    ) {
+      return;
+    }
 
     board.cmpsOrder.splice(source.index, 1);
     board.cmpsOrder.splice(destination.index, 0, draggableId);
@@ -154,60 +154,60 @@ export class _GroupPreview extends React.Component {
     return (
 
 
-      
-            <section className="group-preview">
-              {activeModal.cmpType === "groupEdit" &&
-                activeModal.groupId === group.id && (
-                  <div className="group-modal">
-                    <div
-                      className="flex modal-group-items"
-                      onClick={this.toggelModalDelete}
-                    >
-                      <div>
-                        <RiDeleteBinLine color="#323338c2" />{" "}
-                      </div>
-                      <span>Delete group</span>
-                    </div>
-                    <div
-                      className="flex modal-group-items"
-                      onClick={(ev) => {
-                        ev.stopPropagation();
-                        this.openModal("colorModal");
-                      }}
-                    >
-                      <div>
-                        <IoIosColorFilter color="#323338c2" />{" "}
-                      </div>
-                      <span>Change color</span>
-                    </div>
-                  </div>
-                )}
-              {isModalToDelete && (
-                <section className="modal-delete">
-                  <div className="flex title-modal-delete">
-                    <div>
-                      <GrCircleAlert />
-                    </div>
-                    <span>Are you sure you want to delete?</span>
-                  </div>
-                  <button
-                    onClick={this.toggelModalDelete}
-                    className="no-ans-delete"
-                  >
-                    No
-                  </button>
-                  <button onClick={this.deleteGroup} className="yes-ans-delete">
-                    Yes
-                  </button>
-                </section>
-              )}
+
+      <section className="group-preview">
+        {activeModal.cmpType === "groupEdit" &&
+          activeModal.groupId === group.id && (
+            <div className="group-modal">
+              <div
+                className="flex modal-group-items"
+                onClick={this.toggelModalDelete}
+              >
+                <div>
+                  <RiDeleteBinLine color="#323338c2" />{" "}
+                </div>
+                <span>Delete group</span>
+              </div>
+              <div
+                className="flex modal-group-items"
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  this.openModal("colorModal");
+                }}
+              >
+                <div>
+                  <IoIosColorFilter color="#323338c2" />{" "}
+                </div>
+                <span>Change color</span>
+              </div>
+            </div>
+          )}
+        {isModalToDelete && (
+          <section className="modal-delete">
+            <div className="flex title-modal-delete">
+              <div>
+                <GrCircleAlert />
+              </div>
+              <span>Are you sure you want to delete?</span>
+            </div>
+            <button
+              onClick={this.toggelModalDelete}
+              className="no-ans-delete"
+            >
+              No
+            </button>
+            <button onClick={this.deleteGroup} className="yes-ans-delete">
+              Yes
+            </button>
+          </section>
+        )}
+        {isModalToDelete && <div className="main-screen"></div>}
 
 
+        <div className="div-headline-container">
 
-              <div className="div-headline-container">
 
-
-                {/* <Draggable key={group.id} draggableId={group.id} index={this.props.key}>
+          {/* <Draggable key={group.id} draggableId={group.id} index={this.props.key}>
                   {(provided) => (
                     <div
                       {...provided.draggableProps}
@@ -215,166 +215,166 @@ export class _GroupPreview extends React.Component {
                       ref={provided.innerRef}
                     > */}
 
-                      <div className="group-title-container first-column">
-                        <IoMdArrowDropdownCircle
-                          style={{
-                            color: `${group.style.groupColor}`,
-                            fontSize: "19px",
-                            cursor: "pointer",
-                            transform: "translateY(4.5px)",
-                          }}
-                          onClick={(ev) => {
-                            ev.stopPropagation();
-                            this.openModal("groupEdit");
-                          }}
-                        />
-                        <h1
-                          className="group-title first-column"
-                          contentEditable
-                          suppressContentEditableWarning={true}
-                          onBlur={this.onUpdateTitleContent}
-                          style={{ color: `${group.style.groupColor}` }}
-                        >
-                          {" "}
-                          {group.title}
-                        </h1>
-                        {activeModal.cmpType === "ColorInput" &&
-                          activeModal.groupId === group.id && (
-                            <ColorInput
-                              onUpdateGroupColor={this.onUpdateGroupColor}
-                            />
-                          )}
-                      </div>
-                    {/* </div>
+          <div className="group-title-container first-column">
+            <IoMdArrowDropdownCircle
+              style={{
+                color: `${group.style.groupColor}`,
+                fontSize: "19px",
+                cursor: "pointer",
+                transform: "translateY(4.5px)",
+              }}
+              onClick={(ev) => {
+                ev.stopPropagation();
+                this.openModal("groupEdit");
+              }}
+            />
+            <h1
+              className="group-title first-column"
+              contentEditable
+              suppressContentEditableWarning={true}
+              onBlur={this.onUpdateTitleContent}
+              style={{ color: `${group.style.groupColor}` }}
+            >
+              {" "}
+              {group.title}
+            </h1>
+            {activeModal.cmpType === "ColorInput" &&
+              activeModal.groupId === group.id && (
+                <ColorInput
+                  onUpdateGroupColor={this.onUpdateGroupColor}
+                />
+              )}
+          </div>
+          {/* </div>
                   )}
                 </Draggable> */}
 
 
 
-                <div>
-                  <DragDropContext onDragEnd={this.onDragEnd}>
-                    <Droppable droppableId={group.id} direction="horizontal">
-                      {(provided) => (
-                        <div className="flex" {...provided.droppableProps}
-                          ref={provided.innerRef}>
+          <div>
+            <DragDropContext onDragEnd={this.onDragEnd}>
+              <Droppable droppableId={group.id} direction="horizontal">
+                {(provided) => (
+                  <div className="flex" {...provided.droppableProps}
+                    ref={provided.innerRef}>
 
-                          {cmpsOrder.map((cmp, idx) => {
+                    {cmpsOrder.map((cmp, idx) => {
 
-                            return (
-
-                              <Draggable key={cmp} draggableId={cmp} index={idx}>
-                                {(provided) => (
-                                  <div
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    ref={provided.innerRef}
-                                  >
-                                    <div className={this.cmpTitle(cmp)}>
-                                      <div className="cmp-title-container">
-                                        <div className="drag-icon-cmp">
-                                          <MdDragIndicator
-                                            color="#6F7080"
-                                            style={{
-                                              height: "20px",
-                                              width: "20px",
-                                            }}
-                                          />
-                                        </div>
-                                        <div className={this.cmpTitle(cmp)}>{this.cmpTitle(cmp)}</div>
-                                      </div>
-                                    </div>
-
-                                  </div>
-                                )}
-                              </Draggable>
-                              // </div>
-                            );
-                          })}
-                          {provided.placeholder}
-                        </div>
-                      )}
-                    </Droppable>
-                  </DragDropContext>
-                </div>
-              </div>
-
-
-              {group.tasks.map((task, idx) => {
-                return (
-                  <Draggable key={task.id} draggableId={task.id} index={idx}>
-                    {(provided) => (
-                      <section
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                      >
-                        <TaskPreview task={task} groupId={group.id} />
-                        {provided.placeholder}
-                      </section>
-                    )}
-                  </Draggable>
-                );
-              })}
-
-              <div
-                className="add-task-container first-column flex"
-                onFocus={this.toggleAddTask}
-                onBlur={this.toggleAddTask}
-              >
-                <div className="add-task-div justify-between first-column flex">
-                  <div
-                    className="group-color"
-                    style={{
-                      backgroundColor: `${group.style.groupColor}`,
-                    }}
-                  ></div>{" "}
-                  <form
-                    onSubmit={this.onAddTask}
-                    className="flex justify-between align-center"
-                  >
-                    <input
-                      placeholder="Add task +"
-                      className="add-task"
-                      onChange={this.onHandleChange}
-                      value={this.state.taskValue}
-                    // onFocus={this.toggleAddTask}
-                    // onBlur={this.toggleAddTask}
-                    // contentEditable
-                    // suppressContentEditableWarning={true}
-                    />
-                    <button className={btnClassName}>Add</button>
-                    {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
-              {!isAddTaskActive && <div className="btn-placeholder"></div>} */}
-                  </form>
-                </div>
-              </div>
-              <div className="bar-container">
-                {cmpsOrder.map((cmpType, idx) => {
-                  switch (cmpType) {
-                    case "status-picker":
-                      return <ProgressBarStatus key={idx} groupId={group.id} />;
-
-                    case "priority-picker":
                       return (
-                        <ProgressBarPriority key={idx} groupId={group.id} />
-                      );
 
-                    case "type-picker":
-                      return <ProgressBarType key={idx} groupId={group.id} />;
-                    case "role-picker":
-                      return <ProgressBarRole key={idx} groupId={group.id} />;
-                    case "member-picker":
-                      return <div key={idx} className="member-container"></div>;
-                    case "date-picker":
-                      return <div key={idx} className="date-container"></div>;
-                    case "text":
-                      return <div key={idx} className="text-container"></div>;
-                    case "cost":
-                      return <div key={idx} className="cost-container"></div>;
-                  }
-                })}
-              </div>
-            </section>
+                        <Draggable key={cmp} draggableId={cmp} index={idx}>
+                          {(provided) => (
+                            <div
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              ref={provided.innerRef}
+                            >
+                              <div className={this.cmpTitle(cmp)}>
+                                <div className="cmp-title-container">
+                                  <div className="drag-icon-cmp">
+                                    <MdDragIndicator
+                                      color="#6F7080"
+                                      style={{
+                                        height: "20px",
+                                        width: "20px",
+                                      }}
+                                    />
+                                  </div>
+                                  <div className={this.cmpTitle(cmp)}>{this.cmpTitle(cmp)}</div>
+                                </div>
+                              </div>
+
+                            </div>
+                          )}
+                        </Draggable>
+                        // </div>
+                      );
+                    })}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+          </div>
+        </div>
+
+
+        {group.tasks.map((task, idx) => {
+          return (
+            <Draggable key={task.id} draggableId={task.id} index={idx}>
+              {(provided) => (
+                <section
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  ref={provided.innerRef}
+                >
+                  <TaskPreview task={task} groupId={group.id} />
+                  {provided.placeholder}
+                </section>
+              )}
+            </Draggable>
+          );
+        })}
+
+        <div
+          className="add-task-container first-column flex"
+          onFocus={this.toggleAddTask}
+          onBlur={this.toggleAddTask}
+        >
+          <div className="add-task-div justify-between first-column flex">
+            <div
+              className="group-color"
+              style={{
+                backgroundColor: `${group.style.groupColor}`,
+              }}
+            ></div>{" "}
+            <form
+              onSubmit={this.onAddTask}
+              className="flex justify-between align-center"
+            >
+              <input
+                placeholder="Add task +"
+                className="add-task"
+                onChange={this.onHandleChange}
+                value={this.state.taskValue}
+              // onFocus={this.toggleAddTask}
+              // onBlur={this.toggleAddTask}
+              // contentEditable
+              // suppressContentEditableWarning={true}
+              />
+              <button className={btnClassName}>Add</button>
+              {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
+              {!isAddTaskActive && <div className="btn-placeholder"></div>} */}
+            </form>
+          </div>
+        </div>
+        <div className="bar-container">
+          {cmpsOrder.map((cmpType, idx) => {
+            switch (cmpType) {
+              case "status-picker":
+                return <ProgressBarStatus key={idx} groupId={group.id} />;
+
+              case "priority-picker":
+                return (
+                  <ProgressBarPriority key={idx} groupId={group.id} />
+                );
+
+              case "type-picker":
+                return <ProgressBarType key={idx} groupId={group.id} />;
+              case "role-picker":
+                return <ProgressBarRole key={idx} groupId={group.id} />;
+              case "member-picker":
+                return <div key={idx} className="member-container"></div>;
+              case "date-picker":
+                return <div key={idx} className="date-container"></div>;
+              case "text":
+                return <div key={idx} className="text-container"></div>;
+              case "cost":
+                return <div key={idx} className="cost-container"></div>;
+            }
+          })}
+        </div>
+      </section>
     );
   }
 }
