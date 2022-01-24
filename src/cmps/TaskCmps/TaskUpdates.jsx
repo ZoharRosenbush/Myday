@@ -52,9 +52,7 @@ class _TaskUpdates extends React.Component {
         saveTask(task, groupId, board._id, null, newComment)
         this.setState({ commentValue: "" });
     };
-    onOnBlur = () => {
-        console.log('testtttt')
-    }
+
     render() {
         const { task } = this.props
         return (
@@ -69,7 +67,6 @@ class _TaskUpdates extends React.Component {
                             placeholder="Write an update..."
                             onChange={this.onHandleChange}
                             value={this.state.commentValue}
-                            onBlur={this.onOnBlur}
                         />
                     </form>
                 </div>

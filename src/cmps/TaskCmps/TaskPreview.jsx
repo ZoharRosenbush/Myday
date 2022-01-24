@@ -46,8 +46,6 @@ class _TaskPreview extends React.Component {
   }
 
   onUpdateTask = (cmpType, data) => {
-    console.log('data:', data, 'cmpType:', cmpType);
-    console.log('cmpType:', cmpType);
     const { task, saveTask, groupId, board } = this.props;
     let activity;
     switch (cmpType) {
@@ -97,9 +95,8 @@ class _TaskPreview extends React.Component {
         break;
       case "date-picker":
         task.timeline = data;
-        console.log('data:', data);
         activity = {
-          "txt": `Changed dates to ${data[0]} until ${data[1]}`,
+          "txt": `Changed dates`,
           "createdAt": Date.now(),
         }
         saveTask(task, groupId, board._id, activity);
