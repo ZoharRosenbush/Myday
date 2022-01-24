@@ -327,7 +327,7 @@ export class _GroupPreview extends React.Component {
                     }}
                   ></div>{" "}
                   <form
-                    onSubmit={this.onAddTask}s
+                    onSubmit={this.onAddTask}
                     className="flex justify-between align-center"
                   >
                     <input
