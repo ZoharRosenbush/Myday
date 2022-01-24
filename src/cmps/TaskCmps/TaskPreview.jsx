@@ -11,7 +11,7 @@ import { IoIosColorFilter } from "react-icons/io";
 import { Droppable } from "react-beautiful-dnd";
 import { Draggable } from "react-beautiful-dnd";
 import { MdDragIndicator } from "react-icons/md";
-
+import { makeId } from '../../services/board.service'
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 import {
@@ -46,15 +46,26 @@ class _TaskPreview extends React.Component {
   }
 
   onUpdateTask = (cmpType, data) => {
+    console.log('data:', data, 'cmpType:', cmpType);
+    console.log('cmpType:', cmpType);
     const { task, saveTask, groupId, board } = this.props;
+    let activity;
     switch (cmpType) {
       case "status-picker":
-        task.status = data;
-        saveTask(task, groupId, board._id);
+        task.status = data
+        activity = {
+          "txt": `Changed task status to ${data}`,
+          "createdAt": Date.now(),
+        }
+        saveTask(task, groupId, board._id, activity);
         break;
       case "priority-picker":
         task.priority = data;
-        saveTask(task, groupId, board._id);
+        activity = {
+          "txt": `Changed task priority to ${data}`,
+          "createdAt": Date.now(),
+        }
+        saveTask(task, groupId, board._id, activity);
         break;
       case "member-picker":
         const isOwner = task.owner.findIndex((owner) => {
@@ -62,25 +73,44 @@ class _TaskPreview extends React.Component {
         });
         if (isOwner !== -1) return;
         task.owner.push(data);
-        saveTask(task, groupId, board._id);
+        activity = {
+          "txt": `Added ${data.fullname} as the task member`,
+          "createdAt": Date.now(),
+        }
+        saveTask(task, groupId, board._id, activity);
         break;
       case "role-picker":
-        task.role = data;
-        saveTask(task, groupId, board._id);
+        task.role = data
+        activity = {
+          "txt": `Changed task role to ${data}`,
+          "createdAt": Date.now(),
+        }
+        saveTask(task, groupId, board._id, activity);
         break;
       case "type-picker":
-        console.log("data:", data);
-
         task.type = data;
-        saveTask(task, groupId, board._id);
+        activity = {
+          "txt": `Changed task type to ${data}`,
+          "createdAt": Date.now(),
+        }
+        saveTask(task, groupId, board._id, activity);
         break;
       case "date-picker":
         task.timeline = data;
-        saveTask(task, groupId, board._id);
+        console.log('data:', data);
+        activity = {
+          "txt": `Changed dates to ${data[0]} until ${data[1]}`,
+          "createdAt": Date.now(),
+        }
+        saveTask(task, groupId, board._id, activity);
         break;
       case "text":
         task.text = data;
-        saveTask(task, groupId, board._id);
+        activity = {
+          "txt": `Changed text to ${data}}`,
+          "createdAt": Date.now(),
+        }
+        saveTask(task, groupId, board._id, activity);
         break;
       case "text":
         task.cost = data;

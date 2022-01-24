@@ -23,7 +23,7 @@ export function DateCmp({ cmpData, onUpdateTask, groupColor }) {
         if (startDate !== userStartDate && endDate !== userEndDate) {
             if (!startDate || !endDate) return
             onUpdateTask(type, dateRange)
-            remainingTime = (endDate.getUTCDate()+1)- (startDate.getUTCDate()+1)
+            remainingTime = (endDate.getUTCDate() + 1) - (startDate.getUTCDate() + 1)
             // console.log('the ramaining',remainingTime);
             setRemainingTime(remainingTime)
         }
@@ -31,7 +31,7 @@ export function DateCmp({ cmpData, onUpdateTask, groupColor }) {
     }, [dateRange]);
 
     useEffect(() => {
-    //   console.log('the value in use effect',inputValue);
+        //   console.log('the value in use effect',inputValue);
     }, [inputValue]);
 
     const replaceInputValue = () => {

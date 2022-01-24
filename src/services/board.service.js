@@ -13,6 +13,7 @@ export const boardService = {
   addGroup,
   deleteGroup,
   deleteTask,
+  makeId
 };
 
 function query(filterBy) {
@@ -270,6 +271,7 @@ function getNewBoard() {
             role: "Empty",
             text: "",
             type: "Empty",
+            activities: [],
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -284,7 +286,6 @@ function getNewBoard() {
           },
         ],
         style: { groupColor: getNiceRandomColor() },
-        activities: [],
       },
       {
         id: "gds21",
@@ -299,6 +300,7 @@ function getNewBoard() {
             cost: 0,
             role: "Empty",
             type: "Empty",
+            activities: [],
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -313,7 +315,6 @@ function getNewBoard() {
           },
         ],
         style: { groupColor: getNiceRandomColor() },
-        activities: [],
       },
       {
         id: "gzcdsxsv101",
@@ -328,6 +329,7 @@ function getNewBoard() {
             role: "Empty",
             type: "Empty",
             cost: 0,
+            activities: [],
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -342,7 +344,6 @@ function getNewBoard() {
           },
         ],
         style: { groupColor: getNiceRandomColor() },
-        activities: [],
       },
     ],
   };
@@ -376,4 +377,16 @@ function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+}
+
+
+
+function makeId(length = 4) {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
 }
