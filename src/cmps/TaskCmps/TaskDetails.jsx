@@ -14,6 +14,8 @@ export class _TaskDetails extends React.Component {
 
     getCurrTask = () => {
         const { taskId } = this.props.match.params;
+        console.log('taskId:', taskId);
+
         const { board } = this.props
         const task = board.groups.map((group) => {
             return group.tasks.filter((task) => task.id === taskId)
@@ -24,40 +26,26 @@ export class _TaskDetails extends React.Component {
         return task[0]
     };
 
-    getCurrGroup = () => {
-        const { taskId } = this.props.match.params;
-        const task = this.getCurrTask()
-        const { board } = this.props
 
-        const currGroup = board.groups.map((group) => {
-            console.log('group:', group);
-            return group.tasks.filter((t) => (t === task))
-            // group.tasks.find((task) => {
-            //     return task.id === taskId
-            // })
-        })
-
-        if (currGroup.length !== 1) {
-            console.error('invalid tasks count', currGroup.length)
-        }
-        console.log('currGroup[0]:', currGroup[0]);
-
-        return currGroup[0]
-    };
 
 
     onUpdateTaskTitle = ({ target }) => {
         const { board, loadBoard, saveTask } = this.props
         const task = this.getCurrTask()
-        const groupId = this.getCurrGroup().id
+        const { groupId } = this.props.match.params
+        const activity = {
+            "txt": `Changed task title`,
+            "createdAt": Date.now(),
+        }
         const value = target.textContent;
         if (!value) return;
         task.title = value;
-        // console.log('task:', task);
-        // console.log('groupId:', groupId);
-        // console.log('board._id:', board._id);
         try {
-            saveTask(task, groupId, board._id);
+            console.log('task:', task);
+            console.log('groupId:', groupId);
+            console.log('board._id:', board._id);
+
+            saveTask(task, groupId, board._id, activity);
             loadBoard()
         } catch (err) {
             console.log('error in updating board', err);
@@ -94,19 +82,13 @@ export class _TaskDetails extends React.Component {
     }
 
     render() {
-        // const { taskId } = this.props.match.params;
-        // console.log('taskId:', taskId);
-        // console.log('this.props:', this.props);
         const { isTaskDetailsOpen } = this.props;
         const { isUpdates, isActivity, isFiles } = this.state
-        // const { isTaskDetailsOpen } = this.state
         const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
         return <section className={`${className}`}>
-
             <div className="close-details" onClick={this.onCloseTaskDetails}>
                 <AiOutlineClose size='19px' color="rgb(122 122 122)" />
             </div>
-
             <div><h2 className="task-header-title"
                 contentEditable
                 suppressContentEditableWarning={true}
@@ -120,8 +102,6 @@ export class _TaskDetails extends React.Component {
                 <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span>
                 <button className="details-features" onClick={this.goToActivity}>Activity Log</button> <span> |</span>
             </div>
-
-
             {isUpdates && <TaskUpdates />}
             {isActivity && <TaskActivity task={this.getCurrTask()} />}
             {isFiles && <TaskFiles />}

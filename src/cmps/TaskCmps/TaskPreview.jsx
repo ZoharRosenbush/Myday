@@ -195,7 +195,7 @@ class _TaskPreview extends React.Component {
     });
     const groupColor = group.style.groupColor;
     const cmpsOrder = board.cmpsOrder;
-    const id = "123";
+
     return (
 
       // <Draggable draggableId={task.id} index={this.props.key}>
@@ -260,7 +260,7 @@ class _TaskPreview extends React.Component {
                   {task.title}
                 </span>
 
-                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${task.id}`}>
+                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
                   <div className="chat-icon-container">
                     <BsChat color="#c5c7d0" />
                   </div>
@@ -280,7 +280,10 @@ class _TaskPreview extends React.Component {
                 />
               );
             })}
-            <Route component={TaskDetails} path={`/myday/board/:boardId/:taskId`} />
+            {/* <Route path="/myday/board/:boardId/:taskId" render={() => <TaskDetails group={group} />} /> */}
+            <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} />
+
+            {/* <Route path="/greeting/:name" render={(props) => <Greeting text="Hello, " {...props} />} /> */}
 
           </section>
         </div>
