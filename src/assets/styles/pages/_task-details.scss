@@ -11,7 +11,8 @@
   box-shadow: -2px 9px 16px 0 rgb(0 0 0 / 58%);
   margin-left: 20px;
   z-index: 200;
-  cursor: unset;
+  transition: transform 0.3s;
+  cursor: auto;
   &.task-details-closed {
     transform: translateX(110%);
   }
@@ -26,6 +27,7 @@
     margin-top: 22px;
     margin-left: 8px;
     width: fit-content;
+    cursor: pointer;
     &:hover {
       background-color: #e6e9ef;
     }
@@ -92,28 +94,84 @@
       border-radius: 4px;
       background-color: #e6e9ef;
     }
-    &:focus-visible {
+    &:focus {
       outline: none;
     }
   }
   .post {
     height: 233px;
-    border: 0.5px solid #c5c7d0;
+    border: 0.5px solid #dbdde6;
     border-radius: 4px;
-    margin: 20px;
-    flex-flow: column-reverse;
+    // margin: 20px;
+    margin-right: 22px;
+    justify-content: space-between;
+    flex-flow: column;
+    .post-header {
+      justify-content: space-between;
+      margin-top: 14px;
+      .time-ago {
+        margin-right: 15px;
+        margin-right: 20px;
+      }
+      .header-container {
+        align-items: center;
+        justify-content: space-around;
+        width: 160px;
 
+        .avatar {
+          width: 40px;
+          height: 40px;
+          background-color: #66cdff;
+          border-radius: 50%;
+          color: white;
+          font-family: 'roboto-bold';
+          font-size: 19px;
+          line-height: 2;
+          margin-left: 15px;
+        }
+        .user-name {
+          color: #323338;
+          font-size: 14px;
+          font-weight: 600;
+          font-family: 'roboto-regular';
+        }
+        .active-circle {
+          background-color: #00ca72;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+        }
+      }
+    }
+    .post-title {
+      margin-top: -75px;
+      margin-left: 20px;
+      font-family: 'Roboto-light';
+      color: #4c4c51;
+      font-size: 14.5px;
+    }
     .post-actions {
+      cursor: pointer;
       & > *:nth-of-type(1) {
-        border-right: 0.5px solid #c5c7d0;
+        border-right: 0.5px solid #dbdde6;
       }
       div {
         width: 50%;
-        border-top: 0.5px solid #c5c7d0;
+        border-top: 0.5px solid #dbdde6;
+        height: 40px;
+        line-height: 3;
         // border-bottom: none;
         margin-bottom: 0px;
         // flex-flow: column-reverse;
+        transition: 0.3s;
+        &:hover {
+          background-color: #e6e9ef;
+        }
       }
     }
   }
+}
+
+.task-details .update-area input:focus-visible {
+  outline: none;
 }

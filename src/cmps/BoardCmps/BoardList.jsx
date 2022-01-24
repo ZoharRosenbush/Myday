@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { BsThreeDots } from 'react-icons/bs'
 import { RiDeleteBinLine } from "react-icons/ri";
 import { GrCircleAlert } from "react-icons/gr";
-import { removeBoard,setActiveModal } from '../../store/board.action.js'
+import { removeBoard, setActiveModal } from '../../store/board.action.js'
 
 
 
@@ -13,10 +13,10 @@ class _BoardList extends React.Component {
     isModalToDelete: false,
 
   };
-  
+
 
   openModal = (boardId) => {
-    const activeModal = { cmpType: 'boardEdit', boardId:boardId }
+    const activeModal = { cmpType: 'boardEdit', boardId: boardId }
     this.props.setActiveModal(activeModal)
   };
 
@@ -49,8 +49,8 @@ class _BoardList extends React.Component {
   }
 
   render() {
-    const { boards, board, activeModal} = this.props
-    const {isModalToDelete } = this.state
+    const { boards, board, activeModal } = this.props
+    const { isModalToDelete } = this.state
     // console.log('board:', board);
 
     return (
@@ -106,6 +106,7 @@ class _BoardList extends React.Component {
                 </section>
               )}
               {isModalToDelete && <div className="main-screen"></div>}
+
             </div>
           );
         })}
@@ -120,7 +121,7 @@ function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     activeModal: boardModule.activeModal
-  
+
 
   };
 }

@@ -207,15 +207,14 @@ class _TaskPreview extends React.Component {
     });
     const groupColor = group.style.groupColor;
     const cmpsOrder = board.cmpsOrder;
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 4a8351aa9bfc7d3ea156e81d35cbf2b0d5a020e7
     return (
 
-      // <Draggable draggableId={task.id} index={this.props.key}>
-      // {(provided) => (
-      // <section
-      //  {...provided.draggableProps}
-      //  {...provided.dragHandleProps}
-      //  ref={provided.innerRef}          >
+ 
       <section className="task-preview-section">
         <div className="flex task-icon">
           <div className="icon-down-task" onClick={(ev) => {
@@ -272,7 +271,7 @@ class _TaskPreview extends React.Component {
                   {task.title}
                 </span>
 
-                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${task.id}`}>
+                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
                   <div className="chat-icon-container">
                     <BsChat color="#c5c7d0" />
                   </div>
@@ -292,7 +291,10 @@ class _TaskPreview extends React.Component {
                 />
               );
             })}
-            <Route component={TaskDetails} path={`/myday/board/:boardId/:taskId`} />
+            {/* <Route path="/myday/board/:boardId/:taskId" render={() => <TaskDetails group={group} />} /> */}
+            <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} />
+
+            {/* <Route path="/greeting/:name" render={(props) => <Greeting text="Hello, " {...props} />} /> */}
 
           </section>
         </div>

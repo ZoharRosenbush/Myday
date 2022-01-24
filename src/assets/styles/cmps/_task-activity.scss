@@ -1,0 +1,31 @@
+.posts-container {
+  margin-left: 20px;
+  margin-top: 40px;
+  .post {
+    margin-bottom: 20px;
+  }
+  .post-container {
+    justify-content: space-between;
+    height: 56px;
+    border-bottom: 0.5px solid #e5e6ea;
+    padding: 8px 0px;
+    .task-name {
+      width: 215px;
+    }
+    .member-name {
+      width: 70px;
+    }
+    .time-ago {
+      width: 54px;
+    }
+    .avatar {
+      border-radius: 50%;
+      height: 27px;
+      width: 27px;
+      background-color: #66ccff;
+      color: white;
+      font-size: 16px;
+      font-family: 'roboto-regular';
+    }
+  }
+}
