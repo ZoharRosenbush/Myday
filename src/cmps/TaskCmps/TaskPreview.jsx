@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+
 import { MdArrowDropDownCircle } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CgArrowDownR } from "react-icons/cg";
@@ -11,21 +12,26 @@ import { Droppable } from "react-beautiful-dnd";
 import { Draggable } from "react-beautiful-dnd";
 import { MdDragIndicator } from "react-icons/md";
 
+import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 import {
   saveTask,
   setActiveModal,
   deleteTask,
+  setTaskModal,
 } from "../../store/board.action.js";
+
+
 
 class _TaskPreview extends React.Component {
   state = {
     isModalTaskOpen: false,
   };
 
+
   openModal = (taskId) => {
-    const activeModal = { cmpType: "taskEdit", taskId: taskId };
-    this.props.setActiveModal(activeModal);
+    const activeModal = { cmpType: 'taskEdit', taskId: taskId }
+    this.props.setActiveModal(activeModal)
   };
 
   deleteTask = () => {
@@ -33,6 +39,11 @@ class _TaskPreview extends React.Component {
     this.setState({ isModalTaskOpen: !this.state.isModalTaskOpen });
     deleteTask(task.id, groupId, board._id);
   };
+
+  openTaskDetails = () => {
+    const { setTaskModal } = this.props;
+    setTaskModal(true)
+  }
 
   onUpdateTask = (cmpType, data) => {
     const { task, saveTask, groupId, board } = this.props;
@@ -156,6 +167,7 @@ class _TaskPreview extends React.Component {
     const cmpsOrder = board.cmpsOrder;
     const id = "123";
     return (
+
       // <Draggable draggableId={task.id} index={this.props.key}>
       // {(provided) => (
       // <section
@@ -164,13 +176,10 @@ class _TaskPreview extends React.Component {
       //  ref={provided.innerRef}          >
       <section className="task-preview-section">
         <div className="flex task-icon">
-          <div
-            className="icon-down-task"
-            onClick={(ev) => {
-              ev.stopPropagation();
-              this.openModal(task.id);
-            }}
-          >
+          <div className="icon-down-task" onClick={(ev) => {
+            ev.stopPropagation()
+            this.openModal(task.id)
+          }}>
             {/* {activeModal.taskId !== task.id && */}
             <IoMdArrowDropdown
               style={{
@@ -193,25 +202,18 @@ class _TaskPreview extends React.Component {
           </div>
 
           <div className="drag-icon">
-            <MdDragIndicator
-              color="#c4c4c4"
-              style={{ height: "1.3em", width: "1.3em" }}
-            />
+            <MdDragIndicator color="#c4c4c4" style={{ height: "1.3em", width: "1.3em" }} />
           </div>
-          {activeModal.cmpType === "taskEdit" &&
-            activeModal.taskId === task.id && (
-              <div className="task-modal">
-                <div
-                  className="flex modal-group-items"
-                  onClick={this.deleteTask}
-                >
-                  <div>
-                    <RiDeleteBinLine color="#323338c2" />{" "}
-                  </div>
-                  <span>Delete task</span>
+          {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
+            <div className="task-modal">
+              <div className="flex modal-group-items" onClick={this.deleteTask}>
+                <div>
+                  <RiDeleteBinLine color="#323338c2" />{" "}
                 </div>
+                <span>Delete task</span>
               </div>
-            )}
+            </div>
+          }
           <section className="task-preview flex">
             <div className="task-title-cell flex first-column">
               <div
@@ -227,7 +229,8 @@ class _TaskPreview extends React.Component {
                 >
                   {task.title}
                 </span>
-                <Link to={`/myday/board/${board._id}/${task._id}`}>
+
+                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${task.id}`}>
                   <div className="chat-icon-container">
                     <BsChat color="#c5c7d0" />
                   </div>
@@ -235,8 +238,6 @@ class _TaskPreview extends React.Component {
               </div>
             </div>
             {cmpsOrder.map((cmp, idx) => {
-
-
               return (
                 <DynamicCmp
                   cmpData={this.cmpInfo(cmp)}
@@ -249,13 +250,15 @@ class _TaskPreview extends React.Component {
                 />
               );
             })}
+            <Route component={TaskDetails} path={`/myday/board/:boardId/:taskId`} />
+
           </section>
         </div>
-        <div className="finish-task">
 
+        <div className="finish-task">
         </div>
       </section>
-
+      // </section>
       // )}
     );
   }
@@ -272,6 +275,7 @@ const mapDispatchToProps = {
   saveTask,
   setActiveModal,
   deleteTask,
+  setTaskModal
 };
 
 export const TaskPreview = connect(
