@@ -112,8 +112,8 @@ export function addGroup(boardId) {
 export function removeBoard(boardId) {
   return async (dispatch) => {
     try {
-      await boardService.remove(boardId);
       dispatch({ type: "REMOVE_BOARD", boardId: boardId });
+      await boardService.remove(boardId);
     } catch (err) {
       console.log("Cannot delete board", err);
     }
@@ -158,7 +158,6 @@ export function saveTask(task, groupId, boardId, activity, comment) {
   }
   return async (dispatch) => {
     try {
-
       const board = await boardService.saveTask(task, groupId, boardId);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
