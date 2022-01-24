@@ -38,33 +38,19 @@ class _TaskUpdates extends React.Component {
         }
         return Math.floor(seconds) + " sec";
     }
-    // var aDay = 24 * 60 * 60 * 1000;
-    // console.log(timeSince(new Date(Date.now() - aDay)));
-    // console.log(timeSince(new Date(Date.now() - aDay * 2)));
-    // console.log('task:', task);
-
     onHandleChange = ({ target }) => {
         const value = target.value;
-        console.log('value:', value);
-
         this.setState({ commentValue: value });
     };
-
     onAddComment = (ev) => {
-        console.log("adding Comment");
         ev.preventDefault();
         const { groupId, task, board } = this.props
         const newComment = {
             createdAt: Date.now(),
             txt: this.state.commentValue
         }
-
         saveTask(task, groupId, board._id, null, newComment)
-
-        this.setState({ taskValue: "" });
-
-        // addComment(this.state.taskValue, group.id, board._id);
-        // this.setState({ taskValue: "" });
+        this.setState({ commentValue: "" });
     };
     render() {
         const { task } = this.props
@@ -79,25 +65,13 @@ class _TaskUpdates extends React.Component {
                         <input
                             placeholder="Write an update..."
                             onChange={this.onHandleChange}
-                        // value={this.state.taskValue}
-                        // onFocus={this.toggleAddTask}
-                        // onBlur={this.toggleAddTask}
-                        // contentEditable
-                        // suppressContentEditableWarning={true}
+                            value={this.state.commentValue}
                         />
                     </form>
-
-
-                    {/* <form>
-                    <input placeholder="Write an update..."></input>
-                </form> */}
                 </div>
-
-
                 <React.Fragment>
                     <div>
                         <div className="posts-container">
-
                             {(!!task.comments.length) && task.comments.map((comment) => {
                                 return (
                                     <div key={comment.id} className="post flex column">
@@ -114,37 +88,16 @@ class _TaskUpdates extends React.Component {
                                             {comment.txt}
 
                                         </div>
-
-
-
                                         <div className="post-actions flex">
                                             <div><AiOutlineLike />Like</div>
                                             <div><BsReply />Reply</div>
                                         </div>
                                     </div>
-
                                 )
-
                             })}
-
                         </div>
-
                     </div>
-
                 </React.Fragment>
-
-
-                {/* <div className="post flex column">
-                <div className="post-header"><div className="post-title"></div></div>
-                <div className="post-actions flex">
-                    <div><AiOutlineLike />Like</div>
-                    <div><BsReply />Reply</div>
-                </div>
-            </div> */}
-
-
-
-
             </React.Fragment>
         )
     }

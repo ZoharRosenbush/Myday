@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { AiOutlineClose } from 'react-icons/ai'
-import { setTaskModal, loadBoard, saveTask } from '../../store/board.action.js'
+import { setTaskModal, saveTask } from '../../store/board.action.js'
 import { TaskUpdates } from "./TaskUpdates.jsx";
 import { TaskActivity } from './TaskActivity.jsx'
 import { TaskFiles } from './TaskFiles.jsx'
@@ -30,7 +30,7 @@ export class _TaskDetails extends React.Component {
 
 
     onUpdateTaskTitle = ({ target }) => {
-        const { board, loadBoard, saveTask } = this.props
+        const { board, saveTask } = this.props
         const task = this.getCurrTask()
         const { groupId } = this.props.match.params
         const activity = {
@@ -88,8 +88,6 @@ export class _TaskDetails extends React.Component {
         const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
-
-
             <section className={`${className}`}>
                 <div className="close-details" onClick={this.onCloseTaskDetails}>
                     <AiOutlineClose size='19px' color="rgb(122 122 122)" />
@@ -130,7 +128,6 @@ function mapStateToProps({ boardModule }) {
 }
 const mapDispatchToProps = {
     setTaskModal,
-    loadBoard,
     saveTask
 }
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);

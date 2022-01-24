@@ -210,7 +210,7 @@ class _TaskPreview extends React.Component {
 
     return (
 
- 
+
       <section className="task-preview-section">
         <div className="flex task-icon">
           <div className="icon-down-task" onClick={(ev) => {
