@@ -42,11 +42,12 @@ export function addBoard(board) {
 export function updateBoard(board) {
   return async (dispatch) => {
     try {
-      const savedBoard = await boardService.save({ ...board });
       dispatch({
         type: "UPDATE_BOARD",
-        board: savedBoard,
+        board: board,
       });
+      await boardService.save({ ...board });
+    
     } catch (err) {
       console.log("Cannot update board", err);
     }
@@ -130,13 +131,6 @@ export function deleteGroup(groupId, boardId) {
 }
 
 
-
-
-
-
-
-
-
 // Store - saveTask
 export function saveTask(task, groupId, boardId, activity, comment) {
   if (activity) {
@@ -144,7 +138,7 @@ export function saveTask(task, groupId, boardId, activity, comment) {
     activity.byMember = {
       "fullname": "Lora Turner",
       "username": "Lora Turner",
-      "_id": "u1099",
+      "_id": "61edc3c5652f5891aac4aed6",
       "acronyms": "LT",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
     }
@@ -156,24 +150,12 @@ export function saveTask(task, groupId, boardId, activity, comment) {
     comment.byMember = {
       "fullname": "Lora Turner",
       "username": "Lora Turner",
-      "_id": "u1099",
+      "_id": "61edc3c5652f5891aac4aed6",
       "acronyms": "LT",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
     }
     task.comments = [comment, ...task.comments]
   }
-
-
-  // const activity = {
-  //     "id": makeId(),
-  //     "txt": "Changed Color",
-  //     "createdAt": Date.now(),
-  //     "byMember": userService.getLoggedinUser(),
-  // }
-  //     "task": task
-
-
-
   return async (dispatch) => {
     try {
 
@@ -184,6 +166,7 @@ export function saveTask(task, groupId, boardId, activity, comment) {
     }
   };
 }
+
 export function saveGroup(group, boardId) {
 
   // const activity = {

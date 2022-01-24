@@ -207,7 +207,11 @@ class _TaskPreview extends React.Component {
     });
     const groupColor = group.style.groupColor;
     const cmpsOrder = board.cmpsOrder;
+<<<<<<< HEAD
+   
+=======
 
+>>>>>>> 4a8351aa9bfc7d3ea156e81d35cbf2b0d5a020e7
     return (
 
 
