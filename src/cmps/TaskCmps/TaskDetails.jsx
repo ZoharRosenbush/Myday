@@ -41,10 +41,6 @@ export class _TaskDetails extends React.Component {
         if (!value) return;
         task.title = value;
         try {
-            console.log('task:', task);
-            console.log('groupId:', groupId);
-            console.log('board._id:', board._id);
-
             saveTask(task, groupId, board._id, activity);
             // loadBoard()
         } catch (err) {
