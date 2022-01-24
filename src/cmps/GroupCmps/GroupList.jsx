@@ -41,6 +41,7 @@ export class _GroupList extends React.Component {
   render() {
     const { board } = this.props;
     const { groups } = board;
+    // console.log('the groups in grouplist',groups)
     
     return (
     
