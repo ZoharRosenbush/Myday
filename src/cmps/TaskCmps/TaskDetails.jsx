@@ -53,9 +53,9 @@ export class _TaskDetails extends React.Component {
         const value = target.textContent;
         if (!value) return;
         task.title = value;
-        console.log('task:', task);
-        console.log('groupId:', groupId);
-        console.log('board._id:', board._id);
+        // console.log('task:', task);
+        // console.log('groupId:', groupId);
+        // console.log('board._id:', board._id);
         try {
             saveTask(task, groupId, board._id);
             loadBoard()

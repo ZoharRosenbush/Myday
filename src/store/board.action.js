@@ -125,14 +125,28 @@ export function deleteGroup(groupId, boardId) {
 
 
 // Store - saveTask
-export function saveTask(task, groupId, boardId) {
+export function saveTask(task, groupId, boardId, activity) {
+  activity.id = boardService.makeId()
+  activity.byMember = {
+    "fullname": "Lora Turner",
+    "username": "Lora Turner",
+    "_id": "u1099",
+    "acronyms": "LT",
+    "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+  }
+  task.activities = [...task.activities, activity]
+  console.log('task:', task);
+
   // const activity = {
   //     "id": makeId(),
   //     "txt": "Changed Color",
   //     "createdAt": Date.now(),
   //     "byMember": userService.getLoggedinUser(),
-  //     "task": task
   // }
+  //     "task": task
+
+
+
   return async (dispatch) => {
     try {
 

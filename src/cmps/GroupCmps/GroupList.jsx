@@ -43,23 +43,29 @@ export class _GroupList extends React.Component {
     const { groups } = board;
     
     return (
-      //  <DragDropContext onDragEnd={this.onDragEnd}>
-      //         <Droppable droppableId={board._id} >
-      //         {(provided) => (
-        //           <section ref={provided.innerRef}> 
+    
         <DragDropContext onDragEnd={this.onDragEnd}> 
         <section className="group-list">
           {groups.map((group, idx) => {
             
   
             return (
-              // <Draggable key={idx} draggableId={group.id} index={idx}>
-              // {(provided) => (
-              //   <section
-              //     {...provided.draggableProps}
-              //     {...provided.dragHandleProps}
-              //     ref={provided.innerRef}
-              //   >
+             
+              <Draggable key={group.id} draggableId={group.id} index={idx}>
+              {(provided, snapshot) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  // style={getItemStyle(
+                  //   snapshot.isDragging,
+                  //   provided.draggableProps.style
+                  // )}
+                >
+
+
+
+
               <Droppable droppableId={group.id} key={idx}> 
                 {(provided) => (
                   <section ref={provided.innerRef}>
@@ -68,18 +74,18 @@ export class _GroupList extends React.Component {
                  </section>
                )}
               </Droppable>
-              // </section>
-              //       )}
-              //     </Draggable>
+
+              </div>
+                  )}
+                </Draggable>
+
+        
             );
           })}
       
         </section>
       </DragDropContext>
-            //         </section>
-            //   )}
-            // </Droppable>
-            // </DragDropContext>
+          
     );
   }
 }

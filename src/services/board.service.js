@@ -14,6 +14,7 @@ export const boardService = {
   addGroup,
   deleteGroup,
   deleteTask,
+  makeId
 };
 
 function query(filterBy) {
@@ -292,6 +293,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
+            cost: 0,
             role: "Empty",
             text: "hello",
             cost: "Empty",
@@ -321,6 +323,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
+            cost: 0,
             role: "Empty",
             text: "Enter text!",
             cost: "Empty",
@@ -402,4 +405,16 @@ function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+}
+
+
+
+function makeId(length = 4) {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
 }

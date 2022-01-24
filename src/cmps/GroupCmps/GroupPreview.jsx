@@ -120,30 +120,29 @@ export class _GroupPreview extends React.Component {
     else if (cmpType === "date-picker") return "Timeline";
     else if (cmpType === "type-picker") return "Type";
     else if (cmpType === "text") return "Text";
+    else if (cmpType === "cost") return "Cost";
     else return "Status";
   };
 
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     const { group, board, updateBoard } = this.props;
+    console.log('destination:', destination);
+    console.log('source:', source);
+    console.log('draggableId:', draggableId);
+
 
     if (!destination) return;
     //  if (
-    //    destination.droppableId === source.droppableId &&
+
     //    destination.index === source.index
     //  ) {
     //    return;
     //  }
-    const cmpsOrder = board.cmpsOrder;
-    console.log("cmpsOrder:", cmpsOrder);
-
-    const cmpIdx = cmpsOrder.findIndex((cmp) => {
-      return cmp === draggableId;
-    });
 
     board.cmpsOrder.splice(source.index, 1);
     board.cmpsOrder.splice(destination.index, 0, draggableId);
-    console.log("board.cmpsOrder:", board.cmpsOrder);
+
     updateBoard(board);
   };
 
@@ -155,13 +154,7 @@ export class _GroupPreview extends React.Component {
       ? "add-task-btn-visible"
       : "add-task-btn";
     return (
-      // <Draggable  draggableId={group.id} index={0}>
-      //   {(provided) => (
-      //     <section
-      //       {...provided.draggableProps}
-      //       {...provided.dragHandleProps}
-      //       ref={provided.innerRef}
-      //     >
+
       <Droppable droppableId={group.id}>
         {(provided) => (
           <section ref={provided.innerRef}>
@@ -211,83 +204,87 @@ export class _GroupPreview extends React.Component {
                   </button>
                 </section>
               )}
-              {isModalToDelete && <div className="main-screen"></div>}
-              <DragDropContext onDragEnd={this.onDragEnd}>
-                <Droppable droppableId="cmp">
-                  {(provided) => (
-                    <section className="flex" ref={provided.innerRef}>
-                      {provided.placeholder}
-                      <div className="div-headline-container">
-                        <div className="group-title-container first-column">
-                          <IoMdArrowDropdownCircle
-                            style={{
-                              color: `${group.style.groupColor}`,
-                              fontSize: "19px",
-                              cursor: "pointer",
-                              transform: "translateY(4.5px)",
-                            }}
-                            onClick={(ev) => {
-                              ev.stopPropagation();
-                              this.openModal("groupEdit");
-                            }}
-                          />
-                          <h1
-                            className="group-title first-column"
-                            contentEditable
-                            suppressContentEditableWarning={true}
-                            onBlur={this.onUpdateTitleContent}
-                            style={{ color: `${group.style.groupColor}` }}
-                          >
-                            {" "}
-                            {group.title}
-                          </h1>
-                          {activeModal.cmpType === "ColorInput" &&
-                            activeModal.groupId === group.id && (
-                              <ColorInput
-                                onUpdateGroupColor={this.onUpdateGroupColor}
-                              />
-                            )}
-                        </div>
-                        {/* <DragDropContext onDragEnd={this.onDragEnd}>
-                <Droppable droppableId="cmp">
-                  {(provided) => (
-                    <section className="flex" ref={provided.innerRef}> */}
-                        {cmpsOrder.map((cmp, idx) => {
-                          return (
-                            <Draggable key={idx} draggableId={cmp} index={idx}>
-                              {(provided) => (
-                                <section
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                  ref={provided.innerRef}
-                                >
-                                  <div className={this.cmpTitle(cmp)}>
-                                    <div className="cmp-title-container">
-                                      <div className="drag-icon-cmp">
-                                        <MdDragIndicator
-                                          color="#6F7080"
-                                          style={{
-                                            height: "20px",
-                                            width: "20px",
-                                          }}
-                                        />
+
+              <div className="div-headline-container">
+                <div className="group-title-container first-column">
+                  <IoMdArrowDropdownCircle
+                    style={{
+                      color: `${group.style.groupColor}`,
+                      fontSize: "19px",
+                      cursor: "pointer",
+                      transform: "translateY(4.5px)",
+                    }}
+                    onClick={(ev) => {
+                      ev.stopPropagation();
+                      this.openModal("groupEdit");
+                    }}
+                  />
+                  <h1
+                    className="group-title first-column"
+                    contentEditable
+                    suppressContentEditableWarning={true}
+                    onBlur={this.onUpdateTitleContent}
+                    style={{ color: `${group.style.groupColor}` }}
+                  >
+                    {" "}
+                    {group.title}
+                  </h1>
+                  {activeModal.cmpType === "ColorInput" &&
+                    activeModal.groupId === group.id && (
+                      <ColorInput
+                        onUpdateGroupColor={this.onUpdateGroupColor}
+                      />
+                    )}
+                </div>
+
+
+                <div>
+                  <DragDropContext onDragEnd={this.onDragEnd}>
+                    <Droppable droppableId={group.id} direction="horizontal">
+                      {(provided) => (
+                        <div className="flex" {...provided.droppableProps}
+                          ref={provided.innerRef}>
+
+                          {cmpsOrder.map((cmp, idx) => {
+
+                            return (
+
+                              <Draggable key={cmp} draggableId={cmp} index={idx}>
+                                {(provided) => (
+                                  <div
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    ref={provided.innerRef}
+                                  >
+                                    <div className={this.cmpTitle(cmp)}>
+                                      <div className="cmp-title-container">
+                                        <div className="drag-icon-cmp">
+                                          <MdDragIndicator
+                                            color="#6F7080"
+                                            style={{
+                                              height: "20px",
+                                              width: "20px",
+                                            }}
+                                          />
+                                        </div>
+                                        <div className={this.cmpTitle(cmp)}>{this.cmpTitle(cmp)}</div>
                                       </div>
-                                      <div className={this.cmpTitle(cmp)}>{this.cmpTitle(cmp)}</div>
                                     </div>
+
                                   </div>
-                                  {provided.placeholder}
-                                </section>
-                              )}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    </section>
-                  )}
-                </Droppable>
-              </DragDropContext>
-              
+                                )}
+                              </Draggable>
+                              // </div>
+                            );
+                          })}
+                          {provided.placeholder}
+                        </div>
+                      )}
+                    </Droppable>
+                  </DragDropContext>
+                </div>
+              </div>
+
 
               {group.tasks.map((task, idx) => {
                 return (
@@ -327,10 +324,10 @@ export class _GroupPreview extends React.Component {
                       className="add-task"
                       onChange={this.onHandleChange}
                       value={this.state.taskValue}
-                      // onFocus={this.toggleAddTask}
-                      // onBlur={this.toggleAddTask}
-                      // contentEditable
-                      // suppressContentEditableWarning={true}
+                    // onFocus={this.toggleAddTask}
+                    // onBlur={this.toggleAddTask}
+                    // contentEditable
+                    // suppressContentEditableWarning={true}
                     />
                     <button className={btnClassName}>Add</button>
                     {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
@@ -359,6 +356,8 @@ export class _GroupPreview extends React.Component {
                       return <div key={idx} className="date-container"></div>;
                     case "text":
                       return <div key={idx} className="text-container"></div>;
+                    case "cost":
+                      return <div key={idx} className="cost-container"></div>;
                   }
                 })}
               </div>

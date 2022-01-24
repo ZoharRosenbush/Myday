@@ -78,7 +78,8 @@ function _createBoards() {
         "date-picker",
         "priority-picker",
         "role-picker",
-        "text"
+        "text",
+        "cost"
       ],
       title: "Sprint 4",
       description:
@@ -152,9 +153,11 @@ function _createBoards() {
               title: "Replace Logo",
               status: "Done",
               priority: "High",
+              cost: 0,
               role: "Dev",
               text: "hello",
               type: "Security",
+              activities: [],
               timeline: ["Jan 18-22", "Jan 20-22"],
               owner: [
                 {
@@ -185,8 +188,10 @@ function _createBoards() {
               status: "Done",
               priority: "High",
               text: "lalaa",
+              cost: 0,
               role: "Design",
               type: "Bug",
+              activities: [],
               timeline: ["Jan 30-22", "Feb 02-22"],
               owner: [
                 {
@@ -214,20 +219,7 @@ function _createBoards() {
             }
           ],
           style: { groupColor: getNiceRandomColor() },
-          activities: [
-            {
-              id: "a101",
-              txt: "Changed Color",
-              createdAt: Date.now(),
-              byMember: {
-                _id: "u108",
-                acronyms: "LS",
-                fullname: "Lee Segal",
-                username: "Lee Segal",
-                imgUrl: "http://some-img",
-              },
-            },
-          ],
+
         },
       ],
     },
@@ -254,3 +246,4 @@ function getRandomIntInclusive(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
+
