@@ -1,5 +1,6 @@
-import { storageService } from "./async-storage.service.js";
-const STORAGE_KEY = "boardDB";
+// import { storageService } from "./async-storage.service.js";
+import { httpService } from "./http.service.js";
+// const STORAGE_KEY = "boardDB";
 
 export const boardService = {
   query,
@@ -16,21 +17,37 @@ export const boardService = {
   makeId
 };
 
-function query(filterBy) {
-  return storageService.query(STORAGE_KEY);
+async function query(filterBy) {
+  const boards = await httpService.get('board/');
+  // if (!boards.length) {
+  //   return _getNewBoards()
+  // }
+  // console.log(boards)
+  return boards
 }
 
-function getById(boardId) {
-  return storageService.get(STORAGE_KEY, boardId);
+async function getById(boardId) {
+  console.log('the id',boardId)
+  const board = await httpService.get(`board/${boardId}`)
+  console.log('the board in servicve',board)
+  return board
 }
 
-function save(boardToSave) {
+async function save(boardToSave) {
   if (boardToSave._id) {
-    return storageService.put(STORAGE_KEY, boardToSave);
+    const board = await httpService.put(`board/${boardToSave._id}`, boardToSave);
+    return board
   } else {
-    return storageService.post(STORAGE_KEY, boardToSave);
+    const addedBoard = await httpService.post('board/', boardToSave);
+    return addedBoard
   }
 }
+
+async function remove(boardId) {
+  const removedBoardId = await httpService.delete(`board/${boardId}`);
+  return removedBoardId
+}
+
 async function saveTask(taskToSave, groupId, boardId) {
   console.log('taskToSave:', taskToSave);
   console.log('groupId:', groupId);
@@ -61,16 +78,16 @@ async function addTask(value, groupId, boardId) {
       priority: "Empty",
       role: "Empty",
       type: "Empty",
+      "cost": "Empty",
       activities: [],
-      timeline: ["Jan 30-22", "Feb 02-22"],
+      timeline: ["Jan 17-22", "Jan 19-22"],
       owner: [
         {
-          _id: "u101",
-          acronyms: "ME",
-          fullname: "May Elgrat",
-          username: "May Elgrat",
-          imgUrl:
-            "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+          "fullname": "Lora Turner",
+          "username": "Lora Turner",
+          "_id": "61edc3c5652f5891aac4aed6",
+          "acronyms": "LT",
+          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
         },
       ],
       comments: [],
@@ -95,30 +112,30 @@ async function addGroup(boardId) {
           id: _makeId(),
           title: "New Task",
           status: "Empty",
+          "cost": "Empty",
           priority: "Empty",
           text: "",
           role: "Empty",
           type: "Empty",
           activities: [],
-          timeline: ["Jan 30-22", "Feb 02-22"],
+          timeline: ["Jan 17-22", "Jan 19-22"],
           owner: [
             {
-              _id: "u1099",
-              acronyms: "ZR",
-              fullname: "Zohar Rosenbush",
-              username: "Zohar Rosenbush",
-              imgUrl: "http://some-img",
-            },
+              fullname: "Ann Lee",
+              _id: "61edc3e7652f5891aac4c063",
+              acronyms: "AL",
+              username: "Ann Lee",
+              imgUrl: "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+            }
           ],
           comments: [],
         },
       ],
       style: { groupColor: getNiceRandomColor() },
-
     };
     const board = await getById(boardId);
     board.groups.push(groupToSave);
-    console.log("board:", board);
+    // console.log("board:", board);
 
     save(board);
     return board;
@@ -178,32 +195,58 @@ async function deleteTask(taskId, groupId, boardId) {
   }
 }
 
-function remove(boardId) {
-  return storageService.remove(STORAGE_KEY, boardId);
-}
+// function _getNewBoards() {
+//   const boards = [
+//     getNewBoard()
+//   ]
+//   return boards
+// }
 
 function getNewBoard() {
   const newBoard = {
     cmpsOrder: [
       "status-picker",
-      "member-picker",
-      "type-picker",
       "date-picker",
+      "member-picker",
       "priority-picker",
-      "role-picker",
       "text",
-      "cost"
+      "cost",
+      "type-picker",
+      "role-picker"
     ],
     title: "New Board",
     description:
       "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
     createdBy: {
-      _id: "u108",
-      acronyms: "AA",
-      fullname: "Abi Abambi",
-      username: "Abush",
-      imgUrl: "http://some-img",
+      "_id": "61edc3e7652f5891aac4c063",
+      "acronyms": "AL",
+      "fullname": "Ann Lee",
+      "username": "Ann Lee",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
     },
+    "lastSeen": [
+      {
+        "_id": "61edc3e7652f5891aac4c063",
+        "acronyms": "AL",
+        "fullname": "Ann Lee",
+        "username": "Ann Lee",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+      },
+      {
+        "_id": "61edc551652f5891aac5830c",
+        "acronyms": "HG",
+        "fullname": "Henry Gold",
+        "username": "Henry Gold",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg"
+      },
+      {
+        "_id": "61edc3c5652f5891aac4aed6",
+        "acronyms": "LT",
+        "fullname": "Lora Turner",
+        "username": "Lora Turner",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+      }
+    ],
     statuses: [
       { id: "la123", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
       { id: "la555", value: "Done", bgColor: "#00C875", color: "#fff" },
@@ -221,29 +264,28 @@ function getNewBoard() {
       { id: "lb333", value: "Medium", bgColor: "#0086c0", color: "#fff" },
       { id: "lb444", value: "High", bgColor: "#225091", color: "#fff" },
     ],
-    members: [
+    "members": [
       {
-        _id: "u101",
-        acronyms: "ME",
-        fullname: "May Elgrat",
-        username: "May Elgrat",
-        imgUrl:
-          "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+        "_id": "61edc3e7652f5891aac4c063",
+        "acronyms": "AL",
+        "fullname": "Ann Lee",
+        "username": "Ann Lee",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
       },
       {
-        _id: "u108",
-        acronyms: "LS",
-        fullname: "Lee Segal",
-        username: "Lee Segal",
-        imgUrl: "http://some-img",
+        "_id": "61edc551652f5891aac5830c",
+        "acronyms": "HG",
+        "fullname": "Henry Gold",
+        "username": "Henry Gold",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg"
       },
       {
-        _id: "u1099",
-        acronyms: "ZR",
-        fullname: "Zohar Rosenbush",
-        username: "Zohar Rosenbush",
-        imgUrl: "http://some-img",
-      },
+        "_id": "61edc3c5652f5891aac4aed6",
+        "acronyms": "LT",
+        "fullname": "Lora Turner",
+        "username": "Lora Turner",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+      }
     ],
     types: [
       { id: "tp111", value: "Empty", bgColor: "#c4c4c4", color: "#c4c4c4" },
@@ -269,20 +311,21 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            cost: 0,
+            cost: "Empty",
             role: "Empty",
-            text: "",
+            text: "hello",
+            cost: "Empty",
             type: "Empty",
             activities: [],
-            timeline: ["Jan 30-22", "Feb 02-22"],
+            timeline: ["Jan 17-22", "Jan 19-22"],
             owner: [
               {
-                _id: "u1099",
-                acronyms: "ZR",
-                fullname: "Zohar Rosenbush",
-                username: "Zohar Rosenbush",
-                imgUrl: "http://some-img",
-              },
+                "fullname": "Henry Gold",
+                "acronyms": "HG",
+                "_id": "61edc551652f5891aac5830c",
+                "username": "Henry Gold",
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg"
+              }
             ],
             comments: [],
           },
@@ -297,20 +340,20 @@ function getNewBoard() {
             id: "csdf101",
             title: "New Task",
             status: "Empty",
-            text: "",
             priority: "Empty",
-            cost: 0,
             role: "Empty",
+            text: "Enter text!",
+            cost: "Empty",
             type: "Empty",
             activities: [],
-            timeline: ["Jan 30-22", "Feb 02-22"],
+            timeline: ["Jan 17-22", "Jan 19-22"],
             owner: [
               {
-                _id: "u1099",
-                acronyms: "ZR",
-                fullname: "Zohar Rosenbush",
-                username: "Zohar Rosenbush",
-                imgUrl: "http://some-img",
+                "_id" : "61edc3c5652f5891aac4aed6",
+                "acronyms" : "LT",
+                "fullname" : "Lora Turner",
+                "username" : "Lora Turner",
+                "imgUrl" : "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
               },
             ],
             comments: [],
@@ -327,19 +370,19 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
-            text: "",
             role: "Empty",
+            text: "Enter text!",
+            cost: "Empty",
             type: "Empty",
-            cost: 0,
             activities: [],
-            timeline: ["Jan 30-22", "Feb 02-22"],
+            timeline: ["Jan 17-22", "Jan 19-22"],
             owner: [
               {
-                _id: "u1099",
-                acronyms: "ZR",
-                fullname: "Zohar Rosenbush",
-                username: "Zohar Rosenbush",
-                imgUrl: "http://some-img",
+                "fullname" : "Ann Lee",
+                "_id" : "61edc3e7652f5891aac4c063",
+                "acronyms" : "AL",
+                "username" : "Ann Lee",
+                "imgUrl" : "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
               },
             ],
             comments: [],

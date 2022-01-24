@@ -69,7 +69,6 @@ console.log('draggableId:', draggableId);
   render() {
     const { board } = this.props;
     const { groups } = board;
-
     return (
 
       <DragDropContext onDragEnd={this.onDragEnd}>

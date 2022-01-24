@@ -207,10 +207,9 @@ class _TaskPreview extends React.Component {
     });
     const groupColor = group.style.groupColor;
     const cmpsOrder = board.cmpsOrder;
-
     return (
 
- 
+
       <section className="task-preview-section">
         <div className="flex task-icon">
           <div className="icon-down-task" onClick={(ev) => {

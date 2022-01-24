@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { AiOutlineClose } from 'react-icons/ai'
-import { setTaskModal, loadBoard, saveTask } from '../../store/board.action.js'
+import { setTaskModal, saveTask } from '../../store/board.action.js'
 import { TaskUpdates } from "./TaskUpdates.jsx";
 import { TaskActivity } from './TaskActivity.jsx'
 import { TaskFiles } from './TaskFiles.jsx'
@@ -14,7 +14,7 @@ export class _TaskDetails extends React.Component {
 
     getCurrTask = () => {
         const { taskId } = this.props.match.params;
-        console.log('taskId:', taskId);
+        // console.log('taskId:', taskId);
 
         const { board } = this.props
         const task = board.groups.map((group) => {
@@ -30,7 +30,7 @@ export class _TaskDetails extends React.Component {
 
 
     onUpdateTaskTitle = ({ target }) => {
-        const { board, loadBoard, saveTask } = this.props
+        const { board, saveTask } = this.props
         const task = this.getCurrTask()
         const { groupId } = this.props.match.params
         const activity = {
@@ -84,11 +84,10 @@ export class _TaskDetails extends React.Component {
     render() {
         const { isTaskDetailsOpen } = this.props;
         const { isUpdates, isActivity, isFiles } = this.state
+        const { groupId } = this.props.match.params
         const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
-
-
             <section className={`${className}`}>
                 <div className="close-details" onClick={this.onCloseTaskDetails}>
                     <AiOutlineClose size='19px' color="rgb(122 122 122)" />
@@ -106,7 +105,7 @@ export class _TaskDetails extends React.Component {
                     <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span>
                     <button className="details-features" onClick={this.goToActivity}>Activity Log</button> <span> |</span>
                 </div>
-                {isUpdates && <TaskUpdates />}
+                {isUpdates && <TaskUpdates task={this.getCurrTask()} groupId={groupId} />}
                 {isActivity && <TaskActivity task={this.getCurrTask()} />}
                 {isFiles && <TaskFiles />}
 
@@ -129,7 +128,6 @@ function mapStateToProps({ boardModule }) {
 }
 const mapDispatchToProps = {
     setTaskModal,
-    loadBoard,
     saveTask
 }
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);
