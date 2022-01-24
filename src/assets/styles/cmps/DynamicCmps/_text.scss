@@ -1,37 +1,36 @@
-
-
-.Text, .Cost{
-    width: 150px;
-    // padding: 2px;
+.Text,
+.Cost {
+  width: 150px;
+  // padding: 2px;
 }
-.text-cmp, .cost-cmp{
-    width: 150px;
+.text-cmp,
+.cost-cmp {
+  width: 150px;
+  background-color: #f5f6f8;
+  padding: 6px 6px 6px 6px;
+}
+.cost-cmp {
+  input {
+    width: 100%;
+    border: none;
+    text-align: center;
     background-color: #f5f6f8;
-    padding: 6px 6px 6px 6px;
-}
-.cost-cmp{
-    input{
-        width: 100%;
-        border: none;
-        text-align: center;
-        background-color: #f5f6f8;
-    }
+  }
 }
 
-.task-text, .cost-text{
-    background-color: #f5f6f8;
-    margin: 0;
-    padding: 0;
-    height: 23px;
- 
+.task-text,
+.cost-text {
+  background-color: #f5f6f8;
+  margin: 0;
+  padding: 0;
+  height: 23px;
+  line-height: 1.7;
 
-    &:focus-visible {
-        outline: 1px dotted black;
-        background-color: white;
-    }
-    &:hover {
-        outline: 1px dotted black;
-    }
+  &:focus-visible {
+    outline: 1px dotted black;
+    background-color: white;
+  }
+  &:hover {
+    outline: 1px dotted black;
+  }
 }
-
-

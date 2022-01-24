@@ -55,9 +55,7 @@ export function updateBoard(board) {
 }
 
 export function deleteTask(taskId, groupId, boardId) {
-  console.log('taskId:', taskId);
-  console.log('groupId:', groupId);
-  console.log('boardId:', boardId);
+
 
   return async (dispatch) => {
 
@@ -72,7 +70,6 @@ export function deleteTask(taskId, groupId, boardId) {
 
 export function addTask(value, groupId, boardId) {
   return async (dispatch) => {
-    console.log('value:', value);
 
     try {
       const board = await boardService.addTask(value, groupId, boardId);
@@ -133,9 +130,6 @@ export function deleteGroup(groupId, boardId) {
 
 // Store - saveTask
 export function saveTask(task, groupId, boardId, activity, comment) {
-  console.log('comment:', comment);
-  console.log('activity:', activity);
-  console.log('task:', task);
 
 
   if (activity) {
@@ -148,7 +142,6 @@ export function saveTask(task, groupId, boardId, activity, comment) {
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
     }
     task.activities = [activity, ...task.activities]
-    console.log('task:', task);
   }
   if (comment) {
     comment.id = boardService.makeId()
