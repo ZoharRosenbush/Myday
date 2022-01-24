@@ -187,12 +187,13 @@ function getNewBoard() {
   const newBoard = {
     cmpsOrder: [
       "status-picker",
-      "member-picker",
-      "type-picker",
       "date-picker",
+      "member-picker",
       "priority-picker",
-      "role-picker",
-      "text"
+      "text",
+      "cost",
+      "type-picker",
+      "role-picker"
     ],
     title: "New Board",
     description:
@@ -292,7 +293,10 @@ function getNewBoard() {
             status: "Empty",
             priority: "Empty",
             role: "Empty",
+            text: "hello",
+            cost: "Empty",
             type: "Empty",
+            activities: [],
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -307,7 +311,6 @@ function getNewBoard() {
           },
         ],
         style: { groupColor: getNiceRandomColor() },
-        activities: [],
       },
       {
         id: "gds21",
@@ -319,7 +322,10 @@ function getNewBoard() {
             status: "Empty",
             priority: "Empty",
             role: "Empty",
+            text: "Enter text!",
+            cost: "Empty",
             type: "Empty",
+            activities: [],
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -334,7 +340,6 @@ function getNewBoard() {
           },
         ],
         style: { groupColor: getNiceRandomColor() },
-        activities: [],
       },
       {
         id: "gzcdsxsv101",
@@ -346,7 +351,10 @@ function getNewBoard() {
             status: "Empty",
             priority: "Empty",
             role: "Empty",
+            text: "Enter text!",
+            cost: "Empty",
             type: "Empty",
+            activities: [],
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [
               {
@@ -361,7 +369,6 @@ function getNewBoard() {
           },
         ],
         style: { groupColor: getNiceRandomColor() },
-        activities: [],
       },
     ],
   };
