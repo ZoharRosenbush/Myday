@@ -1,10 +1,15 @@
-import { boardService } from "../services/board.service.js";
+import {
+  boardService
+} from "../services/board.service.js";
 
 export function loadBoards() {
   return async (dispatch) => {
     try {
       const boards = await boardService.query();
-      dispatch({ type: "SET_BOARDS", boards: boards });
+      dispatch({
+        type: "SET_BOARDS",
+        boards: boards
+      });
 
     } catch (err) {
       console.log("cannot find boards:", err);
@@ -17,7 +22,10 @@ export function loadBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId);
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
     } catch (err) {
       console.log("cannot find board:", err);
       throw err;
@@ -28,10 +36,15 @@ export function loadBoard(boardId) {
 export function addBoard(board) {
   return async (dispatch) => {
     try {
-      const savedBoard = await boardService.save({ ...board });
+      const savedBoard = await boardService.save({
+        ...board
+      });
       dispatch({
         type: "ADD_BOARD",
-        board: { _id: savedBoard._id, title: savedBoard.title },
+        board: {
+          _id: savedBoard._id,
+          title: savedBoard.title
+        },
       });
     } catch (err) {
       console.log("Cannot add board", err);
@@ -46,8 +59,24 @@ export function updateBoard(board) {
         type: "UPDATE_BOARD",
         board: board,
       });
-      await boardService.save({ ...board });
+      await boardService.save({
+        ...board
+      });
 
+    } catch (err) {
+      console.log("Cannot update board", err);
+    }
+  }
+}
+export function updateFilter(currFilterBy) {
+  console.log('currFilterBy:', currFilterBy);
+
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: "SET_FILTER",
+        currFilterBy: currFilterBy
+      });
     } catch (err) {
       console.log("Cannot update board", err);
     }
@@ -61,7 +90,10 @@ export function deleteTask(taskId, groupId, boardId) {
 
     try {
       const board = await boardService.deleteTask(taskId, groupId, boardId);
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
     } catch (err) {
       console.log('err:', err);
     }
@@ -73,7 +105,10 @@ export function addTask(value, groupId, boardId) {
 
     try {
       const board = await boardService.addTask(value, groupId, boardId);
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
     } catch (err) {
       console.log('err:', err);
     }
@@ -98,7 +133,10 @@ export function addGroup(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.addGroup(boardId);
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
     } catch (err) {
       console.log('err:', err);
     }
@@ -109,7 +147,10 @@ export function addGroup(boardId) {
 export function removeBoard(boardId) {
   return async (dispatch) => {
     try {
-      dispatch({ type: "REMOVE_BOARD", boardId: boardId });
+      dispatch({
+        type: "REMOVE_BOARD",
+        boardId: boardId
+      });
       await boardService.remove(boardId);
     } catch (err) {
       console.log("Cannot delete board", err);
@@ -120,7 +161,10 @@ export function deleteGroup(groupId, boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.deleteGroup(groupId, boardId);
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
     } catch (err) {
       console.log('err:', err);
     }
@@ -157,7 +201,10 @@ export function saveTask(task, groupId, boardId, activity, comment) {
   return async (dispatch) => {
     try {
       const board = await boardService.saveTask(task, groupId, boardId);
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
     } catch (err) {
       console.log('err:', err);
     }
@@ -176,7 +223,10 @@ export function saveGroup(group, boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.saveGroup(group, boardId);
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
     } catch (err) {
       console.log('err:', err);
     }
@@ -186,20 +236,29 @@ export function saveGroup(group, boardId) {
 export function setActiveModal(activeModal) {
   // console.log('active modal',activeModal);
   return (dispatch) => {
-    dispatch({ type: "SET_ACTIVE_MODAL", activeModal: activeModal });
+    dispatch({
+      type: "SET_ACTIVE_MODAL",
+      activeModal: activeModal
+    });
   };
 }
 
 
 export function setBoardNav(isBoardNavOpen) {
   return (dispatch) => {
-    dispatch({ type: "SET_BOARD_NAV", isBoardNavOpen: isBoardNavOpen })
+    dispatch({
+      type: "SET_BOARD_NAV",
+      isBoardNavOpen: isBoardNavOpen
+    })
   }
 }
 
 export function setTaskModal(isTaskDetailsOpen) {
   return (dispatch) => {
-    dispatch({ type: "SET_TASK_MODAL", isTaskDetailsOpen: isTaskDetailsOpen })
+    dispatch({
+      type: "SET_TASK_MODAL",
+      isTaskDetailsOpen: isTaskDetailsOpen
+    })
   }
 }
 

@@ -7,6 +7,7 @@ const initialState = {
   isBoardNavOpen: false,
   isTaskDetailsOpen: false,
   activities: [],
+  currFilterBy: {}
 };
 
 export function boardReducer(state = initialState, action) {
@@ -17,6 +18,8 @@ export function boardReducer(state = initialState, action) {
 
     case "SET_BOARDS":
       return { ...state, boards: [...action.boards] };
+    case "SET_FILTER":
+      return { ...state, currFilterBy: {...state.currFilterBy,...action.currFilterBy} };
     case "SET_BOARD":
       return { ...state, board: { ...action.board } };
     case "ADD_BOARD":

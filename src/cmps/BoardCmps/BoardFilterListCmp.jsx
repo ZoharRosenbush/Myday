@@ -1,35 +1,65 @@
 
 import React from "react";
 import { connect } from "react-redux";
-
+import {    updateFilter} from '../../store/board.action.js'
 
 
 
 class _BoardFilterListCmp extends React.Component {
 
-    state={
+    state = {
+        currFilterBy: {
+            status: [],
+            priority: [],
+            type: [],
+            role: [],
+            member: []
+        }
+    }
+
+    componentDidMount() {
 
     }
 
-    handelChange=({target})=>{
-     const value = target.innerText  
+    componentDidUpdate(prevProps, prevState) {
+
     }
 
 
-render(){
-const { labels, board } = this.props
-    return (
-        <ul className="filter-list">
-            {board[labels].map((labelType) => {
-                return (
-                    <li key={labelType.id} className="flex" onClick={this.handelChange}>
-                        <div className="status-circle" style={{ backgroundColor: `${labelType.bgColor}` }}>
-                        </div>{(labelType.value !== 'Empty') ? labelType.value : 'Blank'}</li>
-                )
-            })}
-        </ul>
-    )
-}
+
+
+    handleChange = ({ target }) => {
+        const value = target.innerText
+        const field = target.id
+        console.log('value:', value);
+        console.log('field:', field);
+       
+        const currFilterBy = {[field]: [...this.state.currFilterBy[field],value]}
+        console.log('currFilterBy:', currFilterBy);
+        
+        this.props.updateFilter(currFilterBy)
+    }
+
+
+    render() {
+        const { labels, board, field } = this.props
+        console.log('board:', board);
+
+
+        return (
+            <ul className="filter-list">
+                {board[labels].map((labelType) => {
+                  
+
+                    return (
+                        <li key={labelType.id} id={field} className="flex" onClick={this.handleChange}>
+                            <div className="status-circle" style={{ backgroundColor: `${labelType.bgColor}` }}>
+                            </div>{(labelType.value !== 'Empty') ? labelType.value : 'Blank'}</li>
+                    )
+                })}
+            </ul>
+        )
+    }
 }
 
 
@@ -40,6 +70,7 @@ function mapStateToProps({ boardModule }) {
     };
 }
 const mapDispatchToProps = {
+    updateFilter
     // addGroup,
     // loadBoards
 };

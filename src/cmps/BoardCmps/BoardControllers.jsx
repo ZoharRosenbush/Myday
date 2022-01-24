@@ -47,19 +47,19 @@ class _BoardControllers extends React.Component {
             <div className="flex">
               <div className="flex column-filter">
                 <span className="filterBy">Status</span>
-                <BoardFilterListCmp labels={"statuses"} />
+                <BoardFilterListCmp labels={"statuses"} field={"status"}/>
               </div>
               <div className="flex column-filter">
                 <span className="filterBy">Type</span>
-                <BoardFilterListCmp labels={"types"} />
+                <BoardFilterListCmp labels={"types"} field={"type"}/>
               </div>
               <div className="flex column-filter">
                 <span className="filterBy">Priority</span>
-                <BoardFilterListCmp labels={"priorities"} />
+                <BoardFilterListCmp labels={"priorities"} field={"priority"}/>
               </div>
               <div className="flex column-filter">
                 <span className="filterBy">Role</span>
-                <BoardFilterListCmp labels={"roles"} />
+                <BoardFilterListCmp labels={"roles"} field={"role"}/>
               </div>
 
               <div className="flex column-filter">
