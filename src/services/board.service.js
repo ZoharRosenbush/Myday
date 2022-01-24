@@ -27,16 +27,16 @@ async function query(filterBy) {
 }
 
 async function getById(boardId) {
-  console.log('the id', boardId)
   const board = await httpService.get(`board/${boardId}`)
-  console.log('the board in servicve', board)
+  // console.log(' func----the board afrer get by id',board)
   return board
 }
 
 async function save(boardToSave) {
   if (boardToSave._id) {
-    const board = await httpService.put(`board/${boardToSave._id}`, boardToSave);
-    return board
+    const updatedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
+    // console.log('finished updatinggg');
+    return updatedBoard
   } else {
     const addedBoard = await httpService.post('board/', boardToSave);
     return addedBoard

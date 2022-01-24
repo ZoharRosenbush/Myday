@@ -203,6 +203,7 @@ export class _GroupPreview extends React.Component {
         )}
 
 
+{isModalToDelete && <div className="main-screen"></div>}
 
         <div className="div-headline-container">
 
