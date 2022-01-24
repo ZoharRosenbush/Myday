@@ -11,7 +11,8 @@
   box-shadow: -2px 9px 16px 0 rgb(0 0 0 / 58%);
   margin-left: 20px;
   z-index: 200;
-  cursor: unset;
+  transition: transform 0.3s;
+  cursor: auto;
   &.task-details-closed {
     transform: translateX(110%);
   }
@@ -26,6 +27,7 @@
     margin-top: 22px;
     margin-left: 8px;
     width: fit-content;
+    cursor: pointer;
     &:hover {
       background-color: #e6e9ef;
     }

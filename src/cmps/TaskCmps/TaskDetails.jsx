@@ -85,27 +85,36 @@ export class _TaskDetails extends React.Component {
         const { isTaskDetailsOpen } = this.props;
         const { isUpdates, isActivity, isFiles } = this.state
         const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
-        return <section className={`${className}`}>
-            <div className="close-details" onClick={this.onCloseTaskDetails}>
-                <AiOutlineClose size='19px' color="rgb(122 122 122)" />
-            </div>
-            <div><h2 className="task-header-title"
-                contentEditable
-                suppressContentEditableWarning={true}
-                onBlur={this.onUpdateTaskTitle}
-            >
-                {this.getCurrTask().title}
-            </h2></div>
+        return <React.Fragment>
+            {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
 
-            <div className="btns-container flex">
-                <button className="details-features" onClick={this.goToUpdates}>Updates</button><span> |</span>
-                <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span>
-                <button className="details-features" onClick={this.goToActivity}>Activity Log</button> <span> |</span>
-            </div>
-            {isUpdates && <TaskUpdates />}
-            {isActivity && <TaskActivity task={this.getCurrTask()} />}
-            {isFiles && <TaskFiles />}
-        </section>
+
+            <section className={`${className}`}>
+                <div className="close-details" onClick={this.onCloseTaskDetails}>
+                    <AiOutlineClose size='19px' color="rgb(122 122 122)" />
+                </div>
+                <div><h2 className="task-header-title"
+                    contentEditable
+                    suppressContentEditableWarning={true}
+                    onBlur={this.onUpdateTaskTitle}
+                >
+                    {this.getCurrTask().title}
+                </h2></div>
+
+                <div className="btns-container flex">
+                    <button className="details-features" onClick={this.goToUpdates}>Updates</button><span> |</span>
+                    <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span>
+                    <button className="details-features" onClick={this.goToActivity}>Activity Log</button> <span> |</span>
+                </div>
+                {isUpdates && <TaskUpdates />}
+                {isActivity && <TaskActivity task={this.getCurrTask()} />}
+                {isFiles && <TaskFiles />}
+
+            </section>
+
+
+        </React.Fragment>
+
     }
 }
 

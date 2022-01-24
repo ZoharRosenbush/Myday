@@ -7,7 +7,13 @@
     border-bottom: 0.5px solid #e5e6ea;
     padding: 8px 0px;
     .task-name {
-      min-width: 215px;
+      width: 215px;
+    }
+    .member-name {
+      width: 70px;
+    }
+    .time-ago {
+      width: 54px;
     }
     .avatar {
       border-radius: 50%;

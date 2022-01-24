@@ -43,9 +43,9 @@ function _TaskActivity({ board, task }) {
                 <div className="posts-container">
                     {task.activities.map((activity) => {
                         return (
-                            <div className="flex post-container">
+                            <div key={activity.id} className="flex post-container">
                                 <div className="time-ago"><HiOutlineClock />{timeSince(activity.createdAt)}</div>
-                                {activity.byMember.fullname}
+                                <div className="member-name">{activity.byMember.fullname}</div>
                                 <div className="avatar"> {activity.byMember.acronyms}</div>
                                 <div className="task-name flex"><span>{activity.txt}</span></div>
                                 {/* <div className="owner"><span></span></div> */}
