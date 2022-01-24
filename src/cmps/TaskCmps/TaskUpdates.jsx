@@ -6,7 +6,11 @@ import { BsReply } from 'react-icons/bs'
 function _TaskUpdates() {
     return (
         <React.Fragment>
-            <div className="update-area"><input placeholder="Write an update..."></input></div>
+            <div className="update-area">
+                <form>
+                    <input placeholder="Write an update..."></input>
+                </form>
+            </div>
             <div className="post flex column">
                 <div className="post-header"><div className="post-title"></div></div>
                 <div className="post-actions flex">

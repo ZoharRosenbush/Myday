@@ -133,7 +133,7 @@ export function saveTask(task, groupId, boardId, activity) {
     "acronyms": "LT",
     "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
   }
-  task.activities = [...task.activities, activity]
+  task.activities = [activity, ...task.activities]
   console.log('task:', task);
 
   // const activity = {

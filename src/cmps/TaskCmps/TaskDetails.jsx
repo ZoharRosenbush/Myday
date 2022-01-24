@@ -46,7 +46,7 @@ export class _TaskDetails extends React.Component {
             console.log('board._id:', board._id);
 
             saveTask(task, groupId, board._id, activity);
-            loadBoard()
+            // loadBoard()
         } catch (err) {
             console.log('error in updating board', err);
         }
