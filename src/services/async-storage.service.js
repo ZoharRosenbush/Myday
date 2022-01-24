@@ -155,6 +155,7 @@ function _createBoards() {
               role: "Dev",
               text: "hello",
               type: "Security",
+              activities: [],
               timeline: ["Jan 18-22", "Jan 20-22"],
               owner: [
                 {
@@ -187,6 +188,7 @@ function _createBoards() {
               text: "lalaa",
               role: "Design",
               type: "Bug",
+              activities: [],
               timeline: ["Jan 30-22", "Feb 02-22"],
               owner: [
                 {
@@ -214,20 +216,7 @@ function _createBoards() {
             }
           ],
           style: { groupColor: getNiceRandomColor() },
-          activities: [
-            {
-              id: "a101",
-              txt: "Changed Color",
-              createdAt: Date.now(),
-              byMember: {
-                _id: "u108",
-                acronyms: "LS",
-                fullname: "Lee Segal",
-                username: "Lee Segal",
-                imgUrl: "http://some-img",
-              },
-            },
-          ],
+
         },
       ],
     },
@@ -254,3 +243,4 @@ function getRandomIntInclusive(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
+

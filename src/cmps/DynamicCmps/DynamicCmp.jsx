@@ -10,9 +10,9 @@ import { TextCmp } from "./TextCmp.jsx";
 
 export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiveModal, activeModal }) {
 
-  console.log('cmpData:',cmpData );
+  // console.log('cmpData:',cmpData );
   switch (cmpData.type) {
-    
+
     case "status-picker":
       return <StatusCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />;
     // return <StatusCmp info={info} onUpdate={onUpdate}  />;
@@ -43,5 +43,5 @@ export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiv
 
 
   }
-return <h1></h1>
+  return <h1></h1>
 }
