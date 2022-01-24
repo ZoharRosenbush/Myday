@@ -14,7 +14,7 @@ export class _TaskDetails extends React.Component {
 
     getCurrTask = () => {
         const { taskId } = this.props.match.params;
-        console.log('taskId:', taskId);
+        // console.log('taskId:', taskId);
 
         const { board } = this.props
         const task = board.groups.map((group) => {
@@ -84,6 +84,7 @@ export class _TaskDetails extends React.Component {
     render() {
         const { isTaskDetailsOpen } = this.props;
         const { isUpdates, isActivity, isFiles } = this.state
+        const { groupId } = this.props.match.params
         const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
@@ -106,7 +107,7 @@ export class _TaskDetails extends React.Component {
                     <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span>
                     <button className="details-features" onClick={this.goToActivity}>Activity Log</button> <span> |</span>
                 </div>
-                {isUpdates && <TaskUpdates />}
+                {isUpdates && <TaskUpdates task={this.getCurrTask()} groupId={groupId} />}
                 {isActivity && <TaskActivity task={this.getCurrTask()} />}
                 {isFiles && <TaskFiles />}
 

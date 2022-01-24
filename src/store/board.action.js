@@ -82,6 +82,20 @@ export function addTask(value, groupId, boardId) {
   };
 
 }
+// export function addComment(value, taskId, boardId) {
+//   return async (dispatch) => {
+//     console.log('value:', value);
+
+//     try {
+//       const board = await boardService.addTask(value, groupId, boardId);
+//       dispatch({ type: "SET_BOARD", board: board });
+//     } catch (err) {
+//       console.log('err:', err);
+//     }
+//   };
+// }
+
+
 export function addGroup(boardId) {
   return async (dispatch) => {
     try {
@@ -124,17 +138,31 @@ export function deleteGroup(groupId, boardId) {
 
 
 // Store - saveTask
-export function saveTask(task, groupId, boardId, activity) {
-  activity.id = boardService.makeId()
-  activity.byMember = {
-    "fullname": "Lora Turner",
-    "username": "Lora Turner",
-    "_id": "u1099",
-    "acronyms": "LT",
-    "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+export function saveTask(task, groupId, boardId, activity, comment) {
+  if (activity) {
+    activity.id = boardService.makeId()
+    activity.byMember = {
+      "fullname": "Lora Turner",
+      "username": "Lora Turner",
+      "_id": "u1099",
+      "acronyms": "LT",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+    }
+    task.activities = [activity, ...task.activities]
+    console.log('task:', task);
   }
-  task.activities = [activity, ...task.activities]
-  console.log('task:', task);
+  if (comment) {
+    comment.id = boardService.makeId()
+    comment.byMember = {
+      "fullname": "Lora Turner",
+      "username": "Lora Turner",
+      "_id": "u1099",
+      "acronyms": "LT",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+    }
+    task.comments = [comment, ...task.comments]
+  }
+
 
   // const activity = {
   //     "id": makeId(),

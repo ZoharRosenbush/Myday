@@ -1,6 +1,9 @@
 .posts-container {
   margin-left: 20px;
   margin-top: 40px;
+  .post {
+    margin-bottom: 20px;
+  }
   .post-container {
     justify-content: space-between;
     height: 56px;

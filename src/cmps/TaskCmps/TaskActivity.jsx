@@ -41,7 +41,7 @@ function _TaskActivity({ board, task }) {
         <React.Fragment>
             <div>
                 <div className="posts-container">
-                    {task.activities.map((activity) => {
+                    {(!!task.activities.length) && task.activities.map((activity) => {
                         return (
                             <div key={activity.id} className="flex post-container">
                                 <div className="time-ago"><HiOutlineClock />{timeSince(activity.createdAt)}</div>
