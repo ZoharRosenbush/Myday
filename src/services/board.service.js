@@ -61,6 +61,7 @@ async function addTask(value, groupId, boardId) {
       priority: "Empty",
       role: "Empty",
       type: "Empty",
+      activities: [],
       timeline: ["Jan 30-22", "Feb 02-22"],
       owner: [
         {
@@ -98,6 +99,7 @@ async function addGroup(boardId) {
           text: "",
           role: "Empty",
           type: "Empty",
+          activities: [],
           timeline: ["Jan 30-22", "Feb 02-22"],
           owner: [
             {
@@ -112,7 +114,7 @@ async function addGroup(boardId) {
         },
       ],
       style: { groupColor: getNiceRandomColor() },
-      activities: [],
+
     };
     const board = await getById(boardId);
     board.groups.push(groupToSave);
