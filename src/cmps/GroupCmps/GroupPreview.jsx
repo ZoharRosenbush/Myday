@@ -119,6 +119,7 @@ export class _GroupPreview extends React.Component {
     else if (cmpType === "role-picker") return "Role";
     else if (cmpType === "date-picker") return "Timeline";
     else if (cmpType === "type-picker") return "Type";
+    else if (cmpType === "text") return "Text";
     else return "Status";
   };
 
@@ -135,10 +136,6 @@ export class _GroupPreview extends React.Component {
     //  }
     const cmpsOrder = board.cmpsOrder;
     console.log("cmpsOrder:", cmpsOrder);
-
-    console.log("destination:", destination);
-    console.log("source:", source);
-    console.log("draggableId:", draggableId);
 
     const cmpIdx = cmpsOrder.findIndex((cmp) => {
       return cmp === draggableId;
@@ -290,6 +287,7 @@ export class _GroupPreview extends React.Component {
                   )}
                 </Droppable>
               </DragDropContext>
+              
 
               {group.tasks.map((task, idx) => {
                 return (
@@ -359,6 +357,8 @@ export class _GroupPreview extends React.Component {
                       return <div key={idx} className="member-container"></div>;
                     case "date-picker":
                       return <div key={idx} className="date-container"></div>;
+                    case "text":
+                      return <div key={idx} className="text-container"></div>;
                   }
                 })}
               </div>

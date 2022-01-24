@@ -11,10 +11,6 @@ const routes = [
         component: LoginSignup,
     },
 
-    // {
-    //     path: '/myday/:boardId/:taskId',
-    //     component: TaskDetails,
-    // },
     {
         path: '/myday/board/:boardId',
         component: BoardDetails,
@@ -22,8 +18,7 @@ const routes = [
     {
         path: '/myday/board',
         component: BoardApp,
-    }
-
+    },
 
 ]
 
