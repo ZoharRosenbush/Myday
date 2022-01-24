@@ -1,17 +1,35 @@
+
+import React from "react";
 import { connect } from "react-redux";
 
-function _BoardFilterListCmp({ labels, board }) {
+
+
+
+class _BoardFilterListCmp extends React.Component {
+
+    state={
+
+    }
+
+    handelChange=({target})=>{
+     const value = target.innerText  
+    }
+
+
+render(){
+const { labels, board } = this.props
     return (
         <ul className="filter-list">
             {board[labels].map((labelType) => {
                 return (
-                    <li key={labelType.id} className="flex">
+                    <li key={labelType.id} className="flex" onClick={this.handelChange}>
                         <div className="status-circle" style={{ backgroundColor: `${labelType.bgColor}` }}>
                         </div>{(labelType.value !== 'Empty') ? labelType.value : 'Blank'}</li>
                 )
             })}
         </ul>
     )
+}
 }
 
 

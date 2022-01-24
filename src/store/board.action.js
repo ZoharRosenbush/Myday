@@ -47,7 +47,7 @@ export function updateBoard(board) {
         board: board,
       });
       await boardService.save({ ...board });
-    
+
     } catch (err) {
       console.log("Cannot update board", err);
     }
@@ -133,6 +133,11 @@ export function deleteGroup(groupId, boardId) {
 
 // Store - saveTask
 export function saveTask(task, groupId, boardId, activity, comment) {
+  console.log('comment:', comment);
+  console.log('activity:', activity);
+  console.log('task:', task);
+
+
   if (activity) {
     activity.id = boardService.makeId()
     activity.byMember = {

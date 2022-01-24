@@ -52,6 +52,7 @@ class _TaskUpdates extends React.Component {
         saveTask(task, groupId, board._id, null, newComment)
         this.setState({ commentValue: "" });
     };
+
     render() {
         const { task } = this.props
         return (

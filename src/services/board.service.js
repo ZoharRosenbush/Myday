@@ -52,12 +52,13 @@ async function saveTask(taskToSave, groupId, boardId) {
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-
     const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
       return task.id === taskToSave.id ? taskToSave : task;
     });
     board.groups[groupIdx].tasks = tasksToSave;
     save(board);
+    console.log('board:', board);
+
     return board;
   } catch (err) {
     console.log("err:", err);
@@ -345,11 +346,11 @@ function getNewBoard() {
             timeline: ["Jan 17-22", "Jan 19-22"],
             owner: [
               {
-                "_id" : "61edc3c5652f5891aac4aed6",
-                "acronyms" : "LT",
-                "fullname" : "Lora Turner",
-                "username" : "Lora Turner",
-                "imgUrl" : "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+                "_id": "61edc3c5652f5891aac4aed6",
+                "acronyms": "LT",
+                "fullname": "Lora Turner",
+                "username": "Lora Turner",
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
               },
             ],
             comments: [],
@@ -374,11 +375,11 @@ function getNewBoard() {
             timeline: ["Jan 17-22", "Jan 19-22"],
             owner: [
               {
-                "fullname" : "Ann Lee",
-                "_id" : "61edc3e7652f5891aac4c063",
-                "acronyms" : "AL",
-                "username" : "Ann Lee",
-                "imgUrl" : "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+                "fullname": "Ann Lee",
+                "_id": "61edc3e7652f5891aac4c063",
+                "acronyms": "AL",
+                "username": "Ann Lee",
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
               },
             ],
             comments: [],
