@@ -44,14 +44,7 @@ class _BoardDetails extends React.Component {
     console.log('source:', source);
     console.log('draggableId:', draggableId);
 
-    //   const groupToMove = board.groups.find(group => group.id === draggableId)
-    //   if (groupToMove !== -1) {
-
-    //     board.groups.splice(source.index, 1);
-    //     board.groups.splice(destination.index, 0, groupToMove);
-    //     updateBoard(board);
-
-    //   }
+ 
 
   };
 
@@ -69,28 +62,8 @@ class _BoardDetails extends React.Component {
         <section className={boardContainerClassName}>
           <BoardHeader board={board} updateBoard={updateBoard} />
 
-          {board && (
-            // <DragDropContext onDragEnd={this.onDragEnd}>
-              /* <Droppable droppableId="droppable">
-                {(provided) => (
-                  <div
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-
-                  > */
-
-
-
-                    <GroupList board={board} />
-
-
-    
-/* 
-                 {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>  */
-         /* </DragDropContext>  */
+          {board?.groups && (
+                    <GroupList board={board} />   
          )} 
      </section> 
       </section> 

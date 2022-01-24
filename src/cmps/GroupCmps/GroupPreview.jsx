@@ -207,13 +207,6 @@ export class _GroupPreview extends React.Component {
               <div className="div-headline-container">
 
 
-                {/* <Draggable key={group.id} draggableId={group.id} index={this.props.key}>
-                  {(provided) => (
-                    <div
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      ref={provided.innerRef}
-                    > */}
 
                       <div className="group-title-container first-column">
                         <IoMdArrowDropdownCircle
@@ -245,9 +238,7 @@ export class _GroupPreview extends React.Component {
                             />
                           )}
                       </div>
-                    {/* </div>
-                  )}
-                </Draggable> */}
+   
 
 
 
