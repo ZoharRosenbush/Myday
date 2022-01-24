@@ -98,7 +98,7 @@ class _TaskUpdates extends React.Component {
                     <div>
                         <div className="posts-container">
 
-                            {task.comments.length && task.comments.map((comment) => {
+                            {(!!task.comments.length) && task.comments.map((comment) => {
                                 return (
                                     <div key={comment.id} className="post flex column">
 
