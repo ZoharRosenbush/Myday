@@ -45,13 +45,13 @@ class _BoardDetails extends React.Component {
     console.log("source:", source);
     console.log("draggableId:", draggableId);
 
-    if (!destination) return;
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
+    // if (!destination) return;
+    // if (
+    //   destination.droppableId === source.droppableId &&
+    //   destination.index === source.index
+    // ) {
+    //   return;
+    // }
 
     // const groupSourceIdx = board.groups.findIndex(
     //   (group) => group.id === source.droppableId
@@ -82,16 +82,24 @@ class _BoardDetails extends React.Component {
           <BoardHeader board={board} updateBoard={updateBoard} />
 
           {board && (
-            // <DragDropContext onDragEnd={this.onDragEnd}>
-            //   <Droppable droppableId="board" >
-            //   {(provided) => (
-            //     <section ref={provided.innerRef}> 
-                
+            <DragDropContext onDragEnd={this.onDragEnd}>
+            <Droppable droppableId={board._id}>
+            {(provided, snapshot) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              // style={getListStyle(snapshot.isDraggingOver)}
+            >
+
+
               <GroupList board={board} />
-            //   </section>
-            //   )}
-            // </Droppable>
-            // </DragDropContext>
+
+
+              {provided.placeholder}
+            </div>
+          )}
+              </Droppable>
+      </DragDropContext>
           )}
         </section>
       </section>

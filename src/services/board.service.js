@@ -189,7 +189,8 @@ function getNewBoard() {
       "date-picker",
       "priority-picker",
       "role-picker",
-      "text"
+      "text",
+      "cost"
     ],
     title: "New Board",
     description:
@@ -266,6 +267,7 @@ function getNewBoard() {
             title: "New Task",
             status: "Empty",
             priority: "Empty",
+            cost: 0,
             role: "Empty",
             text: "",
             type: "Empty",
@@ -295,6 +297,7 @@ function getNewBoard() {
             status: "Empty",
             text: "",
             priority: "Empty",
+            cost: 0,
             role: "Empty",
             type: "Empty",
             activities: [],
@@ -325,6 +328,7 @@ function getNewBoard() {
             text: "",
             role: "Empty",
             type: "Empty",
+            cost: 0,
             activities: [],
             timeline: ["Jan 30-22", "Feb 02-22"],
             owner: [

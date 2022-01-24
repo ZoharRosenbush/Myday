@@ -78,7 +78,8 @@ function _createBoards() {
         "date-picker",
         "priority-picker",
         "role-picker",
-        "text"
+        "text",
+        "cost"
       ],
       title: "Sprint 4",
       description:
@@ -152,6 +153,7 @@ function _createBoards() {
               title: "Replace Logo",
               status: "Done",
               priority: "High",
+              cost: 0,
               role: "Dev",
               text: "hello",
               type: "Security",
@@ -186,6 +188,7 @@ function _createBoards() {
               status: "Done",
               priority: "High",
               text: "lalaa",
+              cost: 0,
               role: "Design",
               type: "Bug",
               activities: [],

@@ -6,11 +6,11 @@ import { RoleCmp } from "./RoleCmp.jsx";
 import { TypeCmp } from "./TypeCmp.jsx";
 import { DateCmp } from "./DateCmp.jsx";
 import { TextCmp } from "./TextCmp.jsx";
+import { CostCmp } from "./CostCmp.jsx";
 
 
 export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiveModal, activeModal }) {
 
-  // console.log('cmpData:',cmpData );
   switch (cmpData.type) {
 
     case "status-picker":
@@ -28,6 +28,8 @@ export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiv
       return <DateCmp cmpData={cmpData} groupColor={groupColor} onUpdateTask={onUpdateTask} />
     case "text":
       return <TextCmp taskId={taskId} cmpData={cmpData} onUpdateTask={onUpdateTask} />
+    case "cost":
+      return <CostCmp taskId={taskId} cmpData={cmpData} onUpdateTask={onUpdateTask} />
 
     default:
 

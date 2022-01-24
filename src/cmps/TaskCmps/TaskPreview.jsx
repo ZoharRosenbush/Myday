@@ -112,6 +112,10 @@ class _TaskPreview extends React.Component {
         }
         saveTask(task, groupId, board._id, activity);
         break;
+      case "text":
+        task.cost = data;
+        saveTask(task, groupId, board._id);
+        break;
       default:
     }
   };
@@ -134,6 +138,14 @@ class _TaskPreview extends React.Component {
           info: {
             // selectedStatus: task.status,
             text: task.text,
+          },
+        };
+      case "cost":
+        return {
+          type: "cost",
+          info: {
+            // selectedStatus: task.status,
+            text: task.cost,
           },
         };
       case "member-picker":
