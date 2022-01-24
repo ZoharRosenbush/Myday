@@ -5,7 +5,7 @@ export function loadBoards() {
     try {
       const boards = await boardService.query();
       dispatch({ type: "SET_BOARDS", boards: boards });
-      
+
     } catch (err) {
       console.log("cannot find boards:", err);
       throw err;
@@ -171,7 +171,13 @@ export function setActiveModal(activeModal) {
 
 export function setBoardNav(isBoardNavOpen) {
   return (dispatch) => {
-    dispatch({ type: "SET_BOARD_NAV", isBoardNavOpen:isBoardNavOpen })
+    dispatch({ type: "SET_BOARD_NAV", isBoardNavOpen: isBoardNavOpen })
+  }
+}
+
+export function setTaskModal(isTaskDetailsOpen) {
+  return (dispatch) => {
+    dispatch({ type: "SET_TASK_MODAL", isTaskDetailsOpen: isTaskDetailsOpen })
   }
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+
 import { MdArrowDropDownCircle } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CgArrowDownR } from "react-icons/cg";
@@ -11,11 +12,13 @@ import { Droppable } from "react-beautiful-dnd";
 import { Draggable } from "react-beautiful-dnd";
 import { MdDragIndicator } from "react-icons/md";
 
+import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 import {
   saveTask,
   setActiveModal,
   deleteTask,
+  setTaskModal,
 } from "../../store/board.action.js";
 
 
@@ -36,6 +39,11 @@ class _TaskPreview extends React.Component {
     this.setState({ isModalTaskOpen: !this.state.isModalTaskOpen });
     deleteTask(task.id, groupId, board._id);
   };
+
+  openTaskDetails = () => {
+    const { setTaskModal } = this.props;
+    setTaskModal(true)
+  }
 
   onUpdateTask = (cmpType, data) => {
     const { task, saveTask, groupId, board } = this.props;
@@ -207,7 +215,8 @@ class _TaskPreview extends React.Component {
               >
                 {task.title}
               </span>
-              <Link to={`/myday/board/${board._id}/${task._id}`}>
+
+              <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${task.id}`}>
                 <div className="chat-icon-container">
                   <BsChat color="#c5c7d0" />
                 </div>
@@ -227,6 +236,8 @@ class _TaskPreview extends React.Component {
               />
             );
           })}
+          <Route component={TaskDetails} path={`/myday/board/:boardId/:taskId`} />
+
         </section>
       </div>
       // </section>
@@ -246,6 +257,7 @@ const mapDispatchToProps = {
   saveTask,
   setActiveModal,
   deleteTask,
+  setTaskModal
 };
 
 export const TaskPreview = connect(
