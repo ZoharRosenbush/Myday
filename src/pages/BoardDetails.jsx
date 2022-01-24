@@ -36,20 +36,24 @@ class _BoardDetails extends React.Component {
     });
   }
 
-  // onDragEnd = (result) => {
+  onDragEnd = (result) => {
 
-  //   const { destination, source, draggableId } = result;
-  //   const { group, board, updateBoard } = this.props;
-  //   const groupToMove = board.groups.find(group => group.id === draggableId)
-  //   if (groupToMove !== -1) {
+    const { destination, source, draggableId } = result;
+    const { group, board, updateBoard } = this.props;
+    console.log('destination:', destination);
+    console.log('source:', source);
+    console.log('draggableId:', draggableId);
 
-  //     board.groups.splice(source.index, 1);
-  //     board.groups.splice(destination.index, 0, groupToMove);
-  //     updateBoard(board);
+    //   const groupToMove = board.groups.find(group => group.id === draggableId)
+    //   if (groupToMove !== -1) {
 
-  //   }
+    //     board.groups.splice(source.index, 1);
+    //     board.groups.splice(destination.index, 0, groupToMove);
+    //     updateBoard(board);
 
-  // };
+    //   }
+
+  };
 
   render() {
     const { board, updateBoard, isBoardNavOpen } = this.props;
@@ -67,26 +71,29 @@ class _BoardDetails extends React.Component {
 
           {board && (
             // <DragDropContext onDragEnd={this.onDragEnd}>
-            //   <Droppable droppableId="droppable">
-            //     {(provided, snapshot) => (
-            //       <div
-            //         {...provided.droppableProps}
-            //         ref={provided.innerRef}
-                  // style={getListStyle(snapshot.isDraggingOver)}
-                  // >
+              /* <Droppable droppableId="droppable">
+                {(provided) => (
+                  <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+
+                  > */
+
 
 
                     <GroupList board={board} />
 
 
-            //        {provided.placeholder}
-            //      </div>
-            //     )}
-            //   </Droppable>
-            // </DragDropContext>
-          )}
-        </section>
-      </section>
+    
+/* 
+                 {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>  */
+         /* </DragDropContext>  */
+         )} 
+     </section> 
+      </section> 
     );
   }
 }

@@ -153,6 +153,8 @@ export class _GroupPreview extends React.Component {
       : "add-task-btn";
     return (
 
+
+      
             <section className="group-preview">
               {activeModal.cmpType === "groupEdit" &&
                 activeModal.groupId === group.id && (
