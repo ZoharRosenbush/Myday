@@ -36,36 +36,20 @@ class _BoardDetails extends React.Component {
     });
   }
 
-  onDragEnd = (result) => {
-    const { destination, source, draggableId } = result;
-  
-    const { group, board, updateBoard } = this.props;
+  // onDragEnd = (result) => {
 
-    console.log("destination:", destination);
-    console.log("source:", source);
-    console.log("draggableId:", draggableId);
+  //   const { destination, source, draggableId } = result;
+  //   const { group, board, updateBoard } = this.props;
+  //   const groupToMove = board.groups.find(group => group.id === draggableId)
+  //   if (groupToMove !== -1) {
 
-    // if (!destination) return;
-    // if (
-    //   destination.droppableId === source.droppableId &&
-    //   destination.index === source.index
-    // ) {
-    //   return;
-    // }
+  //     board.groups.splice(source.index, 1);
+  //     board.groups.splice(destination.index, 0, groupToMove);
+  //     updateBoard(board);
 
-    // const groupSourceIdx = board.groups.findIndex(
-    //   (group) => group.id === source.droppableId
-    // );
-    // const task = board.groups[groupSourceIdx].tasks.find(
-    //   (task) => task.id === draggableId
-    // );
-    // const groupDestinationIdx = board.groups.findIndex(
-    //   (group) => group.id === destination.droppableId
-    // );
-    // board.groups[groupSourceIdx].tasks.splice(source.index, 1);
-    // board.groups[groupDestinationIdx].tasks.splice(destination.index, 0, task);
-    // updateBoard(board);
-  };
+  //   }
+
+  // };
 
   render() {
     const { board, updateBoard, isBoardNavOpen } = this.props;
@@ -82,24 +66,24 @@ class _BoardDetails extends React.Component {
           <BoardHeader board={board} updateBoard={updateBoard} />
 
           {board && (
-            <DragDropContext onDragEnd={this.onDragEnd}>
-            <Droppable droppableId={board._id}>
-            {(provided, snapshot) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              // style={getListStyle(snapshot.isDraggingOver)}
-            >
+            // <DragDropContext onDragEnd={this.onDragEnd}>
+            //   <Droppable droppableId="droppable">
+            //     {(provided, snapshot) => (
+            //       <div
+            //         {...provided.droppableProps}
+            //         ref={provided.innerRef}
+                  // style={getListStyle(snapshot.isDraggingOver)}
+                  // >
 
 
-              <GroupList board={board} />
+                    <GroupList board={board} />
 
 
-              {provided.placeholder}
-            </div>
-          )}
-              </Droppable>
-      </DragDropContext>
+            //        {provided.placeholder}
+            //      </div>
+            //     )}
+            //   </Droppable>
+            // </DragDropContext>
           )}
         </section>
       </section>

@@ -210,12 +210,7 @@ class _TaskPreview extends React.Component {
     const id = "123";
     return (
 
-      // <Draggable draggableId={task.id} index={this.props.key}>
-      // {(provided) => (
-      // <section
-      //  {...provided.draggableProps}
-      //  {...provided.dragHandleProps}
-      //  ref={provided.innerRef}          >
+ 
       <section className="task-preview-section">
         <div className="flex task-icon">
           <div className="icon-down-task" onClick={(ev) => {
