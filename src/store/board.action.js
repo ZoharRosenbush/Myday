@@ -75,7 +75,7 @@ export function updateFilter(currFilterBy) {
     try {
       dispatch({
         type: "SET_FILTER",
-        currFilterBy: {...currFilterBy}
+        currFilterBy: { ...currFilterBy }
       });
     } catch (err) {
       console.log("Cannot update board", err);
@@ -174,7 +174,6 @@ export function deleteGroup(groupId, boardId) {
 
 // Store - saveTask
 export function saveTask(task, groupId, boardId, activity, comment) {
-
 
   if (activity) {
     activity.id = boardService.makeId()

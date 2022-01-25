@@ -57,8 +57,6 @@ async function saveTask(taskToSave, groupId, boardId) {
     });
     board.groups[groupIdx].tasks = tasksToSave;
     save(board);
-    console.log('board:', board);
-
     return board;
   } catch (err) {
     console.log("err:", err);

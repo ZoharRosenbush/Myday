@@ -44,7 +44,7 @@ class _TaskUpdates extends React.Component {
     };
     onAddComment = (ev) => {
         ev.preventDefault();
-        const { groupId, task, board } = this.props
+        const { groupId, task, board, saveTask } = this.props
         const newComment = {
             createdAt: Date.now(),
             txt: this.state.commentValue
@@ -117,6 +117,7 @@ function mapStateToProps({ boardModule }) {
     };
 }
 const mapDispatchToProps = {
+    saveTask
 }
 
 export const TaskUpdates = connect(mapStateToProps, mapDispatchToProps)(_TaskUpdates);
