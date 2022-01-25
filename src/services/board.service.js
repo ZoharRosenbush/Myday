@@ -50,7 +50,7 @@ async function remove(boardId) {
   return removedBoardId
 }
 
-async function saveTask(taskToSave, groupId, boardId) {
+async function saveTask(taskToSave, groupId,boardId) {
   try {
     const board = await getById(boardId);
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
