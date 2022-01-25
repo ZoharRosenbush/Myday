@@ -18,10 +18,12 @@ export function loadBoards() {
   };
 }
 
-export function loadBoard(boardId) {
+export function loadBoard(boardId, currFilterBy = null) {
+  // console.log('currFilterBy:', currFilterBy);
+
   return async (dispatch) => {
     try {
-      const board = await boardService.getById(boardId);
+      const board = await boardService.getById(boardId, currFilterBy);
       dispatch({
         type: "SET_BOARD",
         board: board
@@ -34,8 +36,8 @@ export function loadBoard(boardId) {
 }
 
 // FUNCTION - loadFilteredBoard(board,filterBy){
-  // const filteredBoard = boardService.filterBoard 
-  // dispatch({ type: "SET_FILTERED_BOARD", board: filteredBoard });
+// const filteredBoard = boardService.filterBoard 
+// dispatch({ type: "SET_FILTERED_BOARD", board: filteredBoard });
 
 // }
 
@@ -69,6 +71,7 @@ export function updateBoard(board) {
         ...board
       });
 
+
     } catch (err) {
       console.log("Cannot update board", err);
     }
@@ -76,31 +79,23 @@ export function updateBoard(board) {
 }
 export function updateFilter(currFilterBy) {
   const filterToDispatch = {}
-  
   if (currFilterBy.priority.length) filterToDispatch.priority = currFilterBy.priority
   if (currFilterBy.type.length) filterToDispatch.type = currFilterBy.type
   if (currFilterBy.status.length) filterToDispatch.status = currFilterBy.status
   if (currFilterBy.role.length) filterToDispatch.role = currFilterBy.role
   if (currFilterBy.member.length) filterToDispatch.member = currFilterBy.member
-  
+  return (dispatch) => {
 
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "SET_FILTER",
-        currFilterBy: {
-          ...filterToDispatch
-        }
-      });
-    } catch (err) {
-      console.log("Cannot update board", err);
-    }
+    dispatch({
+      type: "SET_FILTER",
+      currFilterBy: {
+        ...filterToDispatch
+      }
+    });
+
   }
 }
-
 export function deleteTask(taskId, groupId, boardId) {
-
-
   return async (dispatch) => {
 
     try {
@@ -225,8 +220,8 @@ export function saveTask(task, groupId, boardId, activity, comment) {
   };
 }
 
-export function saveGroup(group, boardId) { 
-  
+export function saveGroup(group, boardId) {
+
   // boardFilter
 
   // const activity = {
@@ -238,7 +233,7 @@ export function saveGroup(group, boardId) {
   // }
   return async (dispatch) => {
     try {
-      
+
       const board = await boardService.saveGroup(group, boardId);
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {

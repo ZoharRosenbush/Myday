@@ -25,13 +25,18 @@ export const httpService = {
 }
 
 async function ajax(endpoint, method = 'GET', data = null) {
+    // console.log('data:', data);
+    const strigifiedData = JSON.stringify(data)
+    // console.log('strigifiedData:', strigifiedData);
+
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,
             method,
-            data,
-            params: (method === 'GET') ? data : null
+            strigifiedData,
+            params: (method === 'GET') ? strigifiedData : null
         })
+
         // console.log('thre res',res.data);
         return res.data
     } catch (err) {
