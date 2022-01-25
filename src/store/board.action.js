@@ -25,6 +25,12 @@ export function loadBoard(boardId) {
   }
 }
 
+// FUNCTION - loadFilteredBoard(board,filterBy){
+  // const filteredBoard = boardService.filterBoard 
+  // dispatch({ type: "SET_FILTERED_BOARD", board: filteredBoard });
+
+// }
+
 export function addBoard(board) {
   return async (dispatch) => {
     try {
@@ -171,7 +177,9 @@ export function saveTask(task, groupId, boardId, activity, comment) {
   };
 }
 
-export function saveGroup(group, boardId) {
+export function saveGroup(group, boardId) { 
+  
+  // boardFilter
 
   // const activity = {
   //     "id": makeId(),
@@ -182,7 +190,11 @@ export function saveGroup(group, boardId) {
   // }
   return async (dispatch) => {
     try {
+      
       const board = await boardService.saveGroup(group, boardId);
+      // if(boardFilter.isFiltered){
+        // loadFilteredBoard(board,boardFilter.filterBy)
+      // }
       dispatch({ type: "SET_BOARD", board: board });
     } catch (err) {
       console.log('err:', err);

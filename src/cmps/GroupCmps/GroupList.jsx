@@ -45,6 +45,7 @@ export class _GroupList extends React.Component {
 }
 function mapStateToProps({ boardModule }) {
   return {
+    // No Need for the board here
     board: boardModule.board,
   };
 }

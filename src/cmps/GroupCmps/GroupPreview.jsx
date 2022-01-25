@@ -69,12 +69,8 @@ export class _GroupPreview extends React.Component {
     );
   };
 
-  toggleGroupModal = () => {
-    this.setState({ isGroupModalOpen: !this.state.isGroupModalOpen });
-  };
 
   toggelModalDelete = () => {
-    this.setState({ isGroupModalOpen: false });
     this.setState({ isModalToDelete: !this.state.isModalToDelete });
   };
 

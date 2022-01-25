@@ -13,14 +13,13 @@ export const userService = {
   logout,
   signup,
   getLoggedinUser,
-  // emptyUser,
-  // chargeAmount
+  getEmptyUser
 };
 
-window.us = userService;
+
 async function login(credentials) {
   try {
-    // const user = storageService.query(STORAGE_KEY)
+    // console.log('the cred in service front',credentials);
     const user = await httpService.post("auth/login", credentials);
     if (user) _setLoggedinUser(user);
     return user;
@@ -29,10 +28,11 @@ async function login(credentials) {
   }
 }
 async function signup(user) {
+  // console.log('the cred in signup service front',user)
   try {
-    const userSignup = await httpService.post("auth/signup", user);
-    _setLoggedinUser(userSignup);
-    return userSignup;
+    const signedupUser = await httpService.post("auth/signup", user);
+    _setLoggedinUser(signedupUser);
+    return signedupUser
   } catch (err) {
     console.log("err signup", err);
   }
@@ -53,6 +53,14 @@ function getLoggedinUser() {
 
 function _setLoggedinUser(user) {
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
+}
+
+function getEmptyUser() {
+  return {
+      username: '',
+      password: '',
+      fullname: '',
+  }
 }
 // Test Data
 // userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22})

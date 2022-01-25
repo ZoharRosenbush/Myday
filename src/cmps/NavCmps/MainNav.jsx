@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+
 import { HiSparkles, HiOutlinePuzzle } from "react-icons/hi";
 import { AiOutlineBell, AiOutlineSearch } from "react-icons/ai";
 import { BiGridAlt } from "react-icons/bi";
@@ -65,7 +67,7 @@ export function MainNav() {
           size="23px"
           style={{ marginLeft: "19px", cursor: "pointer" }}
         />
-        <div className="user-avatar ME">ME</div>
+        <Link to={'/login'}><div className="user-avatar ME">ME</div></Link> 
       </div>
     </section>
   );

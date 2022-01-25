@@ -1,5 +1,6 @@
 // import { storageService } from "./async-storage.service.js";
 import { httpService } from "./http.service.js";
+import { socketService } from "./socket.service.js";
 // const STORAGE_KEY = "boardDB";
 
 export const boardService = {
@@ -35,6 +36,7 @@ async function getById(boardId) {
 async function save(boardToSave) {
   if (boardToSave._id) {
     const updatedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
+    socketService.emit('member updated board',boardToSave._id)
     // console.log('finished updatinggg');
     return updatedBoard
   } else {
@@ -57,7 +59,7 @@ async function saveTask(taskToSave, groupId, boardId) {
     });
     board.groups[groupIdx].tasks = tasksToSave;
     save(board);
-    console.log('board:', board);
+    // console.log('board:', board);
 
     return board;
   } catch (err) {

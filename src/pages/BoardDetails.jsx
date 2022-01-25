@@ -7,24 +7,44 @@ import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
 import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
 
+import { socketService } from "../services/socket.service.js";
+
 import { setActiveModal, updateBoard } from "../store/board.action.js";
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
   componentDidMount() {
     const { boardId } = this.props.match.params;
+    // const {loadBoard} = this.props
     this.props.loadBoard(boardId);
     const activeModal = { cmpType: null, taskId: null };
     document.addEventListener("click", () => {
       this.props.setActiveModal(activeModal);
     });
+
+    socketService.setup()
+    socketService.emit('join board-room',boardId)
+    socketService.on('board was updated',this.props.loadBoard)
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     if (prevProps.match.params.boardId !== this.props.match.params.boardId) {
       this.props.loadBoard(boardId);
+      // THIS.PROPS.LOADFILTEREDBOARDׁׂׂ
     }
+
+    // if (prevProps.board !== this.props.board) {
+    //   this.props.loadBoard(boardId);
+    //   // THIS.PROPS.LOADFILTEREDBOARDׁׂׂ
+    // }
+
+    // No need - 
+
+    // if (prevProps.fillteredBoard !== this.props.fillteredBoard) {
+    //   this.props.loadBoard(boardId);
+    //   // THIS.PROPS.LOADFILTEREDBOARDׁׂׂ
+    // }
   }
 
   componentWillUnmount() {
@@ -32,6 +52,7 @@ class _BoardDetails extends React.Component {
     document.removeEventListener("click", () => {
       this.props.setActiveModal(activeModal);
     });
+    socketService.terminate()
   }
 
   onDragEnd = ({ type, ...result }) => {
@@ -72,6 +93,7 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { board, updateBoard, isBoardNavOpen } = this.props;
+    
     const boardContainerClassName = isBoardNavOpen
       ? "board-container-open-nav"
       : "board-container";
@@ -96,6 +118,7 @@ class _BoardDetails extends React.Component {
                     ref={provided.innerRef}
                     className="group-list-wrapper"
                   >
+                    {/* isFilttered&& <GroupList board ={filteredBoard} */}
                     <GroupList
                       board={board}
                     />
