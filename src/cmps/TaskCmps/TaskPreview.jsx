@@ -202,18 +202,18 @@ class _TaskPreview extends React.Component {
   };
 
   render() {
-  
+
     const { board, groupId, activeModal, setActiveModal, task } = this.props;
     const group = board.groups.find((group) => {
       return groupId === group.id;
     });
     const groupColor = group.style.groupColor;
     const cmpsOrder = board.cmpsOrder;
-
+    const udatesClassName = (task.comments.length) ? 'update' : ''
 
     return (
 
-    <section className="task-preview-section">
+      <section className="task-preview-section">
         <div className="flex task-icon">
           <div className="icon-down-task" onClick={(ev) => {
             ev.stopPropagation()
@@ -271,7 +271,7 @@ class _TaskPreview extends React.Component {
 
                 <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
                   <div className="chat-icon-container">
-                    <BsChat color="#c5c7d0" />
+                    <BsChat className={`bubble-talk ${udatesClassName}`} />
                   </div>
                 </Link>
               </div>

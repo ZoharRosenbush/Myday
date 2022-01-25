@@ -13,21 +13,13 @@ export class _TaskDetails extends React.Component {
     }
 
     getCurrTask = () => {
+        const { groupId } = this.props.match.params
         const { taskId } = this.props.match.params;
-        // console.log('taskId:', taskId);
-
-        const { board } = this.props
-        const task = board.groups.map((group) => {
-            return group.tasks.filter((task) => task.id === taskId)
-        }).flat()
-        if (task.length !== 1) {
-            console.error('invalid tasks count', task.length)
-        }
-        return task[0]
+        const board = this.props
+        const currGroup = board.board.groups.find((group) => group.id === groupId)
+        const currTask = currGroup.tasks.find((task) => task.id === taskId)
+        return currTask
     };
-
-
-
 
     onUpdateTaskTitle = ({ target }) => {
         const { board, saveTask } = this.props
@@ -42,7 +34,6 @@ export class _TaskDetails extends React.Component {
         task.title = value;
         try {
             saveTask(task, groupId, board._id, activity);
-            // loadBoard()
         } catch (err) {
             console.log('error in updating board', err);
         }
