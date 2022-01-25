@@ -25,6 +25,10 @@ export const httpService = {
 }
 
 async function ajax(endpoint, method = 'GET', data = null) {
+    // console.log('data:', data);
+   
+    // console.log('strigifiedData:', strigifiedData);
+
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,
@@ -32,6 +36,7 @@ async function ajax(endpoint, method = 'GET', data = null) {
             data,
             params: (method === 'GET') ? data : null
         })
+
         // console.log('thre res',res.data);
         return res.data
     } catch (err) {

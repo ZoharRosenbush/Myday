@@ -12,20 +12,16 @@ export class CostCmp extends React.Component {
   }
 
   onUpdateTaskCost = ({ target }) => {
-    console.log('change:',);
     const { onUpdateTask, cmpData } = this.props
     const value = target.value;
     if (!value) return;
-    console.log('target:', target.value);
     this.setState({
       cost: value
     }, () => {
-      console.log('this.state:', this.state);
 
       onUpdateTask("cost", value);
     })
 
-    console.log('cmpData:', cmpData);
   }
   render() {
     const { cmpData } = this.props

@@ -18,7 +18,7 @@ export const boardService = {
   makeId
 };
 
-async function query(filterBy) {
+async function query() {
   const boards = await httpService.get('board/');
   // if (!boards.length) {
   //   return _getNewBoards()
@@ -27,7 +27,13 @@ async function query(filterBy) {
   return boards
 }
 
+
+//maybe change later to getBoard()
 async function getById(boardId) {
+  // console.log('boardId:', boardId);
+
+  // console.log('currFilterBy:', currFilterBy);
+
   const board = await httpService.get(`board/${boardId}`)
   // console.log(' func----the board afrer get by id',board)
   return board
@@ -36,7 +42,7 @@ async function getById(boardId) {
 async function save(boardToSave) {
   if (boardToSave._id) {
     const updatedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
-    socketService.emit('member updated board',boardToSave._id)
+    socketService.emit('member updated board', boardToSave._id)
     // console.log('finished updatinggg');
     return updatedBoard
   } else {
