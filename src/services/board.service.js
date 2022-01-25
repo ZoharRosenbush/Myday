@@ -129,7 +129,7 @@ async function addGroup(boardId) {
       style: { groupColor: getNiceRandomColor() },
     };
     const board = await getById(boardId);
-    board.groups.push(groupToSave);
+    board.groups.unshift(groupToSave);
     // console.log("board:", board);
 
     save(board);
