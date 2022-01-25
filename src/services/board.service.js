@@ -59,8 +59,6 @@ async function saveTask(taskToSave, groupId, boardId) {
     });
     board.groups[groupIdx].tasks = tasksToSave;
     save(board);
-    // console.log('board:', board);
-
     return board;
   } catch (err) {
     console.log("err:", err);
@@ -133,7 +131,7 @@ async function addGroup(boardId) {
       style: { groupColor: getNiceRandomColor() },
     };
     const board = await getById(boardId);
-    board.groups.push(groupToSave);
+    board.groups.unshift(groupToSave);
     // console.log("board:", board);
 
     save(board);

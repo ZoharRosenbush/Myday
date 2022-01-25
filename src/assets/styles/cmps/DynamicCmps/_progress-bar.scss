@@ -2,7 +2,7 @@
   display: flex;
   width: inherit;
   height: 40px;
-  margin-left: 440px;
+  margin-left: 436.5px;
 }
 
 .status-bar,
@@ -40,7 +40,13 @@
 
 }
 
-.status-container,.text-container, .cost-container {
+.status-container{
+min-width: 139px;
+
+}
+
+
+.text-container {
   min-width: 139px;
 
 }
@@ -49,29 +55,64 @@
   width: 140px;
 }
 .date-container  {
-  min-width: 199px;
+  min-width: 201px;
   background-color: #fff;
   height: 40px;
+
 
 }
 .member-container {
-  min-width: 148px;
+  min-width: 150px;
   background-color: #fff;
   height: 40px;
 
 }
-.text-container {
-  min-width: 139px;
+.text-container{ 
+  min-width: 150px;
   background-color: #fff;
   height: 40px;
 
 }
+
+
+
+
 
 .type-container {
   width: 139px;
-
+  
 }
 .role-container {
   width: 139px;
+  
+}
 
+
+// COST
+
+
+.cost-container {
+  min-width: 120px;
+  background-color: #f5f6f8;
+  height: 40px;
+  border-radius: 0 0 8px 8px;
+
+
+.sum-title{
+  font-size: 12px;
+  color: #676879;
+  text-align: center;
+
+}
+.cost-bar-sum{
+  width: 100%;
+  /* height: 100%; */
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  padding: 2px 2px;
+  text-align: center;
+}
 }

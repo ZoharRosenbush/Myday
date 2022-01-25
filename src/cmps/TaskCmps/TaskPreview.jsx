@@ -26,6 +26,7 @@ import {
 class _TaskPreview extends React.Component {
   state = {
     isModalTaskOpen: false,
+
   };
 
 
@@ -47,6 +48,8 @@ class _TaskPreview extends React.Component {
 
   onUpdateTask = (cmpType, data) => {
     const { task, saveTask, groupId, board } = this.props;
+    console.log('data:', data);
+    
     let activity;
     switch (cmpType) {
       case "status-picker":
@@ -109,7 +112,7 @@ class _TaskPreview extends React.Component {
         }
         saveTask(task, groupId, board._id, activity);
         break;
-      case "text":
+      case "cost":
         task.cost = data;
         saveTask(task, groupId, board._id);
         break;
@@ -142,7 +145,7 @@ class _TaskPreview extends React.Component {
           type: "cost",
           info: {
             // selectedStatus: task.status,
-            text: task.cost,
+            cost: (task.cost==="Empty") ? "" :task.cost ,
           },
         };
       case "member-picker":
@@ -188,6 +191,9 @@ class _TaskPreview extends React.Component {
     }
   };
 
+
+
+
   onUpdateTitleContent = ({ target }) => {
     const { task, board, groupId, saveTask, activeModal } = this.props;
     const value = target.textContent;
@@ -198,14 +204,16 @@ class _TaskPreview extends React.Component {
   };
 
   render() {
+
     const { board, groupId, activeModal, setActiveModal, task } = this.props;
     const group = board.groups.find((group) => {
       return groupId === group.id;
     });
     const groupColor = group.style.groupColor;
     const cmpsOrder = board.cmpsOrder;
-    return (
+    const udatesClassName = (task.comments.length) ? 'update' : ''
 
+    return (
 
       <section className="task-preview-section">
         <div className="flex task-icon">
@@ -265,7 +273,7 @@ class _TaskPreview extends React.Component {
 
                 <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
                   <div className="chat-icon-container">
-                    <BsChat color="#c5c7d0" />
+                    <BsChat className={`bubble-talk ${udatesClassName}`} />
                   </div>
                 </Link>
               </div>
@@ -294,6 +302,9 @@ class _TaskPreview extends React.Component {
         <div className="finish-task">
         </div>
       </section>
+
+
+
       // </section>
       // )}
     );
@@ -304,7 +315,7 @@ function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     activeModal: boardModule.activeModal,
-    //   currFilterBy: toyModule.currFilterBy
+    // currFilterBy: boardModule.currFilterBy
   };
 }
 const mapDispatchToProps = {

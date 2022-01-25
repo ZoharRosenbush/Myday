@@ -4,6 +4,7 @@ export class StatusCmp extends React.Component {
   state = {
     isEditMode: false,
     isMouseOver: false,
+    isShowTask:true
   };
 
   openModal = () => {

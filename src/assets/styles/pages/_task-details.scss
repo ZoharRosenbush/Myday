@@ -8,13 +8,15 @@
   position: fixed;
   z-index: 5;
   right: 0px;
-  box-shadow: -1px 6px 9px 0 rgb(53 49 49 / 15%);  
+  box-shadow: -1px 6px 9px 0 rgb(53 49 49 / 15%);
   margin-left: 20px;
   z-index: 200;
   transition: transform 0.3s;
   cursor: auto;
+  // animation: fade-in-right 0.3s ease-in-out both;
   &.task-details-closed {
     transform: translateX(110%);
+    // position: unset;
   }
 
   .close-details {
@@ -27,6 +29,7 @@
     margin-top: 22px;
     margin-left: 8px;
     width: fit-content;
+    font-size: rem(14px);
     cursor: pointer;
     &:hover {
       background-color: #e6e9ef;
@@ -68,14 +71,14 @@
   }
 
   .update-area input {
-    font-size: 1.5rem;
+    // font-size: 1.5rem;
     margin: 0;
     padding: 0px;
     color: #323338;
     padding-left: 8px;
     // font-weight: 600;
     font-family: roboto-light;
-    font-size: rem(15px);
+    font-size: rem(16px);
     text-align: start;
     height: 41px;
     border: 1px solid $blue;
@@ -106,6 +109,10 @@
     // &:focus {
     //   outline: none;
     // }
+  }
+
+  .no-updates-img {
+    padding-inline-start: 20px;
   }
   .post {
     height: 233px;

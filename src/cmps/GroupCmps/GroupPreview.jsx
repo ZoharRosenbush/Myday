@@ -16,6 +16,7 @@ import { ProgressBarStatus } from "../DynamicCmps/ProgressBarStatus.jsx";
 import { ProgressBarPriority } from "../DynamicCmps/ProgressBarPriority.jsx";
 import { ProgressBarType } from "../DynamicCmps/ProgressBarType.jsx";
 import { ProgressBarRole } from "../DynamicCmps/ProgressBarRole.jsx";
+import { ProgressBarCost } from "../DynamicCmps/ProgressBarCost.jsx";
 import { MdDragIndicator } from "react-icons/md";
 
 import {
@@ -31,6 +32,7 @@ export class _GroupPreview extends React.Component {
     taskValue: "",
     isModalToDelete: false,
     isAddTaskActive: false,
+
   };
 
   openModal = (modal) => {
@@ -70,6 +72,29 @@ export class _GroupPreview extends React.Component {
   };
 
 
+  setFilter = (task) => {
+    const { currFilterBy } = this.props
+
+
+    if (!currFilterBy.priority.length &&
+      !currFilterBy.status.length &&
+      !currFilterBy.type.length &&
+      !currFilterBy.role.length &&
+      !currFilterBy.member.length) {
+
+      return true
+    } else {
+
+      const isPriority = (currFilterBy.priority.includes(task.priority)) ? true : false
+      const isStatus = (currFilterBy.status.includes(task.status)) ? true : false
+      const isType = (currFilterBy.type.includes(task.type)) ? true : false
+      const isRole = (currFilterBy.role.includes(task.role)) ? true : false
+      const isMember = (currFilterBy.member.includes(task.owner)) ? true : false
+      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority)
+      return isTaskToShow
+    }
+  }
+
   toggelModalDelete = () => {
     this.setState({ isModalToDelete: !this.state.isModalToDelete });
   };
@@ -102,7 +127,7 @@ export class _GroupPreview extends React.Component {
   };
 
   onAddTask = (ev) => {
-    console.log("adding task");
+
     ev.preventDefault();
     const { group, board, addTask } = this.props;
     addTask(this.state.taskValue, group.id, board._id);
@@ -120,11 +145,11 @@ export class _GroupPreview extends React.Component {
     else return "Status";
   };
 
+
+
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     const { group, board, updateBoard } = this.props;
-
-
 
     if (!destination) return;
     if (
@@ -199,25 +224,37 @@ export class _GroupPreview extends React.Component {
         )}
 
 
-{isModalToDelete && <div className="main-screen"></div>}
+        {isModalToDelete && <div className="main-screen"></div>}
 
         <div className="div-headline-container">
 
 
 
-          <div className="group-title-container first-column">
-            <IoMdArrowDropdownCircle
-              style={{
-                color: `${group.style.groupColor}`,
-                fontSize: "19px",
-                cursor: "pointer",
-                transform: "translateY(4.5px)",
-              }}
-              onClick={(ev) => {
-                ev.stopPropagation();
-                this.openModal("groupEdit");
-              }}
-            />
+          <div className=" group-title-container first-column">
+
+            <div>
+              <IoMdArrowDropdownCircle
+                style={{
+                  color: `${group.style.groupColor}`,
+                  fontSize: "19px",
+                  cursor: "pointer",
+                }}
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  this.openModal("groupEdit");
+                }}
+              />
+
+            </div>
+            <div className="icon-group-drag">
+              <MdDragIndicator
+                color="#c4c4c4"
+                style={{
+                  height: "20px",
+                  width: "20px",
+                }}
+              />
+            </div>
             <h1
               className="group-title first-column"
               contentEditable
@@ -228,15 +265,13 @@ export class _GroupPreview extends React.Component {
               {" "}
               {group.title}
             </h1>
-            {activeModal.cmpType === "ColorInput" &&
-              activeModal.groupId === group.id && (
-                <ColorInput
-                  onUpdateGroupColor={this.onUpdateGroupColor}
-                />
-              )}
           </div>
-
-
+          {activeModal.cmpType === "ColorInput" &&
+            activeModal.groupId === group.id && (
+              <ColorInput
+                onUpdateGroupColor={this.onUpdateGroupColor}
+              />
+            )}
 
 
           <div>
@@ -249,7 +284,7 @@ export class _GroupPreview extends React.Component {
                     {cmpsOrder.map((cmp, idx) => {
 
                       return (
-
+                  
                         <Draggable key={cmp} draggableId={cmp} index={idx}>
                           {(provided) => (
                             <div
@@ -275,6 +310,7 @@ export class _GroupPreview extends React.Component {
                             </div>
                           )}
                         </Draggable>
+                        
                         // </div>
                       );
                     })}
@@ -297,8 +333,9 @@ export class _GroupPreview extends React.Component {
               {...provided.droppableProps}
             >
               {group.tasks.map((task, idx) => {
+                // this.setFilter(task)
                 return (
-                  <Draggable key={task.id} draggableId={task.id} index={idx}>
+                  this.setFilter(task) && <Draggable key={task.id} draggableId={task.id} index={idx}>
                     {(provided) => (
                       <section
                         {...provided.draggableProps}
@@ -369,7 +406,7 @@ export class _GroupPreview extends React.Component {
               case "text":
                 return <div key={idx} className="text-container"></div>;
               case "cost":
-                return <div key={idx} className="cost-container"></div>;
+                return <ProgressBarCost key={idx} groupId={group.id} />;;
             }
           })}
         </div>
@@ -381,6 +418,7 @@ function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     activeModal: boardModule.activeModal,
+    currFilterBy: boardModule.currFilterBy,
   };
 }
 const mapDispatchToProps = {
