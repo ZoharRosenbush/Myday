@@ -236,19 +236,31 @@ export class _GroupPreview extends React.Component {
 
 
 
-          <div className="group-title-container first-column">
-            <IoMdArrowDropdownCircle
-              style={{
-                color: `${group.style.groupColor}`,
-                fontSize: "19px",
-                cursor: "pointer",
-                transform: "translateY(4.5px)",
-              }}
-              onClick={(ev) => {
-                ev.stopPropagation();
-                this.openModal("groupEdit");
-              }}
-            />
+          <div className=" group-title-container first-column">
+
+            <div>
+              <IoMdArrowDropdownCircle
+                style={{
+                  color: `${group.style.groupColor}`,
+                  fontSize: "19px",
+                  cursor: "pointer",
+                }}
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  this.openModal("groupEdit");
+                }}
+              />
+
+            </div>
+            <div className="icon-group-drag">
+              <MdDragIndicator
+                color="#c4c4c4"
+                style={{
+                  height: "20px",
+                  width: "20px",
+                }}
+              />
+            </div>
             <h1
               className="group-title first-column"
               contentEditable
@@ -259,13 +271,14 @@ export class _GroupPreview extends React.Component {
               {" "}
               {group.title}
             </h1>
-            {activeModal.cmpType === "ColorInput" &&
-              activeModal.groupId === group.id && (
-                <ColorInput
-                  onUpdateGroupColor={this.onUpdateGroupColor}
-                />
-              )}
           </div>
+          {activeModal.cmpType === "ColorInput" &&
+            activeModal.groupId === group.id && (
+              <ColorInput
+                onUpdateGroupColor={this.onUpdateGroupColor}
+              />
+            )}
+
 
           <div>
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -277,7 +290,7 @@ export class _GroupPreview extends React.Component {
                     {cmpsOrder.map((cmp, idx) => {
 
                       return (
-
+                  
                         <Draggable key={cmp} draggableId={cmp} index={idx}>
                           {(provided) => (
                             <div
@@ -303,6 +316,7 @@ export class _GroupPreview extends React.Component {
                             </div>
                           )}
                         </Draggable>
+                        
                         // </div>
                       );
                     })}

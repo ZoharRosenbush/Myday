@@ -14,13 +14,24 @@ class _BoardFilterListCmp extends React.Component {
             type: [],
             role: [],
             member: []
-        }
+        },
+        isFiltered: false
     }
 
+toggleHandleFilter=({target})=>{
+this.setState({isFiltered:!this.state.isFiltered})
+
+
+handleChange({target})
+
+}
+
     handleChange = ({ target }) => {
+
         const value = target.innerText
         const field = target.id
-        this.setState((prevState)=>({
+        const {isFiltered}=this.state
+       (isFiltered)&& this.setState((prevState)=>({
           ...prevState, currFilterBy: {...prevState.currFilterBy, [field]:[...this.state.currFilterBy[field], value] }
         }), ()=> {this.props.updateFilter(this.state.currFilterBy)}
         )
@@ -33,7 +44,11 @@ class _BoardFilterListCmp extends React.Component {
                 {board[labels].map((labelType) => {
 
                     return (
-                        <li key={labelType.id} id={field} className="flex" onClick={this.handleChange}>
+                        <li key={labelType.id} id={field} className="flex"
+                        onClick={this.toggleHandleFilter}>
+                        {/* onClick={this.handleChange}> */}
+
+
                             <div className="status-circle" style={{ backgroundColor: `${labelType.bgColor}` }}>
                             </div>{(labelType.value !== 'Empty') ? labelType.value : 'Blank'}</li>
                     )

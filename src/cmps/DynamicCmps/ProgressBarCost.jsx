@@ -47,7 +47,7 @@ console.log('sum:');
                     {this.sum}
                 </div>
                 <div className="sum-title">
-                    SUM
+                    sum
                 </div>
             </div>
         );

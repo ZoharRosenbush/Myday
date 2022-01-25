@@ -4,6 +4,7 @@
   div.group-title-container {
     min-width: 422px;
     margin-inline-start: 16px;
+    display: flex;
   }
 }
 
@@ -23,15 +24,18 @@
   text-align: start;
   white-space: nowrap;
   display: inline;
-  font-size: rem(18px);
-  // position: sticky;
+  font-size: 1.125rem;
   font-family: roboto, helvetica, sans-serif;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  padding: 0 6px;
+  /* padding: 0 6px; */
   line-height: 1.5;
-
+  top: -3px;
+  left: 12px;
+  position: relative;
+  margin: 0;
+  padding: 0;
   &:hover {
     border: 1px dotted black;
   }
@@ -76,9 +80,9 @@ input.add-task {
 
 .add-task-container {
   display: flex;
-    height: 36px;
-    width: 1840px;
-    margin-inline-start: 46px;
+  height: 36px;
+  width: 1806px;
+  margin-inline-start: 47.5px;
 
   .add-task-form {
     margin-left: 32px;
@@ -309,3 +313,23 @@ div.group-color {
 //   transform: translateY(4.5px);
 // }
 
+.icon-group-drag{
+  display: none;
+  // position: absolute;
+  // left: 175px;
+}
+.group-title-container{
+  &:hover{
+
+    .icon-group-drag{
+      display: inline;
+      // position: absolute;
+      // left: 175px;
+  }
+  .group-title{
+left: 0;
+  }
+  
+  }
+
+}
