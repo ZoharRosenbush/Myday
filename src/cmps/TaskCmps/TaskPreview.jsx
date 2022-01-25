@@ -48,6 +48,8 @@ class _TaskPreview extends React.Component {
 
   onUpdateTask = (cmpType, data) => {
     const { task, saveTask, groupId, board } = this.props;
+    console.log('data:', data);
+    
     let activity;
     switch (cmpType) {
       case "status-picker":
@@ -143,7 +145,7 @@ class _TaskPreview extends React.Component {
           type: "cost",
           info: {
             // selectedStatus: task.status,
-            text: task.cost,
+            cost: (task.cost==="Empty") ? "" :task.cost ,
           },
         };
       case "member-picker":

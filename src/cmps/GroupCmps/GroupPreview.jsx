@@ -16,6 +16,7 @@ import { ProgressBarStatus } from "../DynamicCmps/ProgressBarStatus.jsx";
 import { ProgressBarPriority } from "../DynamicCmps/ProgressBarPriority.jsx";
 import { ProgressBarType } from "../DynamicCmps/ProgressBarType.jsx";
 import { ProgressBarRole } from "../DynamicCmps/ProgressBarRole.jsx";
+import { ProgressBarCost } from "../DynamicCmps/ProgressBarCost.jsx";
 import { MdDragIndicator } from "react-icons/md";
 
 import {
@@ -73,8 +74,7 @@ export class _GroupPreview extends React.Component {
 
   setFilter = (task) => {
     const { currFilterBy } = this.props
-    console.log('task:', task);
-    console.log('currFilterBy:', currFilterBy);
+
 
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
@@ -82,7 +82,6 @@ export class _GroupPreview extends React.Component {
       !currFilterBy.role.length &&
       !currFilterBy.member.length) {
 
-      // this.setState({ isTaskToShow: true })
       return true
     } else {
 
@@ -92,7 +91,6 @@ export class _GroupPreview extends React.Component {
       const isRole = (currFilterBy.role.includes(task.role)) ? true : false
       const isMember = (currFilterBy.member.includes(task.owner)) ? true : false
       const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority)
-      // this.setState({ isTaskToShow: isTaskToShow })
       return isTaskToShow
     }
   }
@@ -135,7 +133,7 @@ export class _GroupPreview extends React.Component {
   };
 
   onAddTask = (ev) => {
-    console.log("adding task");
+
     ev.preventDefault();
     const { group, board, addTask } = this.props;
     addTask(this.state.taskValue, group.id, board._id);
@@ -155,13 +153,9 @@ export class _GroupPreview extends React.Component {
 
 
 
-
-
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     const { group, board, updateBoard } = this.props;
-
-
 
     if (!destination) return;
     if (
@@ -272,9 +266,6 @@ export class _GroupPreview extends React.Component {
                 />
               )}
           </div>
-
-
-
 
           <div>
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -407,7 +398,7 @@ export class _GroupPreview extends React.Component {
               case "text":
                 return <div key={idx} className="text-container"></div>;
               case "cost":
-                return <div key={idx} className="cost-container"></div>;
+                return <ProgressBarCost key={idx} groupId={group.id} />;;
             }
           })}
         </div>
