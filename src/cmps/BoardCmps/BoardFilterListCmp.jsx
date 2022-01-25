@@ -18,13 +18,10 @@ class _BoardFilterListCmp extends React.Component {
         isFiltered: false
     }
 
-toggleHandleFilter=({target})=>{
-this.setState({isFiltered:!this.state.isFiltered})
+// toggleHandleFilter=({target})=>{
+// this.setState({isFiltered:!this.state.isFiltered})
 
-
-handleChange({target})
-
-}
+// }
 
     handleChange = ({ target }) => {
 
@@ -45,8 +42,8 @@ handleChange({target})
 
                     return (
                         <li key={labelType.id} id={field} className="flex"
-                        onClick={this.toggleHandleFilter}>
-                        {/* onClick={this.handleChange}> */}
+                        // onClick={this.toggleHandleFilter}>
+                       onClick={this.handleChange}>
 
 
                             <div className="status-circle" style={{ backgroundColor: `${labelType.bgColor}` }}>
