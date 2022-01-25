@@ -15,7 +15,6 @@ class _BoardFilterListCmp extends React.Component {
             role: [],
             member: []
         },
-        isFiltered: false
     }
 
 // toggleHandleFilter=({target})=>{
@@ -27,8 +26,10 @@ class _BoardFilterListCmp extends React.Component {
 
         const value = target.innerText
         const field = target.id
-        const {isFiltered}=this.state
-       (isFiltered)&& this.setState((prevState)=>({
+        // const {isFiltered}=this.state
+    //    (isFiltered)&&
+       
+       this.setState((prevState)=>({
           ...prevState, currFilterBy: {...prevState.currFilterBy, [field]:[...this.state.currFilterBy[field], value] }
         }), ()=> {this.props.updateFilter(this.state.currFilterBy)}
         )
