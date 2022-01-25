@@ -8,7 +8,7 @@
   position: fixed;
   z-index: 5;
   right: 0px;
-  box-shadow: -1px 6px 9px 0 rgb(53 49 49 / 15%);  
+  box-shadow: -1px 6px 9px 0 rgb(53 49 49 / 15%);
   margin-left: 20px;
   z-index: 200;
   transition: transform 0.3s;
@@ -109,6 +109,10 @@
     // &:focus {
     //   outline: none;
     // }
+  }
+
+  .no-updates-img {
+    padding-inline-start: 20px;
   }
   .post {
     height: 233px;

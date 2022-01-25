@@ -5,7 +5,7 @@ import { BsReply, BsBell } from 'react-icons/bs'
 import { HiOutlineClock } from 'react-icons/hi'
 
 import { saveTask } from '../../store/board.action.js'
-
+import noUpdates from '../../assets/imgs/noupdates.PNG'
 
 class _TaskUpdates extends React.Component {
     state = {
@@ -73,6 +73,7 @@ class _TaskUpdates extends React.Component {
                 <React.Fragment>
                     <div>
                         <div className="posts-container">
+                            {!task.comments.length && <img src={noUpdates} className="flex no-updates-img" alt=""></img>}
                             {(!!task.comments.length) && task.comments.map((comment) => {
                                 return (
                                     <div key={comment.id} className="post flex column">
