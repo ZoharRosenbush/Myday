@@ -22,37 +22,26 @@ class _BoardControllers extends React.Component {
   }
 
 
-  //TODO: change to async await
   updateFilterBy = (value, field) => {
-    const { board, updateFilter, loadBoard, currFilterBy } = this.props
+    const { updateFilter } = this.props
     const { filterBy } = this.state
-
 
     if (filterBy[field].includes(value)) {
       const newFilter = filterBy[field].filter(filteredValue => {
         return filteredValue !== value
       })
       this.setState((prevState) => (
-
         { ...prevState, filterBy: { ...prevState.filterBy, [field]: newFilter } }), () => {
-          updateFilter(filterBy)
-          console.log('this.state.filterBy😡2222222יש:', this.state.filterBy);
-          loadBoard(board._id, currFilterBy)
+          updateFilter(this.state.filterBy)
         })
     } else {
       this.setState((prevState) => (
         { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {
-
-          console.log('this.state.filterBy 🤩11111אין:', this.state.filterBy)
-          updateFilter(filterBy)
-
-          loadBoard(board._id, currFilterBy)
+          updateFilter(this.state.filterBy)
         }
       )
     }
   }
-
-
 
 
   openFilterModal = () => {

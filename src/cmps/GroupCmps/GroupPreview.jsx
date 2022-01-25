@@ -87,8 +87,7 @@ export class _GroupPreview extends React.Component {
 
   setFilter = (task) => {
     const { currFilterBy } = this.props
-
-
+  
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
       !currFilterBy.type.length &&
@@ -98,11 +97,11 @@ export class _GroupPreview extends React.Component {
       return true
     } else {
 
-      const isPriority = (currFilterBy.priority.includes(task.priority)) ? true : false
-      const isStatus = (currFilterBy.status.includes(task.status)) ? true : false
-      const isType = (currFilterBy.type.includes(task.type)) ? true : false
-      const isRole = (currFilterBy.role.includes(task.role)) ? true : false
-      const isMember = (currFilterBy.member.includes(task.owner)) ? true : false
+      const isPriority = (currFilterBy.priority.includes(task.priority)) 
+      const isStatus = (currFilterBy.status.includes(task.status)) 
+      const isType = (currFilterBy.type.includes(task.type)) 
+      const isRole = (currFilterBy.role.includes(task.role)) 
+      const isMember = (currFilterBy.member.includes(task.owner)) 
       const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority)
       return isTaskToShow
     }

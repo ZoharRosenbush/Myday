@@ -78,18 +78,13 @@ export function updateBoard(board) {
   }
 }
 export function updateFilter(currFilterBy) {
-  const filterToDispatch = {}
-  if (currFilterBy.priority.length) filterToDispatch.priority = currFilterBy.priority
-  if (currFilterBy.type.length) filterToDispatch.type = currFilterBy.type
-  if (currFilterBy.status.length) filterToDispatch.status = currFilterBy.status
-  if (currFilterBy.role.length) filterToDispatch.role = currFilterBy.role
-  if (currFilterBy.member.length) filterToDispatch.member = currFilterBy.member
+
   return (dispatch) => {
 
     dispatch({
       type: "SET_FILTER",
       currFilterBy: {
-        ...filterToDispatch
+        ...currFilterBy
       }
     });
 
