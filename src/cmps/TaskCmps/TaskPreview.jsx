@@ -26,6 +26,7 @@ import {
 class _TaskPreview extends React.Component {
   state = {
     isModalTaskOpen: false,
+
   };
 
 
@@ -109,7 +110,7 @@ class _TaskPreview extends React.Component {
         }
         saveTask(task, groupId, board._id, activity);
         break;
-      case "text":
+      case "cost":
         task.cost = data;
         saveTask(task, groupId, board._id);
         break;
@@ -188,6 +189,9 @@ class _TaskPreview extends React.Component {
     }
   };
 
+
+
+
   onUpdateTitleContent = ({ target }) => {
     const { task, board, groupId, saveTask, activeModal } = this.props;
     const value = target.textContent;
@@ -198,16 +202,18 @@ class _TaskPreview extends React.Component {
   };
 
   render() {
+  
     const { board, groupId, activeModal, setActiveModal, task } = this.props;
     const group = board.groups.find((group) => {
       return groupId === group.id;
     });
     const groupColor = group.style.groupColor;
     const cmpsOrder = board.cmpsOrder;
+
+
     return (
 
-
-      <section className="task-preview-section">
+    <section className="task-preview-section">
         <div className="flex task-icon">
           <div className="icon-down-task" onClick={(ev) => {
             ev.stopPropagation()
@@ -294,6 +300,9 @@ class _TaskPreview extends React.Component {
         <div className="finish-task">
         </div>
       </section>
+
+
+
       // </section>
       // )}
     );
@@ -304,7 +313,7 @@ function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     activeModal: boardModule.activeModal,
-    //   currFilterBy: toyModule.currFilterBy
+    // currFilterBy: boardModule.currFilterBy
   };
 }
 const mapDispatchToProps = {

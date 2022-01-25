@@ -75,7 +75,7 @@ export function updateFilter(currFilterBy) {
     try {
       dispatch({
         type: "SET_FILTER",
-        currFilterBy: currFilterBy
+        currFilterBy: {...currFilterBy}
       });
     } catch (err) {
       console.log("Cannot update board", err);

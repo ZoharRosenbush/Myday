@@ -31,6 +31,7 @@ export class _GroupPreview extends React.Component {
     taskValue: "",
     isModalToDelete: false,
     isAddTaskActive: false,
+
   };
 
   openModal = (modal) => {
@@ -68,6 +69,34 @@ export class _GroupPreview extends React.Component {
       }
     );
   };
+
+
+  setFilter = (task) => {
+    const { currFilterBy } = this.props
+    console.log('task:', task);
+    console.log('currFilterBy:', currFilterBy);
+
+    if (!currFilterBy.priority.length &&
+      !currFilterBy.status.length &&
+      !currFilterBy.type.length &&
+      !currFilterBy.role.length &&
+      !currFilterBy.member.length) {
+
+      // this.setState({ isTaskToShow: true })
+      return true
+    } else {
+
+      const isPriority = (currFilterBy.priority.includes(task.priority)) ? true : false
+      const isStatus = (currFilterBy.status.includes(task.status)) ? true : false
+      const isType = (currFilterBy.type.includes(task.type)) ? true : false
+      const isRole = (currFilterBy.role.includes(task.role)) ? true : false
+      const isMember = (currFilterBy.member.includes(task.owner)) ? true : false
+      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority)
+      // this.setState({ isTaskToShow: isTaskToShow })
+      return isTaskToShow
+    }
+  }
+
 
   toggleGroupModal = () => {
     this.setState({ isGroupModalOpen: !this.state.isGroupModalOpen });
@@ -123,6 +152,10 @@ export class _GroupPreview extends React.Component {
     else if (cmpType === "cost") return "Cost";
     else return "Status";
   };
+
+
+
+
 
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -203,7 +236,7 @@ export class _GroupPreview extends React.Component {
         )}
 
 
-{isModalToDelete && <div className="main-screen"></div>}
+        {isModalToDelete && <div className="main-screen"></div>}
 
         <div className="div-headline-container">
 
@@ -301,8 +334,9 @@ export class _GroupPreview extends React.Component {
               {...provided.droppableProps}
             >
               {group.tasks.map((task, idx) => {
+                // this.setFilter(task)
                 return (
-                  <Draggable key={task.id} draggableId={task.id} index={idx}>
+                  this.setFilter(task) && <Draggable key={task.id} draggableId={task.id} index={idx}>
                     {(provided) => (
                       <section
                         {...provided.draggableProps}
@@ -385,6 +419,7 @@ function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     activeModal: boardModule.activeModal,
+    currFilterBy: boardModule.currFilterBy,
   };
 }
 const mapDispatchToProps = {

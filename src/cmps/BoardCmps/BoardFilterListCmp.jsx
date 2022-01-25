@@ -1,8 +1,8 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import {    updateFilter} from '../../store/board.action.js'
 
+import {updateFilter} from '../../store/board.action.js'
 
 
 class _BoardFilterListCmp extends React.Component {
@@ -33,11 +33,13 @@ class _BoardFilterListCmp extends React.Component {
         const field = target.id
         console.log('value:', value);
         console.log('field:', field);
+
+        this.setState((prevState)=>({
+          ...prevState, currFilterBy: {...prevState.currFilterBy, [field]:[...this.state.currFilterBy[field], value] }
+        }), ()=> {this.props.updateFilter(this.state.currFilterBy)}
+        )
        
-        const currFilterBy = {[field]: [...this.state.currFilterBy[field],value]}
-        console.log('currFilterBy:', currFilterBy);
-        
-        this.props.updateFilter(currFilterBy)
+     
     }
 
 

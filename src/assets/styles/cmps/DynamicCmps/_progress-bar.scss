@@ -2,7 +2,7 @@
   display: flex;
   width: inherit;
   height: 40px;
-  margin-left: 440px;
+  margin-left: 447.5px;
 }
 
 .status-bar,
@@ -40,7 +40,13 @@
 
 }
 
-.status-container,.text-container, .cost-container {
+.status-container{
+min-width: 139px;
+
+}
+
+
+.text-container {
   min-width: 139px;
 
 }
@@ -49,23 +55,34 @@
   width: 140px;
 }
 .date-container  {
-  min-width: 199px;
+  min-width: 201px;
   background-color: #fff;
   height: 40px;
+
 
 }
 .member-container {
-  min-width: 148px;
+  min-width: 150px;
   background-color: #fff;
   height: 40px;
 
 }
-.text-container {
-  min-width: 139px;
-  background-color: #fff;
-  height: 40px;
+.text-container{ 
+min-width: 139px;
+background-color: #fff;
+height: 40px;
 
 }
+
+
+
+.cost-container {
+  min-width: 150px;
+  background-color: #fff;
+  height: 40px;
+}
+
+
 
 .type-container {
   width: 139px;

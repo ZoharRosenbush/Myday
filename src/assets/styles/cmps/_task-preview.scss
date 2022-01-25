@@ -47,7 +47,9 @@
 }
 
 .task-preview {
-  & > *:not(:first-child) {
+  & > *
+  // :not(:first-child) 
+  {
     border-inline-start: 1px solid #fff;
   }
   &:hover {
