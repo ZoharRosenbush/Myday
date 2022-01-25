@@ -34,7 +34,6 @@ export function boardReducer(state = initialState, action) {
       return {
 
 
-
         ...state, currFilterBy: {...state.currFilterBy, ...action.currFilterBy }
       };
     case "SET_BOARD":
