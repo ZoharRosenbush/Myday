@@ -1,24 +1,49 @@
-export function CostCmp({ onUpdateTask, cmpData }) {
 
+import React from "react";
+export class CostCmp extends React.Component {
 
-    function onUpdateTaskCost({ target }) {
-      const value = target.textContent;
-      if (!value) return;
+  state = {
+    cost: ""
+  }
+
+  componentDidMount() {
+    const { cmpData } = this.props
+    this.setState({ cost: cmpData.info.cost })
+  }
+
+  onUpdateTaskCost = ({ target }) => {
+    console.log('change:',);
+    const { onUpdateTask, cmpData } = this.props
+    const value = target.value;
+    if (!value) return;
+    console.log('target:', target.value);
+    this.setState({
+      cost: value
+    }, () => {
+      console.log('this.state:', this.state);
+
       onUpdateTask("cost", value);
-    }
-  
+    })
+
+    console.log('cmpData:', cmpData);
+  }
+  render() {
+    const { cmpData } = this.props
     return (
+
       <div className="cost-cmp">
         <input
-        type="number"
+          type="number"
           className="task-cost"
           contentEditable
           suppressContentEditableWarning={true}
-          onBlur={onUpdateTaskCost}
+          onChange={this.onUpdateTaskCost}
+          value={this.state.cost}
+          min="0"
         >
-          {cmpData.info.cost}
+
         </input>
       </div>
     );
   }
-  
+}
