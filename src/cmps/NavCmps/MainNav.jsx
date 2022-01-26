@@ -67,7 +67,7 @@ export function MainNav() {
           size="23px"
           style={{ marginLeft: "19px", cursor: "pointer" }}
         />
-        <Link to={'/login'}><div className="user-avatar ME">ME</div></Link> 
+        <Link className="clean-link" to={'/login'}><div className="user-avatar ME">ME</div></Link> 
       </div>
     </section>
   );
