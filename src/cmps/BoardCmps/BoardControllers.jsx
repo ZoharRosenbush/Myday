@@ -68,7 +68,7 @@ inputRef=React.createRef()
         <button className="add-group-btn" onClick={onAddGroup}>
           New Group
         </button>
-        <div className="controller-opt">
+        <div className="input-search-wrapper">
           {isSearchClicked &&
             <div className="flex search-container">
               <CgSearch style={{"margin-left":"6px"}}/>
@@ -82,7 +82,7 @@ inputRef=React.createRef()
             </div>}
 
           {!isSearchClicked &&
-            <div className="flex search-button">
+            <div className="flex search-button controller-opt">
               <CgSearch />
               <button onClick={this.toggelSearchClicked}>Search</button>
             </div>}
