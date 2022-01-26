@@ -14,29 +14,20 @@ export const boardService = {
   makeId
 };
 
+
+// ****BOARD - CRUD ***
+
 async function query() {
   const boards = await httpService.get('board/');
-  // if (!boards.length) {
-  //   return _getNewBoards()
-  // }
-  // console.log(boards)
   return boards
 }
 
 
 //maybe change later to getBoard()
 async function getById(boardId) {
-  // console.log('boardId:', boardId);
-
-  // console.log('currFilterBy:', currFilterBy);
-
   const board = await httpService.get(`board/${boardId}`)
-  // console.log(' func----the board afrer get by id',board)
   return board
 }
-
-
-// ****BOARD - CRUD ***
 
 async function saveBoard(boardToSave) {
   if (boardToSave._id) {

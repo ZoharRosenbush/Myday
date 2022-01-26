@@ -29,7 +29,6 @@ class _TaskPreview extends React.Component {
 
   };
 
-
   openModal = (taskId) => {
     const activeModal = { cmpType: 'taskEdit', taskId: taskId }
     this.props.setActiveModal(activeModal)
