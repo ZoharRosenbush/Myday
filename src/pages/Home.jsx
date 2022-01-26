@@ -10,8 +10,9 @@ export function Home() {
 <div className="logo-header">
 <img src={HomeLogo} alt=""></img>
 </div>
+<Link className="clean-link link-container" to="/login">
         <button className="start-btn">Login</button>
-
+        </Link>
 
       </header>
       <div className="main-home-page-container">
