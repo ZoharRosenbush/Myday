@@ -92,14 +92,9 @@ export function updateFilter(currFilterBy) {
 
   }
 }
-<<<<<<< HEAD
 
 export function deleteTask(taskId, groupId, board) {
 
-
-=======
-export function deleteTask(taskId, groupId, boardId) {
->>>>>>> 2aa7fb30bbf7b84e88185eadcfc76c0ca8ac8c7f
   return async (dispatch) => {
 
     try {
