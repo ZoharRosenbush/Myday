@@ -55,6 +55,11 @@ class _BoardDetails extends React.Component {
     socketService.terminate()
   }
 
+  goToTaskDetails = (boardId, groupId, taskId) => {
+    window.location.href = `/${boardId}/${groupId}/${taskId}`
+  }
+
+
   onDragEnd = ({ type, ...result }) => {
     if (!result.destination) return;
     if (type === 'board') {
@@ -121,6 +126,7 @@ class _BoardDetails extends React.Component {
                     {/* isFilttered&& <GroupList board ={filteredBoard} */}
                     <GroupList
                       board={board}
+                      goToTaskDetails={this.goToTaskDetails}
                     />
                     {provided.placeholder}
                   </div>
