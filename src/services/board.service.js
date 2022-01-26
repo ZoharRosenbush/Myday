@@ -6,14 +6,14 @@ import { socketService } from "./socket.service.js";
 export const boardService = {
   query,
   getById,
-  save,
-  remove,
+  saveBoard,
+  removeBoard,
   getNewBoard,
-  saveTask,
-  saveGroup,
-  addTask,
   addGroup,
+  saveGroup,
   deleteGroup,
+  saveTask,
+  addTask,
   deleteTask,
   makeId
 };
@@ -33,10 +33,13 @@ async function getById(boardId) {
   return board
 }
 
-async function save(boardToSave) {
+
+// ****BOARD - CRUD ***
+
+async function saveBoard(boardToSave) {
   if (boardToSave._id) {
     const updatedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
-    socketService.emit('member updated board',boardToSave._id)
+    socketService.emit('member updated board', boardToSave._id)
     // console.log('finished updatinggg');
     return updatedBoard
   } else {
@@ -45,63 +48,20 @@ async function save(boardToSave) {
   }
 }
 
-async function remove(boardId) {
+async function removeBoard(boardId) {
   const removedBoardId = await httpService.delete(`board/${boardId}`);
   return removedBoardId
 }
 
-async function saveTask(taskToSave, groupId,boardId) {
-  try {
-    const board = await getById(boardId);
-    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-    const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
-      return task.id === taskToSave.id ? taskToSave : task;
-    });
-    board.groups[groupIdx].tasks = tasksToSave;
-    save(board);
-    return board;
-  } catch (err) {
-    console.log("err:", err);
-  }
-}
 
-async function addTask(value, groupId, boardId) {
-  try {
-    const taskToSave = {
-      id: _makeId(),
-      title: value,
-      status: "Empty",
-      text: "",
-      priority: "Empty",
-      role: "Empty",
-      type: "Empty",
-      "cost": "Empty",
-      activities: [],
-      timeline: ["Jan 17-22", "Jan 19-22"],
-      owner: [
-        {
-          "fullname": "Lora Turner",
-          "username": "Lora Turner",
-          "_id": "61edc3c5652f5891aac4aed6",
-          "acronyms": "LT",
-          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-        },
-      ],
-      comments: [],
-    };
-    const board = await getById(boardId);
-    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-    board.groups[groupIdx].tasks.push(taskToSave);
-    save(board);
-    return board;
-  } catch (err) {
-    console.log("err:", err);
-  }
-}
+// **** GROUPS - CRUD ***
 
-async function addGroup(boardId) {
+
+// 
+
+async function addGroup(board) {
   try {
-    const groupToSave = {
+    const newGroup = {
       id: _makeId(),
       title: "New Group",
       tasks: [
@@ -130,54 +90,102 @@ async function addGroup(boardId) {
       ],
       style: { groupColor: getNiceRandomColor() },
     };
-    const board = await getById(boardId);
-    board.groups.unshift(groupToSave);
-    // console.log("board:", board);
 
-    save(board);
+    board.groups.unshift(newGroup);
+    // console.log("board:", board);
+    // _saveGroup(newGroup, board);
+    saveBoard(board)
+    console.log('started adding group');
     return board;
   } catch (err) {
     console.log("err:", err);
   }
 }
 
-async function saveGroup(groupToSave, boardId) {
+async function saveGroup(groupToSave, board) {
   try {
-    const board = await getById(boardId);
     const groupIdx = board.groups.findIndex(
       (group) => groupToSave.id === group.id
     );
+
     board.groups[groupIdx] = groupToSave;
-    save(board);
+    // _saveGroup(groupToSave, board._id);
+    saveBoard(board)
     return board;
   } catch (err) {
     console.log("err:", err);
   }
 }
 
-async function deleteGroup(groupId, boardId) {
+async function deleteGroup(groupId, board) {
   try {
-    const board = await getById(boardId);
-    const newGroups = board.groups.filter((group) => {
+    const filteredGroups = board.groups.filter((group) => {
       return group.id !== groupId;
     });
-    board.groups = newGroups;
-    // const newReviews = book.reviews.filter((review) => review.id !== reviewId);
-    // book.reviews = newReviews;
-    // books[bookIdx] = book;
-
-    save(board);
+    board.groups = filteredGroups
+    // _removeGroup(groupId, board._id)
+    saveBoard(board)
     return board;
   } catch (err) {
     console.log("err:", err);
   }
 }
 
-async function deleteTask(taskId, groupId, boardId) {
-  try {
-    const board = await getById(boardId);
-    console.log('board in service:', board);
 
+
+// **** TASKS - CRUD ***
+
+
+async function saveTask(taskToSave, groupId, board) {
+  try {
+    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+    const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
+      return task.id === taskToSave.id ? taskToSave : task;
+    });
+    board.groups[groupIdx].tasks = tasksToSave;
+    saveBoard(board);
+    return board;
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+
+async function addTask(value, groupId, board) {
+  try {
+    const taskToSave = {
+      id: _makeId(),
+      title: value,
+      status: "Empty",
+      text: "",
+      priority: "Empty",
+      role: "Empty",
+      type: "Empty",
+      "cost": "Empty",
+      activities: [],
+      timeline: ["Jan 17-22", "Jan 19-22"],
+      owner: [
+        {
+          "fullname": "Lora Turner",
+          "username": "Lora Turner",
+          "_id": "61edc3c5652f5891aac4aed6",
+          "acronyms": "LT",
+          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+        },
+      ],
+      comments: [],
+    };
+    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+    board.groups[groupIdx].tasks.push(taskToSave);
+    saveBoard(board);
+    return board;
+  } catch (err) {
+    console.log("err:", err);
+  }
+}
+
+
+async function deleteTask(taskId, groupId, board) {
+  try {
     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
     const newTasks = board.groups[groupIdx].tasks.filter((task) => {
       return task.id !== taskId;
@@ -185,7 +193,7 @@ async function deleteTask(taskId, groupId, boardId) {
     console.log('newTasks:', newTasks);
     board.groups[groupIdx].tasks = newTasks;
 
-    save(board);
+    saveBoard(board);
     return board;
   } catch (err) {
     console.log("err:", err);
@@ -432,3 +440,35 @@ function makeId(length = 4) {
   }
   return text;
 }
+
+
+// async function saveBoard(boardToSave) {
+//   if (boardToSave._id) {
+//     const updatedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
+//     socketService.emit('member updated board', boardToSave._id)
+//     // console.log('finished updatinggg');
+//     return updatedBoard
+//   } else {
+//     const addedBoard = await httpService.post('board/', boardToSave);
+//     return addedBoard
+//   }
+// }
+
+// async function removeBoard(boardId) {
+//   const removedBoardId = await httpService.delete(`board/${boardId}`);
+//   return removedBoardId
+// }
+
+
+// async function _saveGroup(groupToSave, boardId) {
+
+//   //   const savedGroup = await httpService.post(`board/${boardId}/${groupToSave.id}`, groupToSave);
+//   //   console.log('succesfuly added group');
+//   //   return savedGroup
+//   // }
+  
+//   // async function _removeGroup(groupToRemove, boardId) {
+  
+//   //   const removedGroupId = await httpService.delete(`board/${boardId}/${groupToRemove.id}`);
+//   //   return removedGroupId
+//   // }

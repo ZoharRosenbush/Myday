@@ -42,7 +42,7 @@ export function loadBoard(boardId) {
 export function addBoard(board) {
   return async (dispatch) => {
     try {
-      const savedBoard = await boardService.save({
+      const savedBoard = await boardService.saveBoard({
         ...board
       });
       dispatch({
@@ -65,7 +65,7 @@ export function updateBoard(board) {
         type: "UPDATE_BOARD",
         board: board,
       });
-      await boardService.save({
+      await boardService.saveBoard({
         ...board
       });
 
@@ -74,6 +74,8 @@ export function updateBoard(board) {
     }
   }
 }
+
+
 export function updateFilter(currFilterBy) {
   const filterToDispatch = {}
   
@@ -98,16 +100,16 @@ export function updateFilter(currFilterBy) {
   }
 }
 
-export function deleteTask(taskId, groupId, boardId) {
+export function deleteTask(taskId, groupId, board) {
 
 
   return async (dispatch) => {
 
     try {
-      const board = await boardService.deleteTask(taskId, groupId, boardId);
+      const updatedBoard = await boardService.deleteTask(taskId, groupId, board);
       dispatch({
         type: "SET_BOARD",
-        board: board
+        board: updatedBoard
       });
     } catch (err) {
       console.log('err:', err);
@@ -115,14 +117,14 @@ export function deleteTask(taskId, groupId, boardId) {
   };
 }
 
-export function addTask(value, groupId, boardId) {
+export function addTask(value, groupId, board) {
   return async (dispatch) => {
 
     try {
-      const board = await boardService.addTask(value, groupId, boardId);
+      const updatedBoard = await boardService.addTask(value, groupId, board);
       dispatch({
         type: "SET_BOARD",
-        board: board
+        board: updatedBoard
       });
     } catch (err) {
       console.log('err:', err);
@@ -144,13 +146,14 @@ export function addTask(value, groupId, boardId) {
 // }
 
 
-export function addGroup(boardId) {
+export function addGroup(board) {
   return async (dispatch) => {
     try {
-      const board = await boardService.addGroup(boardId);
+      const updatedBoard = await boardService.addGroup(board);
+      console.log('recived board to action',updatedBoard);
       dispatch({
         type: "SET_BOARD",
-        board: board
+        board: updatedBoard
       });
     } catch (err) {
       console.log('err:', err);
@@ -172,13 +175,13 @@ export function removeBoard(boardId) {
     }
   };
 }
-export function deleteGroup(groupId, boardId) {
+export function deleteGroup(groupId, board) {
   return async (dispatch) => {
     try {
-      const board = await boardService.deleteGroup(groupId, boardId);
+      const updatedBoard = await boardService.deleteGroup(groupId, board);
       dispatch({
         type: "SET_BOARD",
-        board: board
+        board: updatedBoard
       });
     } catch (err) {
       console.log('err:', err);
@@ -188,7 +191,7 @@ export function deleteGroup(groupId, boardId) {
 
 
 // Store - saveTask
-export function saveTask(task, groupId, boardId, activity, comment) {
+export function saveTask(task, groupId, board, activity, comment) {
 
   if (activity) {
     activity.id = boardService.makeId()
@@ -214,10 +217,10 @@ export function saveTask(task, groupId, boardId, activity, comment) {
   }
   return async (dispatch) => {
     try {
-      const board = await boardService.saveTask(task, groupId, boardId);
+      const updatedBoard = await boardService.saveTask(task, groupId, board);
       dispatch({
         type: "SET_BOARD",
-        board: board
+        board: updatedBoard
       });
     } catch (err) {
       console.log('err:', err);
@@ -225,22 +228,13 @@ export function saveTask(task, groupId, boardId, activity, comment) {
   };
 }
 
-export function saveGroup(group, boardId) { 
+export function saveGroup(group, board) { 
   
-  // boardFilter
-
-  // const activity = {
-  //     "id": makeId(),
-  //     "txt": "Changed Color",
-  //     "createdAt": Date.now(),
-  //     "byMember": userService.getLoggedinUser(),
-  //     "task": task
-  // }
   return async (dispatch) => {
     try {
       
-      const board = await boardService.saveGroup(group, boardId);
-      dispatch({ type: "SET_BOARD", board: board });
+      const updatedBoard= await boardService.saveGroup(group, board);
+      dispatch({ type: "SET_BOARD", board: updatedBoard });
     } catch (err) {
       console.log('err:', err);
     }

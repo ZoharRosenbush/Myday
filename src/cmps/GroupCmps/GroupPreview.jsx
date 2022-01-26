@@ -21,6 +21,7 @@ import { MdDragIndicator } from "react-icons/md";
 
 import {
   addTask,
+  addGroup,
   saveGroup,
   deleteGroup,
   setActiveModal,
@@ -36,16 +37,16 @@ export class _GroupPreview extends React.Component {
   };
 
 
-  componentDidUpdate(prevProps) {
-    // if (prevProps.currFilterBy !== this.props.currFilterBy) {
-    //   console.log('did update:');
+  // componentDidUpdate(prevProps) {
+  //   // if (prevProps.currFilterBy !== this.props.currFilterBy) {
+  //   //   console.log('did update:');
 
 
-    // }
-    console.log('this.props.currFilterBy:', this.props.currFilterBy);
+  //   // }
+  //   console.log('this.props.currFilterBy:', this.props.currFilterBy);
     
     
-  }
+  // }
 
 
     openModal = (modal) => {
@@ -79,7 +80,7 @@ export class _GroupPreview extends React.Component {
           isAddTaskActive: !prevState.isAddTaskActive,
         }),
         () => {
-          console.log("changing active", this.state);
+          // console.log("changing active", this.state);
         }
       );
     };
@@ -118,7 +119,7 @@ export class _GroupPreview extends React.Component {
       const value = target.textContent;
       if (!value) return;
       group.title = value;
-      saveGroup(group, board._id);
+      saveGroup(group, board)
     };
 
     onUpdateGroupColor = (color) => {
@@ -126,13 +127,13 @@ export class _GroupPreview extends React.Component {
       // const value = target.textContent;
       // if (!value) return;
       group.style.groupColor = color;
-      saveGroup(group, board._id);
+      saveGroup(group, board)
     };
 
     deleteGroup = () => {
       this.setState({ isModalToDelete: false });
       const { deleteGroup, group, board } = this.props;
-      deleteGroup(group.id, board._id);
+      deleteGroup(group.id, board);
     };
 
     onHandleChange = ({ target }) => {
@@ -144,7 +145,7 @@ export class _GroupPreview extends React.Component {
 
       ev.preventDefault();
       const { group, board, addTask } = this.props;
-      addTask(this.state.taskValue, group.id, board._id);
+      addTask(this.state.taskValue, group.id, board)
       this.setState({ taskValue: "" });
     };
 
@@ -440,6 +441,7 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
   saveGroup,
   addTask,
+  addGroup,
   deleteGroup,
   setActiveModal,
   updateBoard,

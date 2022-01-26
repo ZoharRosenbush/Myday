@@ -49,7 +49,7 @@ class _TaskUpdates extends React.Component {
             createdAt: Date.now(),
             txt: this.state.commentValue
         }
-        saveTask(task, groupId, board._id, null, newComment)
+        saveTask(task, groupId, board, null, newComment)
         this.setState({ commentValue: "" });
     };
 

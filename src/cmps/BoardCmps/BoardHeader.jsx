@@ -10,8 +10,9 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { BoardControllers } from "./BoardControllers.jsx";
 import { addGroup, loadBoards } from "../../store/board.action.js";
 export function _BoardHeader({ board, updateBoard, loadBoards, addGroup }) {
+  
   function onAddGroup() {
-    addGroup(board._id);
+    addGroup(board);
   }
 
 

@@ -15,8 +15,9 @@ export class _TaskDetails extends React.Component {
     getCurrTask = () => {
         const { groupId } = this.props.match.params
         const { taskId } = this.props.match.params;
-        const board = this.props
-        const currGroup = board.board.groups.find((group) => group.id === groupId)
+        const {board} = this.props
+        console.log('the board in details', board);
+        const currGroup = board.groups.find((group) => group.id === groupId)
         const currTask = currGroup.tasks.find((task) => task.id === taskId)
         return currTask
     };
@@ -33,7 +34,7 @@ export class _TaskDetails extends React.Component {
         if (!value) return;
         task.title = value;
         try {
-            saveTask(task, groupId, board._id, activity);
+            saveTask(task, groupId, board, activity);
         } catch (err) {
             console.log('error in updating board', err);
         }
