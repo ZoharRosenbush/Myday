@@ -66,7 +66,7 @@ class _BoardControllers extends React.Component {
 
   render() {
     const { onAddGroup } = this.props;
-    const { isModalFilterOpen, isSearchClicked } = this.state;
+    const { isModalFilterOpen, isSearchClicked, filterBy } = this.state;
     const { board } = this.props
 
     return (
@@ -116,19 +116,19 @@ class _BoardControllers extends React.Component {
                 <div className="flex">
                   <div className="flex column-filter">
                     <span className="filterBy">Status</span>
-                    <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"statuses"} field={"status"} />
+                    <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"statuses"} field={"status"} />
                   </div>
                   <div className="flex column-filter">
                     <span className="filterBy">Type</span>
-                    <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"types"} field={"type"} />
+                    <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"types"} field={"type"} />
                   </div>
                   <div className="flex column-filter">
                     <span className="filterBy">Priority</span>
-                    <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"priorities"} field={"priority"} />
+                    <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"priorities"} field={"priority"} />
                   </div>
                   <div className="flex column-filter">
                     <span className="filterBy">Role</span>
-                    <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"roles"} field={"role"} />
+                    <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"roles"} field={"role"} />
                   </div>
 
                   <div className="flex column-filter">
