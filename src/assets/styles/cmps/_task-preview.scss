@@ -13,9 +13,11 @@
     border-bottom: 1px solid #e6e9ef;
     background-color: #f5f6f8ed;
     box-shadow: 0 3px 4px -5px #484444;
-    // min-width: 390px;
     width: 390px;
     text-align: left;
+    position: sticky;
+    left: 0;
+    z-index: 3;
   }
   .task-title-content {
     width: 390px;

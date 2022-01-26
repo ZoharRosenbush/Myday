@@ -78,7 +78,7 @@ export class _GroupPreview extends React.Component {
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
       !currFilterBy.type.length &&
-      !currFilterBy.role.length && (search==="") &&
+      !currFilterBy.role.length && (search === "") &&
       !currFilterBy.member.length) {
 
       return true
@@ -90,7 +90,7 @@ export class _GroupPreview extends React.Component {
       const isRole = (currFilterBy.role.includes(task.role))
       const isMember = (currFilterBy.member.includes(task.owner))
       const taskText = (task.title.toLowerCase().includes(search.search.toLowerCase()))
-      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority || taskText )
+      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority || taskText)
       return isTaskToShow
     }
   }
@@ -105,21 +105,21 @@ export class _GroupPreview extends React.Component {
     const value = target.textContent;
     if (!value) return;
     group.title = value;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     saveGroup(group, boardCopy)
   };
 
   onUpdateGroupColor = (color) => {
     const { group, board, saveGroup } = this.props;
     group.style.groupColor = color;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     saveGroup(group, boardCopy)
   };
 
   deleteGroup = () => {
     this.setState({ isModalToDelete: false });
     const { deleteGroup, group, board } = this.props;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     deleteGroup(group.id, boardCopy);
   };
 
@@ -132,7 +132,7 @@ export class _GroupPreview extends React.Component {
 
     ev.preventDefault();
     const { group, board, addTask } = this.props;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     addTask(this.state.taskValue, group.id, boardCopy)
     this.setState({ taskValue: "" });
   };
@@ -216,7 +216,7 @@ export class _GroupPreview extends React.Component {
     board.cmpsOrder.splice(source.index, 1);
     board.cmpsOrder.splice(destination.index, 0, draggableId);
 
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     updateBoard(boardCopy);
   };
 
@@ -421,19 +421,23 @@ export class _GroupPreview extends React.Component {
               onSubmit={this.onAddTask}
               className="flex justify-between align-center"
             >
-              <input
-                placeholder="Add task +"
-                className="add-task"
-                onChange={this.onHandleChange}
-                value={this.state.taskValue}
-              // onFocus={this.toggleAddTask}
-              // onBlur={this.toggleAddTask}
-              // contentEditable
-              // suppressContentEditableWarning={true}
-              />
-              <button className={btnClassName}>Add</button>
-              {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
+              <div className="add-task-left">
+                <input
+                  placeholder="Add task +"
+                  className="add-task"
+                  onChange={this.onHandleChange}
+                  value={this.state.taskValue}
+                // onFocus={this.toggleAddTask}
+                // onBlur={this.toggleAddTask}
+                // contentEditable
+                // suppressContentEditableWarning={true}
+                />
+              </div>
+              <div className="add-task-right flex">
+                <button className={btnClassName}>Add</button>
+                {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
               {!isAddTaskActive && <div className="btn-placeholder"></div>} */}
+              </div>
             </form>
           </div>
         </div>

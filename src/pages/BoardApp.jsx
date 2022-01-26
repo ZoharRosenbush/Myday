@@ -18,7 +18,7 @@ export function BoardApp() {
 
             </section> */}
             <MainNav />
-            <BoardHeader />
+            {/* <BoardHeader /> */}
             <BoardNav />
         </section>
     );

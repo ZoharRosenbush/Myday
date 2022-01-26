@@ -69,35 +69,37 @@ export class _BoardNav extends React.Component {
       //     </button>
       //   </section>}
       // isBoardNavOpen &&
-      <section className={className} >
-        <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
-          <IoIosArrowForward color="#67686b" />
-        </button>
-        <div>
-          {
-            <React.Fragment className={`${className}`}> <p className="workspace">Workspace</p>
-              <p className="main-workspace">Main Workspace</p>
-              <div className="side-bar-features-container">
 
-                <button className="side-bar-features" onClick={() => this.onAddBoard()}>
-                  <AiOutlinePlus size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
-                  Add</button>
+      // <div>
+      <React.Fragment>
+        {
+          <section className={className} >
+            <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
+              <IoIosArrowForward color="#67686b" />
+            </button>
+            <p className="workspace">Workspace</p>
+            <p className="main-workspace">Main Workspace</p>
+            <div className="side-bar-features-container">
 
-                <button className="side-bar-features">
-                  <BiFilterAlt size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
-                  Filters</button>
+              <button className="side-bar-features" onClick={() => this.onAddBoard()}>
+                <AiOutlinePlus size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
+                Add</button>
 
-                <button className="side-bar-features">
-                  <AiOutlineSearch size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
-                  Search</button>
+              <button className="side-bar-features">
+                <BiFilterAlt size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
+                Filters</button>
 
-              </div>
-              {boards && <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} />}</React.Fragment>
-          }
+              <button className="side-bar-features">
+                <AiOutlineSearch size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
+                Search</button>
 
-        </div>
+            </div>
+            {boards && <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} />}</section>
+        }
+      </React.Fragment>
+      // </div>
 
-      </section>
+
       // </section>
 
     )

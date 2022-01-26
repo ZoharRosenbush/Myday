@@ -1,6 +1,6 @@
 .board-nav {
   width: 254px;
-  transform: translateX(-45%);
+  transform: translateX(-75%);
   border-right: 1px solid #e8eaf0;
   background-color: #f5f6f8;
   // height: 158%;
@@ -16,7 +16,7 @@
     height: 26px;
     border-radius: 50%;
     border: 1px solid #e2e7ec;
-    margin-left: 94%;
+    margin-left: 93%;
     margin-top: 20px;
     transition: width 0.1s;
     &:hover {
@@ -26,6 +26,11 @@
       z-index: 100;
     }
   }
+
+  & button.close-nav-btn {
+    margin-left: 88%;
+  }
+
   &.board-nav-open {
     transform: translateX(0);
     transition: transform 0.2s;
@@ -119,4 +124,8 @@
     opacity: 0;
   }
   // transform: translateX(-45%);
+}
+
+.board-nav button.open-nav-btn {
+  margin-left: 94%;
 }
