@@ -166,13 +166,13 @@ export class _GroupPreview extends React.Component {
     // const value = target.textContent;
     // if (!value) return;
     group.style.groupColor = color;
-    saveGroup(group, board._id);
+    saveGroup(group, board);
   };
 
   deleteGroup = () => {
     this.setState({ isModalToDelete: false });
     const { deleteGroup, group, board } = this.props;
-    deleteGroup(group.id, board._id);
+    deleteGroup(group.id, board);
   };
 
   onHandleChange = ({ target }) => {
@@ -184,7 +184,7 @@ export class _GroupPreview extends React.Component {
 
     ev.preventDefault();
     const { group, board, addTask } = this.props;
-    addTask(this.state.taskValue, group.id, board._id);
+    addTask(this.state.taskValue, group.id, board);
     this.setState({ taskValue: "" });
   };
 
