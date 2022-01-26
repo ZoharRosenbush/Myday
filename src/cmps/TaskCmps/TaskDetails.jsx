@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { AiOutlineClose } from 'react-icons/ai'
 import { setTaskModal, saveTask } from '../../store/board.action.js'
 import { TaskUpdates } from "./TaskUpdates.jsx";
@@ -15,7 +16,7 @@ export class _TaskDetails extends React.Component {
     getCurrTask = () => {
         const { groupId } = this.props.match.params
         const { taskId } = this.props.match.params;
-        const {board} = this.props
+        const { board } = this.props
         const currGroup = board.groups.find((group) => group.id === groupId)
         const currTask = currGroup.tasks.find((task) => task.id === taskId)
         return currTask
@@ -69,16 +70,18 @@ export class _TaskDetails extends React.Component {
     }
 
     render() {
-        const { isTaskDetailsOpen } = this.props;
+        const { isTaskDetailsOpen, board } = this.props;
         const { isUpdates, isActivity, isFiles } = this.state
         const { groupId } = this.props.match.params
         const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
             <section className={`${className}`}>
-                <div className="close-details" onClick={this.onCloseTaskDetails}>
-                    <AiOutlineClose size='19px' color="rgb(122 122 122)" />
-                </div>
+                <Link className="clean-link" to={`/myday/board/${board._id}`}>
+                    <div className="close-details" onClick={this.onCloseTaskDetails}>
+                        <AiOutlineClose size='19px' color="rgb(122 122 122)" />
+                    </div>
+                </Link>
                 <div><h2 className="task-header-title"
                     contentEditable
                     suppressContentEditableWarning={true}
@@ -89,12 +92,12 @@ export class _TaskDetails extends React.Component {
 
                 <div className="btns-container flex">
                     <button className="details-features" onClick={this.goToUpdates}>Updates</button><span> |</span>
-                    <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span>
+                    {/* <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span> */}
                     <button className="details-features" onClick={this.goToActivity}>Activity Log</button> <span> |</span>
                 </div>
                 {isUpdates && <TaskUpdates task={this.getCurrTask()} groupId={groupId} />}
                 {isActivity && <TaskActivity task={this.getCurrTask()} />}
-                {isFiles && <TaskFiles />}
+                {/* {isFiles && <TaskFiles />} */}
 
             </section>
 
