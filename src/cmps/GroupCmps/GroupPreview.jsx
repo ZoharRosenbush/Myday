@@ -113,7 +113,8 @@ export class _GroupPreview extends React.Component {
     // const value = target.textContent;
     // if (!value) return;
     group.style.groupColor = color;
-    saveGroup(group, board)
+    const boardCopy = {...board}
+    saveGroup(group, boardCopy)
   };
 
   deleteGroup = () => {
