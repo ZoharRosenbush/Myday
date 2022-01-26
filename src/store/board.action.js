@@ -168,6 +168,8 @@ export function removeBoard(boardId) {
   };
 }
 export function deleteGroup(groupId, board) {
+  console.log('board:', board);
+  
   return async (dispatch) => {
     try {
       const updatedBoard = await boardService.deleteGroup(groupId, board);

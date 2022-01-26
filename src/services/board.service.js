@@ -123,6 +123,7 @@ async function saveGroup(groupToSave, board) {
 }
 
 async function deleteGroup(groupId, board) {
+  
   try {
     const filteredGroups = board.groups.filter((group) => {
       return group.id !== groupId;
