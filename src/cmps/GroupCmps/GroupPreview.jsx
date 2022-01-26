@@ -73,12 +73,16 @@ export class _GroupPreview extends React.Component {
 
 
   setFilter = (task) => {
-    const { currFilterBy } = this.props
+    const { currFilterBy, search } = this.props
+console.log('search:', search);
+console.log('task.title:', task.title);
+
+
 
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
       !currFilterBy.type.length &&
-      !currFilterBy.role.length &&
+      !currFilterBy.role.length && (search==="") &&
       !currFilterBy.member.length) {
 
       return true
@@ -89,7 +93,8 @@ export class _GroupPreview extends React.Component {
       const isType = (currFilterBy.type.includes(task.type))
       const isRole = (currFilterBy.role.includes(task.role))
       const isMember = (currFilterBy.member.includes(task.owner))
-      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority)
+      const taskText = (task.title.toLowerCase().includes(search.search.toLowerCase()))
+      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority || taskText )
       return isTaskToShow
     }
   }
@@ -478,6 +483,7 @@ function mapStateToProps({ boardModule }) {
     board: boardModule.board,
     activeModal: boardModule.activeModal,
     currFilterBy: boardModule.currFilterBy,
+    search: boardModule.search,
   };
 }
 const mapDispatchToProps = {

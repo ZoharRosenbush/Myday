@@ -17,7 +17,8 @@ const initialState = {
     type: [],
     role: [],
     member: []
-  }
+  },
+  search: ""
 };
 
 export function boardReducer(state = initialState, action) {
@@ -29,6 +30,10 @@ export function boardReducer(state = initialState, action) {
     case "SET_BOARDS":
       return {
         ...state, boards: [...action.boards]
+      };
+    case "SET_SEARCH":
+      return {
+        ...state, search: action.search 
       };
     case "SET_FILTER":
       return {

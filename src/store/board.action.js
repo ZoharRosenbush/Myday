@@ -43,7 +43,7 @@ export function loadBoard(boardId, currFilterBy = null) {
 
 export function addBoard() {
   const newBoard = boardService.getNewBoard()
-  
+
   return async (dispatch) => {
     try {
       const savedBoard = await boardService.saveBoard(newBoard)
@@ -88,6 +88,20 @@ export function updateFilter(currFilterBy) {
 
   }
 }
+export function updateSearch(search) {
+console.log('search:', search);
+
+  return (dispatch) => {
+
+    dispatch({
+      type: "SET_SEARCH",
+      search: {
+        search
+      }
+    });
+
+  }
+}
 
 export function deleteTask(taskId, groupId, board) {
 
@@ -96,7 +110,7 @@ export function deleteTask(taskId, groupId, board) {
     return task.id !== taskId;
   });
   board.groups[groupIdx].tasks = filteredTasks;
-  
+
   return async (dispatch) => {
     try {
       dispatch({
@@ -251,7 +265,10 @@ export function saveGroup(groupToSave, board) {
 
   return async (dispatch) => {
     try {
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
       await boardService.saveBoard(board)
     } catch (err) {
       console.log('err:', err);

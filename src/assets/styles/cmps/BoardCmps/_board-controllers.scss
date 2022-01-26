@@ -144,6 +144,7 @@
     padding-left: 12px;
     transition: width 0.1s ease, height 0.1s ease;
     background-color: white;
+    transition: background-color .1s cubic-bezier(0, 0, 0.35, 1),width .1s cubic-bezier(0, 0, 0.35, 1);
 
   }
 

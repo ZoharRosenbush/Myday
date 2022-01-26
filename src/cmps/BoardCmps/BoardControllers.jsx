@@ -5,7 +5,7 @@ import { CgSearch } from "react-icons/cg";
 import { BiSortAlt2, BiColorFill } from "react-icons/bi";
 import { FiFilter, FiEyeOff } from "react-icons/fi";
 import { BoardFilterListCmp } from './BoardFilterListCmp'
-import { loadBoard, updateFilter } from '../../store/board.action.js'
+import { loadBoard, updateFilter, updateSearch } from '../../store/board.action.js'
 // import { IoColorFillOutline } from 'react-icons/io'
 
 class _BoardControllers extends React.Component {
@@ -22,16 +22,22 @@ class _BoardControllers extends React.Component {
     isSearchClicked: false,
   }
 
-inputRef=React.createRef()
+  inputRef = React.createRef()
 
   toggelSearchClicked = () => {
     this.setState((prevState) => (
       { ...prevState, isSearchClicked: !prevState.isSearchClicked }), () => {
-        console.log('this.state:', this.state);
-
       })
   }
 
+
+  handleChange = ({ target }) => {
+
+    const value = target.value
+    console.log('value:', value);
+    this.props.updateSearch(value)
+
+  }
 
   updateFilterBy = (value, field) => {
     const { updateFilter } = this.props
@@ -71,14 +77,19 @@ inputRef=React.createRef()
         <div className="input-search-wrapper">
           {isSearchClicked &&
             <div className="flex search-container">
-              <CgSearch style={{"margin-left":"6px"}}/>
-              <input
-                className="input-search"
-                placeholder="Search"
-                ref={this.inputRef}
-                onBlur={this.toggelSearchClicked}>
+              <CgSearch style={{ marginLeft: "6px" }} />
+              <form>
 
-              </input>
+                <input
+                  className="input-search"
+                  placeholder="Search"
+                  ref={this.inputRef}
+                  onBlur={this.toggelSearchClicked}
+                  onChange={this.handleChange}
+                >
+
+                </input>
+              </form>
             </div>}
 
           {!isSearchClicked &&
@@ -162,7 +173,8 @@ function mapStateToProps({ boardModule }) {
 }
 const mapDispatchToProps = {
   loadBoard,
-  updateFilter
+  updateFilter,
+  updateSearch
 };
 
 export const BoardControllers = connect(
