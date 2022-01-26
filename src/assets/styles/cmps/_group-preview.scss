@@ -37,9 +37,11 @@
   position: relative;
   margin: 0;
   padding: 0;
+
   &:hover {
     border: 1px dotted black;
   }
+
   &:focus-visible {
     outline: none;
   }
@@ -58,10 +60,12 @@
     height: 100%;
     width: 3px;
   }
+
   .btn-placeholder {
     height: 100%;
     width: 40px;
   }
+
   form {
     width: 100%;
     height: 100%;
@@ -73,9 +77,11 @@ input.add-task {
   // max-width: fit-content;
   padding-left: 20px;
   width: 100%;
+
   &:focus-visible {
     outline: none;
   }
+
   border: none;
 }
 
@@ -106,12 +112,14 @@ input.add-task {
 span {
   font-family: roboto-regular, helvetica, sans-serif;
 }
+
 .div-headline-container {
   display: flex;
   align-items: center;
   font-size: rem(14px);
   height: 39px;
-  & > :not(:first-child):not(:nth-of-type(2)) {
+
+  &> :not(:first-child):not(:nth-of-type(2)) {
     margin-inline-start: 2px;
   }
 }
@@ -152,6 +160,7 @@ div.group-color {
   min-width: 7px;
   // left: $grop-color-left;
 }
+
 .add-task-form {
   display: flex;
 }
@@ -175,6 +184,7 @@ div.group-color {
 
 .modal-group-items {
   gap: 10px;
+
   div,
   span {
     cursor: pointer;
@@ -183,6 +193,7 @@ div.group-color {
 
 .title-modal-delete {
   flex-direction: column;
+
   div {
     margin: 10px auto;
   }
@@ -206,6 +217,7 @@ div.group-color {
 .yes-ans-delete {
   background-color: #0073ea;
 }
+
 .no-ans-delete {
   background-color: ($red);
   margin-inline-end: 5px;
@@ -224,6 +236,7 @@ div.group-color {
   background-color: $white;
   z-index: 100;
 }
+
 .Owners {
   min-width: 150px;
 }
@@ -233,6 +246,7 @@ div.group-color {
   background-color: #f5f6f8;
   border-radius: 6px 6px 0 0;
 }
+
 .Priority {
   width: 138px;
 }
@@ -246,6 +260,7 @@ div.group-color {
 .Role {
   min-width: 137px;
 }
+
 .Type {
   min-width: 138px;
 }
@@ -254,6 +269,7 @@ div.group-color {
   display: none;
   position: absolute;
 }
+
 .Owners,
 .Timeline,
 .Priority,
@@ -266,6 +282,7 @@ div.group-color {
 
   text-align: center;
   line-height: 3;
+
   // margin-inline-end: 1px;
   // margin-inline-start: -1px;
   &:hover {
@@ -276,18 +293,20 @@ div.group-color {
       border-top: 13px solid #e6e9ef;
       border-left: 13px solid rgb(0, 0, 0, 0.08);
     }
+
     .dog-ear:before {
       border-bottom: 13px solid rgb(0, 0, 0, 0.08);
       border-right: 13px solid $white;
     }
-  
+
   }
-  &:hover{
+
+  &:hover {
     .drag-icon-cmp {
       display: block;
       position: absolute;
     }
-   
+
   }
 }
 
@@ -295,42 +314,58 @@ div.group-color {
   display: flex;
 }
 
-.status-member-section{
-  &:hover{
-    .dog-ear:after {
-      border-top: 13px solid #e6e9ef;
-      border-left: 13px solid rgb(0, 0, 0, 0.08);
-      transition: all 0.6s;
+.status-member-section {
+
+  >* {
+
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      right: 0;
+      top: 0;
+      position: absolute;
+      transition: border-width .6s;
     }
-    .dog-ear:before {
-      border-bottom: 13px solid rgb(0, 0, 0, 0.08);
-      border-right: 13px solid $white;
-      transition: all 0.6s;
+
+    &:hover {
+      &::after {
+        border-top: 13px solid #e6e9ef;
+        border-left: 13px solid rgb(0, 0, 0, 0.08);
+      }
+
+      &::before {
+        border-bottom: 13px solid rgb(0, 0, 0, 0.08);
+        border-right: 13px solid $white;
+      }
     }
   }
 }
+
 
 // .icon-group {
 //   transform: translateY(4.5px);
 // }
 
-.icon-group-drag{
+.icon-group-drag {
   display: none;
   // position: absolute;
   // left: 175px;
 }
-.group-title-container{
-  &:hover{
 
-    .icon-group-drag{
+.group-title-container {
+  &:hover {
+
+    .icon-group-drag {
       display: inline;
       // position: absolute;
       // left: 175px;
-  }
-  .group-title{
-left: 0;
-  }
-  
+    }
+
+    .group-title {
+      left: 0;
+    }
+
   }
 
 }

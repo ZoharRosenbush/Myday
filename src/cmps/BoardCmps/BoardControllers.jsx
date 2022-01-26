@@ -19,6 +19,17 @@ class _BoardControllers extends React.Component {
       role: [],
       member: []
     },
+    isSearchClicked: false,
+  }
+
+inputRef=React.createRef()
+
+  toggelSearchClicked = () => {
+    this.setState((prevState) => (
+      { ...prevState, isSearchClicked: !prevState.isSearchClicked }), () => {
+        console.log('this.state:', this.state);
+
+      })
   }
 
 
@@ -49,7 +60,7 @@ class _BoardControllers extends React.Component {
 
   render() {
     const { onAddGroup } = this.props;
-    const { isModalFilterOpen } = this.state;
+    const { isModalFilterOpen, isSearchClicked } = this.state;
     const { board } = this.props
 
     return (
@@ -58,8 +69,23 @@ class _BoardControllers extends React.Component {
           New Group
         </button>
         <div className="controller-opt">
-          <CgSearch />
-          <button>Search</button>
+          {isSearchClicked &&
+            <div className="flex search-container">
+              <CgSearch style={{"margin-left":"6px"}}/>
+              <input
+                className="input-search"
+                placeholder="Search"
+                ref={this.inputRef}
+                onBlur={this.toggelSearchClicked}>
+
+              </input>
+            </div>}
+
+          {!isSearchClicked &&
+            <div className="flex search-button">
+              <CgSearch />
+              <button onClick={this.toggelSearchClicked}>Search</button>
+            </div>}
         </div>
 
         <div className="controller-opt">
