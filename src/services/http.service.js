@@ -33,6 +33,7 @@ async function ajax(endpoint, method = 'GET', data = null) {
             data,
             params: (method === 'GET') ? data : null
         })
+
         // console.log('thre res',res.data);
         return res.data
     } catch (err) {

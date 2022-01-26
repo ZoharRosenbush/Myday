@@ -5,23 +5,52 @@ import { CgSearch } from "react-icons/cg";
 import { BiSortAlt2, BiColorFill } from "react-icons/bi";
 import { FiFilter, FiEyeOff } from "react-icons/fi";
 import { BoardFilterListCmp } from './BoardFilterListCmp'
+import { loadBoard, updateFilter } from '../../store/board.action.js'
 // import { IoColorFillOutline } from 'react-icons/io'
 
 class _BoardControllers extends React.Component {
 
   state = {
-    isModalTaskOpen: false
+    isModalFilterOpen: false,
+    filterBy: {
+      status: [],
+      priority: [],
+      type: [],
+      role: [],
+      member: []
+    },
+  }
+
+
+  updateFilterBy = (value, field) => {
+    const { updateFilter } = this.props
+    const { filterBy } = this.state
+
+    if (filterBy[field].includes(value)) {
+      const newFilter = filterBy[field].filter(filteredValue => {
+        return filteredValue !== value
+      })
+      this.setState((prevState) => (
+        { ...prevState, filterBy: { ...prevState.filterBy, [field]: newFilter } }), () => {
+          updateFilter(this.state.filterBy)
+        })
+    } else {
+      this.setState((prevState) => (
+        { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {
+          updateFilter(this.state.filterBy)
+        }
+      )
+    }
   }
 
   openFilterModal = () => {
-    this.setState({ isModalTaskOpen: !this.state.isModalTaskOpen })
+    this.setState({ isModalFilterOpen: !this.state.isModalFilterOpen })
   }
 
   render() {
     const { onAddGroup } = this.props;
-    const { isModalTaskOpen } = this.state;
+    const { isModalFilterOpen } = this.state;
     const { board } = this.props
-
 
     return (
       <section className="board-controllers flex">
@@ -41,33 +70,33 @@ class _BoardControllers extends React.Component {
           <FiFilter />
           <button onClick={this.openFilterModal}>Filter</button>
         </div>
-        {isModalTaskOpen && (
+        {isModalFilterOpen && (
           <div className="filter-modal flex column">
             <div><p>Quick filters</p></div>
             <div className="flex">
               <div className="flex column-filter">
                 <span className="filterBy">Status</span>
-                <BoardFilterListCmp labels={"statuses"} field={"status"}/>
+                <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"statuses"} field={"status"} />
               </div>
               <div className="flex column-filter">
                 <span className="filterBy">Type</span>
-                <BoardFilterListCmp labels={"types"} field={"type"}/>
+                <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"types"} field={"type"} />
               </div>
               <div className="flex column-filter">
                 <span className="filterBy">Priority</span>
-                <BoardFilterListCmp labels={"priorities"} field={"priority"}/>
+                <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"priorities"} field={"priority"} />
               </div>
               <div className="flex column-filter">
                 <span className="filterBy">Role</span>
-                <BoardFilterListCmp labels={"roles"} field={"role"}/>
+                <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"roles"} field={"role"} />
               </div>
 
               <div className="flex column-filter">
                 <span className="filterBy">Member</span>
                 <ul className="filter-list">
-                  {board.members.map((member) => {
+                  {board.members.map((member, idx) => {
                     return (
-                      <li key={member.id} className="flex">
+                      <li key={idx} className="flex">
                         <div className={`owner-name-circle ${member.acronyms}`} >{member.acronyms}
                         </div>{(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}</li>
                     )
@@ -102,11 +131,13 @@ class _BoardControllers extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
+    currFilterBy: boardModule.currFilterBy
   };
 }
 const mapDispatchToProps = {
   // addGroup,
-  // loadBoards
+  loadBoard,
+  updateFilter
 };
 
 export const BoardControllers = connect(

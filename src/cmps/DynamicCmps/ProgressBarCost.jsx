@@ -19,25 +19,25 @@ class _ProgressBarCost extends React.Component {
         }
     }
 
-    get sum(){
+    get sum() {
         const { groupId, board } = this.props;
         const groupIdx = board.groups.findIndex(group => group.id === groupId)
         let sum = 0;
         board.groups[groupIdx].tasks.forEach(task => {
-            if(task.cost !== "Empty" || !task.cost ){
+            if (task.cost !== "Empty" || !task.cost) {
 
                 sum += +task.cost
             }
         })
-        console.log('sum:', sum);
+        // console.log('sum:', sum);
         return sum
-        
+
     }
 
 
     render() {
         const { groupId } = this.props;
-console.log('sum:');
+        // console.log('sum:');
 
 
 
