@@ -43,7 +43,6 @@ class _BoardControllers extends React.Component {
     }
   }
 
-
   openFilterModal = () => {
     this.setState({ isModalFilterOpen: !this.state.isModalFilterOpen })
   }
@@ -52,7 +51,6 @@ class _BoardControllers extends React.Component {
     const { onAddGroup } = this.props;
     const { isModalFilterOpen } = this.state;
     const { board } = this.props
-
 
     return (
       <section className="board-controllers flex">
