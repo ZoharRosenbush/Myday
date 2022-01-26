@@ -74,10 +74,6 @@ export class _GroupPreview extends React.Component {
 
   setFilter = (task) => {
     const { currFilterBy, search } = this.props
-console.log('search:', search);
-console.log('task.title:', task.title);
-
-
 
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
@@ -115,8 +111,6 @@ console.log('task.title:', task.title);
 
   onUpdateGroupColor = (color) => {
     const { group, board, saveGroup } = this.props;
-    // const value = target.textContent;
-    // if (!value) return;
     group.style.groupColor = color;
     const boardCopy = {...board}
     saveGroup(group, boardCopy)
@@ -235,9 +229,6 @@ console.log('task.title:', task.title);
       ? "add-task-btn-visible"
       : "add-task-btn";
     return (
-
-
-
       <section className="group-preview">
         {activeModal.cmpType === "groupEdit" &&
           activeModal.groupId === group.id && (

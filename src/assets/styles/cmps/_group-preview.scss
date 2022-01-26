@@ -48,18 +48,31 @@
 }
 
 .add-task-div {
-  border: 1px solid #00000040;
+
   height: 36px;
   background-color: lighter(#f5f6f8);
   text-align: start;
   cursor: pointer;
   width: 88.86%;
   cursor: pointer;
+  border: 1px solid #e6e9ef;
+  transition: all .3s;
 
   div.group-color {
     height: 100%;
     width: 3px;
+    opacity: 0.5;
+    transition: all .3s;
   }
+
+&:hover{
+  border: 1px solid #323338;
+
+  div.group-color {
+  opacity: 1;
+  }
+
+}
 
   .btn-placeholder {
     height: 100%;
