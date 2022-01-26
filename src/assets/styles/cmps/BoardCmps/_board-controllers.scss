@@ -1,6 +1,5 @@
 .board-controllers {
   .add-group-btn {
-    // font-family: 'roboto-regular';
     font-family: roboto-regular, helvetica, sans-serif;
     height: 32px;
     font-size: 0.875rem;
@@ -9,10 +8,11 @@
     line-height: 22px;
     border: none;
     border-radius: 4px;
-    background-color: $blue;
-    color: $white;
+    background-color: #0073ea;
+    color: #fff;
     width: 90px;
     margin-top: 4px;
+    transform: translateY(-4px);
   }
 
   .controller-opt {
@@ -133,6 +133,7 @@
   width: 214px;
   height: 32px;
   align-items: center;
+  background-color: white;
 
   .input-search {
     border: none;
@@ -142,11 +143,12 @@
     padding-right: 48px;
     padding-left: 12px;
     transition: width 0.1s ease, height 0.1s ease;
+    background-color: white;
 
   }
 
-  &hover {
-    background-color: none;
+  &:hover {
+    background-color: white;
   }
 }
 
@@ -161,4 +163,8 @@
 
 .search-button {
   align-items: center;
+}
+
+.input-search-wrapper{
+  margin-left: 10px;
 }
