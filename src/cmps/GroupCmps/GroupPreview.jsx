@@ -423,19 +423,23 @@ export class _GroupPreview extends React.Component {
               onSubmit={this.onAddTask}
               className="flex justify-between align-center"
             >
-              <input
-                placeholder="Add task +"
-                className="add-task"
-                onChange={this.onHandleChange}
-                value={this.state.taskValue}
-              // onFocus={this.toggleAddTask}
-              // onBlur={this.toggleAddTask}
-              // contentEditable
-              // suppressContentEditableWarning={true}
-              />
-              <button className={btnClassName}>Add</button>
-              {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
+              <div className="add-task-left">
+                <input
+                  placeholder="Add task +"
+                  className="add-task"
+                  onChange={this.onHandleChange}
+                  value={this.state.taskValue}
+                // onFocus={this.toggleAddTask}
+                // onBlur={this.toggleAddTask}
+                // contentEditable
+                // suppressContentEditableWarning={true}
+                />
+              </div>
+              <div className="add-task-right flex">
+                <button className={btnClassName}>Add</button>
+                {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
               {!isAddTaskActive && <div className="btn-placeholder"></div>} */}
+              </div>
             </form>
           </div>
         </div>
