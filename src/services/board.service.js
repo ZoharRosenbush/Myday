@@ -9,12 +9,8 @@ export const boardService = {
   saveBoard,
   removeBoard,
   getNewBoard,
-  addGroup,
-  saveGroup,
-  deleteGroup,
-  saveTask,
-  addTask,
-  deleteTask,
+  getNewGroup,
+  addNewTask,
   makeId
 };
 
@@ -59,152 +55,103 @@ async function removeBoard(boardId) {
   return removedBoardId
 }
 
+
+
+
 // **** GROUPS - CRUD ***
 
 
 // 
 
-async function addGroup(board) {
-  try {
-    const newGroup = {
-      id: _makeId(),
-      title: "New Group",
-      tasks: [
-        {
-          id: _makeId(),
-          title: "New Task",
-          status: "Empty",
-          "cost": "Empty",
-          priority: "Empty",
-          text: "",
-          role: "Empty",
-          type: "Empty",
-          activities: [],
-          timeline: ["Jan 17-22", "Jan 19-22"],
-          owner: [
-            {
-              fullname: "Ann Lee",
-              _id: "61edc3e7652f5891aac4c063",
-              acronyms: "AL",
-              username: "Ann Lee",
-              imgUrl: "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
-            }
-          ],
-          comments: [],
-        },
-      ],
-      style: { groupColor: getNiceRandomColor() },
-    };
-
-    board.groups.unshift(newGroup);
-    // console.log("board:", board);
-    // _saveGroup(newGroup, board);
-    saveBoard(board)
-    console.log('started adding group');
-    return board;
-  } catch (err) {
-    console.log("err:", err);
-  }
-}
-
-async function saveGroup(groupToSave, board) {
-  try {
-    const groupIdx = board.groups.findIndex(
-      (group) => groupToSave.id === group.id
-    );
-
-    board.groups[groupIdx] = groupToSave;
-    // _saveGroup(groupToSave, board._id);
-    saveBoard(board)
-    return board;
-  } catch (err) {
-    console.log("err:", err);
-  }
-}
-
-async function deleteGroup(groupId, board) {
+// async function addGroup(board) {
+//   try {
+    
+//     // console.log("board:", board);
+//     // _saveGroup(newGroup, board);
+//     saveBoard(board)
+//     console.log('started adding group');
   
-  try {
-    const filteredGroups = board.groups.filter((group) => {
-      return group.id !== groupId;
-    });
-    board.groups = filteredGroups
-    // _removeGroup(groupId, board._id)
-    saveBoard(board)
-    return board;
-  } catch (err) {
-    console.log("err:", err);
-  }
-}
+//   } catch (err) {
+//     console.log("err:", err);
+//   }
+// }
+
+// async function saveGroup(groupToSave, board) {
+//   try {
+//     const groupIdx = board.groups.findIndex(
+//       (group) => groupToSave.id === group.id
+//     );
+
+//     board.groups[groupIdx] = groupToSave;
+//     // _saveGroup(groupToSave, board._id);
+//     saveBoard(board)
+//     return board;
+//   } catch (err) {
+//     console.log("err:", err);
+//   }
+// }
+
+// async function deleteGroup(groupId, board) {
+  
+//   try {
+//     const filteredGroups = board.groups.filter((group) => {
+//       return group.id !== groupId;
+//     });
+//     board.groups = filteredGroups
+//     // _removeGroup(groupId, board._id)
+//     saveBoard(board)
+//     return board;
+//   } catch (err) {
+//     console.log("err:", err);
+//   }
+// }
 
 
 
 // **** TASKS - CRUD ***
 
 
-async function saveTask(taskToSave, groupId, board) {
-  try {
-    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-    const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
-      return task.id === taskToSave.id ? taskToSave : task;
-    });
-    board.groups[groupIdx].tasks = tasksToSave;
-    saveBoard(board);
-    return board;
-  } catch (err) {
-    console.log("err:", err);
-  }
-}
+// async function saveTask(taskToSave, groupId, board) {
+//   try {
+//     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+//     const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
+//       return task.id === taskToSave.id ? taskToSave : task;
+//     });
+//     board.groups[groupIdx].tasks = tasksToSave;
+//     saveBoard(board);
+//     return board;
+//   } catch (err) {
+//     console.log("err:", err);
+//   }
+// }
 
-async function addTask(value, groupId, board) {
-  try {
-    const taskToSave = {
-      id: _makeId(),
-      title: value,
-      status: "Empty",
-      text: "",
-      priority: "Empty",
-      role: "Empty",
-      type: "Empty",
-      "cost": "Empty",
-      activities: [],
-      timeline: ["Jan 17-22", "Jan 19-22"],
-      owner: [
-        {
-          "fullname": "Lora Turner",
-          "username": "Lora Turner",
-          "_id": "61edc3c5652f5891aac4aed6",
-          "acronyms": "LT",
-          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-        },
-      ],
-      comments: [],
-    };
-    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-    board.groups[groupIdx].tasks.push(taskToSave);
-    saveBoard(board);
-    return board;
-  } catch (err) {
-    console.log("err:", err);
-  }
-}
+// async function addTask(value, groupId, board) {
+//   try {
+//     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+//     board.groups[groupIdx].tasks.push(taskToSave);
+//     saveBoard(board);
+//     return board;
+//   } catch (err) {
+//     console.log("err:", err);
+//   }
+// }
 
 
-async function deleteTask(taskId, groupId, board) {
-  try {
-    const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-    const newTasks = board.groups[groupIdx].tasks.filter((task) => {
-      return task.id !== taskId;
-    });
-    console.log('newTasks:', newTasks);
-    board.groups[groupIdx].tasks = newTasks;
+// async function deleteTask(taskId, groupId, board) {
+//   try {
+//     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
+//     const newTasks = board.groups[groupIdx].tasks.filter((task) => {
+//       return task.id !== taskId;
+//     });
+//     console.log('newTasks:', newTasks);
+//     board.groups[groupIdx].tasks = newTasks;
 
-    saveBoard(board);
-    return board;
-  } catch (err) {
-    console.log("err:", err);
-  }
-}
+//     saveBoard(board);
+//     return board;
+//   } catch (err) {
+//     console.log("err:", err);
+//   }
+// }
 
 // function _getNewBoards() {
 //   const boards = [
@@ -213,8 +160,65 @@ async function deleteTask(taskId, groupId, board) {
 //   return boards
 // }
 
+function addNewTask(taskTitle){
+  return {
+    id: _makeId(),
+    title: taskTitle,
+    status: "Empty",
+    text: "",
+    priority: "Empty",
+    role: "Empty",
+    type: "Empty",
+    "cost": "Empty",
+    activities: [],
+    timeline: ["Jan 17-22", "Jan 19-22"],
+    owner: [
+      {
+        "fullname": "Lora Turner",
+        "username": "Lora Turner",
+        "_id": "61edc3c5652f5891aac4aed6",
+        "acronyms": "LT",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+      },
+    ],
+    comments: [],
+  };
+}
+
+function getNewGroup(){
+  return {
+    id: _makeId(),
+    title: "New Group",
+    tasks: [
+      {
+        id: _makeId(),
+        title: "New Task",
+        status: "Empty",
+        "cost": "Empty",
+        priority: "Empty",
+        text: "",
+        role: "Empty",
+        type: "Empty",
+        activities: [],
+        timeline: ["Jan 17-22", "Jan 19-22"],
+        owner: [
+          {
+            fullname: "Ann Lee",
+            _id: "61edc3e7652f5891aac4c063",
+            acronyms: "AL",
+            username: "Ann Lee",
+            imgUrl: "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+          }
+        ],
+        comments: [],
+      },
+    ],
+    style: { groupColor: getNiceRandomColor() },
+  }
+}
+
 function getNewBoard() {
-  const newBoard = {
+  return {
     cmpsOrder: [
       "status-picker",
       "date-picker",
@@ -402,8 +406,7 @@ function getNewBoard() {
         style: { groupColor: getNiceRandomColor() },
       },
     ],
-  };
-  return newBoard;
+  }
 }
 
 function _makeId(length = 4) {

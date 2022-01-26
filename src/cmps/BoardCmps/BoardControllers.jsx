@@ -135,7 +135,6 @@ function mapStateToProps({ boardModule }) {
   };
 }
 const mapDispatchToProps = {
-  // addGroup,
   loadBoard,
   updateFilter
 };

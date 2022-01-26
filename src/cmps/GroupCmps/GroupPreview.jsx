@@ -21,7 +21,6 @@ import { MdDragIndicator } from "react-icons/md";
 
 import {
   addTask,
-  addGroup,
   saveGroup,
   deleteGroup,
   setActiveModal,
@@ -105,7 +104,8 @@ export class _GroupPreview extends React.Component {
     const value = target.textContent;
     if (!value) return;
     group.title = value;
-    saveGroup(group, board)
+    const boardCopy = {...board}
+    saveGroup(group, boardCopy)
   };
 
   onUpdateGroupColor = (color) => {
@@ -120,7 +120,8 @@ export class _GroupPreview extends React.Component {
   deleteGroup = () => {
     this.setState({ isModalToDelete: false });
     const { deleteGroup, group, board } = this.props;
-    deleteGroup(group.id, board);
+    const boardCopy = {...board}
+    deleteGroup(group.id, boardCopy);
   };
 
   onHandleChange = ({ target }) => {
@@ -132,7 +133,8 @@ export class _GroupPreview extends React.Component {
 
     ev.preventDefault();
     const { group, board, addTask } = this.props;
-    addTask(this.state.taskValue, group.id, board)
+    const boardCopy = {...board}
+    addTask(this.state.taskValue, group.id, boardCopy)
     this.setState({ taskValue: "" });
   };
 
@@ -215,7 +217,8 @@ export class _GroupPreview extends React.Component {
     board.cmpsOrder.splice(source.index, 1);
     board.cmpsOrder.splice(destination.index, 0, draggableId);
 
-    updateBoard(board);
+    const boardCopy = {...board}
+    updateBoard(boardCopy);
   };
 
   render() {
@@ -480,7 +483,6 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
   saveGroup,
   addTask,
-  addGroup,
   deleteGroup,
   setActiveModal,
   updateBoard,
