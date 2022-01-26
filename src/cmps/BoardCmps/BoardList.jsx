@@ -37,6 +37,8 @@ class _BoardList extends React.Component {
   };
 
   onRemoveBoard = (boardId) => {
+    console.log('boardId:', boardId);
+    
     this.setState({ isModalToDelete: false })
     this.props.removeBoard(boardId)
   }

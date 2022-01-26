@@ -53,6 +53,8 @@ export class _BoardNav extends React.Component {
   }
 
   onRemoveBoard = (boardId) => {
+    console.log('boardId:', boardId);
+    
     this.props.removeBoard(boardId)
   }
 
@@ -75,7 +77,7 @@ export class _BoardNav extends React.Component {
         </button>
         <div>
           {
-            <React.Fragment className={`${className}`}> <p className="workspace">Workspace</p>
+            <React.Fragment > <p className="workspace">Workspace</p>
               <p className="main-workspace">Main Workspace</p>
               <div className="side-bar-features-container">
 
