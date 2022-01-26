@@ -8,15 +8,15 @@ import two from '../assets/imgs/2.png'
 export function BoardApp() {
 
     return (
-        <section>
-            <section className="main-board">
+        <section className="app-layout">
+            {/* <section className="main-board">
                 <div className="title">
                     <img src={two} alt=""></img>
                     day</div>
                 <div className="subtitle">Welcome to your workspace</div>
                 <div className="subtitle">Add new board</div>
 
-            </section>
+            </section> */}
             <MainNav />
             <BoardHeader />
             <BoardNav />

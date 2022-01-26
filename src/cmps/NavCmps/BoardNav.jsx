@@ -59,7 +59,7 @@ export class _BoardNav extends React.Component {
   render() {
     const { boards } = this.props
     const { isBoardNavOpen } = this.state
-    const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-open closed'
+    const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-closed'
     return (
       // <section>
       //   {!isBoardNavOpen && <section className="board-nav">
@@ -70,12 +70,12 @@ export class _BoardNav extends React.Component {
       //   </section>}
       // isBoardNavOpen &&
       <section className={className} >
+        <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
+          <IoIosArrowForward color="#67686b" />
+        </button>
         <div>
-          <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
-            <IoIosArrowForward color="#67686b" />
-          </button>
           {
-            isBoardNavOpen && <React.Fragment> <p className="workspace">Workspace</p>
+            <React.Fragment className={`${className}`}> <p className="workspace">Workspace</p>
               <p className="main-workspace">Main Workspace</p>
               <div className="side-bar-features-container">
 

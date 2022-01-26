@@ -23,8 +23,8 @@ class _BoardDetails extends React.Component {
     });
 
     socketService.setup()
-    socketService.emit('join board-room',boardId)
-    socketService.on('board was updated',this.props.loadBoard)
+    socketService.emit('join board-room', boardId)
+    socketService.on('board was updated', this.props.loadBoard)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -93,14 +93,14 @@ class _BoardDetails extends React.Component {
 
   render() {
     const { board, updateBoard, isBoardNavOpen } = this.props;
-    
+
     const boardContainerClassName = isBoardNavOpen
       ? "board-container-open-nav"
       : "board-container";
 
 
     return (
-      <section>
+      <section className="app-layout">
         <MainNav />
         <BoardNav />
         <section className={boardContainerClassName}>
