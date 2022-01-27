@@ -55,11 +55,7 @@ class _ProgressBarStatus extends React.Component {
     const Working = (this.state.Working / this.totalTaskCount) * 100;
     const Stuck = (this.state.Stuck / this.totalTaskCount) * 100;
     const Empty = 100 - Done - Working - Stuck;
-    // console.log("Empty:", Empty);
-
-    // console.log("Done:", Done);
-    // console.log("Working:", Working);
-    // console.log("Stuck:", Stuck);
+ 
 
     return (
       <div className="status-container">

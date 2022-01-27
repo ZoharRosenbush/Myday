@@ -34,7 +34,7 @@
 //     color: white;
 // }
 
-.LT,.HG,.AL{
+.LT,.HG,.AL, .user-avatar{
     font-family: 'roboto-regular';
     border-radius: 50%;
     border: none;
@@ -47,10 +47,20 @@
 }
 
 G{
-    height: 100%;
+    background-color: transparent;
+    width: fit-content;
+
+}
+.labels-modal{
+
+    div{
+        display: flex;
+        justify-content: start;
+        gap: 10px;
+    }
+    
 }
 
-
-
-
-
+.user-avatar{
+    padding: 0px 3px 0 7px;
+}

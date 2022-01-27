@@ -58,12 +58,7 @@ class _ProgressBarPriority extends React.Component {
     const Medium = (this.state.Medium.length / this.totalTaskCount) * 100;
     const Low = (this.state.Low.length / this.totalTaskCount) * 100;
     const Empty = 100 - High - Medium - Low;
-    // console.log("Empty:", Empty);
-
-    // console.log("High:", High);
-    // console.log("Medium:", Medium);
-    // console.log("Stuck:", Low);
-
+ 
     return (
       <div className="priority-container">
         <div className="priority-bar">

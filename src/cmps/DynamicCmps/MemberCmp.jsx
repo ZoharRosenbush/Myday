@@ -43,22 +43,22 @@ export class MemberCmp extends React.Component {
           this.openModal()
         }}>
           {info.selectedOwners &&
-            info.selectedOwners.map((owner, idx) => {
-              console.log('owner.userColor:', owner.userColor);
-              
-              return <div style={{ backgroundColor: owner.userColor }} key={idx} className={owner.acronyms}>{owner.acronyms === "G" ? (<CgProfile style={{height:"33px", width:"37px",transform:"translateY(7px)", color:"lightgray" }}/>) : owner.acronyms}</div>;
+            info.selectedOwners.map((owner, idx) => {          
+              return <div style={{ backgroundColor: owner.userColor }} key={idx} className={owner.acronyms}>{owner.acronyms === "G" ? (<CgProfile style={{height:"33px", width:"33px",transform:"translateY(7px)", color:"lightgray", marginLeft:"-6px" }}/>) : owner.acronyms}</div>;
             })}
         </div>
         {activeModal.cmpType === type && activeModal.taskId === taskId && isEditMode && (
           <div className="labels-modal members">
             {info.members.map((member, idx) => {
-              const className = member._id ? member._id : "guest"
+              
               return (
                 <div
-                  className={className}
+                  className={member._id}
                   key={idx}
                   onClick={this.handelChange}
                 >
+
+                  <div className="user-avatar" style={{backgroundColor:member.userColor}}>{member.acronyms }</div>
                   {member.fullname}
 
                   {/* <img src={member.imgUrl} alt=""></img> */}
