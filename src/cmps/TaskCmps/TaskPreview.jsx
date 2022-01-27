@@ -44,7 +44,7 @@ class _TaskPreview extends React.Component {
   openTaskDetails = () => {
     const { setTaskModal, goToTaskDetails, board, groupId, task } = this.props;
     setTaskModal(true)
-    goToTaskDetails(board._id, groupId, task.id)
+    // goToTaskDetails(board._id, groupId, task.id)
   }
 
   onUpdateTask = (cmpType, data) => {
@@ -272,20 +272,25 @@ class _TaskPreview extends React.Component {
                 style={{ backgroundColor: `${group.style.groupColor}` }}
               ></div>
               <div className="task-title-content flex justify-between ">
-                <span
-                  className="task-title"
-                  contentEditable
-                  suppressContentEditableWarning={true}
-                  onBlur={this.onUpdateTitleContent}
-                >
-                  {task.title}
-                </span>
+                <div className=" title-edit-container flex">
+                  <span
+                    className="task-title"
+                    contentEditable
+                    suppressContentEditableWarning={true}
+                    onBlur={this.onUpdateTitleContent}
+                  >
+                    {task.title}
+                  </span>
 
-                {/* <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}> */}
-                <div className="chat-icon-container" onClick={() => this.openTaskDetails()}>
-                  <BsChat className={`bubble-talk ${udatesClassName}`} />
+                  <button className="edit-task-title-btn">Edit</button>
                 </div>
-                {/* </Link> */}
+                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
+                  <div className="chat-icon-container"
+                  // onClick={() => this.openTaskDetails()}
+                  >
+                    <BsChat className={`bubble-talk ${udatesClassName}`} />
+                  </div>
+                </Link>
               </div>
             </div>
             {cmpsOrder.map((cmp, idx) => {
@@ -302,7 +307,7 @@ class _TaskPreview extends React.Component {
               );
             })}
             {/* <Route path="/myday/board/:boardId/:taskId" render={() => <TaskDetails group={group} />} /> */}
-            <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} />
+            {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
 
             {/* <Route path="/greeting/:name" render={(props) => <Greeting text="Hello, " {...props} />} /> */}
 

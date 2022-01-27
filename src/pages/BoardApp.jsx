@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 import Loader from 'react-loaders'
 // import { XlviLoader } from "react-awesome-loaders";
 import { Link } from 'react-router-dom'
-import { BoardDetails } from './BoardDetails.jsx'
+import { CgProfile } from "react-icons/cg";
+
+import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
 import two from '../assets/imgs/2.png'
 import BoardSvg from "../assets/svgs/BoardSvg.svg";
 import HomeLogo from "../assets/imgs/2day.png";
+import { utilService } from '../services/utils.service.js'
 
 import { addBoard } from '../store/board.action.js'
 
@@ -50,9 +53,15 @@ class _BoardApp extends React.Component {
                 <BoardNav />
 
                 <section>
+                    {/* {!boards.length && } */}
+                    <section className="board-page">
+                        <div className="flex hello-user">
 
-                    <section className="home-page">
+                            <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
+                            <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user ? this.props.user.acronyms : <CgProfile style= {{width: "100%" ,height : "100%" }} />}</p>
+                        </div>
                         <div className="main-board-container">
+
                             <div>
                                 {!!boards.length && <Loader type="line-scale" active />}
                                 {!board && <Loader type="line-scale" active />}
@@ -82,10 +91,11 @@ class _BoardApp extends React.Component {
     }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
         boards: boardModule.boards,
         board: boardModule.board,
+        user: userModule.user,
         //   currFilterBy: toyModule.currFilterBy
     };
 }
