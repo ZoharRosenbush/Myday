@@ -51,8 +51,7 @@ function mapStateToProps({ boardModule }) {
     };
 }
 const mapDispatchToProps = {
-    // addGroup,
-    // loadBoards
+
 };
 
 export const BoardFilterListCmp = connect(

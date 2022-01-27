@@ -18,7 +18,6 @@ export function BoardApp() {
 
             </section>
             <MainNav />
-            <BoardHeader />
             <BoardNav />
         </section>
     );

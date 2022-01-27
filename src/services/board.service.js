@@ -9,6 +9,7 @@ export const boardService = {
   saveBoard,
   removeBoard,
   getNewBoard,
+  updateBoardTitle,
   getNewGroup,
   addNewTask,
   makeId
@@ -33,16 +34,25 @@ async function saveBoard(boardToSave) {
   if (boardToSave._id) {
     const updatedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
     socketService.emit('member updated board', boardToSave._id)
-    // console.log('finished updatinggg');
+    console.log('finished saving boardd');
     return updatedBoard
   } else {
     const addedBoard = await httpService.post('board/', boardToSave);
+    console.log('adding');
+    socketService.emit('member updated board-list')
     return addedBoard
   }
 }
 
+async function updateBoardTitle(board){
+  await saveBoard(board)
+  console.log('finihed 2 ');
+  socketService.emit('member updated board-list')
+}
+
 async function removeBoard(boardId) {
   const removedBoardId = await httpService.delete(`board/${boardId}`);
+  socketService.emit('member updated board-list')
   return removedBoardId
 }
 

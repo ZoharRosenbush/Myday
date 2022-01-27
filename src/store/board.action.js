@@ -3,6 +3,7 @@ import {
 } from "../services/board.service.js";
 
 export function loadBoards() {
+  console.log('loding boards🤩');
   return async (dispatch) => {
     try {
       const boards = await boardService.query();
@@ -35,15 +36,9 @@ export function loadBoard(boardId, currFilterBy = null) {
   }
 }
 
-// FUNCTION - loadFilteredBoard(board,filterBy){
-// const filteredBoard = boardService.filterBoard 
-// dispatch({ type: "SET_FILTERED_BOARD", board: filteredBoard });
-
-// }
-
 export function addBoard() {
   const newBoard = boardService.getNewBoard()
-  
+
   return async (dispatch) => {
     try {
       const savedBoard = await boardService.saveBoard(newBoard)
@@ -64,7 +59,7 @@ export function updateBoard(board) {
   return async (dispatch) => {
     try {
       dispatch({
-        type: "UPDATE_BOARD",
+        type: "SET_BOARD",
         board: board,
       });
       await boardService.saveBoard(board)
@@ -72,6 +67,42 @@ export function updateBoard(board) {
       console.log("Cannot update board", err);
     }
   }
+}
+
+export function updateBoardTitle(board) {
+  const miniBoard = {title:board.title,_id:board._id}
+
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: "SET_BOARD",
+        board: board,
+      })
+      dispatch({
+        type: "UPDATE_BOARDS",
+        board: miniBoard,
+      })
+      await boardService.updateBoardTitle(board)
+    } catch (err) {
+      console.log("Cannot update board", err);
+    }
+  }
+
+
+}
+
+export function removeBoard(boardId) {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: "REMOVE_BOARD",
+        boardId: boardId
+      });
+      await boardService.removeBoard(boardId);
+    } catch (err) {
+      console.log("Cannot delete board", err);
+    }
+  };
 }
 
 
@@ -90,13 +121,14 @@ export function updateFilter(currFilterBy) {
 }
 
 export function deleteTask(taskId, groupId, board) {
+  const boardBeforeChange = board
 
   const groupIdx = board.groups.findIndex((group) => groupId === group.id);
   const filteredTasks = board.groups[groupIdx].tasks.filter((task) => {
     return task.id !== taskId;
   });
   board.groups[groupIdx].tasks = filteredTasks;
-  
+
   return async (dispatch) => {
     try {
       dispatch({
@@ -105,6 +137,11 @@ export function deleteTask(taskId, groupId, board) {
       });
       await boardService.saveBoard(board)
     } catch (err) {
+      dispatch({
+        type: "SET_BOARD",
+        board: boardBeforeChange
+      });
+      // throw new Error
       console.log('err:', err);
     }
   };
@@ -163,19 +200,7 @@ export function addGroup(board) {
 
 }
 
-export function removeBoard(boardId) {
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "REMOVE_BOARD",
-        boardId: boardId
-      });
-      await boardService.removeBoard(boardId);
-    } catch (err) {
-      console.log("Cannot delete board", err);
-    }
-  };
-}
+
 export function deleteGroup(groupId, board) {
   const filteredGroups = board.groups.filter((group) => {
     return group.id !== groupId;

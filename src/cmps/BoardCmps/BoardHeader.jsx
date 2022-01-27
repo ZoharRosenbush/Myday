@@ -8,8 +8,10 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 
 import { BoardControllers } from "./BoardControllers.jsx";
-import { addGroup, loadBoards } from "../../store/board.action.js";
-export function _BoardHeader({ board, updateBoard, loadBoards, addGroup }) {
+import { addGroup, updateBoardTitle } from "../../store/board.action.js";
+
+
+export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup }) {
 
   const boardCopy = { ...board }
 
@@ -18,17 +20,11 @@ export function _BoardHeader({ board, updateBoard, loadBoards, addGroup }) {
   }
 
 
-  async function onUpdateBoardTitle({ target }) {
+  function onUpdateBoardTitle({ target }) {
     const value = target.textContent;
     if (!value) return;
-
     boardCopy.title = value;
-    try {
-      await updateBoard(boardCopy);
-      loadBoards()
-    } catch (err) {
-      console.log('error in updating board');
-    }
+    updateBoardTitle(boardCopy)
   };
 
   function onUpdateBoardDesc({ target }) {
@@ -110,7 +106,7 @@ function mapStateToProps({ boardModule }) {
 }
 const mapDispatchToProps = {
   addGroup,
-  loadBoards
+  updateBoardTitle
 };
 
 export const BoardHeader = connect(
