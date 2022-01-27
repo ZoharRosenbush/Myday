@@ -28,7 +28,7 @@ class _TaskPreview extends React.Component {
     isModalTaskOpen: false,
 
   };
-
+  taskTitleInput = React.createRef();
   openModal = (taskId) => {
     const activeModal = { cmpType: 'taskEdit', taskId: taskId }
     this.props.setActiveModal(activeModal)
@@ -213,6 +213,10 @@ class _TaskPreview extends React.Component {
     // updateTitleContent(value, todo);
   };
 
+  setFocus = () => {
+    this.taskTitleInput.current.focus();
+  }
+
   render() {
 
     const { board, groupId, activeModal, setActiveModal, task } = this.props;
@@ -278,11 +282,12 @@ class _TaskPreview extends React.Component {
                     contentEditable
                     suppressContentEditableWarning={true}
                     onBlur={this.onUpdateTitleContent}
+                    ref={this.taskTitleInput}
                   >
                     {task.title}
                   </span>
 
-                  <button className="edit-task-title-btn">Edit</button>
+                  <button className="edit-task-title-btn" onClick={this.setFocus}>Edit</button>
                 </div>
                 <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
                   <div className="chat-icon-container"
