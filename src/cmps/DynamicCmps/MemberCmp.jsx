@@ -13,7 +13,7 @@ export class MemberCmp extends React.Component {
   // },
 
   openModal = () => {
-    const { cmpData, setActiveModal,taskId } = this.props;
+    const { cmpData, setActiveModal, taskId } = this.props;
     this.setState({ isEditMode: true });
     const activeModal = { cmpType: cmpData.type, taskId }
     setActiveModal(activeModal)
@@ -30,7 +30,7 @@ export class MemberCmp extends React.Component {
   };
 
   render() {
-    const { cmpData, activeModal,taskId } = this.props;
+    const { cmpData, activeModal, taskId } = this.props;
     const { type, info } = cmpData;
     const { isEditMode } = this.state
 
@@ -42,15 +42,18 @@ export class MemberCmp extends React.Component {
         }}>
           {info.selectedOwners &&
             info.selectedOwners.map((owner, idx) => {
-              return <div key={idx} className={owner.acronyms}>{owner.acronyms}</div>;
+              console.log('owner:', owner);
+              
+              return <div style={{ backgroundColor: owner.userColor }} key={idx} className={owner.acronyms ? owner.acronyms : "guest"}>{owner.acronyms}</div>;
             })}
         </div>
         {activeModal.cmpType === type && activeModal.taskId === taskId && isEditMode && (
           <div className="labels-modal members">
             {info.members.map((member, idx) => {
+              const className = member._id ? member._id : "guest"
               return (
                 <div
-                  className={member._id}
+                  className={className}
                   key={idx}
                   onClick={this.handelChange}
                 >
