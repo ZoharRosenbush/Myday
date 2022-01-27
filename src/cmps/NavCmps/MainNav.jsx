@@ -91,7 +91,7 @@ class _MainNav extends React.Component {
             style={{ marginLeft: "19px", cursor: "pointer" }}
 
           />
-          <div className="user-avatar ME" onClick={this.openUserModal} style={{ backgroundColor: bgColor}}>{(this.props.user) ? user.acronyms : <CgProfile style={{ width: "100%", height: "100%" }} />}</div>
+          <div className="user-avatar ME" onClick={this.openUserModal} style={{ backgroundColor: bgColor}}>{(this.props.user) ? user.acronyms : <CgProfile style={{ fontSize:"45px", marginLeft:"-10px", marginTop:"-2px" }} />}</div>
           {isModalOpen &&
             <div className="user-modal">
               <Link className="clean-link" to={'/login'}><p><CgLogIn style={{ marginRight: "6px", transform: "translateY(2.5px)" }} />Log in</p></Link>
