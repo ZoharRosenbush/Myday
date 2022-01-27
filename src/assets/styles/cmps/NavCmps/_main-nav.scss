@@ -61,12 +61,12 @@
     font-weight: 500;
     font-family: Arial, Helvetica, sans-serif;
     margin: 10px 10px 23px 12px;
+    cursor: pointer;
   }
 }
 
 .user-modal{
   font-size: 14px;
-  // line-height: 60px;
   padding: 5px 20px;
   background-color: #fff;
   box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
@@ -74,8 +74,32 @@
   cursor: pointer;
   width: 155px;
   padding: 15px;
-  position: absolute;
+  position: fixed;
+  left: 27%;
+  bottom: -8%;
   margin-inline: -23%;
   margin-block: 9.8%;
   z-index: 30;
+
+a{
+  p{
+    color: black;
+    height: 28px;
+    border-radius: 4px;
+    margin: 0;
+
+    &:hover{
+      background-color: #f5f6f8;
+    }
+  }
+}
+p{
+  color: black;
+  height: 28px;
+  border-radius: 4px;
+  margin: 0;
+  &:hover{
+    background-color: #f5f6f8;
+  }
+}
 }
