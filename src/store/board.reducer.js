@@ -31,10 +31,16 @@ export function boardReducer(state = initialState, action) {
       return {
         ...state, boards: [...action.boards]
       };
+    case "UPDATE_BOARDS":
+      return {
+        ...state, boards: state.boards.map((board) => {
+          return (board._id === action.board._id) ? action.board : board
+        })
+      }
     case "SET_SEARCH":
       return {
-        ...state, search: action.search 
-      };
+        ...state, search: action.search
+      }
     case "SET_FILTER":
       return {
         ...state, currFilterBy: { ...state.currFilterBy, ...action.currFilterBy }
@@ -48,12 +54,6 @@ export function boardReducer(state = initialState, action) {
     case "ADD_BOARD":
       return {
         ...state, boards: [...state.boards, action.board]
-      }
-    case "UPDATE_BOARD":
-      return {
-        ...state, board: {
-          ...action.board
-        }
       }
     case "REMOVE_BOARD":
       return {

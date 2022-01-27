@@ -20,12 +20,6 @@ class _BoardList extends React.Component {
     this.props.setActiveModal(activeModal)
   };
 
-  // toggleBoardModal = (boardId) => {
-  //   const { openModal } = this.state
-  //   this.setState({ openModal: { isBoardModalOpen: !openModal.isBoardModalOpen, boardId: boardId } }, () => {
-  //   });
-  // };
-
   toggleModalDelete = () => {
     this.setState({
       openModal: {
