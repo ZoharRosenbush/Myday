@@ -17,16 +17,16 @@ import { addBoard } from '../store/board.action.js'
 
 class _BoardApp extends React.Component {
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log('did uypdate!');
-        const { boards } = this.props
-        if (prevProps.boards.length < boards.length) {
+    // componentDidUpdate(prevProps, prevState) {
+    //     console.log('did uypdate!');
+    //     const { boards } = this.props
+    //     if (prevProps.boards.length < boards.length) {
 
-            const newBoard = boards[boards.length-1]
-            console.log('the newBoard',newBoard)
-            window.location.href = `http://localhost:3000/#/myday/board/${newBoard._id}`
-        }
-    }
+    //         const newBoard = boards[boards.length-1]
+    //         console.log('the newBoard',newBoard)
+    //         window.location.href = `http://localhost:3000/#/myday/board/${newBoard._id}`
+    //     }
+    // }
 
 
 
