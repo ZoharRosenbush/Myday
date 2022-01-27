@@ -1,6 +1,7 @@
 // import { storageService } from "./async-storage.service.js";
 import { httpService } from "./http.service.js";
 import { socketService } from "./socket.service.js";
+import { utilService } from "./utils.service.js";
 // const STORAGE_KEY = "boardDB";
 
 export const boardService = {
@@ -11,7 +12,7 @@ export const boardService = {
   getNewBoard,
   getNewGroup,
   addNewTask,
-  makeId
+
 };
 
 async function query() {
@@ -162,7 +163,7 @@ async function removeBoard(boardId) {
 
 function addNewTask(taskTitle){
   return {
-    id: _makeId(),
+    id: utilService.makeId(),
     title: taskTitle,
     status: "Empty",
     text: "",
@@ -187,11 +188,11 @@ function addNewTask(taskTitle){
 
 function getNewGroup(){
   return {
-    id: _makeId(),
+    id: utilService.makeId(),
     title: "New Group",
     tasks: [
       {
-        id: _makeId(),
+        id: utilService.makeId(),
         title: "New Task",
         status: "Empty",
         "cost": "Empty",
@@ -213,7 +214,7 @@ function getNewGroup(){
         comments: [],
       },
     ],
-    style: { groupColor: getNiceRandomColor() },
+    style: { groupColor: utilService.getNiceRandomColor() },
   }
 }
 
@@ -345,7 +346,7 @@ function getNewBoard() {
             comments: [],
           },
         ],
-        style: { groupColor: getNiceRandomColor() },
+        style: { groupColor: utilService.getNiceRandomColor() },
       },
       {
         id: "gds21",
@@ -374,7 +375,7 @@ function getNewBoard() {
             comments: [],
           },
         ],
-        style: { groupColor: getNiceRandomColor() },
+        style: { groupColor: utilService.getNiceRandomColor() },
       },
       {
         id: "gzcdsxsv101",
@@ -403,52 +404,52 @@ function getNewBoard() {
             comments: [],
           },
         ],
-        style: { groupColor: getNiceRandomColor() },
+        style: { groupColor: utilService.getNiceRandomColor() },
       },
     ],
   }
 }
 
-function _makeId(length = 4) {
-  var text = "";
-  var possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-}
+// function _makeId(length = 4) {
+//   var text = "";
+//   var possible =
+//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//   for (var i = 0; i < length; i++) {
+//     text += possible.charAt(Math.floor(Math.random() * possible.length));
+//   }
+//   return text;
+// }
 
-function getNiceRandomColor() {
-  let red = "#E2445C";
-  let orange = "#FDAB3D";
-  let green = "#00C875";
-  let blue = "#0073ea";
-  let pink = "#FAA1F1";
-  let darkblue = "#292f4c";
+// function getNiceRandomColor() {
+//   let red = "#E2445C";
+//   let orange = "#FDAB3D";
+//   let green = "#00C875";
+//   let blue = "#0073ea";
+//   let pink = "#FAA1F1";
+//   let darkblue = "#292f4c";
 
-  let niceColors = [darkblue, pink, blue, green, orange, red];
-  let drawnNum = getRandomIntInclusive(0, niceColors.length - 1);
-  let randColor = niceColors[drawnNum];
-  return randColor;
-}
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
-}
+//   let niceColors = [darkblue, pink, blue, green, orange, red];
+//   let drawnNum = getRandomIntInclusive(0, niceColors.length - 1);
+//   let randColor = niceColors[drawnNum];
+//   return randColor;
+// }
+// function getRandomIntInclusive(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+// }
 
 
 
-function makeId(length = 4) {
-  var text = "";
-  var possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-}
+// function makeId(length = 4) {
+//   var text = "";
+//   var possible =
+//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//   for (var i = 0; i < length; i++) {
+//     text += possible.charAt(Math.floor(Math.random() * possible.length));
+//   }
+//   return text;
+// }
 
 
 // async function saveBoard(boardToSave) {

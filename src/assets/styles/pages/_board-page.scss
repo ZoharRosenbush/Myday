@@ -1,64 +1,99 @@
-.board-btn {
 
-    font-family: Roboto, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 8px 16px;
-    height: 59px;
-    background-color: $green;
-    color: white;
-    border-radius: 32px;
-    width: 196px;
-    margin-right: 34px;
-    margin-top: 22px;
-}
+.board-page{
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 20px 1fr;
+    height: 100vh;
 
-.main-board-container{
-    
-    display: flex;
-    align-items: center;
-    height: 100%;
-    gap: 50px;
-    justify-content: space-between;
-
-    // div{
-    //     margin-top: 125px;
-    // margin-left: 30px;
-    // }
-
-    h1 {
-        font-family: Roboto;
-        font-size: rem(50px);
-        padding: 0;
-        margin: 0;
+    >* {
+        grid-column: 2;
     }
 
-        span {
-            color: ($green);
-            margin-bottom: 34px;
-        }
-    
-
-    p {
-        padding: 0;
-        margin: 0;
-        font-family: 'roboto-regular';
-        font-size: rem(18px);
-        margin-top: 25px;
+    >*.full {
+        grid-column: 1 / -1;
     }
-
-
-
-
-.board-img-container {
-    height: 550px;
-    width: 533px;
-    margin-left: 119px;
-
-    img {
+    .board-btn {
+        
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        padding: 8px 16px;
+        height: 59px;
+        background-color: $green;
+        color: white;
+        border-radius: 32px;
+        width: 196px;
+        margin-right: 34px;
+        margin-top: 22px;
+    }
+    
+    .main-board-container{
+        
+        display: flex;
+        align-items: center;
         height: 100%;
-        width: 100%;
+        gap: 50px;
+        justify-content: space-between;
+        
+        // div{
+            //     margin-top: 125px;
+            // margin-left: 30px;
+            // }
+            
+            h1 {
+                font-family: Roboto;
+                font-size: rem(50px);
+                padding: 0;
+                margin: 0;
+            }
+            
+            span {
+                color: ($green);
+                margin-bottom: 34px;
+            }
+            
+            
+            p {
+                padding: 0;
+                margin: 0;
+                font-family: 'roboto-regular';
+                font-size: rem(18px);
+                margin-top: 25px;
+            }
+            
+            
+            
+            
+            .board-img-container {
+                height: 550px;
+                width: 533px;
+                margin-left: 119px;
+                
+                img {
+                    height: 100%;
+                    width: 100%;
+                    
+                }
+            }}
+            
+            .hello-user{
+                justify-self: end;
+                margin: 0;
+                padding: 0;
+                margin-top: 25px;
+            }
 
-    }
-}}
+            .board-page-avatar{
+                color: #fff;
+                text-align: center;
+                width: 44px;
+                height: 44px;
+                border: #fff 2px solid;
+                border-radius: 50%;
+                line-height: 40px;
+                font-weight: 500;
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 10px 10px 23px 12px;
+            }
+        }
