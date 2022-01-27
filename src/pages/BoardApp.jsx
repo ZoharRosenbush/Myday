@@ -23,10 +23,10 @@ class _BoardApp extends React.Component {
     //     if (prevProps.boards.length < boards.length) {
 
 <<<<<<< HEAD
-            const newBoard = boards[boards.length - 1]
+    const newBoard = boards[boards.length - 1]
             console.log('the newBoard', newBoard)
             window.location.href = `http://localhost:3000/#/myday/board/${newBoard._id}`
-        }
+}
     }
 =======
     //         const newBoard = boards[boards.length-1]
@@ -39,18 +39,18 @@ class _BoardApp extends React.Component {
 
 
 
-    onAddBoard = () => {
-        this.props.addBoard()
-    }
+onAddBoard = () => {
+    this.props.addBoard()
+}
 
-    render() {
-        const { boards, board, user } = this.props
-        console.log('board:', board);
-        const bgColor = user ? user.userColor : "lightgray";
+render() {
+    const { boards, board, user } = this.props
+    console.log('board:', board);
+    const bgColor = user ? user.userColor : "lightgray";
 
-        return (
-            <section className="app-layout">
-                {/* <section className="main-board">
+    return (
+        <section className="app-layout">
+            {/* <section className="main-board">
                 <div className="title">
                 <img src={two} alt=""></img>
                     day</div>
@@ -58,50 +58,46 @@ class _BoardApp extends React.Component {
                 <div className="subtitle">Add new board</div>
 
             </section> */}
-                <MainNav />
-                <BoardNav />
+            <MainNav />
+            <BoardNav />
 
-                <section>
-                    {/* {!boards.length && } */}
-                    <section className="board-page">
-                        <div className="flex hello-user">
+            <section>
+                {/* {!boards.length && } */}
+                <section className="board-page">
+                    <div className="flex hello-user">
 
-                            <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
-<<<<<<< HEAD
-                            <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user ? this.props.user.acronyms : <CgProfile style={{ width: "100%", height: "100%" }} />}</p>
-=======
-                            <p className="board-page-avatar" style={{ backgroundColor:bgColor }}>{this.props.user ? this.props.user.acronyms : <CgProfile style= {{width: "100%" ,height : "100%" }} />}</p>
->>>>>>> e19d43f322d309d75139a1f667b46605e71495ff
+                        <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
+                        <p className="board-page-avatar" style={{ backgroundColor: bgColor }}>{this.props.user ? this.props.user.acronyms : <CgProfile style={{ width: "100%", height: "100%" }} />}</p>
+                    </div>
+                    <div className="main-board-container">
+
+                        <div>
+                            {/* {!!boards.length && <Loader type="line-scale" active />} */}
+                            {/* {!board && <Loader type="line-scale" active />} */}
+                            <h1>
+                                Work the way that
+                            </h1>
+                            <h1>
+                                works <span>for you</span>
+                            </h1>
+                            <p>Add board and start planning your tasks</p>
+                            {/* <Link className="clean-link link-container" to="/myday/board"> */}
+                            <button className="board-btn" onClick={this.onAddBoard}>Add new board</button>
+                            {/* </Link> */}
                         </div>
-                        <div className="main-board-container">
+                        <div className="board-img-container">
 
-                            <div>
-                                {/* {!!boards.length && <Loader type="line-scale" active />} */}
-                                {/* {!board && <Loader type="line-scale" active />} */}
-                                <h1>
-                                    Work the way that
-                                </h1>
-                                <h1>
-                                    works <span>for you</span>
-                                </h1>
-                                <p>Add board and start planning your tasks</p>
-                                {/* <Link className="clean-link link-container" to="/myday/board"> */}
-                                <button className="board-btn" onClick={this.onAddBoard}>Add new board</button>
-                                {/* </Link> */}
-                            </div>
-                            <div className="board-img-container">
-
-                                <img src={BoardSvg} alt=""></img>
-                            </div>
+                            <img src={BoardSvg} alt=""></img>
                         </div>
-                    </section>
-                    {/* {board&& <BoardDetails boardId={board._id}/>} */}
+                    </div>
                 </section>
-                {/* <BoardHeader /> */}
-                {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
+                {/* {board&& <BoardDetails boardId={board._id}/>} */}
             </section>
-        );
-    }
+            {/* <BoardHeader /> */}
+            {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
+        </section>
+    );
+}
 }
 
 function mapStateToProps({ boardModule, userModule }) {
