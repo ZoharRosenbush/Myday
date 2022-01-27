@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { IoIosArrowForward } from 'react-icons/io'
+import { IoIosArrowBack, IoMdHome } from 'react-icons/io'
 import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai'
 import { BiFilterAlt } from 'react-icons/bi'
 import { BoardList } from "../BoardCmps/BoardList.jsx";
@@ -22,10 +22,10 @@ export class _BoardNav extends React.Component {
 
     // socketService.setup()
     // socketService.on('board-list was updated', this.props.loadBoards)
-  
+
   }
 
-  
+
   // componentDidUpdate(prevProps, prevState) {
 
   //   // if (prevProps.boards !== this.props.boards) {
@@ -80,10 +80,10 @@ export class _BoardNav extends React.Component {
         {
           <section className={className} >
             <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
-              <IoIosArrowForward color="#67686B" />
+              <IoIosArrowBack />
             </button>
             <p className="workspace">Workspace</p>
-            <p className="main-workspace">Main Workspace</p>
+            <div className="main-workspace"><div className="m">M<div className="home"><IoMdHome /></div></div>Main Workspace</div>
             <div className="side-bar-features-container">
               <button className="side-bar-features" onClick={() => this.onAddBoard()}>
                 <AiOutlinePlus size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
