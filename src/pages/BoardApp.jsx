@@ -36,8 +36,9 @@ class _BoardApp extends React.Component {
     }
 
     render() {
-        const { boards, board } = this.props
+        const { boards, board, user } = this.props
         console.log('board:', board);
+        const bgColor = user ? user.userColor : "lightgray";
 
         return (
             <section className="app-layout">
@@ -58,7 +59,7 @@ class _BoardApp extends React.Component {
                         <div className="flex hello-user">
 
                             <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
-                            <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user ? this.props.user.acronyms : <CgProfile style= {{width: "100%" ,height : "100%" }} />}</p>
+                            <p className="board-page-avatar" style={{ backgroundColor:bgColor }}>{this.props.user ? this.props.user.acronyms : <CgProfile style= {{width: "100%" ,height : "100%" }} />}</p>
                         </div>
                         <div className="main-board-container">
 

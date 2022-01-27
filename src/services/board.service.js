@@ -2,6 +2,8 @@
 import { httpService } from "./http.service.js";
 import { socketService } from "./socket.service.js";
 import { utilService } from "./utils.service.js";
+import { CgProfile } from "react-icons/cg";
+
 // const STORAGE_KEY = "boardDB";
 
 export const boardService = {
@@ -176,12 +178,13 @@ function addNewTask(taskTitle){
     timeline: ["Jan 17-22", "Jan 19-22"],
     owner: [
       {
-        "fullname": "Lora Turner",
-        "username": "Lora Turner",
-        "_id": "61edc3c5652f5891aac4aed6",
-        "acronyms": "LT",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-      },
+        fullname: "Ann Lee",
+        _id: "61edc3e7652f5891aac4c063",
+        acronyms: "AL",
+        username: "Ann Lee",
+        imgUrl: "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
+        "userColor": "#fcc4f7"
+      }
     ],
     comments: [],
   };
@@ -209,7 +212,8 @@ function getNewGroup(){
             _id: "61edc3e7652f5891aac4c063",
             acronyms: "AL",
             username: "Ann Lee",
-            imgUrl: "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+            imgUrl: "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
+            "userColor": "#fcc4f7"
           }
         ],
         comments: [],
@@ -239,7 +243,8 @@ function getNewBoard() {
       "acronyms": "AL",
       "fullname": "Ann Lee",
       "username": "Ann Lee",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
+      "userColor": "#fcc4f7"
     },
     "lastSeen": [
       {
@@ -247,21 +252,24 @@ function getNewBoard() {
         "acronyms": "AL",
         "fullname": "Ann Lee",
         "username": "Ann Lee",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
+        "userColor": "#fcc4f7"
       },
       {
         "_id": "61edc551652f5891aac5830c",
         "acronyms": "HG",
         "fullname": "Henry Gold",
         "username": "Henry Gold",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg"
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "#00c875"
       },
       {
         "_id": "61edc3c5652f5891aac4aed6",
         "acronyms": "LT",
         "fullname": "Lora Turner",
         "username": "Lora Turner",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
+        "userColor": "#E2445C"
       }
     ],
     statuses: [
@@ -287,21 +295,25 @@ function getNewBoard() {
         "acronyms": "AL",
         "fullname": "Ann Lee",
         "username": "Ann Lee",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
+        "userColor": "#fcc4f7"
       },
       {
         "_id": "61edc551652f5891aac5830c",
         "acronyms": "HG",
         "fullname": "Henry Gold",
         "username": "Henry Gold",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg"
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "#00c875"
+        
       },
       {
         "_id": "61edc3c5652f5891aac4aed6",
         "acronyms": "LT",
         "fullname": "Lora Turner",
         "username": "Lora Turner",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
+        "userColor": "#e2445c"
       }
     ],
     types: [
@@ -341,7 +353,8 @@ function getNewBoard() {
                 "acronyms": "HG",
                 "_id": "61edc551652f5891aac5830c",
                 "username": "Henry Gold",
-                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg"
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+                "userColor": "#00c875"
               }
             ],
             comments: [],
@@ -370,7 +383,8 @@ function getNewBoard() {
                 "acronyms": "LT",
                 "fullname": "Lora Turner",
                 "username": "Lora Turner",
-                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
+                "userColor": "#e2445c"
               },
             ],
             comments: [],
@@ -399,7 +413,8 @@ function getNewBoard() {
                 "_id": "61edc3e7652f5891aac4c063",
                 "acronyms": "AL",
                 "username": "Ann Lee",
-                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg"
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
+                "userColor": "#fcc4f7"
               },
             ],
             comments: [],
