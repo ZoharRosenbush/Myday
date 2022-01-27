@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Loader from 'react-loaders'
+// import Loader from 'react-loaders'
 // import { XlviLoader } from "react-awesome-loaders";
 import { Link } from 'react-router-dom'
 import { CgProfile } from "react-icons/cg";
@@ -22,8 +22,8 @@ class _BoardApp extends React.Component {
         const { boards } = this.props
         if (prevProps.boards.length < boards.length) {
 
-            const newBoard = boards[boards.length-1]
-            console.log('the newBoard',newBoard)
+            const newBoard = boards[boards.length - 1]
+            console.log('the newBoard', newBoard)
             window.location.href = `http://localhost:3000/#/myday/board/${newBoard._id}`
         }
     }
@@ -58,13 +58,13 @@ class _BoardApp extends React.Component {
                         <div className="flex hello-user">
 
                             <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
-                            <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user ? this.props.user.acronyms : <CgProfile style= {{width: "100%" ,height : "100%" }} />}</p>
+                            <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user ? this.props.user.acronyms : <CgProfile style={{ width: "100%", height: "100%" }} />}</p>
                         </div>
                         <div className="main-board-container">
 
                             <div>
-                                {!!boards.length && <Loader type="line-scale" active />}
-                                {!board && <Loader type="line-scale" active />}
+                                {/* {!!boards.length && <Loader type="line-scale" active />} */}
+                                {/* {!board && <Loader type="line-scale" active />} */}
                                 <h1>
                                     Work the way that
                                 </h1>
