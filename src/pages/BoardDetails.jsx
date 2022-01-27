@@ -9,7 +9,7 @@ import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
 
 import { socketService } from "../services/socket.service.js";
 
-import { setActiveModal, updateBoard } from "../store/board.action.js";
+import { setActiveModal, updateBoard, loadBoards} from "../store/board.action.js";
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
@@ -25,26 +25,20 @@ class _BoardDetails extends React.Component {
     socketService.setup()
     socketService.emit('join board-room', boardId)
     socketService.on('board was updated', this.props.loadBoard)
+    socketService.on('board-list was updated', this.props.loadBoards)
   }
+
+  test(){
+    console.log('socket active!');
+  }
+
 
   componentDidUpdate(prevProps, prevState) {
     const { boardId } = this.props.match.params;
     if (prevProps.match.params.boardId !== this.props.match.params.boardId) {
-      this.props.loadBoard(boardId);
-      // THIS.PROPS.LOADFILTEREDBOARDׁׂׂ
+      this.props.loadBoard(boardId)
+      socketService.emit('join board-room', boardId)
     }
-
-    // if (prevProps.board !== this.props.board) {
-    //   this.props.loadBoard(boardId);
-    //   // THIS.PROPS.LOADFILTEREDBOARDׁׂׂ
-    // }
-
-    // No need - 
-
-    // if (prevProps.fillteredBoard !== this.props.fillteredBoard) {
-    //   this.props.loadBoard(boardId);
-    //   // THIS.PROPS.LOADFILTEREDBOARDׁׂׂ
-    // }
   }
 
   componentWillUnmount() {
@@ -52,7 +46,6 @@ class _BoardDetails extends React.Component {
     document.removeEventListener("click", () => {
       this.props.setActiveModal(activeModal);
     });
-    socketService.terminate()
   }
 
   goToTaskDetails = (boardId, groupId, taskId) => {
@@ -151,6 +144,7 @@ const mapDispatchToProps = {
   loadBoard,
   setActiveModal,
   updateBoard,
+  loadBoards
 };
 
 export const BoardDetails = connect(

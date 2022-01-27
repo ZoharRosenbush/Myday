@@ -6,6 +6,7 @@ import { BiFilterAlt } from 'react-icons/bi'
 import { BoardList } from "../BoardCmps/BoardList.jsx";
 import { loadBoards, addBoard, setBoardNav } from '../../store/board.action.js'
 import { boardService } from "../../services/board.service.js";
+
 export class _BoardNav extends React.Component {
   state = {
     isBoardNavOpen: true,
@@ -13,26 +14,41 @@ export class _BoardNav extends React.Component {
   }
   componentDidMount() {
     this.props.loadBoards()
+    console.log('nav did mount')
     // const { isBoardNavOpen } = this.state
     this.setState({ isBoardNavOpen: true }, () => {
       this.props.setBoardNav(this.state.isBoardNavOpen)
     })
+
+    // socketService.setup()
+    // socketService.on('board-list was updated', this.props.loadBoards)
+  
   }
-  componentDidUpdate(prevProps, prevState) {
-    const prevBoards = prevProps.boards
-    if (prevBoards.length) {
-      const { boards } = this.props
-      // console.log('the boards',boards)
-      // console.log('prevboards',prevBoards)
-      boards.forEach((board, idx) => {
-        if (!prevBoards[idx]) return
-        else if (board.title !== prevBoards[idx].title) {
-          this.props.loadBoards()
-        }
-      })
-    }
-  }
-  onToggleBoardNav() {
+
+  
+  // componentDidUpdate(prevProps, prevState) {
+
+  //   // if (prevProps.boards !== this.props.boards) {
+  //   //   this.props.loadBoards()
+  //   // }
+
+  //   const prevBoards = prevProps.boards
+
+  //   if (prevBoards.length) {
+  //     const { boards } = this.props
+  //     // console.log('the boards',boards)
+  //     // console.log('prevboards',prevBoards)
+  //     boards.forEach((board, idx) => {
+  //       if (!prevBoards[idx]) return
+  //       else if (board.title !== prevBoards[idx].title) {
+  //         console.log('hello!');
+  //         // this.props.loadBoards()
+  //       }
+  //     })
+  //   }
+  // }
+
+  onToggleBoardNav = () => {
     const { isBoardNavOpen } = this.state
     this.setState({ isBoardNavOpen: !isBoardNavOpen }, () => {
       this.props.setBoardNav(this.state.isBoardNavOpen)
@@ -47,6 +63,7 @@ export class _BoardNav extends React.Component {
     this.props.removeBoard(boardId)
   }
   render() {
+    console.log('rendering nav')
     const { boards } = this.props
     const { isBoardNavOpen } = this.state
     const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-closed'
