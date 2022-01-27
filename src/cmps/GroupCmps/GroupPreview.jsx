@@ -32,8 +32,15 @@ export class _GroupPreview extends React.Component {
     taskValue: "",
     isModalToDelete: false,
     isAddTaskActive: false,
+    // isFirstRender: true
 
   };
+
+
+  // componentDidMount() {
+  //   this.setState((prevState) => ({ ...prevState, isFirstRender: false }), () => { console.log('first render', this.state.isFirstRender) })
+  // }
+
 
   openModal = (modal) => {
     const { group, setActiveModal } = this.props;
@@ -72,9 +79,9 @@ export class _GroupPreview extends React.Component {
   };
 
 
-  setFilter = (task) => {
+  checkIfTaskFiltered = (task) => {
     const { currFilterBy, search } = this.props
-    console.log('search:', search);
+    // console.log('search:', search);
 
 
     if (!currFilterBy.priority.length &&
@@ -223,6 +230,7 @@ export class _GroupPreview extends React.Component {
   };
 
   render() {
+    // console.log('rendering!');
 
     const { group, board, activeModal, idx, goToTaskDetails } = this.props;
     const cmpsOrder = board.cmpsOrder;
@@ -388,9 +396,9 @@ export class _GroupPreview extends React.Component {
               {...provided.droppableProps}
             >
               {group.tasks.map((task, idx) => {
-                // this.setFilter(task)
+                const isTaskShown = this.checkIfTaskFiltered(task) 
                 return (
-                  this.setFilter(task) && <Draggable key={task.id} draggableId={task.id} index={idx}>
+                  isTaskShown && <Draggable key={task.id} draggableId={task.id} index={idx}>
                     {(provided) => (
                       <section
                         {...provided.draggableProps}

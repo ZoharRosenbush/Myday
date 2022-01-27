@@ -18,11 +18,12 @@ import { setActiveModal, updateBoard, loadBoards } from "../store/board.action.j
 class _BoardDetails extends React.Component {
   componentDidMount() {
     const { boardId } = this.props.match.params;
-    // const {loadBoard} = this.props
     this.props.loadBoard(boardId);
-    const activeModal = { cmpType: null, taskId: null };
+    const emptyActiveModal = { cmpType: null, taskId: null };
     document.addEventListener("click", () => {
-      this.props.setActiveModal(activeModal);
+      if (this.props.activeModal.cmpType) {
+        this.props.setActiveModal(emptyActiveModal);
+      }
     });
 
     socketService.setup()
@@ -31,9 +32,9 @@ class _BoardDetails extends React.Component {
     socketService.on('board-list was updated', this.props.loadBoards)
   }
 
-  test() {
-    console.log('socket active!');
-  }
+  // test() {
+  //   console.log('socket active!');
+  // }
 
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,13 +51,6 @@ class _BoardDetails extends React.Component {
       this.props.setActiveModal(activeModal);
     });
   }
-
-  goToTaskDetails = (boardId, groupId, taskId) => {
-    console.log('window:', window.location);
-    // this.props.history.push(`/${boardId}/${groupId}/${taskId}`)
-    window.location.href = `http://localhost:3000/#/myday/board/${boardId}/${groupId}/${taskId}`
-  }
-
 
   onDragEnd = ({ type, ...result }) => {
     if (!result.destination) return;
@@ -145,8 +139,9 @@ function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     isBoardNavOpen: boardModule.isBoardNavOpen,
+    activeModal: boardModule.activeModal
     //   currFilterBy: toyModule.currFilterBy
-  };
+  }
 }
 const mapDispatchToProps = {
   loadBoard,

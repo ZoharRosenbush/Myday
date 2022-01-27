@@ -302,7 +302,7 @@ export function saveGroup(groupToSave, board) {
 }
 
 export function setActiveModal(activeModal) {
-  // console.log('active modal',activeModal);
+  console.log('active modal',activeModal);
   return (dispatch) => {
     dispatch({
       type: "SET_ACTIVE_MODAL",
