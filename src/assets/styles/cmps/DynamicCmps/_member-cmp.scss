@@ -21,18 +21,18 @@
     }
 }
 
-.LT{
-    background-color: rgb(126,59,138);
-    color: white;
-}
-.HG{
-    background-color: #037F4C;
-    color: white;
-}
-.AL{
-    background-color: #FAA1F1;
-    color: white;
-}
+// .LT{
+//     background-color: rgb(126,59,138);
+//     color: white;
+// }
+// .HG{
+//     background-color: #037F4C;
+//     color: white;
+// }
+// .AL{
+//     background-color: #FAA1F1;
+//     color: white;
+// }
 
 .LT,.HG,.AL{
     font-family: 'roboto-regular';
@@ -40,10 +40,16 @@
     border: none;
     height: 30px;
     width: 30px;
+    color: white;
     margin-left: -5px;
     display: inline;
 
 }
+
+G{
+    height: 100%;
+}
+
 
 
 

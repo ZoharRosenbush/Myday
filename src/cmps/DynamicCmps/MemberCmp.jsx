@@ -1,4 +1,5 @@
 import React from "react";
+import { CgProfile } from "react-icons/cg";
 
 export class MemberCmp extends React.Component {
   state = {
@@ -25,6 +26,7 @@ export class MemberCmp extends React.Component {
     const ownerToSave = info.members.find((member) => {
       return member._id === target.className;
     });
+    
     onUpdateTask(cmpData.type, ownerToSave);
     this.setState({ isEditMode: false });
   };
@@ -42,9 +44,9 @@ export class MemberCmp extends React.Component {
         }}>
           {info.selectedOwners &&
             info.selectedOwners.map((owner, idx) => {
-              console.log('owner:', owner);
+              console.log('owner.userColor:', owner.userColor);
               
-              return <div style={{ backgroundColor: owner.userColor }} key={idx} className={owner.acronyms ? owner.acronyms : "guest"}>{owner.acronyms}</div>;
+              return <div style={{ backgroundColor: owner.userColor }} key={idx} className={owner.acronyms}>{owner.acronyms === "G" ? (<CgProfile style={{height:"33px", width:"37px",transform:"translateY(7px)", color:"lightgray" }}/>) : owner.acronyms}</div>;
             })}
         </div>
         {activeModal.cmpType === type && activeModal.taskId === taskId && isEditMode && (
