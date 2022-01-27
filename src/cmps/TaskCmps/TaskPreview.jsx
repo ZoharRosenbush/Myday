@@ -37,14 +37,15 @@ class _TaskPreview extends React.Component {
 
   deleteTask = () => {
     const { task, groupId, board, deleteTask } = this.props;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     this.setState({ isModalTaskOpen: !this.state.isModalTaskOpen });
     deleteTask(task.id, groupId, boardCopy);
   };
 
   openTaskDetails = () => {
-    const { setTaskModal } = this.props;
+    const { setTaskModal, goToTaskDetails, board, groupId, task } = this.props;
     setTaskModal(true)
+    goToTaskDetails(board._id, groupId, task.id)
   }
 
   onUpdateTask = (cmpType, data) => {
@@ -200,7 +201,7 @@ class _TaskPreview extends React.Component {
 
 
   onUpdateTitleContent = ({ target }) => {
-    const { task, board, groupId, saveTask, activeModal } = this.props;
+    const { task, board, groupId, saveTask, activeModal, goToTaskDetails } = this.props;
     const boardCopy = { ...board }
     const value = target.textContent;
     if (!value) return;
@@ -281,11 +282,11 @@ class _TaskPreview extends React.Component {
                   {task.title}
                 </span>
 
-                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
-                  <div className="chat-icon-container">
-                    <BsChat className={`bubble-talk ${udatesClassName}`} />
-                  </div>
-                </Link>
+                {/* <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}> */}
+                <div className="chat-icon-container" onClick={() => this.openTaskDetails()}>
+                  <BsChat className={`bubble-talk ${udatesClassName}`} />
+                </div>
+                {/* </Link> */}
               </div>
             </div>
             {cmpsOrder.map((cmp, idx) => {

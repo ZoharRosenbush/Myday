@@ -154,7 +154,7 @@ export class _GroupPreview extends React.Component {
 
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    const { group, board, updateBoard } = this.props;
+    const { group, board, updateBoard, goToTaskDetails } = this.props;
 
     if (!destination) return;
     if (
@@ -224,7 +224,7 @@ export class _GroupPreview extends React.Component {
 
   render() {
 
-    const { group, board, activeModal, idx } = this.props;
+    const { group, board, activeModal, idx, goToTaskDetails } = this.props;
     const cmpsOrder = board.cmpsOrder;
     const { isGroupModalOpen, isModalToDelete, isAddTaskActive } = this.state;
     const btnClassName = isAddTaskActive
@@ -397,7 +397,7 @@ export class _GroupPreview extends React.Component {
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
                       >
-                        <TaskPreview task={task} groupId={group.id} />
+                        <TaskPreview task={task} groupId={group.id} goToTaskDetails={goToTaskDetails} />
                       </section>
                     )}
                   </Draggable>
