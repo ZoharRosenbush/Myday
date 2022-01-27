@@ -9,7 +9,7 @@ import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
 import two from '../assets/imgs/2.png'
 import BoardSvg from "../assets/svgs/BoardSvg.svg";
 import HomeLogo from "../assets/imgs/2day.png";
-import {utilService} from '../services/utils.service.js'
+import { utilService } from '../services/utils.service.js'
 
 class _BoardApp extends React.Component {
 
@@ -35,8 +35,8 @@ class _BoardApp extends React.Component {
                     <section className="board-page">
                         <div className="flex hello-user">
 
-                        <p className="hello-user">{this.props.user? "Hello " + this.props.user.username  : "Guest"}</p> 
-                        <p className="board-page-avatar" style={{backgroundColor: utilService.getNiceRandomColor()}}>{this.props.user.acronyms}</p>
+                            <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Guest"}</p>
+                            <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user?.acronyms}</p>
                         </div>
                         <div className="main-board-container">
 
