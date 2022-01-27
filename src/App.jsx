@@ -18,7 +18,7 @@ export function App() {
 
 
     return (
-        <section className="app-layout">
+        <section>
             {/* <AppHeader/> */}
             <main>
                 <Switch>

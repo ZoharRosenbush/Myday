@@ -17,7 +17,8 @@ const initialState = {
     type: [],
     role: [],
     member: []
-  }
+  },
+  search: ""
 };
 
 export function boardReducer(state = initialState, action) {
@@ -35,7 +36,11 @@ export function boardReducer(state = initialState, action) {
         ...state, boards: state.boards.map((board) => {
           return (board._id === action.board._id) ? action.board : board
         })
-      };
+      }
+    case "SET_SEARCH":
+      return {
+        ...state, search: action.search
+      }
     case "SET_FILTER":
       return {
         ...state, currFilterBy: { ...state.currFilterBy, ...action.currFilterBy }

@@ -48,6 +48,11 @@ class _BoardDetails extends React.Component {
     });
   }
 
+  goToTaskDetails = (boardId, groupId, taskId) => {
+    window.location.href = `/${boardId}/${groupId}/${taskId}`
+  }
+
+
   onDragEnd = ({ type, ...result }) => {
     if (!result.destination) return;
     if (type === 'board') {
@@ -93,7 +98,7 @@ class _BoardDetails extends React.Component {
 
 
     return (
-      <section>
+      <section className="app-layout">
         <MainNav />
         <BoardNav />
         <section className={boardContainerClassName}>
@@ -114,6 +119,7 @@ class _BoardDetails extends React.Component {
                     {/* isFilttered&& <GroupList board ={filteredBoard} */}
                     <GroupList
                       board={board}
+                      goToTaskDetails={this.goToTaskDetails}
                     />
                     {provided.placeholder}
                   </div>

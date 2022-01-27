@@ -73,12 +73,14 @@ export class _GroupPreview extends React.Component {
 
 
   setFilter = (task) => {
-    const { currFilterBy } = this.props
+    const { currFilterBy, search } = this.props
+    console.log('search:', search);
+
 
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
       !currFilterBy.type.length &&
-      !currFilterBy.role.length &&
+      !currFilterBy.role.length && (!search) &&
       !currFilterBy.member.length) {
 
       return true
@@ -89,7 +91,8 @@ export class _GroupPreview extends React.Component {
       const isType = (currFilterBy.type.includes(task.type))
       const isRole = (currFilterBy.role.includes(task.role))
       const isMember = (currFilterBy.member.includes(task.owner))
-      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority)
+      const taskText = search && (task.title.toLowerCase().includes(search.search.toLowerCase()))
+      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority || taskText)
       return isTaskToShow
     }
   }
@@ -104,23 +107,21 @@ export class _GroupPreview extends React.Component {
     const value = target.textContent;
     if (!value) return;
     group.title = value;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     saveGroup(group, boardCopy)
   };
 
   onUpdateGroupColor = (color) => {
     const { group, board, saveGroup } = this.props;
-    // const value = target.textContent;
-    // if (!value) return;
     group.style.groupColor = color;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     saveGroup(group, boardCopy)
   };
 
   deleteGroup = () => {
     this.setState({ isModalToDelete: false });
     const { deleteGroup, group, board } = this.props;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     deleteGroup(group.id, boardCopy);
   };
 
@@ -133,7 +134,7 @@ export class _GroupPreview extends React.Component {
 
     ev.preventDefault();
     const { group, board, addTask } = this.props;
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     addTask(this.state.taskValue, group.id, boardCopy)
     this.setState({ taskValue: "" });
   };
@@ -153,7 +154,7 @@ export class _GroupPreview extends React.Component {
 
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    const { group, board, updateBoard } = this.props;
+    const { group, board, updateBoard, goToTaskDetails } = this.props;
 
     if (!destination) return;
     if (
@@ -217,22 +218,19 @@ export class _GroupPreview extends React.Component {
     board.cmpsOrder.splice(source.index, 1);
     board.cmpsOrder.splice(destination.index, 0, draggableId);
 
-    const boardCopy = {...board}
+    const boardCopy = { ...board }
     updateBoard(boardCopy);
   };
 
   render() {
 
-    const { group, board, activeModal, idx } = this.props;
+    const { group, board, activeModal, idx, goToTaskDetails } = this.props;
     const cmpsOrder = board.cmpsOrder;
     const { isGroupModalOpen, isModalToDelete, isAddTaskActive } = this.state;
     const btnClassName = isAddTaskActive
       ? "add-task-btn-visible"
       : "add-task-btn";
     return (
-
-
-
       <section className="group-preview">
         {activeModal.cmpType === "groupEdit" &&
           activeModal.groupId === group.id && (
@@ -399,7 +397,7 @@ export class _GroupPreview extends React.Component {
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
                       >
-                        <TaskPreview task={task} groupId={group.id} />
+                        <TaskPreview task={task} groupId={group.id} goToTaskDetails={goToTaskDetails} />
                       </section>
                     )}
                   </Draggable>
@@ -425,19 +423,23 @@ export class _GroupPreview extends React.Component {
               onSubmit={this.onAddTask}
               className="flex justify-between align-center"
             >
-              <input
-                placeholder="Add task +"
-                className="add-task"
-                onChange={this.onHandleChange}
-                value={this.state.taskValue}
-              // onFocus={this.toggleAddTask}
-              // onBlur={this.toggleAddTask}
-              // contentEditable
-              // suppressContentEditableWarning={true}
-              />
-              <button className={btnClassName}>Add</button>
-              {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
+              <div className="add-task-left">
+                <input
+                  placeholder="Add task +"
+                  className="add-task"
+                  onChange={this.onHandleChange}
+                  value={this.state.taskValue}
+                // onFocus={this.toggleAddTask}
+                // onBlur={this.toggleAddTask}
+                // contentEditable
+                // suppressContentEditableWarning={true}
+                />
+              </div>
+              <div className="add-task-right flex">
+                <button className={btnClassName}>Add</button>
+                {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
               {!isAddTaskActive && <div className="btn-placeholder"></div>} */}
+              </div>
             </form>
           </div>
         </div>
@@ -478,6 +480,7 @@ function mapStateToProps({ boardModule }) {
     board: boardModule.board,
     activeModal: boardModule.activeModal,
     currFilterBy: boardModule.currFilterBy,
+    search: boardModule.search,
   };
 }
 const mapDispatchToProps = {

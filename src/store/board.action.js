@@ -119,6 +119,20 @@ export function updateFilter(currFilterBy) {
 
   }
 }
+export function updateSearch(search) {
+console.log('search:', search);
+
+  return (dispatch) => {
+
+    dispatch({
+      type: "SET_SEARCH",
+      search: {
+        search
+      }
+    });
+
+  }
+}
 
 export function deleteTask(taskId, groupId, board) {
   const boardBeforeChange = board
@@ -276,7 +290,10 @@ export function saveGroup(groupToSave, board) {
 
   return async (dispatch) => {
     try {
-      dispatch({ type: "SET_BOARD", board: board });
+      dispatch({
+        type: "SET_BOARD",
+        board: board
+      });
       await boardService.saveBoard(board)
     } catch (err) {
       console.log('err:', err);

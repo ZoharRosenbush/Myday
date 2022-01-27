@@ -15,7 +15,7 @@ export class _GroupList extends React.Component {
 
 
   render() {
-    const { board } = this.props;
+    const { board, goToTaskDetails } = this.props;
     const { groups } = board;
     return (
 
@@ -31,7 +31,7 @@ export class _GroupList extends React.Component {
                   {...dragHandleProps}
                   ref={innerRef}
                 >
-                  <GroupPreview group={group} key={idx} idx={idx} board={board} />
+                  <GroupPreview group={group} key={idx} idx={idx} board={board} goToTaskDetails={goToTaskDetails} />
                   {placeholder}
                 </div>
               )}

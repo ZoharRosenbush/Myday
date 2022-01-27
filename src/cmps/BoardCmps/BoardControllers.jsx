@@ -5,7 +5,7 @@ import { CgSearch } from "react-icons/cg";
 import { BiSortAlt2, BiColorFill } from "react-icons/bi";
 import { FiFilter, FiEyeOff } from "react-icons/fi";
 import { BoardFilterListCmp } from './BoardFilterListCmp'
-import { loadBoard, updateFilter } from '../../store/board.action.js'
+import { loadBoard, updateFilter, updateSearch } from '../../store/board.action.js'
 // import { IoColorFillOutline } from 'react-icons/io'
 
 class _BoardControllers extends React.Component {
@@ -22,16 +22,22 @@ class _BoardControllers extends React.Component {
     isSearchClicked: false,
   }
 
-inputRef=React.createRef()
+  inputRef = React.createRef()
 
   toggelSearchClicked = () => {
     this.setState((prevState) => (
       { ...prevState, isSearchClicked: !prevState.isSearchClicked }), () => {
-        console.log('this.state:', this.state);
-
       })
   }
 
+
+  handleChange = ({ target }) => {
+
+    const value = target.value
+    console.log('value:', value);
+    this.props.updateSearch(value)
+
+  }
 
   updateFilterBy = (value, field) => {
     const { updateFilter } = this.props
@@ -60,95 +66,104 @@ inputRef=React.createRef()
 
   render() {
     const { onAddGroup } = this.props;
-    const { isModalFilterOpen, isSearchClicked } = this.state;
+    const { isModalFilterOpen, isSearchClicked, filterBy } = this.state;
     const { board } = this.props
 
     return (
-      <section className="board-controllers flex">
-        <button className="add-group-btn" onClick={onAddGroup}>
-          New Group
-        </button>
-        <div className="input-search-wrapper">
-          {isSearchClicked &&
-            <div className="flex search-container">
-              <CgSearch style={{"margin-left":"6px"}}/>
-              <input
-                className="input-search"
-                placeholder="Search"
-                ref={this.inputRef}
-                onBlur={this.toggelSearchClicked}>
+      <div>
+        <section className="board-controllers flex">
+          <button className="add-group-btn" onClick={onAddGroup}>
+            New Group
+          </button>
+          <div className="input-search-wrapper">
+            {isSearchClicked &&
+              <div className="flex search-container">
+                <CgSearch style={{ marginLeft: "6px" }} />
+                <form>
 
-              </input>
-            </div>}
+                  <input
+                    className="input-search"
+                    placeholder="Search"
+                    ref={this.inputRef}
+                    onBlur={this.toggelSearchClicked}
+                    onChange={this.handleChange}
+                  >
 
-          {!isSearchClicked &&
-            <div className="flex search-button controller-opt">
-              <CgSearch />
-              <button onClick={this.toggelSearchClicked}>Search</button>
-            </div>}
-        </div>
+                  </input>
+                </form>
+              </div>}
 
-        <div className="controller-opt">
-          <BsPersonCircle />
-          <button>Person</button>
-        </div>
-        <div className="controller-opt">
-          <FiFilter />
-          <button onClick={this.openFilterModal}>Filter</button>
-        </div>
-        {isModalFilterOpen && (
-          <div className="filter-modal flex column">
-            <div><p>Quick filters</p></div>
-            <div className="flex">
-              <div className="flex column-filter">
-                <span className="filterBy">Status</span>
-                <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"statuses"} field={"status"} />
-              </div>
-              <div className="flex column-filter">
-                <span className="filterBy">Type</span>
-                <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"types"} field={"type"} />
-              </div>
-              <div className="flex column-filter">
-                <span className="filterBy">Priority</span>
-                <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"priorities"} field={"priority"} />
-              </div>
-              <div className="flex column-filter">
-                <span className="filterBy">Role</span>
-                <BoardFilterListCmp updateFilterBy={this.updateFilterBy} labels={"roles"} field={"role"} />
-              </div>
-
-              <div className="flex column-filter">
-                <span className="filterBy">Member</span>
-                <ul className="filter-list">
-                  {board.members.map((member, idx) => {
-                    return (
-                      <li key={idx} className="flex">
-                        <div className={`owner-name-circle ${member.acronyms}`} >{member.acronyms}
-                        </div>{(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}</li>
-                    )
-                  })}
-                </ul>
-              </div>
-            </div>
+            {!isSearchClicked &&
+              <div className="flex search-button controller-opt">
+                <CgSearch />
+                <button onClick={this.toggelSearchClicked}>Search</button>
+              </div>}
           </div>
 
-        )
-        }
-        <div className="controller-opt">
-          {" "}
-          <BiSortAlt2 />
-          <button>Sort</button>
-        </div>
-        <div className="controller-opt">
-          <BsPinAngle />
-        </div>
-        <div className="controller-opt">
-          <FiEyeOff />
-        </div>
-        <div className="controller-opt">
-          <BiColorFill />
-        </div>
-      </section >
+          <div className="controller-opt">
+            <BsPersonCircle />
+            <button>Person</button>
+          </div>
+          <div className="controller-opt">
+            <FiFilter />
+            <button onClick={this.openFilterModal}>Filter</button>
+          </div>
+
+          {isModalFilterOpen && (
+            <div style={{ position: "absolute" }}>
+              <div className="filter-modal flex column" >
+                <div><p>Quick filters</p></div>
+                <div className="flex">
+                  <div className="flex column-filter">
+                    <span className="filterBy">Status</span>
+                    <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"statuses"} field={"status"} />
+                  </div>
+                  <div className="flex column-filter">
+                    <span className="filterBy">Type</span>
+                    <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"types"} field={"type"} />
+                  </div>
+                  <div className="flex column-filter">
+                    <span className="filterBy">Priority</span>
+                    <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"priorities"} field={"priority"} />
+                  </div>
+                  <div className="flex column-filter">
+                    <span className="filterBy">Role</span>
+                    <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"roles"} field={"role"} />
+                  </div>
+
+                  <div className="flex column-filter">
+                    <span className="filterBy">Member</span>
+                    <ul className="filter-list">
+                      {board.members.map((member, idx) => {
+                        return (
+                          <li key={idx} className="flex">
+                            <div className={`owner-name-circle ${member.acronyms}`} >{member.acronyms}
+                            </div>{(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}</li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+          }
+          <div className="controller-opt">
+            {" "}
+            <BiSortAlt2 />
+            <button>Sort</button>
+          </div>
+          <div className="controller-opt">
+            <BsPinAngle />
+          </div>
+          <div className="controller-opt">
+            <FiEyeOff />
+          </div>
+          <div className="controller-opt">
+            <BiColorFill />
+          </div>
+        </section >
+      </div>
     );
   }
 }
@@ -162,7 +177,8 @@ function mapStateToProps({ boardModule }) {
 }
 const mapDispatchToProps = {
   loadBoard,
-  updateFilter
+  updateFilter,
+  updateSearch
 };
 
 export const BoardControllers = connect(

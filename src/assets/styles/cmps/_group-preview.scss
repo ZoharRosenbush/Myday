@@ -3,9 +3,17 @@
   // cursor: auto;
 
   div.group-title-container {
-    min-width: 422px;
-    margin-inline-start: 16px;
+    min-width: 413px;
+    margin-inline-start: 24px;
     display: flex;
+    position: sticky;
+    left: 0px;
+    background-color: #ffffff91;
+    z-index: 4;
+    height: 40px;
+    padding: 0px;
+    align-items: center;
+    gap: 4px;
   }
 }
 
@@ -34,7 +42,7 @@
   line-height: 1.5;
   top: -3px;
   left: 12px;
-  position: relative;
+  position: sticky;
   margin: 0;
   padding: 0;
 
@@ -48,17 +56,33 @@
 }
 
 .add-task-div {
-  border: 1px solid #00000040;
   height: 36px;
   background-color: lighter(#f5f6f8);
   text-align: start;
   cursor: pointer;
   width: 88.86%;
   cursor: pointer;
-
+  border: 1px solid #e6e9ef;
+  transition: all 0.3s;
+  .add-task-left {
+    width: 354px;
+    height: 34px;
+    position: sticky;
+    left: 0;
+  }
   div.group-color {
     height: 100%;
     width: 3px;
+    opacity: 0.5;
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    border: 1px solid #323338;
+
+    div.group-color {
+      opacity: 1;
+    }
   }
 
   .btn-placeholder {
@@ -75,7 +99,8 @@
 input.add-task {
   // left: $first-column-left;
   // max-width: fit-content;
-  padding-left: 20px;
+  margin-left: 20px;
+  margin-top: 8px;
   width: 100%;
 
   &:focus-visible {
@@ -119,7 +144,7 @@ span {
   font-size: rem(14px);
   height: 39px;
 
-  &> :not(:first-child):not(:nth-of-type(2)) {
+  & > :not(:first-child):not(:nth-of-type(2)) {
     margin-inline-start: 2px;
   }
 }
@@ -158,6 +183,8 @@ span {
 div.group-color {
   height: 100%;
   min-width: 7px;
+  position: sticky;
+  left: 0;
   // left: $grop-color-left;
 }
 
@@ -298,7 +325,6 @@ div.group-color {
       border-bottom: 13px solid rgb(0, 0, 0, 0.08);
       border-right: 13px solid $white;
     }
-
   }
 
   &:hover {
@@ -306,7 +332,6 @@ div.group-color {
       display: block;
       position: absolute;
     }
-
   }
 }
 
@@ -315,17 +340,15 @@ div.group-color {
 }
 
 .status-member-section {
-
-  >* {
-
+  > * {
     &::after,
     &::before {
-      content: "";
+      content: '';
       display: block;
       right: 0;
       top: 0;
       position: absolute;
-      transition: border-width .6s;
+      transition: border-width 0.6s;
     }
 
     &:hover {
@@ -342,7 +365,6 @@ div.group-color {
   }
 }
 
-
 // .icon-group {
 //   transform: translateY(4.5px);
 // }
@@ -355,7 +377,6 @@ div.group-color {
 
 .group-title-container {
   &:hover {
-
     .icon-group-drag {
       display: inline;
       // position: absolute;
@@ -365,7 +386,5 @@ div.group-color {
     .group-title {
       left: 0;
     }
-
   }
-
 }
