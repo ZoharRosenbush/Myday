@@ -1,3 +1,4 @@
+
 //SETUP
 @import 'setup/functions';
 @import 'setup/mixins';
@@ -25,6 +26,7 @@
 @import './cmps/_task-preview';
 @import './cmps/task-activity';
 @import './cmps/task-updates';
+@import './cmps/loader';
 
 //Dynamic CMPS
 @import './cmps/DynamicCmps/_status-cmp';
@@ -45,3 +47,4 @@
 @import './pages/board-app';
 @import './pages/task-details';
 @import './pages/home-page';
+@import './pages/board-page';
