@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Route } from "react-router-dom";
 import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
 import { loadBoard } from "../store/board.action.js";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
@@ -10,6 +11,7 @@ import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
 import { socketService } from "../services/socket.service.js";
 
 import { setActiveModal, updateBoard } from "../store/board.action.js";
+import { TaskDetails } from '../cmps/TaskCmps/TaskDetails'
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
@@ -56,7 +58,9 @@ class _BoardDetails extends React.Component {
   }
 
   goToTaskDetails = (boardId, groupId, taskId) => {
-    window.location.href = `/${boardId}/${groupId}/${taskId}`
+    console.log('window:', window.location);
+    // this.props.history.push(`/${boardId}/${groupId}/${taskId}`)
+    window.location.href = `http://localhost:3000/#/myday/board/${boardId}/${groupId}/${taskId}`
   }
 
 
@@ -134,6 +138,9 @@ class _BoardDetails extends React.Component {
               </Droppable>
             )}
           </DragDropContext>
+          <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} />
+          {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
+
         </section>
       </section >
     );

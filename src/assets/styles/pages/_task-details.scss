@@ -27,7 +27,7 @@
     border-radius: 4px;
     display: flex;
     margin-top: 22px;
-    margin-left: 8px;
+    margin-left: 17px;
     width: fit-content;
     font-size: rem(14px);
     cursor: pointer;
@@ -37,16 +37,19 @@
   }
   .btns-container {
     margin-left: 20px;
+    height: 32px;
     .details-features {
       font-family: 'roboto-regular';
       color: #48494e;
       border-radius: 4px;
+      font-weight: 400;
       &:hover {
         background-color: #e6e9ef;
       }
     }
     span {
       color: #eff1f5;
+      line-height: 2;
     }
   }
 
@@ -126,7 +129,7 @@
       justify-content: space-between;
       margin-top: 14px;
       .time-ago {
-        margin-right: 15px;
+        margin-top: 10px;
         margin-right: 20px;
       }
       .header-container {
@@ -143,7 +146,9 @@
           font-family: 'roboto-bold';
           font-size: 19px;
           line-height: 2;
-          margin-left: 15px;
+          margin-left: 11px;
+          padding-left: 11px;
+          padding-top: 2px;
         }
         .user-name {
           color: #323338;
@@ -168,6 +173,7 @@
     }
     .post-actions {
       cursor: pointer;
+      text-align: center;
       & > *:nth-of-type(1) {
         border-right: 0.5px solid #dbdde6;
       }
@@ -175,7 +181,7 @@
         width: 50%;
         border-top: 0.5px solid #dbdde6;
         height: 40px;
-        line-height: 3;
+        line-height: 2.5;
         // border-bottom: none;
         margin-bottom: 0px;
         // flex-flow: column-reverse;

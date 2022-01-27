@@ -1,10 +1,10 @@
 import React from "react";
-
+// import { Route } from "react-router-dom";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
 import two from '../assets/imgs/2.png'
-
+// import { TaskDetails } from "../cmps/TaskCmps/TaskDetails.jsx";
 export function BoardApp() {
 
     return (
@@ -20,6 +20,7 @@ export function BoardApp() {
             <MainNav />
             {/* <BoardHeader /> */}
             <BoardNav />
+            {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
         </section>
     );
 }

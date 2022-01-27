@@ -11,10 +11,10 @@ const routes = [
         component: LoginSignup,
     },
 
-    {
-        path: '/myday/board/:boardId/:groupId/:taskId',
-        component: TaskDetails,
-    },
+    // {
+    //     path: '/myday/board/:boardId/:groupId/:taskId',
+    //     component: TaskDetails,
+    // },
     {
         path: '/myday/board/:boardId',
         component: BoardDetails,

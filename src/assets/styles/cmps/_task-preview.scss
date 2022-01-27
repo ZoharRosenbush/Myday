@@ -18,6 +18,23 @@
     position: sticky;
     left: 0;
     z-index: 3;
+
+    .edit-task-title-btn {
+      cursor: pointer;
+      height: 24px;
+      flex: initial;
+      margin-left: 8px;
+      color: #676879;
+      padding-left: 8px;
+      padding-right: 8px;
+      border-radius: 4px;
+      line-height: 0;
+      padding-top: 4px;
+      margin-top: 5px;
+      &:hover {
+        background-color: #f5f6f8;
+      }
+    }
   }
   .task-title-content {
     width: 390px;
