@@ -278,38 +278,64 @@ div.group-color {
 }
 
 .Owners {
-  min-width: 133px;
+  width: 149px;
+  span {
+    margin-inline-start: 32px;
+  }
 }
 
 .Timeline {
-  min-width: 180.5px;
+  width: 199px;
   background-color: #f5f6f8;
   border-radius: 6px 6px 0 0;
+  span {
+    margin-inline-start: 46px;
+  }
 }
 
 .Priority {
-  width: 138px;
+  width: 140px;
+  span {
+    margin-inline-start: 27px;
+  }
 }
 
 .Status {
-  min-width: 118px;
+  width: 138px;
+  // padding-left: 0px;
   background-color: #f5f6f8;
   border-radius: 6px 6px 0 0;
+  span {
+    margin-inline-start: 29px;
+  }
 }
 
 .Role {
-  min-width: 117px;
+  width: 138px;
+  span {
+    margin-inline-start: 38px;
+  }
 }
 
 .Type {
-  min-width: 118px;
+  width: 138px;
+  span {
+    margin-inline-start: 34px;
+  }
 }
-// .Cost {
-//   min-width: 120px;
-// }
-// .Text {
-//   min-width: 150px;
-// }
+.Cost {
+  min-width: 100px;
+  span {
+    margin-inline-start: 28px;
+  }
+}
+.Text {
+  width: 151px;
+  margin-inline-start: 2px;
+  span {
+    margin-inline-start: 38px;
+  }
+}
 
 // .drag-icon-cmp {
 //   display: none;
@@ -325,10 +351,9 @@ div.group-color {
 .Cost,
 .Type {
   height: 100%;
-
-  text-align: center;
+  flex-grow: 1;
+  // text-align: center;
   line-height: 3;
-
   // margin-inline-end: 1px;
   // margin-inline-start: -1px;
   &:hover {
@@ -351,14 +376,10 @@ div.group-color {
   display: flex;
   .drag-icon-cmp {
     opacity: 0;
-    // display: block;
-    // position: absolute;
   }
   &:hover {
     .drag-icon-cmp {
       opacity: 1;
-      // display: block;
-      // position: absolute;
     }
   }
 }
