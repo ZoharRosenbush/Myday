@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 // import Loader from 'react-loaders'
 // import { XlviLoader } from "react-awesome-loaders";
 import { Link } from 'react-router-dom'
+import { CgProfile } from "react-icons/cg";
+
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
@@ -35,8 +37,8 @@ class _BoardApp extends React.Component {
                     <section className="board-page">
                         <div className="flex hello-user">
 
-                            <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Guest"}</p>
-                            <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user?.acronyms}</p>
+                            <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
+                            <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user ? this.props.user.acronyms : <CgProfile style= {{width: "100%" ,height : "100%" }} />}</p>
                         </div>
                         <div className="main-board-container">
 
