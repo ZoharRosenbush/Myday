@@ -1,10 +1,10 @@
-// $primary-color: $red;
-// @import 'loaders.css/src/animations/line-scale-party';
+$primary-color: $red;
+// @import 'loaders.css/src/animations/line-scale-party.scss';
 
 
-// .loader-hidden {
-//   display: none;
-// }
-// .loader-active {
-//   display: block;
-// }
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+}

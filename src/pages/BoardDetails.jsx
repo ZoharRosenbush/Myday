@@ -9,17 +9,18 @@ import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
 
 import { socketService } from "../services/socket.service.js";
 
-import { setActiveModal, updateBoard, loadBoards} from "../store/board.action.js";
+import { setActiveModal, updateBoard, loadBoards } from "../store/board.action.js";
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
   componentDidMount() {
     const { boardId } = this.props.match.params;
-    // const {loadBoard} = this.props
     this.props.loadBoard(boardId);
-    const activeModal = { cmpType: null, taskId: null };
+    const emptyActiveModal = { cmpType: null, taskId: null };
     document.addEventListener("click", () => {
-      this.props.setActiveModal(activeModal);
+      if (this.props.activeModal.cmpType) {
+        this.props.setActiveModal(emptyActiveModal);
+      }
     });
 
     socketService.setup()
@@ -28,9 +29,9 @@ class _BoardDetails extends React.Component {
     socketService.on('board-list was updated', this.props.loadBoards)
   }
 
-  test(){
-    console.log('socket active!');
-  }
+  // test() {
+  //   console.log('socket active!');
+  // }
 
 
   componentDidUpdate(prevProps, prevState) {
@@ -49,7 +50,7 @@ class _BoardDetails extends React.Component {
   }
 
   goToTaskDetails = (boardId, groupId, taskId) => {
-    window.location.href = `/${boardId}/${groupId}/${taskId}`
+    // window.location.href = `/${boardId}/${groupId}/${taskId}`
   }
 
 
@@ -137,8 +138,9 @@ function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     isBoardNavOpen: boardModule.isBoardNavOpen,
+    activeModal: boardModule.activeModal
     //   currFilterBy: toyModule.currFilterBy
-  };
+  }
 }
 const mapDispatchToProps = {
   loadBoard,
