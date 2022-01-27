@@ -287,7 +287,7 @@ export class _GroupPreview extends React.Component {
 
           <div className=" group-title-container first-column">
 
-            <div>
+            <div className="drop-down-svg">
               <IoMdArrowDropdownCircle
                 style={{
                   color: `${group.style.groupColor}`,
@@ -407,42 +407,48 @@ export class _GroupPreview extends React.Component {
             </section>
           )}
         </Droppable>
-        <div
+        {/* <div
           className="add-task-container first-column flex"
           onFocus={this.toggleAddTask}
           onBlur={this.toggleAddTask}
+        > */}
+        <div className="add-task-div justify-between first-column flex"
+          onFocus={this.toggleAddTask}
+          onBlur={this.toggleAddTask}
+
         >
-          <div className="add-task-div justify-between first-column flex">
-            <div
-              className="group-color"
-              style={{
-                backgroundColor: `${group.style.groupColor}`,
-              }}
-            ></div>{" "}
-            <form
-              onSubmit={this.onAddTask}
-              className="flex justify-between align-center"
-            >
-              <div className="add-task-left">
-                <input
-                  placeholder="Add task +"
-                  className="add-task"
-                  onChange={this.onHandleChange}
-                  value={this.state.taskValue}
-                // onFocus={this.toggleAddTask}
-                // onBlur={this.toggleAddTask}
-                // contentEditable
-                // suppressContentEditableWarning={true}
-                />
-              </div>
-              <div className="add-task-right flex">
-                <button className={btnClassName}>Add</button>
-                {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
+          <div
+            className="group-color"
+            style={{
+              backgroundColor: `${group.style.groupColor}`,
+            }}
+          ></div>{" "}
+          <form
+            onSubmit={this.onAddTask}
+            className="flex justify-between align-center"
+          >
+            {/* <div className="add-task-left"> */}
+            <div className="input-container">
+              <input
+                placeholder="Add task +"
+                className="add-task"
+                onChange={this.onHandleChange}
+                value={this.state.taskValue}
+              // onFocus={this.toggleAddTask}
+              // onBlur={this.toggleAddTask}
+              // contentEditable
+              // suppressContentEditableWarning={true}
+              />
+            </div>
+            {/* </div> */}
+            {/* <div className="add-task-right flex"> */}
+            <button className={btnClassName}>Add</button>
+            {/* {isAddTaskActive && <button className="add-task-btn">Add</button>}
               {!isAddTaskActive && <div className="btn-placeholder"></div>} */}
-              </div>
-            </form>
-          </div>
+            {/* </div> */}
+          </form>
         </div>
+        {/* </div> */}
         <div className="bar-container">
           {cmpsOrder.map((cmpType, idx) => {
             switch (cmpType) {

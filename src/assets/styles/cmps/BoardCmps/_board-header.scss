@@ -10,6 +10,7 @@ section.board-header {
   margin-bottom: 130px;
   position: sticky;
   left: 0;
+  z-index: 200;
 
   .icon-btn-container {
     gap: 2px;

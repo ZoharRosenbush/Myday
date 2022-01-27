@@ -6,8 +6,12 @@
 }
 
 .add-task-div {
+  width: 1605px;
+  margin-left: 47px;
   border: 1px solid #00000040;
   height: 36px;
   background-color: lighter($cell-color);
   text-align: start;
+  position: sticky;
+  left: 0;
 }

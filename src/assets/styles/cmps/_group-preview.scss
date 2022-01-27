@@ -8,13 +8,14 @@
     display: flex;
     position: sticky;
     left: 0px;
-    background-color: #ffffff91;
+    background-color: #ffffffe3;
     z-index: 4;
-    height: 40px;
+    height: 39px;
     padding: 0px;
     align-items: center;
     gap: 4px;
     padding-left: 9px;
+    margin-bottom: 3px;
   }
 }
 
@@ -66,10 +67,13 @@
   border: 1px solid #e6e9ef;
   transition: all 0.3s;
   .add-task-left {
-    width: 354px;
+    width: 382px;
     height: 34px;
     position: sticky;
     left: 0;
+  }
+  .add-task-right {
+    width: 1424px;
   }
   div.group-color {
     height: 100%;
@@ -97,24 +101,31 @@
   }
 }
 
-input.add-task {
+.input-container {
   // left: $first-column-left;
   // max-width: fit-content;
   margin-left: 20px;
-  margin-top: 8px;
-  width: 100%;
-
-  &:focus-visible {
-    outline: none;
-  }
-
+  margin-top: 0px;
+  // width: 100%;
+  flex-grow: 1;
+  /* line-height: 1; */
   border: none;
+  input {
+    position: sticky;
+    left: 15px;
+    border: none;
+  }
+  input:focus-visible {
+    outline: none;
+    border: none;
+  }
 }
 
 .add-task-container {
   display: flex;
   height: 36px;
   width: 1806px;
+  width: 1604px;
   margin-inline-start: 47.5px;
 
   .add-task-form {
@@ -144,6 +155,7 @@ span {
   align-items: center;
   font-size: rem(14px);
   height: 39px;
+  width: 1649px;
 
   & > :not(:first-child):not(:nth-of-type(2)) {
     margin-inline-start: 2px;
@@ -280,7 +292,7 @@ div.group-color {
 }
 
 .Status {
-  min-width: 139px;
+  min-width: 118px;
   background-color: #f5f6f8;
   border-radius: 6px 6px 0 0;
 }
@@ -293,10 +305,10 @@ div.group-color {
   min-width: 138px;
 }
 
-.drag-icon-cmp {
-  display: none;
-  position: absolute;
-}
+// .drag-icon-cmp {
+//   display: none;
+//   position: absolute;
+// }
 
 .Owners,
 .Timeline,
@@ -327,17 +339,22 @@ div.group-color {
       border-right: 13px solid $white;
     }
   }
-
-  &:hover {
-    .drag-icon-cmp {
-      display: block;
-      position: absolute;
-    }
-  }
 }
 
 .cmp-title-container {
   display: flex;
+  .drag-icon-cmp {
+    opacity: 0;
+    // display: block;
+    // position: absolute;
+  }
+  &:hover {
+    .drag-icon-cmp {
+      opacity: 1;
+      // display: block;
+      // position: absolute;
+    }
+  }
 }
 
 .status-member-section {
@@ -377,6 +394,10 @@ div.group-color {
 }
 
 .group-title-container {
+  .drop-down-svg {
+    position: sticky;
+    left: -7px;
+  }
   &:hover {
     .icon-group-drag {
       display: inline;
@@ -385,7 +406,7 @@ div.group-color {
     }
 
     .group-title {
-      left: 0;
+      left: 20px;
     }
   }
 }

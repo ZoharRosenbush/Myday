@@ -18,7 +18,14 @@
     position: sticky;
     left: 0;
     z-index: 3;
-
+    .title-edit-container {
+      position: sticky;
+      left: 0;
+    }
+    .group-color {
+      position: sticky;
+      left: 0;
+    }
     .edit-task-title-btn {
       cursor: pointer;
       height: 24px;
