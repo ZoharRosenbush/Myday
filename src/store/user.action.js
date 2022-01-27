@@ -48,11 +48,14 @@ export function signup(credentials) {
     return async (dispatch) => {
         try {
             const user = await userService.signup(credentials)
+            const fullName = user.fullname.split(' ')
+            user.acronyms = `${fullName[0].substring(0, 1)}${fullName[1].substring(0, 1)}`
+            console.log('acronyms', user.acronyms);
             dispatch({
                 type: 'SET_USER',
                 user
             })
-     
+
         } catch (err) {
             console.log('Cannot signup')
         }

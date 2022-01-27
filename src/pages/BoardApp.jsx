@@ -17,16 +17,24 @@ import { addBoard } from '../store/board.action.js'
 
 class _BoardApp extends React.Component {
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log('did uypdate!');
-        const { boards } = this.props
-        if (prevProps.boards.length < boards.length) {
+    // componentDidUpdate(prevProps, prevState) {
+    //     console.log('did uypdate!');
+    //     const { boards } = this.props
+    //     if (prevProps.boards.length < boards.length) {
 
+<<<<<<< HEAD
             const newBoard = boards[boards.length - 1]
             console.log('the newBoard', newBoard)
             window.location.href = `http://localhost:3000/#/myday/board/${newBoard._id}`
         }
     }
+=======
+    //         const newBoard = boards[boards.length-1]
+    //         console.log('the newBoard',newBoard)
+    //         window.location.href = `http://localhost:3000/#/myday/board/${newBoard._id}`
+    //     }
+    // }
+>>>>>>> e19d43f322d309d75139a1f667b46605e71495ff
 
 
 
@@ -36,8 +44,9 @@ class _BoardApp extends React.Component {
     }
 
     render() {
-        const { boards, board } = this.props
+        const { boards, board, user } = this.props
         console.log('board:', board);
+        const bgColor = user ? user.userColor : "lightgray";
 
         return (
             <section className="app-layout">
@@ -58,7 +67,11 @@ class _BoardApp extends React.Component {
                         <div className="flex hello-user">
 
                             <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
+<<<<<<< HEAD
                             <p className="board-page-avatar" style={{ backgroundColor: utilService.getNiceRandomColor() }}>{this.props.user ? this.props.user.acronyms : <CgProfile style={{ width: "100%", height: "100%" }} />}</p>
+=======
+                            <p className="board-page-avatar" style={{ backgroundColor:bgColor }}>{this.props.user ? this.props.user.acronyms : <CgProfile style= {{width: "100%" ,height : "100%" }} />}</p>
+>>>>>>> e19d43f322d309d75139a1f667b46605e71495ff
                         </div>
                         <div className="main-board-container">
 

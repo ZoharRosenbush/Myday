@@ -1,4 +1,5 @@
 import React from "react";
+import { CgProfile } from "react-icons/cg";
 
 export class MemberCmp extends React.Component {
   state = {
@@ -13,7 +14,7 @@ export class MemberCmp extends React.Component {
   // },
 
   openModal = () => {
-    const { cmpData, setActiveModal,taskId } = this.props;
+    const { cmpData, setActiveModal, taskId } = this.props;
     this.setState({ isEditMode: true });
     const activeModal = { cmpType: cmpData.type, taskId }
     setActiveModal(activeModal)
@@ -25,12 +26,13 @@ export class MemberCmp extends React.Component {
     const ownerToSave = info.members.find((member) => {
       return member._id === target.className;
     });
+    
     onUpdateTask(cmpData.type, ownerToSave);
     this.setState({ isEditMode: false });
   };
 
   render() {
-    const { cmpData, activeModal,taskId } = this.props;
+    const { cmpData, activeModal, taskId } = this.props;
     const { type, info } = cmpData;
     const { isEditMode } = this.state
 
@@ -42,15 +44,18 @@ export class MemberCmp extends React.Component {
         }}>
           {info.selectedOwners &&
             info.selectedOwners.map((owner, idx) => {
-              return <div key={idx} className={owner.acronyms}>{owner.acronyms}</div>;
+              console.log('owner.userColor:', owner.userColor);
+              
+              return <div style={{ backgroundColor: owner.userColor }} key={idx} className={owner.acronyms}>{owner.acronyms === "G" ? (<CgProfile style={{height:"33px", width:"37px",transform:"translateY(7px)", color:"lightgray" }}/>) : owner.acronyms}</div>;
             })}
         </div>
         {activeModal.cmpType === type && activeModal.taskId === taskId && isEditMode && (
           <div className="labels-modal members">
             {info.members.map((member, idx) => {
+              const className = member._id ? member._id : "guest"
               return (
                 <div
-                  className={member._id}
+                  className={className}
                   key={idx}
                   onClick={this.handelChange}
                 >

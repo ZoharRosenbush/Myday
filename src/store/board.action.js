@@ -1,6 +1,7 @@
 import {
   boardService
-} from "../services/board.service.js";
+} from '../services/board.service.js';
+import { utilService } from '../services/utils.service.js';
 
 export function loadBoards() {
   console.log('loding boards🤩');
@@ -70,7 +71,7 @@ export function updateBoard(board) {
 }
 
 export function updateBoardTitle(board) {
-  const miniBoard = {title:board.title,_id:board._id}
+  const miniBoard = { title: board.title, _id: board._id }
 
   return async (dispatch) => {
     try {
@@ -120,7 +121,7 @@ export function updateFilter(currFilterBy) {
   }
 }
 export function updateSearch(search) {
-console.log('search:', search);
+  console.log('search:', search);
 
   return (dispatch) => {
 
@@ -238,7 +239,7 @@ export function deleteGroup(groupId, board) {
 export function saveTask(taskToSave, groupId, board, activity, comment) {
 
   if (activity) {
-    activity.id = boardService.makeId()
+    activity.id = utilService.makeId()
     activity.byMember = {
       "fullname": "Lora Turner",
       "username": "Lora Turner",
@@ -249,7 +250,7 @@ export function saveTask(taskToSave, groupId, board, activity, comment) {
     taskToSave.activities = [activity, ...taskToSave.activities]
   }
   if (comment) {
-    comment.id = boardService.makeId()
+    comment.id = utilService.makeId()
     comment.byMember = {
       "fullname": "Lora Turner",
       "username": "Lora Turner",
@@ -302,7 +303,7 @@ export function saveGroup(groupToSave, board) {
 }
 
 export function setActiveModal(activeModal) {
-  console.log('active modal',activeModal);
+  console.log('active modal', activeModal);
   return (dispatch) => {
     dispatch({
       type: "SET_ACTIVE_MODAL",

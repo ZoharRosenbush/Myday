@@ -14,6 +14,7 @@ import { MdDragIndicator } from "react-icons/md";
 import { makeId } from '../../services/board.service'
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
+import { utilService } from '../../services/utils.service.js'
 import {
   saveTask,
   setActiveModal,
@@ -73,12 +74,35 @@ class _TaskPreview extends React.Component {
         const isOwner = task.owner.findIndex((owner) => {
           return owner._id === data._id;
         });
-        if (isOwner !== -1) return;
-        task.owner.push(data);
+        console.log('isOwner:', isOwner);
+
+        //removeing guest when adding owner
+        if (task.owner[0]?.acronyms === "G") task.owner.splice(0, 1)
+        //removing member if already owner
+        if (isOwner !== -1) {
+          if (task.owner.length === 1) {
+            task.owner.splice(isOwner, 1, {
+              "fullname": "Guset",
+              "acronyms": "G",
+              "_id": utilService.makeId(),
+              "username": "guest",
+              "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+              "userColor": "transparent"
+            })
+
+          } else {
+            task.owner.splice(isOwner, 1)
+          }
+
+        } else {
+          task.owner.push(data);
+        }
         activity = {
           "txt": `Added ${data.fullname} as the task member`,
           "createdAt": Date.now(),
         }
+        console.log('task:', task);
+        
         saveTask(task, groupId, boardCopy, activity);
         break;
       case "role-picker":
