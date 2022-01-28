@@ -366,7 +366,7 @@ export class _GroupPreview extends React.Component {
                                       }}
                                     />
                                   </div>
-                                  <div className={this.cmpTitle(cmp)}>{this.cmpTitle(cmp)}</div>
+                                  <div className={this.cmpTitle(cmp)}><span>{this.cmpTitle(cmp)}</span></div>
                                 </div>
                               </div>
 
@@ -396,7 +396,7 @@ export class _GroupPreview extends React.Component {
               {...provided.droppableProps}
             >
               {group.tasks.map((task, idx) => {
-                const isTaskShown = this.checkIfTaskFiltered(task) 
+                const isTaskShown = this.checkIfTaskFiltered(task)
                 return (
                   isTaskShown && <Draggable key={task.id} draggableId={task.id} index={idx}>
                     {(provided) => (

@@ -1,31 +1,31 @@
 .color-input {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px;
-    width: 142px;
-    height: 140px;
-    z-index: 10;
-    position: absolute;
-    transform: translate(10px, 85px);
-    background-color: white;
-    border: 1px solid #c5c7d0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+  width: 134px;
+  height: 141px;
+  z-index: 10;
+  position: absolute;
+  transform: translate(10px, 85px);
+  background-color: white;
+  border: 1px solid #c5c7d0;
 }
 
 .color-input > *:not(:last-child) {
-    margin-inline-end: 0.5rem;
+  margin-inline-end: 0.5rem;
 }
 
 .color-input .color-value {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    border-radius: 50%;
-    /* border: 1px solid #dddfe2; */
-    border: none;
-    transition: 0.3s ease-in-out;
-    box-shadow:0px 0px 4px #000000;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  /* border: 1px solid #dddfe2; */
+  border: none;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 0px 4px #000000;
 }
 .color-input .color-value:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
