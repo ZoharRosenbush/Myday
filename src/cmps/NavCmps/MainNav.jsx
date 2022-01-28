@@ -28,7 +28,6 @@ class _MainNav extends React.Component {
   render() {
     const { user } = this.props
     const { isModalOpen } = this.state
-    console.log('this.state.isModalOpen:', this.state.isModalOpen);
     const bgColor = user ? user.userColor : "lightgray";
 
     return (

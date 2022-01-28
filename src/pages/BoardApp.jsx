@@ -50,8 +50,8 @@ class _BoardApp extends React.Component {
                 <div className="subtitle">Add new board</div>
 
             </section> */}
-                <MainNav />
-                <BoardNav />
+                {/* <MainNav />
+                <BoardNav /> */}
 
                 <section>
                     {/* {!boards.length && } */}
