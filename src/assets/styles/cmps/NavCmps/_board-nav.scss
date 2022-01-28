@@ -1,6 +1,7 @@
 .board-nav {
-  width: 254px;
-  transform: translateX(-70%);
+  min-width: 254px;
+  max-width: 254px;
+  transform: translateX(-85%);
   border-right: 1px solid #e8eaf0;
   background-color: #f5f6f8;
   top: 0;
@@ -45,7 +46,7 @@
       height: 26px;
       border-radius: 50%;
       border: 1px solid #e2e7ec;
-      margin-left: 91%;
+      margin-left: 94%;
       margin-top: 20px;
       transition: width 0.1s;
       svg {

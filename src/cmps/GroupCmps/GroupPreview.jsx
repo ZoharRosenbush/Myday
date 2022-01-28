@@ -140,9 +140,16 @@ export class _GroupPreview extends React.Component {
   onAddTask = (ev) => {
 
     ev.preventDefault();
-    const { group, board, addTask } = this.props;
+    const { group, board, addTask, user } = this.props;
     const boardCopy = { ...board }
-    addTask(this.state.taskValue, group.id, boardCopy)
+    console.log('boardCopy:', boardCopy);
+
+    const activity = {
+      "txt": `Created new task ${this.state.taskValue}`,
+      "createdAt": Date.now(),
+    }
+
+    addTask(this.state.taskValue, group.id, boardCopy, user, activity)
     this.setState({ taskValue: "" });
   };
 
@@ -190,13 +197,7 @@ export class _GroupPreview extends React.Component {
     this.setState({ taskValue: value });
   };
 
-  onAddTask = (ev) => {
 
-    ev.preventDefault();
-    const { group, board, addTask } = this.props;
-    addTask(this.state.taskValue, group.id, board);
-    this.setState({ taskValue: "" });
-  };
 
   cmpTitle = (cmpType) => {
     if (cmpType === "member-picker") return "Owners";
@@ -489,9 +490,10 @@ export class _GroupPreview extends React.Component {
 }
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     activeModal: boardModule.activeModal,
     currFilterBy: boardModule.currFilterBy,
     search: boardModule.search,

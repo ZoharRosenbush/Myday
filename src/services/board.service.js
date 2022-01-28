@@ -172,7 +172,8 @@ async function removeBoard(boardId) {
 //   return boards
 // }
 
-function addNewTask(taskTitle) {
+function addNewTask(taskTitle, activity) {
+
   return {
     id: utilService.makeId(),
     title: taskTitle,
@@ -182,7 +183,7 @@ function addNewTask(taskTitle) {
     role: "Empty",
     type: "Empty",
     "cost": "Empty",
-    activities: [],
+    activities: [activity],
     timeline: ["Jan 17-22", "Jan 19-22"],
     owner: [{
       "fullname": "Guset",
@@ -209,7 +210,12 @@ function getNewGroup() {
       text: "",
       role: "Empty",
       type: "Empty",
-      activities: [],
+      activities: [{
+        byMember: { fullname: 'Lora Turner', username: 'Lora Turner', _id: '61edc3c5652f5891aac4aed6', acronyms: 'LT', imgUrl: 'https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg' },
+        createdAt: Date.now(),
+        id: utilService.makeId(),
+        txt: "Created new task"
+      }],
       timeline: ["Jan 17-22", "Jan 19-22"],
       owner: [{
         "fullname": "Guset",
@@ -220,7 +226,7 @@ function getNewGroup() {
         "userColor": "transparent"
       }],
       comments: [],
-    }, ],
+    },],
     style: {
       groupColor: utilService.getNiceRandomColor()
     },
@@ -250,256 +256,270 @@ function getNewBoard() {
       "userColor": "#fcc4f7"
     },
     "lastSeen": [{
-        "_id": "61edc3e7652f5891aac4c063",
-        "acronyms": "AL",
-        "fullname": "Ann Lee",
-        "username": "Ann Lee",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
-        "userColor": "#fcc4f7"
-      },
-      {
-        "_id": "61edc551652f5891aac5830c",
-        "acronyms": "HG",
-        "fullname": "Henry Gold",
-        "username": "Henry Gold",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
-        "userColor": "#00c875"
-      },
-      {
-        "_id": "61edc3c5652f5891aac4aed6",
-        "acronyms": "LT",
-        "fullname": "Lora Turner",
-        "username": "Lora Turner",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
-        "userColor": "#E2445C"
-      }
+      "_id": "61edc3e7652f5891aac4c063",
+      "acronyms": "AL",
+      "fullname": "Ann Lee",
+      "username": "Ann Lee",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
+      "userColor": "#fcc4f7"
+    },
+    {
+      "_id": "61edc551652f5891aac5830c",
+      "acronyms": "HG",
+      "fullname": "Henry Gold",
+      "username": "Henry Gold",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+      "userColor": "#00c875"
+    },
+    {
+      "_id": "61edc3c5652f5891aac4aed6",
+      "acronyms": "LT",
+      "fullname": "Lora Turner",
+      "username": "Lora Turner",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
+      "userColor": "#E2445C"
+    }
     ],
     statuses: [{
-        id: "la123",
-        value: "Empty",
-        bgColor: "#c4c4c4",
-        color: "#c4c4c4"
-      },
-      {
-        id: "la555",
-        value: "Done",
-        bgColor: "#00C875",
-        color: "#fff"
-      },
-      {
-        id: "la666",
-        value: "Stuck",
-        bgColor: "#E2445C",
-        color: "#fff"
-      },
-      {
-        id: "la777",
-        value: "Working on it",
-        bgColor: "#FDAB3D",
-        color: "#fff",
-      },
+      id: "la123",
+      value: "Empty",
+      bgColor: "#c4c4c4",
+      color: "#c4c4c4"
+    },
+    {
+      id: "la555",
+      value: "Done",
+      bgColor: "#00C875",
+      color: "#fff"
+    },
+    {
+      id: "la666",
+      value: "Stuck",
+      bgColor: "#E2445C",
+      color: "#fff"
+    },
+    {
+      id: "la777",
+      value: "Working on it",
+      bgColor: "#FDAB3D",
+      color: "#fff",
+    },
     ],
     priorities: [{
-        id: "lb111",
-        value: "Empty",
-        bgColor: "#c4c4c4",
-        color: "#c4c4c4"
-      },
-      {
-        id: "lb222",
-        value: "Low",
-        bgColor: "#66ccff",
-        color: "#fff"
-      },
-      {
-        id: "lb333",
-        value: "Medium",
-        bgColor: "#0086c0",
-        color: "#fff"
-      },
-      {
-        id: "lb444",
-        value: "High",
-        bgColor: "#225091",
-        color: "#fff"
-      },
+      id: "lb111",
+      value: "Empty",
+      bgColor: "#c4c4c4",
+      color: "#c4c4c4"
+    },
+    {
+      id: "lb222",
+      value: "Low",
+      bgColor: "#66ccff",
+      color: "#fff"
+    },
+    {
+      id: "lb333",
+      value: "Medium",
+      bgColor: "#0086c0",
+      color: "#fff"
+    },
+    {
+      id: "lb444",
+      value: "High",
+      bgColor: "#225091",
+      color: "#fff"
+    },
     ],
     "members": [{
-        "_id": "61edc3e7652f5891aac4c063",
-        "acronyms": "AL",
-        "fullname": "Ann Lee",
-        "username": "Ann Lee",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
-        "userColor": "#fcc4f7"
-      },
-      {
-        "_id": "61edc551652f5891aac5830c",
-        "acronyms": "HG",
-        "fullname": "Henry Gold",
-        "username": "Henry Gold",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
-        "userColor": "#00c875"
+      "_id": "61edc3e7652f5891aac4c063",
+      "acronyms": "AL",
+      "fullname": "Ann Lee",
+      "username": "Ann Lee",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
+      "userColor": "#fcc4f7"
+    },
+    {
+      "_id": "61edc551652f5891aac5830c",
+      "acronyms": "HG",
+      "fullname": "Henry Gold",
+      "username": "Henry Gold",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+      "userColor": "#00c875"
 
-      },
-      {
-        "_id": "61edc3c5652f5891aac4aed6",
-        "acronyms": "LT",
-        "fullname": "Lora Turner",
-        "username": "Lora Turner",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
-        "userColor": "#e2445c"
-      }
+    },
+    {
+      "_id": "61edc3c5652f5891aac4aed6",
+      "acronyms": "LT",
+      "fullname": "Lora Turner",
+      "username": "Lora Turner",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
+      "userColor": "#e2445c"
+    }
     ],
     types: [{
-        id: "tp111",
-        value: "Empty",
-        bgColor: "#c4c4c4",
-        color: "#c4c4c4"
-      },
-      {
-        id: "tp222",
-        value: "Quality",
-        bgColor: "#fcc4f7",
-        color: "#fff"
-      },
-      {
-        id: "tp333",
-        value: "Feature",
-        bgColor: "#00c875",
-        color: "#fff"
-      },
-      {
-        id: "tp444",
-        value: "Bug",
-        bgColor: "#e2445c",
-        color: "#fff"
-      },
-      {
-        id: "tp555",
-        value: "Improvement",
-        bgColor: "#a25ddc",
-        color: "#fff"
-      },
-      {
-        id: "tp666",
-        value: "Security",
-        bgColor: "#ffadad",
-        color: "#fff"
-      },
+      id: "tp111",
+      value: "Empty",
+      bgColor: "#c4c4c4",
+      color: "#c4c4c4"
+    },
+    {
+      id: "tp222",
+      value: "Quality",
+      bgColor: "#fcc4f7",
+      color: "#fff"
+    },
+    {
+      id: "tp333",
+      value: "Feature",
+      bgColor: "#00c875",
+      color: "#fff"
+    },
+    {
+      id: "tp444",
+      value: "Bug",
+      bgColor: "#e2445c",
+      color: "#fff"
+    },
+    {
+      id: "tp555",
+      value: "Improvement",
+      bgColor: "#a25ddc",
+      color: "#fff"
+    },
+    {
+      id: "tp666",
+      value: "Security",
+      bgColor: "#ffadad",
+      color: "#fff"
+    },
     ],
     roles: [{
-        id: "rl111",
-        value: "Empty",
-        bgColor: "#c4c4c4",
-        color: "#c4c4c4"
-      },
-      {
-        id: "rl222",
-        value: "Dev",
-        bgColor: "#279165",
-        color: "#fff"
-      },
-      {
-        id: "rl333",
-        value: "Design",
-        bgColor: "#0086c0",
-        color: "#fff"
-      },
-      {
-        id: "rl444",
-        value: "Product",
-        bgColor: "#a25ddc",
-        color: "#fff"
-      },
+      id: "rl111",
+      value: "Empty",
+      bgColor: "#c4c4c4",
+      color: "#c4c4c4"
+    },
+    {
+      id: "rl222",
+      value: "Dev",
+      bgColor: "#279165",
+      color: "#fff"
+    },
+    {
+      id: "rl333",
+      value: "Design",
+      bgColor: "#0086c0",
+      color: "#fff"
+    },
+    {
+      id: "rl444",
+      value: "Product",
+      bgColor: "#a25ddc",
+      color: "#fff"
+    },
     ],
     groups: [{
-        id: "GJKN10",
-        title: "Group 1",
-        tasks: [{
-          id: "fdd2",
-          title: "New Task",
-          status: "Empty",
-          priority: "Empty",
-          cost: "Empty",
-          role: "Empty",
-          text: "hello",
-          cost: "Empty",
-          type: "Empty",
-          activities: [],
-          timeline: ["Jan 17-22", "Jan 19-22"],
-          owner: [{
-            "fullname": "Guset",
-            "acronyms": "G",
+      id: "GJKN10",
+      title: "Group 1",
+      tasks: [{
+        id: "fdd2",
+        title: "New Task",
+        status: "Empty",
+        priority: "Empty",
+        cost: "Empty",
+        role: "Empty",
+        text: "hello",
+        type: "Empty",
+        activities: [{
+          byMember: { fullname: 'Lora Turner', username: 'Lora Turner', _id: '61edc3c5652f5891aac4aed6', acronyms: 'LT', imgUrl: 'https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg' },
+          createdAt: Date.now(),
+          id: utilService.makeId(),
+          txt: "Created new task"
+        }],
+        timeline: ["Jan 17-22", "Jan 19-22"],
+        owner: [{
+          "fullname": "Guset",
+          "acronyms": "G",
 
-            "_id": utilService.makeId(),
-            "username": "guest",
-            "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
-            "userColor": "transparent"
-          }],
-          comments: [],
-        }, ],
-        style: {
-          groupColor: utilService.getNiceRandomColor()
-        },
+          "_id": utilService.makeId(),
+          "username": "guest",
+          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+          "userColor": "transparent"
+        }],
+        comments: [],
+      },],
+      style: {
+        groupColor: utilService.getNiceRandomColor()
       },
-      {
-        id: "gds21",
-        title: "Group 2",
-        tasks: [{
-          id: "csdf101",
-          title: "New Task",
-          status: "Empty",
-          priority: "Empty",
-          role: "Empty",
-          text: "Enter text!",
-          cost: "Empty",
-          type: "Empty",
-          activities: [],
-          timeline: ["Jan 17-22", "Jan 19-22"],
-          owner: [{
-            "fullname": "Guset",
-            "acronyms": "G",
+    },
+    {
+      id: "gds21",
+      title: "Group 2",
+      tasks: [{
+        id: "csdf101",
+        title: "New Task",
+        status: "Empty",
+        priority: "Empty",
+        role: "Empty",
+        text: "Enter text!",
+        cost: "Empty",
+        type: "Empty",
+        activities: [{
+          byMember: { fullname: 'Lora Turner', username: 'Lora Turner', _id: '61edc3c5652f5891aac4aed6', acronyms: 'LT', imgUrl: 'https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg' },
+          createdAt: Date.now(),
+          id: utilService.makeId(),
+          txt: "Created new task"
+        }],
+        timeline: ["Jan 17-22", "Jan 19-22"],
+        owner: [{
+          "fullname": "Guset",
+          "acronyms": "G",
 
-            "_id": utilService.makeId(),
-            "username": "guest",
-            "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
-            "userColor": "transparent"
-          }, ],
-          comments: [],
-        }, ],
-        style: {
-          groupColor: utilService.getNiceRandomColor()
-        },
+          "_id": utilService.makeId(),
+          "username": "guest",
+          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+          "userColor": "transparent"
+        },],
+        comments: [],
+      },],
+      style: {
+        groupColor: utilService.getNiceRandomColor()
       },
-      {
-        id: "gzcdsxsv101",
-        title: "Group 3",
-        tasks: [{
-          id: "cdszxvc101",
-          title: "New Task",
-          status: "Empty",
-          priority: "Empty",
-          role: "Empty",
-          text: "Enter text!",
-          cost: "Empty",
-          type: "Empty",
-          activities: [],
-          timeline: ["Jan 17-22", "Jan 19-22"],
-          owner: [{
-            "fullname": "Guset",
-            "acronyms": "G",
+    },
+    {
+      id: "gzcdsxsv101",
+      title: "Group 3",
+      tasks: [{
+        id: "cdszxvc101",
+        title: "New Task",
+        status: "Empty",
+        priority: "Empty",
+        role: "Empty",
+        text: "Enter text!",
+        cost: "Empty",
+        type: "Empty",
+        activities: [{
+          byMember: { fullname: 'Lora Turner', username: 'Lora Turner', _id: '61edc3c5652f5891aac4aed6', acronyms: 'LT', imgUrl: 'https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg' },
+          createdAt: Date.now(),
+          id: utilService.makeId(),
+          txt: "Created new task"
+        }],
+        timeline: ["Jan 17-22", "Jan 19-22"],
+        owner: [{
+          "fullname": "Guset",
+          "acronyms": "G",
 
-            "_id": utilService.makeId(),
-            "username": "guest",
-            "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
-            "userColor": "transparent"
-          }, ],
-          comments: [],
-        }, ],
-        style: {
-          groupColor: utilService.getNiceRandomColor()
-        },
+          "_id": utilService.makeId(),
+          "username": "guest",
+          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+          "userColor": "transparent"
+        },],
+        comments: [],
+      },],
+      style: {
+        groupColor: utilService.getNiceRandomColor()
       },
+    },
     ],
   }
 }

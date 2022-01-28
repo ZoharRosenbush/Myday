@@ -49,7 +49,7 @@ class _TaskPreview extends React.Component {
   }
 
   onUpdateTask = (cmpType, data) => {
-    const { task, saveTask, groupId, board } = this.props;
+    const { task, saveTask, groupId, board, user } = this.props;
     const boardCopy = { ...board }
 
     let activity;
@@ -60,7 +60,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task status to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "priority-picker":
         task.priority = data;
@@ -68,7 +68,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task priority to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "member-picker":
         const isOwner = task.owner.findIndex((owner) => {
@@ -101,9 +101,8 @@ class _TaskPreview extends React.Component {
           "txt": `Added ${data.fullname} as the task member`,
           "createdAt": Date.now(),
         }
-        console.log('task:', task);
-        
-        saveTask(task, groupId, boardCopy, activity);
+
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "role-picker":
         task.role = data
@@ -111,7 +110,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task role to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "type-picker":
         task.type = data;
@@ -119,7 +118,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task type to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "date-picker":
         task.timeline = data;
@@ -127,23 +126,23 @@ class _TaskPreview extends React.Component {
           "txt": `Changed dates`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "text":
         task.text = data;
         activity = {
-          "txt": `Changed text to ${data}}`,
+          "txt": `Changed text to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "cost":
         task.cost = data;
         activity = {
-          "txt": `Changed cost to ${data}}`,
+          "txt": `Changed cost to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       default:
     }
@@ -229,11 +228,11 @@ class _TaskPreview extends React.Component {
     const value = target.textContent;
     if (!value) return;
     task.title = value;
-    // activity = {
-    //   "txt": `Changed cost to ${data}}`,
-    //   "createdAt": Date.now(),
-    // }
-    saveTask(task, groupId, boardCopy);
+    const activity = {
+      "txt": `Changed task title to ${value}}`,
+      "createdAt": Date.now(),
+    }
+    saveTask(task, groupId, boardCopy, activity);
     // updateTitleContent(value, todo);
   };
 
@@ -355,9 +354,10 @@ class _TaskPreview extends React.Component {
   }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     activeModal: boardModule.activeModal,
     // currFilterBy: boardModule.currFilterBy
   };

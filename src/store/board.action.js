@@ -162,12 +162,23 @@ export function deleteTask(taskId, groupId, board) {
   };
 }
 
-export function addTask(taskTitle, groupId, board) {
+export function addTask(taskTitle, groupId, board, user, activity) {
+  console.log('activity:', activity);
 
-  const newTask = boardService.addNewTask(taskTitle)
+  activity.id = utilService.makeId()
+  activity.byMember = user
+
+
+  const newTask = boardService.addNewTask(taskTitle, activity)
 
   const groupIdx = board.groups.findIndex((group) => groupId === group.id);
   board.groups[groupIdx].tasks.push(newTask);
+
+
+
+
+
+
 
   return async (dispatch) => {
     try {
@@ -236,28 +247,18 @@ export function deleteGroup(groupId, board) {
 }
 
 // Store - saveTask
-export function saveTask(taskToSave, groupId, board, activity, comment) {
+export function saveTask(taskToSave, groupId, board, user, activity, comment) {
+  console.log('user:', user);
+  console.log('activity:', activity);
 
   if (activity) {
     activity.id = utilService.makeId()
-    activity.byMember = {
-      "fullname": "Lora Turner",
-      "username": "Lora Turner",
-      "_id": "61edc3c5652f5891aac4aed6",
-      "acronyms": "LT",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-    }
+    activity.byMember = user
     taskToSave.activities = [activity, ...taskToSave.activities]
   }
   if (comment) {
     comment.id = utilService.makeId()
-    comment.byMember = {
-      "fullname": "Lora Turner",
-      "username": "Lora Turner",
-      "_id": "61edc3c5652f5891aac4aed6",
-      "acronyms": "LT",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-    }
+    comment.byMember = user
     taskToSave.comments = [comment, ...taskToSave.comments]
   }
 

@@ -26,12 +26,13 @@ export class _TaskDetails extends React.Component {
         const { board, saveTask } = this.props
         const task = this.getCurrTask()
         const { groupId } = this.props.match.params
-        const activity = {
-            "txt": `Changed task title`,
-            "createdAt": Date.now(),
-        }
+
         const value = target.textContent;
         if (!value) return;
+        const activity = {
+            "txt": `Changed task title to ${value}`,
+            "createdAt": Date.now(),
+        }
         task.title = value;
         try {
             saveTask(task, groupId, board, activity);
