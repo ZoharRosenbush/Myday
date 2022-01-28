@@ -36,20 +36,19 @@ class _DynamicDashboard extends React.Component {
         return  <section className="app-layout">
                   <MainNav />
         <BoardNav />
-            <section>
-            <MainDashboardCmp/>
+        <section>
+        <BoardHeader 
+        board={this.props.board} user={this.props.user}
+        />
             <div className="counts-container">
             <div className="groups-count-container">
-                <span>Groups</span><span>{this.state.groupsCount}</span>
+                <span >Groups</span><span>{this.state.groupsCount}</span>
             </div>
             <div className="tasks-count-container">
                 <span>Tasks</span><span>{this.state.tasksCount}</span>
             </div>
             </div>
             <div className="dashboards-container">
-            <div className="pai-container">
-                <DashboardPai />
-            </div>
             <div >
                 <Dashboard labelType={"status"} />
             </div>
@@ -62,15 +61,19 @@ class _DynamicDashboard extends React.Component {
             <div>
             <Dashboard  labelType= {"type"}  />
         </div> 
+            <div className="pai-container full">
+                <DashboardPai />
+            </div>
 
             </div>
                 </section>
         </section>
     }
 }
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.board,
+        user: userModule.user,
 
     }
 }
