@@ -1,5 +1,6 @@
 import { Switch, Route } from 'react-router-dom'
 import React, { useEffect, useState } from "react";
+
 import { Home } from './pages/Home.jsx'
 import { BoardApp } from './pages/BoardApp.jsx'
 import { socketService } from './services/socket.service.js'

@@ -14,7 +14,7 @@ export class _BoardNav extends React.Component {
   }
   componentDidMount() {
     this.props.loadBoards()
-    console.log('nav did mount')
+    // console.log('nav did mount')
     // const { isBoardNavOpen } = this.state
     this.setState({ isBoardNavOpen: true }, () => {
       this.props.setBoardNav(this.state.isBoardNavOpen)
@@ -63,7 +63,7 @@ export class _BoardNav extends React.Component {
     this.props.removeBoard(boardId)
   }
   render() {
-    console.log('rendering nav')
+    // console.log('rendering nav')
     const { boards } = this.props
     const { isBoardNavOpen } = this.state
     const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-closed'

@@ -8,12 +8,13 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 
 import { BoardControllers } from "./BoardControllers.jsx";
-import { addGroup, updateBoardTitle } from "../../store/board.action.js";
+import { addGroup, updateBoardTitle,saveBoard } from "../../store/board.action.js";
+import {utilService} from '../../services/utils.service.js'
 
 
-export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup }) {
+export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup }) {
 
-  const boardCopy = { ...board }
+  const boardCopy = utilService.createDeepCopy(board)
 
   function onAddGroup() {
     addGroup(boardCopy);
@@ -31,15 +32,15 @@ export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup })
     const value = target.textContent;
     if (!value) return;
     boardCopy.description = value;
-    updateBoard(boardCopy);
+    saveBoard(boardCopy);
   };
 
   return (
     <section className="board-header">
       {board && (
         <div className="board-header-top">
-          <div className="flex justify-between board-main-title">
-            <div className="board-title-container flex justify-between align-center">
+          <div className=" board-main-title">
+            <div className="board-title-container">
               <h1
                 className="board-header-title"
                 contentEditable
@@ -106,7 +107,8 @@ function mapStateToProps({ boardModule }) {
 }
 const mapDispatchToProps = {
   addGroup,
-  updateBoardTitle
+  updateBoardTitle,
+  saveBoard
 };
 
 export const BoardHeader = connect(

@@ -42,7 +42,7 @@ export class MemberCmp extends React.Component {
         }}>
           {info.selectedOwners &&
             info.selectedOwners.map((owner, idx) => {
-              console.log('owner:', owner);
+              // console.log('owner:', owner);
               
               return <div style={{ backgroundColor: owner.userColor }} key={idx} className={owner.acronyms ? owner.acronyms : "guest"}>{owner.acronyms}</div>;
             })}

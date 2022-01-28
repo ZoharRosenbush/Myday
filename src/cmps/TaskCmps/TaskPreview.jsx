@@ -20,12 +20,13 @@ import {
   deleteTask,
   setTaskModal,
 } from "../../store/board.action.js";
+import { utilService } from '../../services/utils.service.js'
 
 
 
 class _TaskPreview extends React.Component {
   state = {
-    isModalTaskOpen: false,
+    // isModalTaskOpen: false,
 
   };
   taskTitleInput = React.createRef();
@@ -34,22 +35,22 @@ class _TaskPreview extends React.Component {
     this.props.setActiveModal(activeModal)
   };
 
-  deleteTask = () => {
-    const { task, groupId, board, deleteTask } = this.props;
-    const boardCopy = { ...board }
-    this.setState({ isModalTaskOpen: !this.state.isModalTaskOpen });
-    deleteTask(task.id, groupId, boardCopy);
+  onDeleteTask = () => {
+    const { task, groupId, board } = this.props;
+    console.log('the board in cmp',board)
+    const boardCopy = utilService.createDeepCopy(board)
+    console.log('the bord copy',boardCopy)
+    this.props.deleteTask(task.id, groupId, boardCopy);
   };
 
   openTaskDetails = () => {
-    const { setTaskModal, goToTaskDetails, board, groupId, task } = this.props;
+    const { setTaskModal } = this.props;
     setTaskModal(true)
-    // goToTaskDetails(board._id, groupId, task.id)
   }
 
   onUpdateTask = (cmpType, data) => {
     const { task, saveTask, groupId, board } = this.props;
-    const boardCopy = { ...board }
+    const boardCopy = utilService.createDeepCopy(board)
 
     let activity;
     switch (cmpType) {
@@ -201,7 +202,7 @@ class _TaskPreview extends React.Component {
 
   onUpdateTitleContent = ({ target }) => {
     const { task, board, groupId, saveTask, activeModal, goToTaskDetails } = this.props;
-    const boardCopy = { ...board }
+    const boardCopy = utilService.createDeepCopy(board)
     const value = target.textContent;
     if (!value) return;
     task.title = value;
@@ -261,7 +262,9 @@ class _TaskPreview extends React.Component {
           </div>
           {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
             <div className="task-modal">
-              <div className="flex modal-group-items" onClick={this.deleteTask}>
+              <div className="flex modal-group-items" onClick={this.onDeleteTask}
+              // console.log('the board in render',board)
+              >
                 <div>
                   <RiDeleteBinLine color="#323338c2" />{" "}
                 </div>

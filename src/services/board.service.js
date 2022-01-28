@@ -26,8 +26,6 @@ async function query() {
   return boards
 }
 
-
-//maybe change later to getBoard()
 async function getById(boardId) {
   const board = await httpService.get(`board/${boardId}`)
   return board
@@ -35,13 +33,11 @@ async function getById(boardId) {
 
 async function saveBoard(boardToSave) {
   if (boardToSave._id) {
-    const updatedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
+    const savedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
     socketService.emit('member updated board', boardToSave._id)
-    console.log('finished saving boardd');
-    return updatedBoard
+    return savedBoard
   } else {
     const addedBoard = await httpService.post('board/', boardToSave);
-    console.log('adding');
     socketService.emit('member updated board-list')
     return addedBoard
   }
@@ -49,120 +45,15 @@ async function saveBoard(boardToSave) {
 
 async function updateBoardTitle(board){
   await saveBoard(board)
-  console.log('finihed 2 ');
   socketService.emit('member updated board-list')
 }
 
 async function removeBoard(boardId) {
-  const removedBoardId = await httpService.delete(`board/${boardId}`);
+  const removedBoardId = await httpService.delete(`board/${boardId}`)
   socketService.emit('member updated board-list')
   return removedBoardId
 }
 
-
-
-
-// **** GROUPS - CRUD ***
-
-
-// 
-
-// async function addGroup(board) {
-//   try {
-    
-//     // console.log("board:", board);
-//     // _saveGroup(newGroup, board);
-//     saveBoard(board)
-//     console.log('started adding group');
-  
-//   } catch (err) {
-//     console.log("err:", err);
-//   }
-// }
-
-// async function saveGroup(groupToSave, board) {
-//   try {
-//     const groupIdx = board.groups.findIndex(
-//       (group) => groupToSave.id === group.id
-//     );
-
-//     board.groups[groupIdx] = groupToSave;
-//     // _saveGroup(groupToSave, board._id);
-//     saveBoard(board)
-//     return board;
-//   } catch (err) {
-//     console.log("err:", err);
-//   }
-// }
-
-// async function deleteGroup(groupId, board) {
-  
-//   try {
-//     const filteredGroups = board.groups.filter((group) => {
-//       return group.id !== groupId;
-//     });
-//     board.groups = filteredGroups
-//     // _removeGroup(groupId, board._id)
-//     saveBoard(board)
-//     return board;
-//   } catch (err) {
-//     console.log("err:", err);
-//   }
-// }
-
-
-
-// **** TASKS - CRUD ***
-
-
-// async function saveTask(taskToSave, groupId, board) {
-//   try {
-//     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-//     const tasksToSave = board.groups[groupIdx].tasks.map((task) => {
-//       return task.id === taskToSave.id ? taskToSave : task;
-//     });
-//     board.groups[groupIdx].tasks = tasksToSave;
-//     saveBoard(board);
-//     return board;
-//   } catch (err) {
-//     console.log("err:", err);
-//   }
-// }
-
-// async function addTask(value, groupId, board) {
-//   try {
-//     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-//     board.groups[groupIdx].tasks.push(taskToSave);
-//     saveBoard(board);
-//     return board;
-//   } catch (err) {
-//     console.log("err:", err);
-//   }
-// }
-
-
-// async function deleteTask(taskId, groupId, board) {
-//   try {
-//     const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-//     const newTasks = board.groups[groupIdx].tasks.filter((task) => {
-//       return task.id !== taskId;
-//     });
-//     console.log('newTasks:', newTasks);
-//     board.groups[groupIdx].tasks = newTasks;
-
-//     saveBoard(board);
-//     return board;
-//   } catch (err) {
-//     console.log("err:", err);
-//   }
-// }
-
-// function _getNewBoards() {
-//   const boards = [
-//     getNewBoard()
-//   ]
-//   return boards
-// }
 
 function addNewTask(taskTitle){
   return {
@@ -426,75 +317,3 @@ function getNewBoard() {
   }
 }
 
-// function _makeId(length = 4) {
-//   var text = "";
-//   var possible =
-//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-//   for (var i = 0; i < length; i++) {
-//     text += possible.charAt(Math.floor(Math.random() * possible.length));
-//   }
-//   return text;
-// }
-
-// function getNiceRandomColor() {
-//   let red = "#E2445C";
-//   let orange = "#FDAB3D";
-//   let green = "#00C875";
-//   let blue = "#0073ea";
-//   let pink = "#FAA1F1";
-//   let darkblue = "#292f4c";
-
-//   let niceColors = [darkblue, pink, blue, green, orange, red];
-//   let drawnNum = getRandomIntInclusive(0, niceColors.length - 1);
-//   let randColor = niceColors[drawnNum];
-//   return randColor;
-// }
-// function getRandomIntInclusive(min, max) {
-//   min = Math.ceil(min);
-//   max = Math.floor(max);
-//   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
-// }
-
-
-
-// function makeId(length = 4) {
-//   var text = "";
-//   var possible =
-//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-//   for (var i = 0; i < length; i++) {
-//     text += possible.charAt(Math.floor(Math.random() * possible.length));
-//   }
-//   return text;
-// }
-
-
-// async function saveBoard(boardToSave) {
-//   if (boardToSave._id) {
-//     const updatedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
-//     socketService.emit('member updated board', boardToSave._id)
-//     // console.log('finished updatinggg');
-//     return updatedBoard
-//   } else {
-//     const addedBoard = await httpService.post('board/', boardToSave);
-//     return addedBoard
-//   }
-// }
-
-// async function removeBoard(boardId) {
-//   const removedBoardId = await httpService.delete(`board/${boardId}`);
-//   return removedBoardId
-// }
-
-
-// async function _saveGroup(groupToSave, boardId) {
-
-//   //   const savedGroup = await httpService.post(`board/${boardId}/${groupToSave.id}`, groupToSave);
-//   //   console.log('succesfuly added group');
-//   //   return savedGroup
-//   // }
-  
-//   // async function _removeGroup(groupToRemove, boardId) {
-  
-//   //   const removedGroupId = await httpService.delete(`board/${boardId}/${groupToRemove.id}`);
-//   //   return removedGroupId
-//   // }
