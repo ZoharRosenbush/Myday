@@ -21,8 +21,7 @@ export function App() {
 
     return (
         <section className="app-layout">
-     <MainNav />
-        <BoardNav />
+
                     <main>
                 <Switch>
                     {routes.map(route => <Route key={route.path} component={route.component} path={route.path} />)}

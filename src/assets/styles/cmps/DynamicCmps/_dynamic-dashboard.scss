@@ -1,0 +1,31 @@
+.groups-count-container,
+.tasks-count-container {
+    height: 80px;
+    width: 150px;
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.counts-container{
+    display: flex;
+    gap: 20px;
+}
+
+.dashboards-container{
+    display: grid;
+    margin-top: 50px;
+    grid-template-columns: 50% 50%;
+    column-gap: 40px;
+    div{
+        height: 300px;
+        width: 600px;
+    }
+}
+
+.pai-container{
+    height: 300px;
+    width: 300px;
+}

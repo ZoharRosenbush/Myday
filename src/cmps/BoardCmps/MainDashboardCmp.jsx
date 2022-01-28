@@ -2,19 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import {Link} from 'react-router-dom'
 import { GrHomeRounded } from "react-icons/gr";
-import {Dashboard} from '../../pages/Dashboard.jsx'
+import {Dashboard} from '../DynamicCmps/Dashboard.jsx'
 // import { IoColorFillOutline } from 'react-icons/io'
 
 class _MainDashboardCmp extends React.Component {
 
     state = {
 
-    }
-
-
-    goToDashbord=()=>{
-        console.log('dashbords:');
-        // <Link to={`/myday/board/${board._id}/dashboard`}></Link>
     }
     
     render() {
@@ -25,7 +19,7 @@ class _MainDashboardCmp extends React.Component {
             <section className="main-dashboard flex">
                 <div className="main-table-container flex">
                     <div><GrHomeRounded /></div>
-                    <span>Main Table</span>
+                    <Link to={`/myday/board/${board._id}`}>  <span>Main Table</span></Link>
     
                 </div> 
                 <div className="dashboard-container">

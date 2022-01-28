@@ -2,7 +2,7 @@ import { LoginSignup } from './pages/LoginSignup.jsx'
 import { BoardApp } from './pages/BoardApp.jsx'
 import { BoardDetails } from './pages/BoardDetails.jsx'
 import { TaskDetails } from './cmps/TaskCmps/TaskDetails.jsx'
-import { DynamicDashboard } from './cmps/DynamicDashboardCmp.jsx'
+import { DynamicDashboard } from './pages/DynamicDashboard.jsx'
 
 
 const routes = [

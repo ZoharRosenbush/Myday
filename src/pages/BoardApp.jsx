@@ -42,6 +42,8 @@ class _BoardApp extends React.Component {
 
         return (
             <section className="app-layout">
+                     <MainNav />
+        <BoardNav />
                 {/* <section className="main-board">
                 <div className="title">
                 <img src={two} alt=""></img>

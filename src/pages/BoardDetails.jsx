@@ -98,8 +98,8 @@ class _BoardDetails extends React.Component {
 
     return (
       <section className="app-layout">
-        {/* <MainNav />
-        <BoardNav /> */}
+        <MainNav />
+        <BoardNav />
         <section className={boardContainerClassName}>
           <BoardHeader board={board} updateBoard={updateBoard} />
 
