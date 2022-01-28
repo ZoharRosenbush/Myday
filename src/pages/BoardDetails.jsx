@@ -101,7 +101,7 @@ class _BoardDetails extends React.Component {
         {/* <MainNav />
         <BoardNav /> */}
         <section className={boardContainerClassName}>
-          <BoardHeader board={board} updateBoard={updateBoard} />
+          <BoardHeader board={board} updateBoard={updateBoard} user={this.props.user} />
 
           <DragDropContext onDragEnd={this.onDragEnd}>
             {board?.groups && (
@@ -135,9 +135,10 @@ class _BoardDetails extends React.Component {
   }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     isBoardNavOpen: boardModule.isBoardNavOpen,
     activeModal: boardModule.activeModal
     //   currFilterBy: toyModule.currFilterBy

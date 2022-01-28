@@ -197,7 +197,7 @@ function addNewTask(taskTitle, activity) {
   };
 }
 
-function getNewGroup() {
+function getNewGroup(user) {
   return {
     id: utilService.makeId(),
     title: "New Group",
@@ -211,7 +211,7 @@ function getNewGroup() {
       role: "Empty",
       type: "Empty",
       activities: [{
-        byMember: { fullname: 'Lora Turner', username: 'Lora Turner', _id: '61edc3c5652f5891aac4aed6', acronyms: 'LT', imgUrl: 'https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg' },
+        byMember: user,
         createdAt: Date.now(),
         id: utilService.makeId(),
         txt: "Created new task"
@@ -233,7 +233,17 @@ function getNewGroup() {
   }
 }
 
-function getNewBoard() {
+function getNewBoard(user) {
+  if (!user) {
+    user = {
+      "fullname": "Guest",
+      "acronyms": "G",
+      "_id": utilService.makeId(),
+      "username": "guest",
+      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+      "userColor": "transparent"
+    }
+  }
   return {
     cmpsOrder: [
       "status-picker",
@@ -431,7 +441,7 @@ function getNewBoard() {
         text: "hello",
         type: "Empty",
         activities: [{
-          byMember: { fullname: 'Lora Turner', username: 'Lora Turner', _id: '61edc3c5652f5891aac4aed6', acronyms: 'LT', imgUrl: 'https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg' },
+          byMember: user,
           createdAt: Date.now(),
           id: utilService.makeId(),
           txt: "Created new task"
@@ -465,7 +475,7 @@ function getNewBoard() {
         cost: "Empty",
         type: "Empty",
         activities: [{
-          byMember: { fullname: 'Lora Turner', username: 'Lora Turner', _id: '61edc3c5652f5891aac4aed6', acronyms: 'LT', imgUrl: 'https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg' },
+          byMember: user,
           createdAt: Date.now(),
           id: utilService.makeId(),
           txt: "Created new task"
@@ -499,7 +509,7 @@ function getNewBoard() {
         cost: "Empty",
         type: "Empty",
         activities: [{
-          byMember: { fullname: 'Lora Turner', username: 'Lora Turner', _id: '61edc3c5652f5891aac4aed6', acronyms: 'LT', imgUrl: 'https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg' },
+          byMember: user,
           createdAt: Date.now(),
           id: utilService.makeId(),
           txt: "Created new task"

@@ -49,7 +49,18 @@ class _TaskPreview extends React.Component {
   }
 
   onUpdateTask = (cmpType, data) => {
-    const { task, saveTask, groupId, board, user } = this.props;
+    const { task, saveTask, groupId, board } = this.props;
+    let { user } = this.props
+    if (!user) {
+      user = {
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     const boardCopy = { ...board }
 
     let activity;
@@ -224,6 +235,17 @@ class _TaskPreview extends React.Component {
 
   onUpdateTitleContent = ({ target }) => {
     const { task, board, groupId, saveTask, activeModal, goToTaskDetails } = this.props;
+    let { user } = this.props
+    if (!user) {
+      user = {
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     const boardCopy = { ...board }
     const value = target.textContent;
     if (!value) return;
@@ -232,7 +254,7 @@ class _TaskPreview extends React.Component {
       "txt": `Changed task title to ${value}}`,
       "createdAt": Date.now(),
     }
-    saveTask(task, groupId, boardCopy, activity);
+    saveTask(task, groupId, boardCopy, user, activity);
     // updateTitleContent(value, todo);
   };
 

@@ -37,8 +37,8 @@ export function loadBoard(boardId, currFilterBy = null) {
   }
 }
 
-export function addBoard() {
-  const newBoard = boardService.getNewBoard()
+export function addBoard(user) {
+  const newBoard = boardService.getNewBoard(user)
 
   return async (dispatch) => {
     try {
@@ -209,8 +209,8 @@ export function addTask(taskTitle, groupId, board, user, activity) {
 // }
 
 
-export function addGroup(board) {
-  const newGroup = boardService.getNewGroup()
+export function addGroup(board, user) {
+  const newGroup = boardService.getNewGroup(user)
   board.groups.unshift(newGroup);
   return async (dispatch) => {
     try {

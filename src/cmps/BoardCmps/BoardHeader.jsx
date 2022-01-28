@@ -12,12 +12,12 @@ import { MainDashboardCmp } from "./MainDashboardCmp.jsx";
 import { addGroup, updateBoardTitle } from "../../store/board.action.js";
 
 
-export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup }) {
+export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup, user }) {
 
   const boardCopy = { ...board }
 
   function onAddGroup() {
-    addGroup(boardCopy);
+    addGroup(boardCopy, user);
   }
 
 
@@ -101,9 +101,9 @@ export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup })
   );
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ userModule }) {
   return {
-    // board: boardModule.board,
+    // user: userModule.user,
   };
 }
 const mapDispatchToProps = {

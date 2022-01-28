@@ -55,7 +55,8 @@ export class _BoardNav extends React.Component {
     })
   }
   onAddBoard = () => {
-    this.props.addBoard()
+    const { user } = this.props
+    this.props.addBoard(user)
     //TODO: NEVIGATE THE PAGE TO THE NEW BOARD LINK
     // window.location.href = `/myday/board/${newBoard._id}`
   }
@@ -103,9 +104,10 @@ export class _BoardNav extends React.Component {
     )
   }
 }
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     boards: boardModule.boards,
+    user: userModule.user,
   };
 }
 const mapDispatchToProps = {

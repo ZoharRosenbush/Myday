@@ -181,9 +181,10 @@ class _BoardControllers extends React.Component {
 }
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     currFilterBy: boardModule.currFilterBy
   };
 }
