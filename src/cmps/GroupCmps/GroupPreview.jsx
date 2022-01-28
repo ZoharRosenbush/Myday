@@ -270,15 +270,17 @@ export class _GroupPreview extends React.Component {
               </div>
               <span>Are you sure you want to delete?</span>
             </div>
-            <button
-              onClick={this.toggelModalDelete}
-              className="no-ans-delete"
-            >
-              No
-            </button>
-            <button onClick={this.onDeleteGroup} className="yes-ans-delete">
-              Yes
-            </button>
+            <div>
+              <button
+                onClick={this.toggelModalDelete}
+                className="no-ans-delete"
+              >
+                No
+              </button>
+              <button onClick={this.onDeleteGroup} className="yes-ans-delete">
+                Yes
+              </button>
+            </div>
           </section>
         )}
 
