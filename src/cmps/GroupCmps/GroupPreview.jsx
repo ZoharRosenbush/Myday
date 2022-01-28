@@ -26,7 +26,7 @@ import {
   setActiveModal,
   saveBoard
 } from "../../store/board.action.js";
-import {utilService} from '../../services/utils.service.js'
+import { utilService } from '../../services/utils.service.js'
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -130,7 +130,7 @@ export class _GroupPreview extends React.Component {
     console.log('hellooo')
     this.setState({ isModalToDelete: false });
     const { deleteGroup, group, board } = this.props;
-    console.log('board on delete group',board)
+    console.log('board on delete group', board)
     const boardCopy = utilService.createDeepCopy(board)
     deleteGroup(group.id, boardCopy);
   };
@@ -143,9 +143,14 @@ export class _GroupPreview extends React.Component {
   onAddTask = (ev) => {
 
     ev.preventDefault();
-    const { group, board, addTask } = this.props;
+    const { group, board, addTask, user } = this.props;
+    const activity = {
+      "txt": `Created new task ${this.state.taskValue}`,
+      "createdAt": Date.now(),
+    }
     const boardCopy = utilService.createDeepCopy(board)
-    addTask(this.state.taskValue, group.id, boardCopy)
+
+    addTask(this.state.taskValue, group.id, boardCopy, user, activity)
     this.setState({ taskValue: "" });
   };
 
@@ -187,13 +192,7 @@ export class _GroupPreview extends React.Component {
     this.setState({ taskValue: value });
   };
 
-  onAddTask = (ev) => {
 
-    ev.preventDefault();
-    const { group, board, addTask } = this.props;
-    addTask(this.state.taskValue, group.id, board);
-    this.setState({ taskValue: "" });
-  };
 
   cmpTitle = (cmpType) => {
     if (cmpType === "member-picker") return "Owners";
@@ -363,7 +362,7 @@ export class _GroupPreview extends React.Component {
                                       }}
                                     />
                                   </div>
-                                  <div className={this.cmpTitle(cmp)}>{this.cmpTitle(cmp)}</div>
+                                  <div className={this.cmpTitle(cmp)}><span>{this.cmpTitle(cmp)}</span></div>
                                 </div>
                               </div>
 
@@ -393,7 +392,7 @@ export class _GroupPreview extends React.Component {
               {...provided.droppableProps}
             >
               {group.tasks.map((task, idx) => {
-                const isTaskShown = this.checkIfTaskFiltered(task) 
+                const isTaskShown = this.checkIfTaskFiltered(task)
                 return (
                   isTaskShown && <Draggable key={task.id} draggableId={task.id} index={idx}>
                     {(provided) => (
@@ -486,9 +485,10 @@ export class _GroupPreview extends React.Component {
 }
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     activeModal: boardModule.activeModal,
     currFilterBy: boardModule.currFilterBy,
     search: boardModule.search,

@@ -35,8 +35,8 @@ export function loadBoard(boardId, currFilterBy = null) {
   }
 }
 
-export function addBoard() {
-  const newBoard = boardService.getNewBoard()
+export function addBoard(user) {
+  const newBoard = boardService.getNewBoard(user)
 
   return async (dispatch) => {
     try {
@@ -174,8 +174,8 @@ export function saveGroup(groupToSave, boardToSave) {
   }
 }
 
-export function addGroup(boardToSave) {
-  const newGroup = boardService.getNewGroup()
+export function addGroup(boardToSave, user) {
+  const newGroup = boardService.getNewGroup(user)
   boardToSave.groups.unshift(newGroup);
   return async (dispatch) => {
     _setBackupBoard(dispatch)
@@ -198,6 +198,7 @@ export function deleteGroup(groupId, boardToSave) {
     return group.id !== groupId;
   });
   boardToSave.groups = filteredGroups
+
   return async (dispatch) => {
     _setBackupBoard(dispatch)
     try {
@@ -218,11 +219,10 @@ export function deleteGroup(groupId, boardToSave) {
 // **TASK ACTIONS**
 
 export function deleteTask(taskId, groupId, boardToSave) {
-
   const groupIdx = boardToSave.groups.findIndex((group) => groupId === group.id);
   const filteredTasks = boardToSave.groups[groupIdx].tasks.filter((task) => {
     return task.id !== taskId;
-  });
+  })
   boardToSave.groups[groupIdx].tasks = filteredTasks;
   return async (dispatch) => {
     _setBackupBoard(dispatch)
@@ -240,9 +240,12 @@ export function deleteTask(taskId, groupId, boardToSave) {
   }
 }
 
-export function addTask(taskTitle, groupId, boardToSave) {
 
-  const newTask = boardService.addNewTask(taskTitle)
+export function addTask(taskTitle, groupId, boardToSave, user, activity) {
+
+  activity.id = utilService.makeId()
+  activity.byMember = user
+  const newTask = boardService.addNewTask(taskTitle, activity)
 
   const groupIdx = boardToSave.groups.findIndex((group) => groupId === group.id);
   boardToSave.groups[groupIdx].tasks.push(newTask);
@@ -262,28 +265,16 @@ export function addTask(taskTitle, groupId, boardToSave) {
   }
 }
 
-export function saveTask(taskToSave, groupId, boardToSave, activity, comment) {
+export function saveTask(taskToSave, groupId, boardToSave, user, activity, comment) {
 
   if (activity) {
     activity.id = utilService.makeId()
-    activity.byMember = {
-      "fullname": "Lora Turner",
-      "username": "Lora Turner",
-      "_id": "61edc3c5652f5891aac4aed6",
-      "acronyms": "LT",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-    }
+    activity.byMember = user
     taskToSave.activities = [activity, ...taskToSave.activities]
   }
   if (comment) {
     comment.id = utilService.makeId()
-    comment.byMember = {
-      "fullname": "Lora Turner",
-      "username": "Lora Turner",
-      "_id": "61edc3c5652f5891aac4aed6",
-      "acronyms": "LT",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-    }
+    comment.byMember = user
     taskToSave.comments = [comment, ...taskToSave.comments]
   }
 

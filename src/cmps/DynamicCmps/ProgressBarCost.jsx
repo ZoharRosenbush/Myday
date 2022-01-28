@@ -29,7 +29,6 @@ class _ProgressBarCost extends React.Component {
                 sum += +task.cost
             }
         })
-        // console.log('sum:', sum);
         return sum
 
     }
@@ -37,7 +36,6 @@ class _ProgressBarCost extends React.Component {
 
     render() {
         const { groupId } = this.props;
-        // console.log('sum:');
 
 
 

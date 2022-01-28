@@ -6,6 +6,8 @@ import { setTaskModal, saveTask } from '../../store/board.action.js'
 import { TaskUpdates } from "./TaskUpdates.jsx";
 import { TaskActivity } from './TaskActivity.jsx'
 import { TaskFiles } from './TaskFiles.jsx'
+import { utilService } from '../../services/utils.service'
+
 export class _TaskDetails extends React.Component {
     state = {
         isUpdates: true,
@@ -24,17 +26,28 @@ export class _TaskDetails extends React.Component {
 
     onUpdateTaskTitle = ({ target }) => {
         const { board, saveTask } = this.props
+        let { user } = this.props
+        if (!user) {
+            user = {
+                "fullname": "Guest",
+                "acronyms": "G",
+                "_id": utilService.makeId(),
+                "username": "guest",
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+                "userColor": "transparent"
+            }
+        }
         const task = this.getCurrTask()
         const { groupId } = this.props.match.params
-        const activity = {
-            "txt": `Changed task title`,
-            "createdAt": Date.now(),
-        }
         const value = target.textContent;
         if (!value) return;
+        const activity = {
+            "txt": `Changed task title to ${value}`,
+            "createdAt": Date.now(),
+        }
         task.title = value;
         try {
-            saveTask(task, groupId, board, activity);
+            saveTask(task, groupId, board, user, activity);
         } catch (err) {
             console.log('error in updating board', err);
         }
@@ -109,9 +122,10 @@ export class _TaskDetails extends React.Component {
 
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.board,
+        user: userModule.user,
         isTaskDetailsOpen: boardModule.isTaskDetailsOpen
 
     };

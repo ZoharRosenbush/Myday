@@ -19,15 +19,27 @@ class _BoardControllers extends React.Component {
       role: [],
       member: []
     },
-    isSearchClicked: false,
+    isSearchInputShown: false,
   }
 
-  inputRef = React.createRef()
 
-  toggelSearchClicked = () => {
+  searchInput = React.createRef()
+
+
+  showSearchInput = () => {
     this.setState((prevState) => (
-      { ...prevState, isSearchClicked: !prevState.isSearchClicked }), () => {
+      { ...prevState, isSearchInputShown: true }), () => {
+        this.searchInput.current.focus()
       })
+
+  }
+
+  hideSearchInput = () => {
+    this.setState((prevState) => (
+      { ...prevState, isSearchInputShown: false }), () => {
+
+      })
+
   }
 
 
@@ -66,7 +78,7 @@ class _BoardControllers extends React.Component {
 
   render() {
     const { onAddGroup } = this.props;
-    const { isModalFilterOpen, isSearchClicked, filterBy } = this.state;
+    const { isModalFilterOpen, isSearchInputShown, filterBy } = this.state;
     const { board } = this.props
 
     return (
@@ -76,7 +88,7 @@ class _BoardControllers extends React.Component {
             New Group
           </button>
           <div className="input-search-wrapper">
-            {isSearchClicked &&
+            {isSearchInputShown &&
               <div className="flex search-container">
                 <CgSearch style={{ marginLeft: "6px" }} />
                 <form>
@@ -84,8 +96,8 @@ class _BoardControllers extends React.Component {
                   <input
                     className="input-search"
                     placeholder="Search"
-                    ref={this.inputRef}
-                    onBlur={this.toggelSearchClicked}
+                    ref={this.searchInput}
+                    onBlur={this.hideSearchInput}
                     onChange={this.handleChange}
                   >
 
@@ -93,10 +105,10 @@ class _BoardControllers extends React.Component {
                 </form>
               </div>}
 
-            {!isSearchClicked &&
+            {!isSearchInputShown &&
               <div className="flex search-button controller-opt">
                 <CgSearch />
-                <button onClick={this.toggelSearchClicked}>Search</button>
+                <button onClick={this.showSearchInput}>Search</button>
               </div>}
           </div>
 
@@ -169,9 +181,10 @@ class _BoardControllers extends React.Component {
 }
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     currFilterBy: boardModule.currFilterBy
   };
 }

@@ -14,6 +14,7 @@ import { MdDragIndicator } from "react-icons/md";
 import { makeId } from '../../services/board.service'
 import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
+import { utilService } from '../../services/utils.service.js'
 import {
   saveTask,
   setActiveModal,
@@ -37,9 +38,9 @@ class _TaskPreview extends React.Component {
 
   onDeleteTask = () => {
     const { task, groupId, board } = this.props;
-    console.log('the board in cmp',board)
+    console.log('the board in cmp', board)
     const boardCopy = utilService.createDeepCopy(board)
-    console.log('the bord copy',boardCopy)
+    console.log('the bord copy', boardCopy)
     this.props.deleteTask(task.id, groupId, boardCopy);
   };
 
@@ -51,7 +52,17 @@ class _TaskPreview extends React.Component {
   onUpdateTask = (cmpType, data) => {
     const { task, saveTask, groupId, board } = this.props;
     const boardCopy = utilService.createDeepCopy(board)
-
+    let { user } = this.props
+    if (!user) {
+      user = {
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     let activity;
     switch (cmpType) {
       case "status-picker":
@@ -60,7 +71,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task status to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "priority-picker":
         task.priority = data;
@@ -68,19 +79,41 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task priority to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "member-picker":
         const isOwner = task.owner.findIndex((owner) => {
           return owner._id === data._id;
         });
-        if (isOwner !== -1) return;
-        task.owner.push(data);
+        console.log('isOwner:', isOwner);
+
+        //removeing guest when adding owner
+        if (task.owner[0]?.acronyms === "G") task.owner.splice(0, 1)
+        //removing member if already owner
+        if (isOwner !== -1) {
+          if (task.owner.length === 1) {
+            task.owner.splice(isOwner, 1, {
+              "fullname": "Guset",
+              "acronyms": "G",
+              "_id": utilService.makeId(),
+              "username": "guest",
+              "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+              "userColor": "transparent"
+            })
+
+          } else {
+            task.owner.splice(isOwner, 1)
+          }
+
+        } else {
+          task.owner.push(data);
+        }
         activity = {
           "txt": `Added ${data.fullname} as the task member`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "role-picker":
         task.role = data
@@ -88,7 +121,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task role to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "type-picker":
         task.type = data;
@@ -96,7 +129,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task type to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "date-picker":
         task.timeline = data;
@@ -104,23 +137,23 @@ class _TaskPreview extends React.Component {
           "txt": `Changed dates`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "text":
         task.text = data;
         activity = {
-          "txt": `Changed text to ${data}}`,
+          "txt": `Changed text to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "cost":
         task.cost = data;
         activity = {
-          "txt": `Changed cost to ${data}}`,
+          "txt": `Changed cost to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       default:
     }
@@ -201,16 +234,27 @@ class _TaskPreview extends React.Component {
 
 
   onUpdateTitleContent = ({ target }) => {
-    const { task, board, groupId, saveTask, activeModal, goToTaskDetails } = this.props;
+    const { task, board, groupId, saveTask} = this.props;
     const boardCopy = utilService.createDeepCopy(board)
+    let { user } = this.props
+    if (!user) {
+      user = {
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     const value = target.textContent;
     if (!value) return;
     task.title = value;
-    // activity = {
-    //   "txt": `Changed cost to ${data}}`,
-    //   "createdAt": Date.now(),
-    // }
-    saveTask(task, groupId, boardCopy);
+    const activity = {
+      "txt": `Changed task title to ${value}}`,
+      "createdAt": Date.now(),
+    }
+    saveTask(task, groupId, boardCopy, user, activity);
     // updateTitleContent(value, todo);
   };
 
@@ -334,9 +378,10 @@ class _TaskPreview extends React.Component {
   }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     activeModal: boardModule.activeModal,
     // currFilterBy: boardModule.currFilterBy
   };

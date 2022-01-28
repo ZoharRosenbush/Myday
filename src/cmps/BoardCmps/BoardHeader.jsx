@@ -5,6 +5,7 @@ import { BsGraphUp } from 'react-icons/bs';
 import { AiFillInfoCircle } from 'react-icons/ai';
 import { AiOutlineStar } from 'react-icons/ai';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { MainDashboardCmp } from "./MainDashboardCmp.jsx";
 
 
 import { BoardControllers } from "./BoardControllers.jsx";
@@ -12,14 +13,13 @@ import { addGroup, updateBoardTitle,saveBoard } from "../../store/board.action.j
 import {utilService} from '../../services/utils.service.js'
 
 
-export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup }) {
+export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user }) {
 
   const boardCopy = utilService.createDeepCopy(board)
 
   function onAddGroup() {
-    addGroup(boardCopy);
+    addGroup(boardCopy, user);
   }
-
 
   function onUpdateBoardTitle({ target }) {
     const value = target.textContent;
@@ -95,14 +95,15 @@ export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup }) {
       )
       }
       {/* <h1>{board.title}</h1> */}
+      {board && <MainDashboardCmp />}
       {board && <BoardControllers onAddGroup={onAddGroup} />}
     </section >
   );
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ userModule }) {
   return {
-    // board: boardModule.board,
+    // user: userModule.user,
   };
 }
 const mapDispatchToProps = {

@@ -98,11 +98,10 @@ class _BoardDetails extends React.Component {
 
     return (
       <section className="app-layout">
-        <MainNav />
-        <BoardNav />
+        {/* <MainNav />
+        <BoardNav /> */}
         <section className={boardContainerClassName}>
-          <BoardHeader board={board} />
-
+          <BoardHeader board={board} user={this.props.user}/>
           <DragDropContext onDragEnd={this.onDragEnd}>
             {board?.groups && (
               <Droppable
@@ -136,9 +135,10 @@ class _BoardDetails extends React.Component {
   }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     isBoardNavOpen: boardModule.isBoardNavOpen,
     activeModal: boardModule.activeModal
     //   currFilterBy: toyModule.currFilterBy
