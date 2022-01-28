@@ -4,6 +4,8 @@ import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosColorFilter } from "react-icons/io";
 import { GrCircleAlert } from "react-icons/gr";
+import { AiOutlineCheck } from "react-icons/ai";
+import { HiOutlineX } from "react-icons/hi";
 import { Draggable } from "react-beautiful-dnd";
 import { DragDropContext } from "react-beautiful-dnd";
 import { GrDrag } from "react-icons/gr";
@@ -263,25 +265,24 @@ export class _GroupPreview extends React.Component {
             </div>
           )}
         {isModalToDelete && (
-          <section className="modal-delete">
-            <div className="flex title-modal-delete">
-              <div>
-                <GrCircleAlert />
-              </div>
+          < section className="modal-delete flex">
+
+            <div className="title-modal-delete">
+              {/* <div>
+    <GrCircleAlert color="white" />
+  </div> */}
               <span>Are you sure you want to delete?</span>
             </div>
-            <div>
-              <button
-                onClick={this.toggelModalDelete}
-                className="no-ans-delete"
-              >
-                No
+            <div className="flex yes-no">
+              <button onClick={this.toggleModalDelete} className="no-ans-delete">
+                <HiOutlineX color="white" />
               </button>
               <button onClick={this.onDeleteGroup} className="yes-ans-delete">
-                Yes
+                <AiOutlineCheck color="white" />
               </button>
             </div>
           </section>
+
         )}
 
 

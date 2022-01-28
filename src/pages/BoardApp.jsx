@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import Loader from 'react-loaders'
 // import { XlviLoader } from "react-awesome-loaders";
+import { BeatLoader } from 'react-spinners'
 import { Link } from 'react-router-dom'
 import { CgProfile } from "react-icons/cg";
 
@@ -16,7 +17,12 @@ import { utilService } from '../services/utils.service.js'
 import { addBoard } from '../store/board.action.js'
 
 class _BoardApp extends React.Component {
+    loaderCSS = {
+        margin: "auto",
+        marginTop: "30vh",
 
+
+    }
     // componentDidUpdate(prevProps, prevState) {
     //     console.log('did uypdate!');
     //     const { boards } = this.props
@@ -42,8 +48,8 @@ class _BoardApp extends React.Component {
 
         return (
             <section className="app-layout">
-                     <MainNav />
-        <BoardNav />
+                <MainNav />
+                <BoardNav />
                 {/* <section className="main-board">
                 <div className="title">
                 <img src={two} alt=""></img>
@@ -55,19 +61,15 @@ class _BoardApp extends React.Component {
                 {/* <MainNav />
                 <BoardNav /> */}
 
-                <section>
-                    {/* {!boards.length && } */}
+                {!boards.length && <BeatLoader loading size={34} css={this.loaderCSS} color={"#292f4c"} />}
+                {boards.length && <section>
                     <section className="board-page">
                         <div className="flex hello-user">
-
                             <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
                             <p className="board-page-avatar" style={{ backgroundColor: bgColor }}>{this.props.user ? this.props.user.acronyms : <CgProfile style={{ width: "100%", height: "100%" }} />}</p>
                         </div>
                         <div className="main-board-container">
-
                             <div>
-                                {/* {!!boards.length && <Loader type="line-scale" active />} */}
-                                {/* {!board && <Loader type="line-scale" active />} */}
                                 <h1>
                                     Work the way that
                                 </h1>
@@ -75,20 +77,15 @@ class _BoardApp extends React.Component {
                                     works <span>for you</span>
                                 </h1>
                                 <p>Add board and start planning your tasks</p>
-                                {/* <Link className="clean-link link-container" to="/myday/board"> */}
                                 <button className="board-btn" onClick={this.onAddBoard}>Add new board</button>
-                                {/* </Link> */}
                             </div>
                             <div className="board-img-container">
-
                                 <img src={BoardSvg} alt=""></img>
                             </div>
                         </div>
                     </section>
-                    {/* {board&& <BoardDetails boardId={board._id}/>} */}
-                </section>
-                {/* <BoardHeader /> */}
-                {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
+
+                </section>}
             </section>
         );
     }
