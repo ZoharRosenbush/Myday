@@ -21,7 +21,6 @@ import {
   deleteTask,
   setTaskModal,
 } from "../../store/board.action.js";
-import { utilService } from '../../services/utils.service.js'
 
 
 

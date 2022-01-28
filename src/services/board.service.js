@@ -45,19 +45,25 @@ async function saveBoard(boardToSave) {
     return savedBoard
   } else {
     const addedBoard = await httpService.post('board/', boardToSave);
-    socketService.emit('member updated board-list')
+    if (socketService.socket) {
+      socketService.emit('member updated board-list')
+    }
     return addedBoard
   }
 }
 
 async function updateBoardTitle(board) {
   await saveBoard(board)
-  socketService.emit('member updated board-list')
+  if (socketService.socket) {
+    socketService.emit('member updated board-list')
+  }
 }
 
 async function removeBoard(boardId) {
   const removedBoardId = await httpService.delete(`board/${boardId}`)
-  socketService.emit('member updated board-list')
+  if (socketService.socket) {
+    socketService.emit('member updated board-list')
+  }
   return removedBoardId
 }
 

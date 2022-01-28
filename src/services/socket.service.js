@@ -12,7 +12,7 @@ export const socketService = createSocketService()
 
 
 function createSocketService() {
-  var socket = null;
+  let socket = null;
   const socketService = {
     setup() {
       socket = io(baseUrl)
