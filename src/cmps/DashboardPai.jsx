@@ -13,62 +13,65 @@ class _DashboardPai extends React.Component {
     };
 
     componentDidMount() {
-        const map = this.mapChart();
+        const map = this.getMembers();
         this.setState({ map })
     }
 
-    // getColors = () => {
-    //     const { labelType } = this.props
-    //     switch (labelType) {
-    //         case "status":
-    //             return ["#c4c4c4","#00C875", "#E2445C", "#FDAB3D"]
-    //         case "priority":
-    //             return ["#c4c4c4","#225091", "#0086c0", "#66ccff"]
-    //         case "type":
-    //             return ["#c4c4c4","#fcc4f7", "#00c875", "#e2445c", "#a25ddc", "#ffadad"]
-    //         case "role":
-    //             return ["#c4c4c4","#279165", "#0086c0", "#a25ddc"]
-    //     }
-    // }
+    getMembers = () => {
+        const { board } = this.props
+        const mapObj = {}
+
+        board.members.map(member => {
+            mapObj[member.username] = 0
+        })
+        mapObj.guest=0
+        return mapObj
+
+    }
 
     mapChart = () => {
         const { labelType, board } = this.props
-        const mapObj = {}
-        
+        const mapObj =  this.getMembers()
+
         board.groups.map(group => {
             group.tasks.map(task => {
-                mapObj[task[labelType]] = (mapObj[task[labelType]]) + 1 
+                task.owner.map(owner=>{
+                    mapObj[owner.username]=(mapObj[owner.username])+1
+                })
             })
         })
-
         return mapObj;
     }
 
-  
- data = {
-        labels: ['Red', 'Blue', 'Yellow'],
+    map = this.mapChart()
+
+    data = {
+        labels:  Object.keys(this.map),
         datasets: [
             {
-                label: '# of Votes',
-                data: [12, 19, 15],
+                label: 'Members',
+                data: Object.values(this.map),
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)'
+                    '#fcc4f7',
+                    '#00c875',
+                    '#E2445C',
+                    '#c4c4c4'
+
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)'
+                    '#fcc4f7',
+                    '#00c875',
+                    '#E2445C',
+                    '#c4c4c4'
                 ],
                 borderWidth: 3,
             },
         ],
     };
-    render(){
+    render() {
 
-        
-        return <Doughnut data={this.data} />;
+
+        return <Doughnut data={this.data} height="300px" width="300px"/>;
     }
 
 

@@ -21,7 +21,7 @@ export function App() {
 
 
     return (
-        <section className="app-layout">
+        <section>
 
                     <main>
                 <Switch>

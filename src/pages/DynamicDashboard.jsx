@@ -47,7 +47,7 @@ class _DynamicDashboard extends React.Component {
             </div>
             </div>
             <div className="dashboards-container">
-            <div className="pai-container">
+            <div className="pai-container full">
                 <DashboardPai />
             </div>
             <div >
