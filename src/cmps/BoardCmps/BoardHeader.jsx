@@ -8,6 +8,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 
 import { BoardControllers } from "./BoardControllers.jsx";
+import { MainDashboardCmp } from "./MainDashboardCmp.jsx";
 import { addGroup, updateBoardTitle } from "../../store/board.action.js";
 
 
@@ -94,6 +95,7 @@ export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup })
       )
       }
       {/* <h1>{board.title}</h1> */}
+      {board && <MainDashboardCmp />}
       {board && <BoardControllers onAddGroup={onAddGroup} />}
     </section >
   );

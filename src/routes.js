@@ -2,6 +2,7 @@ import { LoginSignup } from './pages/LoginSignup.jsx'
 import { BoardApp } from './pages/BoardApp.jsx'
 import { BoardDetails } from './pages/BoardDetails.jsx'
 import { TaskDetails } from './cmps/TaskCmps/TaskDetails.jsx'
+import { DynamicDashboard } from './cmps/DynamicDashboardCmp.jsx'
 
 
 const routes = [
@@ -11,10 +12,10 @@ const routes = [
         component: LoginSignup,
     },
 
-    // {
-    //     path: '/myday/board/:boardId/:groupId/:taskId',
-    //     component: TaskDetails,
-    // },
+    {
+        path: '/myday/board/:boardId/dashboard',
+        component: DynamicDashboard,
+    },
     {
         path: '/myday/board/:boardId',
         component: BoardDetails,
