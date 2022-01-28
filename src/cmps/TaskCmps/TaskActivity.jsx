@@ -69,9 +69,10 @@ function _TaskActivity({ board, task }) {
 
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.board,
+        user: userModule.user,
     };
 }
 const mapDispatchToProps = {

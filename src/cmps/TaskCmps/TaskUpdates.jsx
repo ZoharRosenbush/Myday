@@ -4,6 +4,7 @@ import { AiOutlineLike } from 'react-icons/ai'
 import { BsReply, BsBell } from 'react-icons/bs'
 import { HiOutlineClock } from 'react-icons/hi'
 
+import { utilService } from "../../services/utils.service.js";
 import { saveTask } from '../../store/board.action.js'
 import noUpdates from '../../assets/imgs/noupdates.PNG'
 
@@ -45,11 +46,22 @@ class _TaskUpdates extends React.Component {
     onAddComment = (ev) => {
         ev.preventDefault();
         const { groupId, task, board, saveTask } = this.props
+        let { user } = this.props
+        if (!user) {
+            user = {
+                "fullname": "Guest",
+                "acronyms": "G",
+                "_id": utilService.makeId(),
+                "username": "guest",
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+                "userColor": "transparent"
+            }
+        }
         const newComment = {
             createdAt: Date.now(),
             txt: this.state.commentValue
         }
-        saveTask(task, groupId, board, null, newComment)
+        saveTask(task, groupId, board, user, null, newComment)
         this.setState({ commentValue: "" });
     };
 
@@ -84,7 +96,7 @@ class _TaskUpdates extends React.Component {
                                                 <div className="user-name">{comment.byMember.fullname}</div>
                                                 <div className="active-circle"></div>
                                             </div>
-                                            <div className="time-ago"><HiOutlineClock color="#97989a" />{this.timeSince(comment.createdAt)}<BsBell color="#97989a" /></div>
+                                            <div className="time-ago"><HiOutlineClock color="#97989a" size="14px" /><span>{this.timeSince(comment.createdAt)}</span><BsBell color="#97989a" size="14px" style={{ paddingTop: "2px" }} /></div>
                                         </div>
                                         <div className="post-title flex">
                                             {comment.txt}
@@ -111,9 +123,10 @@ class _TaskUpdates extends React.Component {
 
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.board,
+        user: userModule.user,
     };
 }
 const mapDispatchToProps = {

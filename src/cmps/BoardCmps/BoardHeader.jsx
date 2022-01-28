@@ -5,21 +5,21 @@ import { BsGraphUp } from 'react-icons/bs';
 import { AiFillInfoCircle } from 'react-icons/ai';
 import { AiOutlineStar } from 'react-icons/ai';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { MainDashboardCmp } from "./MainDashboardCmp.jsx";
 
 
 import { BoardControllers } from "./BoardControllers.jsx";
-import { MainDashboardCmp } from "./MainDashboardCmp.jsx";
-import { addGroup, updateBoardTitle } from "../../store/board.action.js";
+import { addGroup, updateBoardTitle,saveBoard } from "../../store/board.action.js";
+import {utilService} from '../../services/utils.service.js'
 
 
-export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup }) {
+export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user }) {
 
-  const boardCopy = { ...board }
+  const boardCopy = utilService.createDeepCopy(board)
 
   function onAddGroup() {
-    addGroup(boardCopy);
+    addGroup(boardCopy, user);
   }
-
 
   function onUpdateBoardTitle({ target }) {
     const value = target.textContent;
@@ -32,15 +32,15 @@ export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup })
     const value = target.textContent;
     if (!value) return;
     boardCopy.description = value;
-    updateBoard(boardCopy);
+    saveBoard(boardCopy);
   };
 
   return (
     <section className="board-header">
       {board && (
         <div className="board-header-top">
-          <div className="flex justify-between board-main-title">
-            <div className="board-title-container flex justify-between align-center">
+          <div className=" board-main-title">
+            <div className="board-title-container">
               <h1
                 className="board-header-title"
                 contentEditable
@@ -101,14 +101,15 @@ export function _BoardHeader({ board, updateBoard, updateBoardTitle, addGroup })
   );
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ userModule }) {
   return {
-    // board: boardModule.board,
+    // user: userModule.user,
   };
 }
 const mapDispatchToProps = {
   addGroup,
-  updateBoardTitle
+  updateBoardTitle,
+  saveBoard
 };
 
 export const BoardHeader = connect(

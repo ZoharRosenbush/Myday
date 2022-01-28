@@ -9,6 +9,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { GrDrag } from "react-icons/gr";
 import { Droppable } from "react-beautiful-dnd";
 import { logDOM } from "@testing-library/react";
+import { MdDragIndicator } from "react-icons/md";
 
 import { TaskPreview } from "../TaskCmps/TaskPreview.jsx";
 import { ColorInput } from "./ColorInput.jsx";
@@ -17,15 +18,15 @@ import { ProgressBarPriority } from "../DynamicCmps/ProgressBarPriority.jsx";
 import { ProgressBarType } from "../DynamicCmps/ProgressBarType.jsx";
 import { ProgressBarRole } from "../DynamicCmps/ProgressBarRole.jsx";
 import { ProgressBarCost } from "../DynamicCmps/ProgressBarCost.jsx";
-import { MdDragIndicator } from "react-icons/md";
 
 import {
   addTask,
   saveGroup,
   deleteGroup,
   setActiveModal,
-  updateBoard,
+  saveBoard
 } from "../../store/board.action.js";
+import { utilService } from '../../services/utils.service.js'
 
 export class _GroupPreview extends React.Component {
   state = {
@@ -114,21 +115,23 @@ export class _GroupPreview extends React.Component {
     const value = target.textContent;
     if (!value) return;
     group.title = value;
-    const boardCopy = { ...board }
+    const boardCopy = utilService.createDeepCopy(board)
     saveGroup(group, boardCopy)
   };
 
   onUpdateGroupColor = (color) => {
     const { group, board, saveGroup } = this.props;
     group.style.groupColor = color;
-    const boardCopy = { ...board }
+    const boardCopy = utilService.createDeepCopy(board)
     saveGroup(group, boardCopy)
   };
 
-  deleteGroup = () => {
+  onDeleteGroup = () => {
+    console.log('hellooo')
     this.setState({ isModalToDelete: false });
     const { deleteGroup, group, board } = this.props;
-    const boardCopy = { ...board }
+    console.log('board on delete group', board)
+    const boardCopy = utilService.createDeepCopy(board)
     deleteGroup(group.id, boardCopy);
   };
 
@@ -140,9 +143,14 @@ export class _GroupPreview extends React.Component {
   onAddTask = (ev) => {
 
     ev.preventDefault();
-    const { group, board, addTask } = this.props;
-    const boardCopy = { ...board }
-    addTask(this.state.taskValue, group.id, boardCopy)
+    const { group, board, addTask, user } = this.props;
+    const activity = {
+      "txt": `Created new task ${this.state.taskValue}`,
+      "createdAt": Date.now(),
+    }
+    const boardCopy = utilService.createDeepCopy(board)
+
+    addTask(this.state.taskValue, group.id, boardCopy, user, activity)
     this.setState({ taskValue: "" });
   };
 
@@ -161,7 +169,7 @@ export class _GroupPreview extends React.Component {
 
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    const { group, board, updateBoard, goToTaskDetails } = this.props;
+    const { group, board, saveBoard, goToTaskDetails } = this.props;
 
     if (!destination) return;
     if (
@@ -179,24 +187,12 @@ export class _GroupPreview extends React.Component {
     saveGroup(group, board);
   };
 
-  deleteGroup = () => {
-    this.setState({ isModalToDelete: false });
-    const { deleteGroup, group, board } = this.props;
-    deleteGroup(group.id, board);
-  };
-
   onHandleChange = ({ target }) => {
     const value = target.value;
     this.setState({ taskValue: value });
   };
 
-  onAddTask = (ev) => {
 
-    ev.preventDefault();
-    const { group, board, addTask } = this.props;
-    addTask(this.state.taskValue, group.id, board);
-    this.setState({ taskValue: "" });
-  };
 
   cmpTitle = (cmpType) => {
     if (cmpType === "member-picker") return "Owners";
@@ -213,7 +209,7 @@ export class _GroupPreview extends React.Component {
 
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    const { group, board, updateBoard } = this.props;
+    const { group, board, saveBoard } = this.props;
 
     if (!destination) return;
     if (
@@ -225,8 +221,8 @@ export class _GroupPreview extends React.Component {
     board.cmpsOrder.splice(source.index, 1);
     board.cmpsOrder.splice(destination.index, 0, draggableId);
 
-    const boardCopy = { ...board }
-    updateBoard(boardCopy);
+    const boardCopy = utilService.createDeepCopy(board)
+    saveBoard(boardCopy);
   };
 
   render() {
@@ -280,7 +276,7 @@ export class _GroupPreview extends React.Component {
             >
               No
             </button>
-            <button onClick={this.deleteGroup} className="yes-ans-delete">
+            <button onClick={this.onDeleteGroup} className="yes-ans-delete">
               Yes
             </button>
           </section>
@@ -489,9 +485,10 @@ export class _GroupPreview extends React.Component {
 }
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     activeModal: boardModule.activeModal,
     currFilterBy: boardModule.currFilterBy,
     search: boardModule.search,
@@ -502,7 +499,7 @@ const mapDispatchToProps = {
   addTask,
   deleteGroup,
   setActiveModal,
-  updateBoard,
+  saveBoard
 };
 
 export const GroupPreview = connect(

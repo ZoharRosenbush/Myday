@@ -3,8 +3,10 @@
 const initialState = {
   boards: [],
   board: null,
+  backupBoard: null,
   activeModal: {
     cmpType: null,
+    boardId: null,
     taskId: null,
     groupId: null
   },
@@ -18,15 +20,13 @@ const initialState = {
     role: [],
     member: []
   },
-  search: ""
+  search: "",
 };
 
 export function boardReducer(state = initialState, action) {
   let newState = state;
 
   switch (action.type) {
-
-
     case "SET_BOARDS":
       return {
         ...state, boards: [...action.boards]
@@ -50,6 +50,18 @@ export function boardReducer(state = initialState, action) {
         ...state, board: {
           ...action.board
         }
+      };
+    case "SET_BACKUP_BOARD":
+      const backupBoard = state.board
+      console.log('backupBoard', backupBoard)
+      return {
+        ...state, backupBoard
+      }
+    case "RESTORE_BOARD":
+      const boardBackup = state.backupBoard
+      console.log('backup after RESTORE', boardBackup)
+      return {
+        ...state, board: boardBackup
       };
     case "ADD_BOARD":
       return {

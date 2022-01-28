@@ -11,30 +11,25 @@ import { removeBoard, setActiveModal } from '../../store/board.action.js'
 class _BoardList extends React.Component {
   state = {
     isModalToDelete: false,
+    boardInEdit: null
 
   };
 
 
   openModal = (boardId) => {
+    this.setState((prevstate) => ({ ...prevstate, boardInEdit: boardId }))
     const activeModal = { cmpType: 'boardEdit', boardId: boardId }
     this.props.setActiveModal(activeModal)
   };
 
   toggleModalDelete = () => {
-    this.setState({
-      openModal: {
-        isBoardModalOpen: false,
-        boardId: null
-      }
-    });
-    this.setState({ isModalToDelete: !this.state.isModalToDelete });
+    this.setState((prevstate) => ({ ...prevstate, isModalToDelete: !prevstate.isModalToDelete }))
   };
 
-  onRemoveBoard = (boardId) => {
-    console.log('boardId:', boardId);
-    
-    this.setState({ isModalToDelete: false })
-    this.props.removeBoard(boardId)
+  onRemoveBoard = () => {
+    const { boardInEdit } = this.state
+    this.props.removeBoard(boardInEdit)
+    this.toggleModalDelete()
   }
 
   setClassName = (boardId) => {
@@ -47,7 +42,6 @@ class _BoardList extends React.Component {
   render() {
     const { boards, board, activeModal } = this.props
     const { isModalToDelete } = this.state
-    // console.log('board:', board);
 
     return (
       <section className="sidebar-nav-list">
@@ -86,7 +80,9 @@ class _BoardList extends React.Component {
                 </div>
               }
               {isModalToDelete && (
-                <section className="modal-delete">
+
+                < section className="modal-delete">
+                  <button onClick={() => { this.checkId(board._id) }}>checking</button>
                   <div className="flex title-modal-delete">
                     <div>
                       <GrCircleAlert />
@@ -96,17 +92,19 @@ class _BoardList extends React.Component {
                   <button onClick={this.toggleModalDelete} className="no-ans-delete">
                     No
                   </button>
-                  <button onClick={() => { this.onRemoveBoard(board._id) }} className="yes-ans-delete">
+                  <button onClick={this.onRemoveBoard} className="yes-ans-delete">
                     Yes
                   </button>
                 </section>
-              )}
+              )
+              }
               {isModalToDelete && <div className="main-screen"></div>}
 
             </div>
           );
-        })}
-      </section>
+        })
+        }
+      </section >
     );
   }
 

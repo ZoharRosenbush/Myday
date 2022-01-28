@@ -14,39 +14,10 @@ export class _BoardNav extends React.Component {
   }
   componentDidMount() {
     this.props.loadBoards()
-
-    // const { isBoardNavOpen } = this.state
     this.setState({ isBoardNavOpen: true }, () => {
       this.props.setBoardNav(this.state.isBoardNavOpen)
     })
-
-    // socketService.setup()
-    // socketService.on('board-list was updated', this.props.loadBoards)
-
   }
-
-
-  // componentDidUpdate(prevProps, prevState) {
-
-  //   // if (prevProps.boards !== this.props.boards) {
-  //   //   this.props.loadBoards()
-  //   // }
-
-  //   const prevBoards = prevProps.boards
-
-  //   if (prevBoards.length) {
-  //     const { boards } = this.props
-  //     // console.log('the boards',boards)
-  //     // console.log('prevboards',prevBoards)
-  //     boards.forEach((board, idx) => {
-  //       if (!prevBoards[idx]) return
-  //       else if (board.title !== prevBoards[idx].title) {
-  //         console.log('hello!');
-  //         // this.props.loadBoards()
-  //       }
-  //     })
-  //   }
-  // }
 
   onToggleBoardNav = () => {
     const { isBoardNavOpen } = this.state
@@ -55,7 +26,8 @@ export class _BoardNav extends React.Component {
     })
   }
   onAddBoard = () => {
-    this.props.addBoard()
+    const { user } = this.props
+    this.props.addBoard(user)
     //TODO: NEVIGATE THE PAGE TO THE NEW BOARD LINK
     // window.location.href = `/myday/board/${newBoard._id}`
   }
@@ -63,19 +35,10 @@ export class _BoardNav extends React.Component {
     this.props.removeBoard(boardId)
   }
   render() {
-
     const { boards } = this.props
     const { isBoardNavOpen } = this.state
     const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-closed'
     return (
-      // <section>
-      //   {!isBoardNavOpen && <section className="board-nav">
-      //     <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
-      //       <IoIosArrowForward color="#67686B" />
-      //     </button>
-      //   </section>}
-      // isBoardNavOpen &&
-      // <div>
       <React.Fragment>
         {
           <section className={className} >
@@ -103,9 +66,10 @@ export class _BoardNav extends React.Component {
     )
   }
 }
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     boards: boardModule.boards,
+    user: userModule.user,
   };
 }
 const mapDispatchToProps = {

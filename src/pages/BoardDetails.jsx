@@ -1,18 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
-import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
-import { loadBoard } from "../store/board.action.js";
-import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
-import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
-import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
 import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
 
-import { socketService } from "../services/socket.service.js";
-
-// import { setActiveModal, updateBoard } from "../store/board.action.js";
+import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
+import { UserMsg } from "../cmps/UserMsg/UserMsg.jsx";
+import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
+import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { TaskDetails } from '../cmps/TaskCmps/TaskDetails'
-import { setActiveModal, updateBoard, loadBoards } from "../store/board.action.js";
+import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
+
+import { socketService } from "../services/socket.service.js";
+import { utilService } from '../services/utils.service.js';
+import { setActiveModal, saveBoard, loadBoard, loadBoards } from "../store/board.action.js";
 
 // import { boards } from '../helpers/monday.js'
 class _BoardDetails extends React.Component {
@@ -62,16 +62,16 @@ class _BoardDetails extends React.Component {
   };
 
   _onGroupDragEnd({ source, destination }) {
-    const { board, updateBoard } = this.props;
-    const boardCopy = { ...board };
+    const { board, saveBoard } = this.props;
+    const boardCopy = utilService.createDeepCopy(board)
     const [group] = boardCopy.groups.splice(source.index, 1);
     boardCopy.groups.splice(destination.index, 0, group);
-    updateBoard(boardCopy);
+    saveBoard(boardCopy);
   }
 
   _onTaskDragEnd({ source, destination, draggableId }) {
-    const { board, updateBoard } = this.props;
-    const boardCopy = { ...board };
+    const { board, saveBoard } = this.props;
+    const boardCopy = utilService.createDeepCopy(board)
     const groupSourceIdx = boardCopy.groups.findIndex(
       (group) => group.id === source.droppableId
     );
@@ -85,11 +85,11 @@ class _BoardDetails extends React.Component {
 
     boardCopy.groups[groupSourceIdx].tasks.splice(source.index, 1);
     boardCopy.groups[groupDestinationIdx].tasks.splice(destination.index, 0, task);
-    updateBoard(boardCopy);
+    saveBoard(boardCopy);
   }
 
   render() {
-    const { board, updateBoard, isBoardNavOpen } = this.props;
+    const { board, saveBoard, isBoardNavOpen } = this.props;
 
     const boardContainerClassName = isBoardNavOpen
       ? "board-container-open-nav"
@@ -101,8 +101,7 @@ class _BoardDetails extends React.Component {
         <MainNav />
         <BoardNav />
         <section className={boardContainerClassName}>
-          <BoardHeader board={board} updateBoard={updateBoard} />
-
+          <BoardHeader board={board} user={this.props.user}/>
           <DragDropContext onDragEnd={this.onDragEnd}>
             {board?.groups && (
               <Droppable
@@ -130,14 +129,16 @@ class _BoardDetails extends React.Component {
           {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
 
         </section>
+        <UserMsg />
       </section >
     );
   }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     isBoardNavOpen: boardModule.isBoardNavOpen,
     activeModal: boardModule.activeModal
     //   currFilterBy: toyModule.currFilterBy
@@ -146,7 +147,7 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
   loadBoard,
   setActiveModal,
-  updateBoard,
+  saveBoard,
   loadBoards
 };
 

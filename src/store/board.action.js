@@ -1,10 +1,10 @@
-import {
-  boardService
-} from '../services/board.service.js';
+import { boardService } from '../services/board.service.js';
 import { utilService } from '../services/utils.service.js';
 
+
+// **BOARD ACTIONS**
+
 export function loadBoards() {
-  console.log('loding boards🤩');
   return async (dispatch) => {
     try {
       const boards = await boardService.query();
@@ -12,16 +12,14 @@ export function loadBoards() {
         type: "SET_BOARDS",
         boards: boards
       });
-
     } catch (err) {
-      console.log("cannot find boards:", err);
-      throw err;
+      console.log('Cannot load boards:', err);
+      _alertUser(dispatch, 'Failed to load boards, please check your internet connection')
     }
-  };
+  }
 }
 
 export function loadBoard(boardId, currFilterBy = null) {
-  // console.log('currFilterBy:', currFilterBy);
 
   return async (dispatch) => {
     try {
@@ -31,14 +29,14 @@ export function loadBoard(boardId, currFilterBy = null) {
         board: board
       });
     } catch (err) {
-      console.log("cannot find board:", err);
-      throw err;
+      console.log('Cannot load board:', err);
+      _alertUser(dispatch, 'Failed to load board, please check your internet connection')
     }
   }
 }
 
-export function addBoard() {
-  const newBoard = boardService.getNewBoard()
+export function addBoard(user) {
+  const newBoard = boardService.getNewBoard(user)
 
   return async (dispatch) => {
     try {
@@ -51,45 +49,50 @@ export function addBoard() {
         },
       })
     } catch (err) {
-      console.log("Cannot add board", err);
-    }
-  };
-}
-
-export function updateBoard(board) {
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: board,
-      });
-      await boardService.saveBoard(board)
-    } catch (err) {
-      console.log("Cannot update board", err);
+      console.log('Cannot add board:', err);
+      _alertUser(dispatch, 'Failed to add board, please check your internet connection')
     }
   }
 }
 
-export function updateBoardTitle(board) {
-  const miniBoard = { title: board.title, _id: board._id }
-
+export function saveBoard(boardToSave) {
   return async (dispatch) => {
+    _setBackupBoard(dispatch)
     try {
       dispatch({
         type: "SET_BOARD",
-        board: board,
+        board: boardToSave,
+      });
+      await boardService.saveBoard(boardToSave)
+    } catch (err) {
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      console.log('Err in saving board:', err);
+    }
+  }
+}
+
+export function updateBoardTitle(boardToSave) {
+  const miniBoard = { title: boardToSave.title, _id: boardToSave._id }
+
+  return async (dispatch) => {
+    try {
+      _setBackupBoard(dispatch)
+      dispatch({
+        type: "SET_BOARD",
+        board: boardToSave,
       })
       dispatch({
         type: "UPDATE_BOARDS",
         board: miniBoard,
       })
-      await boardService.updateBoardTitle(board)
+      await boardService.updateBoardTitle(boardToSave)
     } catch (err) {
-      console.log("Cannot update board", err);
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to update title, please check your internet connection')
+      console.log('Cannot update board title:', err);
     }
   }
-
-
 }
 
 export function removeBoard(boardId) {
@@ -98,14 +101,14 @@ export function removeBoard(boardId) {
       dispatch({
         type: "REMOVE_BOARD",
         boardId: boardId
-      });
+      })
       await boardService.removeBoard(boardId);
     } catch (err) {
-      console.log("Cannot delete board", err);
+      console.log('Cannot remove board:', err);
+      _alertUser(dispatch, 'Failed to remove board, please check your internet connection')
     }
-  };
+  }
 }
-
 
 export function updateFilter(currFilterBy) {
 
@@ -116,12 +119,13 @@ export function updateFilter(currFilterBy) {
       currFilterBy: {
         ...currFilterBy
       }
-    });
+    })
 
   }
 }
+
 export function updateSearch(search) {
-  console.log('search:', search);
+  // console.log('search:', search);
 
   return (dispatch) => {
 
@@ -130,188 +134,10 @@ export function updateSearch(search) {
       search: {
         search
       }
-    });
+    })
 
   }
 }
-
-export function deleteTask(taskId, groupId, board) {
-  const boardBeforeChange = board
-
-  const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-  const filteredTasks = board.groups[groupIdx].tasks.filter((task) => {
-    return task.id !== taskId;
-  });
-  board.groups[groupIdx].tasks = filteredTasks;
-
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: board
-      });
-      await boardService.saveBoard(board)
-    } catch (err) {
-      dispatch({
-        type: "SET_BOARD",
-        board: boardBeforeChange
-      });
-      // throw new Error
-      console.log('err:', err);
-    }
-  };
-}
-
-export function addTask(taskTitle, groupId, board) {
-
-  const newTask = boardService.addNewTask(taskTitle)
-
-  const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-  board.groups[groupIdx].tasks.push(newTask);
-
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: board
-      })
-      await boardService.saveBoard(board)
-
-    } catch (err) {
-      console.log('err:', err);
-    }
-  };
-
-}
-
-// export function addComment(value, taskId, boardId) {
-//   return async (dispatch) => {
-//     console.log('value:', value);
-
-//     try {
-//       const board = await boardService.addTask(value, groupId, boardId);
-//       dispatch({ type: "SET_BOARD", board: board });
-//     } catch (err) {
-//       console.log('err:', err);
-//     }
-//   };
-// }
-
-
-export function addGroup(board) {
-  const newGroup = boardService.getNewGroup()
-  board.groups.unshift(newGroup);
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: board
-      });
-      await boardService.saveBoard(board)
-    } catch (err) {
-      console.log('err:', err);
-    }
-  };
-
-}
-
-
-export function deleteGroup(groupId, board) {
-  const filteredGroups = board.groups.filter((group) => {
-    return group.id !== groupId;
-  });
-  board.groups = filteredGroups
-
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: board
-      });
-      await boardService.saveBoard(board)
-    } catch (err) {
-      console.log('err:', err);
-    }
-  };
-}
-
-// Store - saveTask
-export function saveTask(taskToSave, groupId, board, activity, comment) {
-
-  if (activity) {
-    activity.id = utilService.makeId()
-    activity.byMember = {
-      "fullname": "Lora Turner",
-      "username": "Lora Turner",
-      "_id": "61edc3c5652f5891aac4aed6",
-      "acronyms": "LT",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-    }
-    taskToSave.activities = [activity, ...taskToSave.activities]
-  }
-  if (comment) {
-    comment.id = utilService.makeId()
-    comment.byMember = {
-      "fullname": "Lora Turner",
-      "username": "Lora Turner",
-      "_id": "61edc3c5652f5891aac4aed6",
-      "acronyms": "LT",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg"
-    }
-    taskToSave.comments = [comment, ...taskToSave.comments]
-  }
-
-  const groupIdx = board.groups.findIndex((group) => groupId === group.id);
-  const updatedtasks = board.groups[groupIdx].tasks.map((task) => {
-    return task.id === taskToSave.id ? taskToSave : task
-  });
-  board.groups[groupIdx].tasks = updatedtasks
-
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: board
-      });
-      await boardService.saveBoard(board)
-    } catch (err) {
-      console.log('err:', err);
-    }
-  };
-}
-
-
-export function saveGroup(groupToSave, board) {
-
-  const groupIdx = board.groups.findIndex(
-    (group) => groupToSave.id === group.id
-  );
-
-  board.groups[groupIdx] = groupToSave;
-
-  return async (dispatch) => {
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: board
-      });
-      await boardService.saveBoard(board)
-    } catch (err) {
-      console.log('err:', err);
-    }
-  };
-}
-
-export function setActiveModal(activeModal) {
-  console.log('active modal', activeModal);
-  return (dispatch) => {
-    dispatch({
-      type: "SET_ACTIVE_MODAL",
-      activeModal: activeModal
-    });
-  };
-}
-
 
 export function setBoardNav(isBoardNavOpen) {
   return (dispatch) => {
@@ -320,6 +146,190 @@ export function setBoardNav(isBoardNavOpen) {
       isBoardNavOpen: isBoardNavOpen
     })
   }
+}
+
+
+// **GROUP ACTIONS**
+
+export function saveGroup(groupToSave, boardToSave) {
+
+  const groupIdx = boardToSave.groups.findIndex(
+    (group) => groupToSave.id === group.id
+  )
+  boardToSave.groups[groupIdx] = groupToSave
+
+  return async (dispatch) => {
+    _setBackupBoard(dispatch)
+    try {
+      dispatch({
+        type: "SET_BOARD",
+        board: boardToSave,
+      });
+      await boardService.saveBoard(boardToSave)
+    } catch (err) {
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      console.log('Err in saving board:', err);
+    }
+  }
+}
+
+export function addGroup(boardToSave, user) {
+  const newGroup = boardService.getNewGroup(user)
+  boardToSave.groups.unshift(newGroup);
+  return async (dispatch) => {
+    _setBackupBoard(dispatch)
+    try {
+      dispatch({
+        type: "SET_BOARD",
+        board: boardToSave,
+      });
+      await boardService.saveBoard(boardToSave)
+    } catch (err) {
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      console.log('Err in saving board:', err);
+    }
+  }
+}
+
+export function deleteGroup(groupId, boardToSave) {
+  const filteredGroups = boardToSave.groups.filter((group) => {
+    return group.id !== groupId;
+  });
+  boardToSave.groups = filteredGroups
+
+  return async (dispatch) => {
+    _setBackupBoard(dispatch)
+    try {
+      dispatch({
+        type: "SET_BOARD",
+        board: boardToSave,
+      });
+      await boardService.saveBoard(boardToSave)
+    } catch (err) {
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      console.log('Err in saving board:', err);
+    }
+  }
+}
+
+
+// **TASK ACTIONS**
+
+export function deleteTask(taskId, groupId, boardToSave) {
+  const groupIdx = boardToSave.groups.findIndex((group) => groupId === group.id);
+  const filteredTasks = boardToSave.groups[groupIdx].tasks.filter((task) => {
+    return task.id !== taskId;
+  })
+  boardToSave.groups[groupIdx].tasks = filteredTasks;
+  return async (dispatch) => {
+    _setBackupBoard(dispatch)
+    try {
+      dispatch({
+        type: "SET_BOARD",
+        board: boardToSave,
+      });
+      await boardService.saveBoard(boardToSave)
+    } catch (err) {
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      console.log('Err in saving board:', err);
+    }
+  }
+}
+
+
+export function addTask(taskTitle, groupId, boardToSave, user, activity) {
+
+  activity.id = utilService.makeId()
+  activity.byMember = user
+  const newTask = boardService.addNewTask(taskTitle, activity)
+
+  const groupIdx = boardToSave.groups.findIndex((group) => groupId === group.id);
+  boardToSave.groups[groupIdx].tasks.push(newTask);
+  return async (dispatch) => {
+    _setBackupBoard(dispatch)
+    try {
+      dispatch({
+        type: "SET_BOARD",
+        board: boardToSave,
+      });
+      await boardService.saveBoard(boardToSave)
+    } catch (err) {
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      console.log('Err in saving board:', err);
+    }
+  }
+}
+
+export function saveTask(taskToSave, groupId, boardToSave, user, activity, comment) {
+
+  if (activity) {
+    activity.id = utilService.makeId()
+    activity.byMember = user
+    taskToSave.activities = [activity, ...taskToSave.activities]
+  }
+  if (comment) {
+    comment.id = utilService.makeId()
+    comment.byMember = user
+    taskToSave.comments = [comment, ...taskToSave.comments]
+  }
+
+  const groupIdx = boardToSave.groups.findIndex((group) => groupId === group.id);
+  const updatedtasks = boardToSave.groups[groupIdx].tasks.map((task) => {
+    return task.id === taskToSave.id ? taskToSave : task
+  });
+  boardToSave.groups[groupIdx].tasks = updatedtasks
+  return async (dispatch) => {
+    _setBackupBoard(dispatch)
+    try {
+      dispatch({
+        type: "SET_BOARD",
+        board: boardToSave,
+      });
+      await boardService.saveBoard(boardToSave)
+    } catch (err) {
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      console.log('Err in saving board:', err);
+    }
+  }
+}
+
+
+// **BOARD BACK UP **
+
+function _setBackupBoard(dispatch) {
+  dispatch({
+    type: "SET_BACKUP_BOARD"
+  })
+}
+
+function _restoreBoard(dispatch) {
+  dispatch({
+    type: "RESTORE_BOARD"
+  })
+}
+
+function _alertUser(dispatch, txt) {
+  dispatch({ type: 'SET_MSG', msg: { txt } })
+
+
+}
+
+// **MODALS ACTIONS**
+
+export function setActiveModal(activeModal) {
+  // console.log('active modal', activeModal);
+  return (dispatch) => {
+    dispatch({
+      type: "SET_ACTIVE_MODAL",
+      activeModal: activeModal
+    });
+  };
 }
 
 export function setTaskModal(isTaskDetailsOpen) {

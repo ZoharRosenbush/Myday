@@ -26,7 +26,7 @@ import {
 
 class _TaskPreview extends React.Component {
   state = {
-    isModalTaskOpen: false,
+    // isModalTaskOpen: false,
 
   };
   taskTitleInput = React.createRef();
@@ -35,23 +35,33 @@ class _TaskPreview extends React.Component {
     this.props.setActiveModal(activeModal)
   };
 
-  deleteTask = () => {
-    const { task, groupId, board, deleteTask } = this.props;
-    const boardCopy = { ...board }
-    this.setState({ isModalTaskOpen: !this.state.isModalTaskOpen });
-    deleteTask(task.id, groupId, boardCopy);
+  onDeleteTask = () => {
+    const { task, groupId, board } = this.props;
+    console.log('the board in cmp', board)
+    const boardCopy = utilService.createDeepCopy(board)
+    console.log('the bord copy', boardCopy)
+    this.props.deleteTask(task.id, groupId, boardCopy);
   };
 
   openTaskDetails = () => {
-    const { setTaskModal, goToTaskDetails, board, groupId, task } = this.props;
+    const { setTaskModal } = this.props;
     setTaskModal(true)
-    // goToTaskDetails(board._id, groupId, task.id)
   }
 
   onUpdateTask = (cmpType, data) => {
     const { task, saveTask, groupId, board } = this.props;
-    const boardCopy = { ...board }
-
+    const boardCopy = utilService.createDeepCopy(board)
+    let { user } = this.props
+    if (!user) {
+      user = {
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     let activity;
     switch (cmpType) {
       case "status-picker":
@@ -60,7 +70,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task status to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "priority-picker":
         task.priority = data;
@@ -68,7 +78,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task priority to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "member-picker":
         const isOwner = task.owner.findIndex((owner) => {
@@ -101,9 +111,8 @@ class _TaskPreview extends React.Component {
           "txt": `Added ${data.fullname} as the task member`,
           "createdAt": Date.now(),
         }
-        console.log('task:', task);
-        
-        saveTask(task, groupId, boardCopy, activity);
+
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "role-picker":
         task.role = data
@@ -111,7 +120,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task role to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "type-picker":
         task.type = data;
@@ -119,7 +128,7 @@ class _TaskPreview extends React.Component {
           "txt": `Changed task type to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "date-picker":
         task.timeline = data;
@@ -127,23 +136,23 @@ class _TaskPreview extends React.Component {
           "txt": `Changed dates`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "text":
         task.text = data;
         activity = {
-          "txt": `Changed text to ${data}}`,
+          "txt": `Changed text to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       case "cost":
         task.cost = data;
         activity = {
-          "txt": `Changed cost to ${data}}`,
+          "txt": `Changed cost to ${data}`,
           "createdAt": Date.now(),
         }
-        saveTask(task, groupId, boardCopy, activity);
+        saveTask(task, groupId, boardCopy, user, activity);
         break;
       default:
     }
@@ -224,16 +233,27 @@ class _TaskPreview extends React.Component {
 
 
   onUpdateTitleContent = ({ target }) => {
-    const { task, board, groupId, saveTask, activeModal, goToTaskDetails } = this.props;
-    const boardCopy = { ...board }
+    const { task, board, groupId, saveTask} = this.props;
+    const boardCopy = utilService.createDeepCopy(board)
+    let { user } = this.props
+    if (!user) {
+      user = {
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     const value = target.textContent;
     if (!value) return;
     task.title = value;
-    // activity = {
-    //   "txt": `Changed cost to ${data}}`,
-    //   "createdAt": Date.now(),
-    // }
-    saveTask(task, groupId, boardCopy);
+    const activity = {
+      "txt": `Changed task title to ${value}}`,
+      "createdAt": Date.now(),
+    }
+    saveTask(task, groupId, boardCopy, user, activity);
     // updateTitleContent(value, todo);
   };
 
@@ -285,7 +305,9 @@ class _TaskPreview extends React.Component {
           </div>
           {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
             <div className="task-modal">
-              <div className="flex modal-group-items" onClick={this.deleteTask}>
+              <div className="flex modal-group-items" onClick={this.onDeleteTask}
+              // console.log('the board in render',board)
+              >
                 <div>
                   <RiDeleteBinLine color="#323338c2" />{" "}
                 </div>
@@ -355,9 +377,10 @@ class _TaskPreview extends React.Component {
   }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
+    user: userModule.user,
     activeModal: boardModule.activeModal,
     // currFilterBy: boardModule.currFilterBy
   };

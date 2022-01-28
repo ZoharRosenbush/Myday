@@ -41,11 +41,18 @@ section.board-header {
   }
 
   .board-main-title {
-    align-items: center;
+    display: grid;
+    grid-template-columns: 155px 100px ; 
+    grid-template-rows: 180px auto 100px;
+    grid-template-areas: "board-title  header" "main sidebar" "footer footer";
+
+    
     width: 100%;
     height: 55px;
 
     .board-title-container {
+    
+
       .board-header-title {
         font-size: 1.5rem;
         margin: 0;
@@ -152,5 +159,41 @@ section.board-header {
     color: #323338;
     margin: 10px 0px;
     // border-bottom: 1px solid #e6e9ef;
+  }
+}
+
+
+
+ /* **TABLET** */
+
+// @media (min-width: 450px){
+
+//   section.add-note{
+//       height: 50vh;
+//   }
+//   section.type-btns{
+//       width: fit-content;
+     
+  
+//   }
+  
+// }
+
+@media (min-width: 992px) {
+  section.board-header {
+  .board-main-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    .board-title-container {
+      display: flex;
+      align-items: center;
+          .board-header-title {
+
+          }
+        
+      }
+    }
   }
 }
