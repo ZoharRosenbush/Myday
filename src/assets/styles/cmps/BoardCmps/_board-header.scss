@@ -102,7 +102,7 @@ section.board-header {
     margin-right: 2%;
     column-gap: 10px;
     flex-wrap: wrap;
-    row-gap: 2px;
+    row-gap: 5px;
     align-items: center;
 
     .dots-icon{
@@ -221,6 +221,7 @@ section.board-header {
       column-gap: 10px;
       row-gap: 0px;
       flex-wrap: wrap;
+      
 
       div.icon-btn-container.plus-board {
         min-width: 130px;

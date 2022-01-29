@@ -173,6 +173,13 @@
 }
 
 
+@media (min-width: 640px) {
+
+  .board-controllers {
+    width: fit-content;
+  }
+
+}
 @media (min-width: 992px) {
 
   .board-controllers {
