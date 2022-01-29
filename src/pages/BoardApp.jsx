@@ -61,7 +61,7 @@ class _BoardApp extends React.Component {
                 {/* <MainNav />
                 <BoardNav /> */}
 
-                {!boards.length && <BeatLoader loading size={34} css={this.loaderCSS} color={"#292f4c"} />}
+                {!boards.length && <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />}
                 {boards.length && <section>
                     <section className="board-page">
                         <div className="flex hello-user">
