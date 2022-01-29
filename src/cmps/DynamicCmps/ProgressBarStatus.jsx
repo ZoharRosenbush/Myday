@@ -62,7 +62,7 @@ class _ProgressBarStatus extends React.Component {
         <div className="status-bar">
           <div
             className="progress-div"
-            // title={Done && Done}
+            title={Done + "%"}
             style={{
               width: Done + "%",
 
@@ -71,7 +71,7 @@ class _ProgressBarStatus extends React.Component {
           ></div>
           <div
             className="progress-div"
-            // title={Working && Working}
+            title={Working + "%"}
             style={{
               width: Working + "%",
               backgroundColor: "#ffcb00",
@@ -79,7 +79,7 @@ class _ProgressBarStatus extends React.Component {
           ></div>
           <div
             className="progress-div"
-            // title={Stuck && Stuck}
+            title={Stuck + "%"}
             style={{
               width: Stuck + "%",
 
@@ -88,7 +88,7 @@ class _ProgressBarStatus extends React.Component {
           ></div>
           <div
             className="progress-div"
-            // title={Empty && Empty}
+            title={Empty + "%"}
             style={{
               width: Empty + "%",
 

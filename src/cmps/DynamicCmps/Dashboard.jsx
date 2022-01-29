@@ -98,26 +98,29 @@ class _Dashboard extends React.Component {
 
         return mapObj;
     }
-
     options = {
         responsive: true,
+        
+        showLine: false,
         plugins: {
             legend: {
                 position: "top",
             },
             title: {
-                display: true,
+                display: false,
                 // text: "Prices per toy type",
             },
         },
     };
     map = this.mapChart();
-
-
+    
+    
     data = {
         labels: Object.keys(this.map),
+        showLine: false,
         datasets: [
             {
+                showLine: false,
                 label: this.props.labelType,
                 data: Object.values(this.map),
                 backgroundColor: this.getColors(),
@@ -127,7 +130,7 @@ class _Dashboard extends React.Component {
     render() {
 
         return (
-            <Bar options={this.options} data={this.data} />
+            <Bar  showLine={false} options={this.options} data={this.data} />
 
         );
     }

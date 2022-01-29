@@ -149,7 +149,7 @@ class _BoardControllers extends React.Component {
                       {board.members.map((member, idx) => {
                         return (
                           <li key={idx} className="flex">
-                            <div className={`owner-name-circle ${member.acronyms}`} >{member.acronyms}
+                            <div className={`owner-name-circle ${member.acronyms}`} style={{backgroundColor:member.userColor}} >{member.acronyms}
                             </div>{(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}</li>
                         )
                       })}

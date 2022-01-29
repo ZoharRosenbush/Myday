@@ -56,11 +56,7 @@ class _BoardFilterListCmp extends React.Component {
 
     render() {
         const { labels, board, field, filterBy } = this.props
-        console.log('field:', field);
-        console.log('filterBy:', filterBy);
-        console.log('labels:', labels);
-
-        // const { isFilterBtnClicked } = this.state
+            // const { isFilterBtnClicked } = this.state
         // const btnClassName = isFilterBtnClicked && 'filterClicked'
         return (
             <ul className="filter-list">

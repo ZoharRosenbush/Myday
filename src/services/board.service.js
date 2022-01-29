@@ -155,33 +155,33 @@ function getNewBoard(user) {
     description: "This board is for managing a single project. You can customize this board to suit your project needs: add columns, subtasks, automations, dashboards and more!",
     createdBy: {
       "_id": "61edc3e7652f5891aac4c063",
-      "acronyms": "AL",
-      "fullname": "Ann Lee",
-      "username": "Ann Lee",
+      "acronyms": "LS",
+      "fullname": "Lee Segal",
+      "username": "Lee Segal",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
       "userColor": "#fcc4f7"
     },
     "lastSeen": [{
       "_id": "61edc3e7652f5891aac4c063",
-      "acronyms": "AL",
-      "fullname": "Ann Lee",
-      "username": "Ann Lee",
+      "acronyms": "LS",
+      "fullname": "Lee Segal",
+      "username": "Lee Segal",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
       "userColor": "#fcc4f7"
     },
     {
       "_id": "61edc551652f5891aac5830c",
-      "acronyms": "HG",
-      "fullname": "Henry Gold",
-      "username": "Henry Gold",
+      "acronyms": "ME",
+      "fullname": "May Elgarat",
+      "username": "May Elgarat",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
       "userColor": "#00c875"
     },
     {
       "_id": "61edc3c5652f5891aac4aed6",
-      "acronyms": "LT",
-      "fullname": "Lora Turner",
-      "username": "Lora Turner",
+      "acronyms": "ZR",
+      "fullname": "Zohar Rosenbush",
+      "username": "Zohar Rosenbush",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
       "userColor": "#E2445C"
     }
@@ -238,26 +238,26 @@ function getNewBoard(user) {
     ],
     "members": [{
       "_id": "61edc3e7652f5891aac4c063",
-      "acronyms": "AL",
-      "fullname": "Ann Lee",
-      "username": "Ann Lee",
+      "acronyms": "LS",
+      "fullname": "Lee Segal",
+      "username": "Lee Segal",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
       "userColor": "#fcc4f7"
     },
     {
       "_id": "61edc551652f5891aac5830c",
-      "acronyms": "HG",
-      "fullname": "Henry Gold",
-      "username": "Henry Gold",
+      "acronyms": "ME",
+      "fullname": "May Elgarat",
+      "username": "May Elgarat",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
       "userColor": "#00c875"
 
     },
     {
       "_id": "61edc3c5652f5891aac4aed6",
-      "acronyms": "LT",
-      "fullname": "Lora Turner",
-      "username": "Lora Turner",
+      "acronyms": "ZR",
+      "fullname": "Zohar Rosenbush",
+      "username": "Zohar Rosenbush",
       "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
       "userColor": "#e2445c"
     }

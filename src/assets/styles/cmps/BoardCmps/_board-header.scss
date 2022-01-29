@@ -114,9 +114,9 @@ section.board-header {
         margin: 0px 11px 0px 0px;
       }
 
-      .LT,
-      .HG,
-      .AL {
+      .LS,
+      .ME,
+      .ZR {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -131,6 +131,7 @@ section.board-header {
         padding: 4px;
         vertical-align: middle;
         font-size: 14px;
+        color: white;
       }
     }
 

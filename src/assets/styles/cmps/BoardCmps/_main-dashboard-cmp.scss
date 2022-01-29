@@ -4,6 +4,11 @@
     border-bottom: 1px solid #e6e9ef;
     font-family: "roboto-regular", sans-serif;
     font-size: 15px;
+
+    span{
+        font-family: roboto-regular, helvetica, sans-serif;
+        color: black;
+    }
     
     .main-table-container{
         gap: 10px;
@@ -38,5 +43,17 @@
             border-radius: 4px;
             background-color: #e6e9ef;
           }
+
+          section.board-header{
+            width: 100%;
+            height: 70px;
+            margin: 0;
+            margin-bottom: 130px;
+            position: sticky;
+            margin-left: 20px;
+            left: 0;
+            z-index: 200;
+          }
+          
     }
 }
