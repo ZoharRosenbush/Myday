@@ -92,6 +92,7 @@ class _BoardList extends React.Component {
 
                 < section className="modal-delete flex">
 
+
                   <div className="title-modal-delete">
                     {/* <div>
                       <GrCircleAlert color="white" />
@@ -109,7 +110,7 @@ class _BoardList extends React.Component {
                 </section>
               )
               }
-              {isModalToDelete && <div className="main-screen"></div>}
+              {isModalToDelete && <div className="sticky-div"><div className="main-screen"></div></div>}
 
             </div>
           );

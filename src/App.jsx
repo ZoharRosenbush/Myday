@@ -12,18 +12,10 @@ import routes from './routes.js'
 
 export function App() {
 
-    // useEffect(() => {
-    //     socketService.setup()
-
-    // }, []);
-
-
-
-
     return (
         <section>
 
-                    <main>
+                <main>
                 <Switch>
                     {routes.map(route => <Route key={route.path} component={route.component} path={route.path} />)}
                     <Route exact component={Home} path={"/"} />
