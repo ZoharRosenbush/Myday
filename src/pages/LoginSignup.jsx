@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+// import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -22,7 +23,8 @@ const theme = createTheme();
 
 class _LoginSignup extends React.Component {
     state = {
-        isSignup: false
+        isSignup: false,
+        isSigninInProgress:""
     };
 
     // clearState = () => {
@@ -63,10 +65,36 @@ class _LoginSignup extends React.Component {
         }
     }
 
-
-
-render() {
-    return (
+ 
+    // signIn = async () => {
+    //     try {
+    //       await GoogleSignin.hasPlayServices();
+    //       const userInfo = await GoogleSignin.signIn();
+    //       this.setState({ userInfo });
+    //     } catch (error) {
+    //       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+    //         // user cancelled the login flow
+    //       } else if (error.code === statusCodes.IN_PROGRESS) {
+    //         // operation (f.e. sign in) is in progress already
+    //       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+    //         // play services not available or outdated
+    //       } else {
+    //         // some other error happened
+    //       }
+    //     }
+    //   };
+    
+    
+    render() {
+        return (
+        <section>
+{/* 
+            <GoogleSigninButton
+              style={{ width: 192, height: 48 }}
+              size={GoogleSigninButton.Size.Wide}
+              color={GoogleSigninButton.Color.Dark}
+              onPress={this.signIn}
+              disabled={this.state.isSigninInProgress} /> */}
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
@@ -77,7 +105,7 @@ render() {
                         flexDirection: "column",
                         alignItems: "center",
                     }}
-                >
+                    >
                     <Avatar style={{ margin: 1, backgroundColor: "#9c27b0" }}>
                         <LockOutlinedIcon />
                     </Avatar>
@@ -89,7 +117,7 @@ render() {
                         onSubmit={this.handleSubmit}
                         noValidate
                         style={{ marginTop: 1 }}
-                    >
+                        >
                         {!this.state.isSignup && (
                             <React.Fragment>
                                 <TextField
@@ -101,7 +129,7 @@ render() {
                                     name="username"
                                     // autoComplete="email"
                                     autoFocus
-                                />
+                                    />
                                 <TextField
                                     margin="normal"
                                     required
@@ -111,7 +139,7 @@ render() {
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
-                                />
+                                    />
                             </React.Fragment>
                         )}
                         {this.state.isSignup &&
@@ -125,7 +153,7 @@ render() {
                                     name="fullname"
                                     // autoComplete="email"
                                     autoFocus
-                                />
+                                    />
                                 <TextField
                                     margin="normal"
                                     required
@@ -133,9 +161,9 @@ render() {
                                     id="username"
                                     label="User name"
                                     name="username"
-                                // autoComplete="email"
-
-                                />
+                                    // autoComplete="email"
+                                    
+                                    />
                                 <TextField
                                     margin="normal"
                                     required
@@ -145,7 +173,7 @@ render() {
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
-                                />
+                                    />
                             </React.Fragment>
                         }
                         <Button
@@ -153,8 +181,8 @@ render() {
                             fullWidth
                             variant="contained"
                             style={{ marginTop: 3, marginBottom: 2 }}
-
-                        >
+                            
+                            >
                             {this.state.isSignup ? "Sign up" : " Log In"}
                         </Button>
                         <Grid item xs>
@@ -166,6 +194,7 @@ render() {
                 </Box>
             </Container>
         </ThemeProvider>
+                            </section>
     )
 }
 }

@@ -23,6 +23,23 @@ class _BoardApp extends React.Component {
 
 
     }
+
+    state = {
+        isTimeOut: false
+    }
+    timeoutId;
+
+    componentDidMount() {
+        this.hideLoader()
+    }
+
+    componentWillUnmount() {
+        if (this.timeoutId) clearTimeout(this.timeoutId)
+    }
+
+    // componentDidUpdate() {
+    // }
+
     // componentDidUpdate(prevProps, prevState) {
     //     console.log('did uypdate!');
     //     const { boards } = this.props
@@ -41,14 +58,26 @@ class _BoardApp extends React.Component {
         this.props.addBoard()
     }
 
+    hideLoader = () => {
+        console.log('lalal:');
+
+        console.log('this.state:', this.state);
+
+        this.timeoutId = setTimeout(() => {
+            this.setState({ isTimeOut: true }, () => {
+                console.log('this.state:', this.state);
+            })
+        }, 3000);
+
+    }
+
     render() {
+        const { isTimeOut } = this.state
         const { boards, board, user } = this.props
         console.log('board:', board);
         const bgColor = user ? user.userColor : "lightgray";
         console.log('bgColor:', bgColor);
         console.log('user:', user);
-
-
         return (
             <section className="app-layout">
                 <MainNav />
@@ -64,8 +93,8 @@ class _BoardApp extends React.Component {
                 {/* <MainNav />
                 <BoardNav /> */}
 
-                {!boards.length && <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />}
-                {boards.length && <section>
+                {!boards.length && !isTimeOut && <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />}
+                {!boards.length && isTimeOut &&
                     <section className="board-page">
                         <div className="flex hello-user">
                             <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
@@ -86,11 +115,10 @@ class _BoardApp extends React.Component {
                                 <img src={BoardSvg} alt=""></img>
                             </div>
                         </div>
-                    </section>
-
-                </section>}
+                    </section>}
             </section>
-        );
+
+        )
     }
 }
 
