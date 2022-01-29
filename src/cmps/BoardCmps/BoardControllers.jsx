@@ -44,11 +44,8 @@ class _BoardControllers extends React.Component {
 
 
   handleChange = ({ target }) => {
-
     const value = target.value
-    console.log('value:', value);
     this.props.updateSearch(value)
-
   }
 
   updateFilterBy = (value, field) => {
@@ -65,9 +62,7 @@ class _BoardControllers extends React.Component {
         })
     } else {
       this.setState((prevState) => (
-        { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {
-          console.log('this.state:', this.state);
-          
+        { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {          
           updateFilter(this.state.filterBy)
         }
       )
@@ -84,8 +79,6 @@ class _BoardControllers extends React.Component {
     
     const value = target.id
     const field = "member"
-    console.log('value:', value);
-    // console.log('field:', field);
     this.updateFilterBy(value, field)
 
 }
@@ -163,8 +156,9 @@ class _BoardControllers extends React.Component {
                     <span className="filterBy">Member</span>
                     <ul className="filter-list">
                       {board.members.map((member, idx) => {
+                        const className = (filterBy.member.includes(member.username)) && 'filterClicked'
                         return (
-                          <li key={idx} className="flex" id={member.username} onClick={this.handleChangeMember}>
+                          <li key={idx}    className={`flex ${className}`} id={member.username} onClick={this.handleChangeMember}>
                             <div className={`owner-name-circle ${member.acronyms}`} style={{backgroundColor:member.userColor}} >{member.acronyms}
                             </div>{(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}</li>
                         )
