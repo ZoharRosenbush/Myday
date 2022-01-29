@@ -28,6 +28,9 @@
   padding-top: 4px;
   justify-content: center;
   border-radius: 4px;
+  span {
+    margin-left: 5px;
+  }
   &:hover {
     background-color: #e4e8ee;
   }

@@ -95,13 +95,14 @@ class _BoardDetails extends React.Component {
       ? "board-container-open-nav"
       : "board-container";
 
-
+    console.log('in board details', board)
     return (
       <section className="app-layout">
+        <Route path='/myday/board/:boardId/:groupId/:taskId' component={TaskDetails} />
         <MainNav />
         <BoardNav />
         <section className={boardContainerClassName}>
-          <BoardHeader board={board} user={this.props.user}/>
+          <BoardHeader board={board} user={this.props.user} />
           <DragDropContext onDragEnd={this.onDragEnd}>
             {board?.groups && (
               <Droppable
