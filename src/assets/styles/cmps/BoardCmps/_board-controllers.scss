@@ -1,4 +1,8 @@
 .board-controllers {
+
+    flex-wrap: wrap;
+    margin-left: 10px;
+   
   .add-group-btn {
     font-family: roboto-regular, helvetica, sans-serif;
     height: 32px;
@@ -30,7 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: fit-content;
+    width: 90px;
     margin: 2px;
     transition: 0.1s;
 
@@ -166,4 +170,15 @@
 
 .input-search-wrapper {
   margin-left: 10px;
+}
+
+
+@media (min-width: 992px) {
+
+  .board-controllers {
+    flex-wrap: nowrap;
+    margin-left: 10px;
+    column-gap: 11px;
+  }
+
 }
