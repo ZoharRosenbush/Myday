@@ -1,6 +1,7 @@
 import {
     userService
 } from "../services/userService.js";
+import { utilService } from '../services/utils.service.js'
 // import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 
@@ -49,8 +50,8 @@ export function signup(credentials) {
         try {
             const user = await userService.signup(credentials)
             const fullName = user.fullname.split(' ')
-            user.acronyms = `${fullName[0].substring(0, 1)}${fullName[1].substring(0, 1)}`
-            console.log('acronyms', user.acronyms);
+            user.acronyms = `${fullName[0].substring(0, 1)}${fullName[1].substring(0, 1)}`.toUpperCase()
+            user.userColor = utilService.getNiceRandomColor()
             dispatch({
                 type: 'SET_USER',
                 user

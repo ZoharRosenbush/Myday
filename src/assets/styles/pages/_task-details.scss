@@ -36,13 +36,21 @@
     }
   }
   .btns-container {
-    margin-left: 20px;
-    height: 32px;
+    // margin-left: 20px;
+    // height: 32px;
+    padding-left: 20px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid #e5e6ea;
+
     .details-features {
       font-family: 'roboto-regular';
       color: #48494e;
       border-radius: 4px;
       font-weight: 400;
+      padding-left: 20px;
+      // padding-bottom: 0px;
+      /* margin-bottom: 24px; */
+      /* height: 32px; */
       &:hover {
         background-color: #e6e9ef;
       }
@@ -72,7 +80,11 @@
       outline: none;
     }
   }
-
+  .update-area {
+    form {
+      margin-top: 20px;
+    }
+  }
   .update-area input {
     // font-size: 1.5rem;
     margin: 0;
@@ -137,32 +149,35 @@
       }
       .header-container {
         align-items: center;
-        justify-content: space-around;
+        // justify-content: space-around;
         width: 160px;
 
         .avatar {
           width: 40px;
           height: 40px;
-          background-color: #66cdff;
+          // background-color: #66cdff;
           border-radius: 50%;
           color: white;
           font-family: 'roboto-bold';
           font-size: 19px;
           line-height: 2;
-          margin-left: 11px;
-          padding-left: 11px;
+          margin-left: 20px;
+          // margin-right: 9px;
+          padding-left: 9px;
           padding-top: 2px;
         }
         .user-name {
           color: #323338;
           font-size: 14px;
           font-weight: 600;
+          margin-left: 9px;
           font-family: 'roboto-regular';
         }
         .active-circle {
           background-color: #00ca72;
           width: 10px;
           height: 10px;
+          margin-left: 5px;
           border-radius: 50%;
         }
       }

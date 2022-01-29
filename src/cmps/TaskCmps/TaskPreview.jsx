@@ -92,7 +92,7 @@ class _TaskPreview extends React.Component {
         if (isOwner !== -1) {
           if (task.owner.length === 1) {
             task.owner.splice(isOwner, 1, {
-              "fullname": "Guset",
+              "fullname": "Guest",
               "acronyms": "G",
               "_id": utilService.makeId(),
               "username": "guest",
@@ -233,7 +233,7 @@ class _TaskPreview extends React.Component {
 
 
   onUpdateTitleContent = ({ target }) => {
-    const { task, board, groupId, saveTask} = this.props;
+    const { task, board, groupId, saveTask } = this.props;
     const boardCopy = utilService.createDeepCopy(board)
     let { user } = this.props
     if (!user) {

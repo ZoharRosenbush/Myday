@@ -4,6 +4,8 @@ import { IoMdArrowDropdownCircle } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosColorFilter } from "react-icons/io";
 import { GrCircleAlert } from "react-icons/gr";
+import { AiOutlineCheck } from "react-icons/ai";
+import { HiOutlineX } from "react-icons/hi";
 import { Draggable } from "react-beautiful-dnd";
 import { DragDropContext } from "react-beautiful-dnd";
 import { GrDrag } from "react-icons/gr";
@@ -143,7 +145,19 @@ export class _GroupPreview extends React.Component {
   onAddTask = (ev) => {
 
     ev.preventDefault();
-    const { group, board, addTask, user } = this.props;
+    const { group, board, addTask } = this.props;
+    let { user } = this.props
+    if (!user) {
+      user = {
+
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     const activity = {
       "txt": `Created new task ${this.state.taskValue}`,
       "createdAt": Date.now(),
@@ -263,23 +277,24 @@ export class _GroupPreview extends React.Component {
             </div>
           )}
         {isModalToDelete && (
-          <section className="modal-delete">
-            <div className="flex title-modal-delete">
-              <div>
-                <GrCircleAlert />
-              </div>
+          < section className="modal-delete flex">
+
+            <div className="title-modal-delete">
+              {/* <div>
+    <GrCircleAlert color="white" />
+  </div> */}
               <span>Are you sure you want to delete?</span>
             </div>
-            <button
-              onClick={this.toggelModalDelete}
-              className="no-ans-delete"
-            >
-              No
-            </button>
-            <button onClick={this.onDeleteGroup} className="yes-ans-delete">
-              Yes
-            </button>
+            <div className="flex yes-no">
+              <button onClick={this.toggleModalDelete} className="no-ans-delete">
+                <HiOutlineX color="white" />
+              </button>
+              <button onClick={this.onDeleteGroup} className="yes-ans-delete">
+                <AiOutlineCheck color="white" />
+              </button>
+            </div>
           </section>
+
         )}
 
 

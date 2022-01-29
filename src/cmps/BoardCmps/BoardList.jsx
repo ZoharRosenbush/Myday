@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { BsThreeDots } from 'react-icons/bs'
 import { RiDeleteBinLine } from "react-icons/ri";
 import { GrCircleAlert } from "react-icons/gr";
+import { AiOutlineCheck } from "react-icons/ai";
+import { HiOutlineX } from "react-icons/hi";
 import { removeBoard, setActiveModal } from '../../store/board.action.js'
 
 
@@ -81,20 +83,22 @@ class _BoardList extends React.Component {
               }
               {isModalToDelete && (
 
-                < section className="modal-delete">
-                  <button onClick={() => { this.checkId(board._id) }}>checking</button>
-                  <div className="flex title-modal-delete">
-                    <div>
-                      <GrCircleAlert />
-                    </div>
+                < section className="modal-delete flex">
+
+                  <div className="title-modal-delete">
+                    {/* <div>
+                      <GrCircleAlert color="white" />
+                    </div> */}
                     <span>Are you sure you want to delete?</span>
                   </div>
-                  <button onClick={this.toggleModalDelete} className="no-ans-delete">
-                    No
-                  </button>
-                  <button onClick={this.onRemoveBoard} className="yes-ans-delete">
-                    Yes
-                  </button>
+                  <div className="flex yes-no">
+                    <button onClick={this.toggleModalDelete} className="no-ans-delete">
+                      <HiOutlineX color="white" />
+                    </button>
+                    <button onClick={this.onRemoveBoard} className="yes-ans-delete">
+                      <AiOutlineCheck color="white" />
+                    </button>
+                  </div>
                 </section>
               )
               }

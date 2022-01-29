@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { HiOutlineClock } from 'react-icons/hi'
-
+import { CgProfile } from 'react-icons/cg'
 function _TaskActivity({ board, task }) {
 
     function timeSince(date) {
@@ -31,22 +31,30 @@ function _TaskActivity({ board, task }) {
         }
         return Math.floor(seconds) + " sec";
     }
-    var aDay = 24 * 60 * 60 * 1000;
-    console.log(timeSince(new Date(Date.now() - aDay)));
-    console.log(timeSince(new Date(Date.now() - aDay * 2)));
+    // var aDay = 24 * 60 * 60 * 1000;
+    // console.log(timeSince(new Date(Date.now() - aDay)));
+    // console.log(timeSince(new Date(Date.now() - aDay * 2)));
 
-
+    // const { user } = this.props
 
     return (
+
+
         <React.Fragment>
             <div>
                 <div className="posts-container">
                     {(!!task.activities.length) && task.activities.map((activity) => {
+                        console.log('activity:', activity);
+                        console.log('activity.byMember.userColor:', activity.byMember.userColor);
+
                         return (
                             <div key={activity.id} className="flex post-container">
                                 <div className="time-ago"><HiOutlineClock />{timeSince(activity.createdAt)}</div>
-                                <div className="member-name">{activity.byMember.fullname}</div>
-                                <div className="avatar"> {activity.byMember.acronyms}</div>
+                                {/* <div className="member-name">{activity.byMember.fullname}</div> */}
+                                {activity.byMember.fullname !== 'Guest' ? <div className="avatar" style={{ backgroundColor: `${activity.byMember.userColor}` }} > {activity.byMember.acronyms}</div>
+                                    : <CgProfile style={{ fontSize: "27px", marginLeft: "3px", marginTop: "-2px" }} />}
+                                {/* <div className="user-avatar ME" style={{ backgroundColor: `${activity.byMember.userColor}` }}>{(user) ? user.acronyms : <CgProfile style={{ fontSize: "45px", marginLeft: "-10px", marginTop: "-2px" }} />}</div> */}
+
                                 <div className="task-name flex"><span>{activity.txt}</span></div>
                                 {/* <div className="owner"><span></span></div> */}
                             </div>
@@ -59,7 +67,7 @@ function _TaskActivity({ board, task }) {
 
             </div>
 
-        </React.Fragment>
+        </React.Fragment >
     )
 }
 
