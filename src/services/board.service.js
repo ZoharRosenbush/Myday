@@ -114,7 +114,7 @@ function getNewGroup(user) {
       }],
       timeline: ["Jan 17-22", "Jan 19-22"],
       owner: [{
-        "fullname": "Guset",
+        "fullname": "Guest",
         "acronyms": "G",
         "_id": utilService.makeId(),
         "username": "guest",
@@ -344,7 +344,7 @@ function getNewBoard(user) {
         }],
         timeline: ["Jan 17-22", "Jan 19-22"],
         owner: [{
-          "fullname": "Guset",
+          "fullname": "Guest",
           "acronyms": "G",
 
           "_id": utilService.makeId(),
@@ -378,7 +378,7 @@ function getNewBoard(user) {
         }],
         timeline: ["Jan 17-22", "Jan 19-22"],
         owner: [{
-          "fullname": "Guset",
+          "fullname": "Guest",
           "acronyms": "G",
 
           "_id": utilService.makeId(),
@@ -412,7 +412,7 @@ function getNewBoard(user) {
         }],
         timeline: ["Jan 17-22", "Jan 19-22"],
         owner: [{
-          "fullname": "Guset",
+          "fullname": "Guest",
           "acronyms": "G",
 
           "_id": utilService.makeId(),

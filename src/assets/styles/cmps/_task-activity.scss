@@ -1,6 +1,6 @@
 .posts-container {
   margin-left: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
   .post {
     margin-bottom: 20px;
   }
@@ -15,6 +15,7 @@
     .task-name {
       min-width: 250px;
       max-width: 250px;
+      margin-right: 20px;
       font-size: 14px;
     }
     .member-name {
@@ -31,7 +32,7 @@
       border-radius: 50%;
       height: 27px;
       width: 27px;
-      background-color: #66ccff;
+      // background-color: #66ccff;
       color: white;
       font-size: 16px;
       font-family: 'roboto-regular';

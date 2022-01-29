@@ -45,6 +45,9 @@ class _BoardApp extends React.Component {
         const { boards, board, user } = this.props
         console.log('board:', board);
         const bgColor = user ? user.userColor : "lightgray";
+        console.log('bgColor:', bgColor);
+        console.log('user:', user);
+
 
         return (
             <section className="app-layout">

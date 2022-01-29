@@ -145,7 +145,19 @@ export class _GroupPreview extends React.Component {
   onAddTask = (ev) => {
 
     ev.preventDefault();
-    const { group, board, addTask, user } = this.props;
+    const { group, board, addTask } = this.props;
+    let { user } = this.props
+    if (!user) {
+      user = {
+
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     const activity = {
       "txt": `Created new task ${this.state.taskValue}`,
       "createdAt": Date.now(),
