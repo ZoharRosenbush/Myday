@@ -66,6 +66,8 @@ class _BoardControllers extends React.Component {
     } else {
       this.setState((prevState) => (
         { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {
+          console.log('this.state:', this.state);
+          
           updateFilter(this.state.filterBy)
         }
       )
@@ -75,6 +77,20 @@ class _BoardControllers extends React.Component {
   openFilterModal = () => {
     this.setState({ isModalFilterOpen: !this.state.isModalFilterOpen })
   }
+
+
+  handleChangeMember = ({ target }) => {
+    // this.setClassName()
+    
+    const value = target.id
+    const field = "member"
+    console.log('value:', value);
+    // console.log('field:', field);
+    this.updateFilterBy(value, field)
+
+}
+
+
 
   render() {
     const { onAddGroup } = this.props;
@@ -148,7 +164,7 @@ class _BoardControllers extends React.Component {
                     <ul className="filter-list">
                       {board.members.map((member, idx) => {
                         return (
-                          <li key={idx} className="flex">
+                          <li key={idx} className="flex" id={member.username} onClick={this.handleChangeMember}>
                             <div className={`owner-name-circle ${member.acronyms}`} style={{backgroundColor:member.userColor}} >{member.acronyms}
                             </div>{(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}</li>
                         )

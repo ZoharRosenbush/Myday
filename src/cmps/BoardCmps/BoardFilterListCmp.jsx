@@ -14,6 +14,9 @@ class _BoardFilterListCmp extends React.Component {
         // this.setClassName()
         const value = target.innerText
         const field = target.dataset.field
+        console.log('value:', value);
+        console.log('field:', field);
+        
         // const id = target.dataset.id
         // this.setState({ isFilterBtnClicked: !this.state.isFilterBtnClicked })
         this.props.updateFilterBy(value, field)
