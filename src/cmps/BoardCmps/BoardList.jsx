@@ -41,6 +41,13 @@ class _BoardList extends React.Component {
     return className
   }
 
+  goToUrl = () => {
+    const { boards } = this.props
+    if (boards.length > 1) return `/myday/board/${boards[0]._id}`
+    if (boards.length === 1) return '/myday/board'
+  }
+
+
   render() {
     const { boards, board, activeModal } = this.props
     const { isModalToDelete } = this.state
@@ -85,6 +92,7 @@ class _BoardList extends React.Component {
 
                 < section className="modal-delete flex">
 
+
                   <div className="title-modal-delete">
                     {/* <div>
                       <GrCircleAlert color="white" />
@@ -95,14 +103,14 @@ class _BoardList extends React.Component {
                     <button onClick={this.toggleModalDelete} className="no-ans-delete">
                       <HiOutlineX color="white" />
                     </button>
-                    <button onClick={this.onRemoveBoard} className="yes-ans-delete">
+                    <Link className="clean-link" to={this.goToUrl}><button onClick={this.onRemoveBoard} className="yes-ans-delete">
                       <AiOutlineCheck color="white" />
-                    </button>
+                    </button></Link>
                   </div>
                 </section>
               )
               }
-              {isModalToDelete && <div className="main-screen"></div>}
+              {isModalToDelete && <div className="sticky-div"><div className="main-screen"></div></div>}
 
             </div>
           );

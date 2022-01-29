@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 // import { XlviLoader } from "react-awesome-loaders";
 import { BeatLoader } from 'react-spinners'
 import { Link } from 'react-router-dom'
-import { CgProfile } from "react-icons/cg";
 
+
+import { MiddlePage } from "./MiddlePage.jsx";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
+import { UserMsg } from "../cmps/UserMsg/UserMsg.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
 import two from '../assets/imgs/2.png'
-import BoardSvg from "../assets/svgs/BoardSvg.svg";
+
 import HomeLogo from "../assets/imgs/2day.png";
 import { utilService } from '../services/utils.service.js'
 
@@ -23,6 +25,24 @@ class _BoardApp extends React.Component {
 
 
     }
+
+    state = {
+        isTimeOut: false
+    }
+    timeoutId;
+
+    componentDidMount() {
+        this.hideLoader()
+
+    }
+
+    componentWillUnmount() {
+        if (this.timeoutId) clearTimeout(this.timeoutId)
+    }
+
+    // componentDidUpdate() {
+    // }
+
     // componentDidUpdate(prevProps, prevState) {
     //     console.log('did uypdate!');
     //     const { boards } = this.props
@@ -41,14 +61,26 @@ class _BoardApp extends React.Component {
         this.props.addBoard()
     }
 
+    hideLoader = () => {
+        console.log('lalal:');
+
+        console.log('this.state:', this.state);
+
+        this.timeoutId = setTimeout(() => {
+            this.setState({ isTimeOut: true }, () => {
+                console.log('this.state:', this.state);
+            })
+        }, 3000);
+
+    }
+
     render() {
+        const { isTimeOut } = this.state
         const { boards, board, user } = this.props
         console.log('board:', board);
         const bgColor = user ? user.userColor : "lightgray";
         console.log('bgColor:', bgColor);
         console.log('user:', user);
-
-
         return (
             <section className="app-layout">
                 <MainNav />
@@ -64,33 +96,14 @@ class _BoardApp extends React.Component {
                 {/* <MainNav />
                 <BoardNav /> */}
 
-                {!boards.length && <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />}
-                {boards.length && <section>
-                    <section className="board-page">
-                        <div className="flex hello-user">
-                            <p className="hello-user">{this.props.user ? "Hello " + this.props.user.username : "Hello Guest"}</p>
-                            <p className="board-page-avatar" style={{ backgroundColor: bgColor }}>{this.props.user ? this.props.user.acronyms : <CgProfile style={{ width: "100%", height: "100%" }} />}</p>
-                        </div>
-                        <div className="main-board-container">
-                            <div>
-                                <h1>
-                                    Work the way that
-                                </h1>
-                                <h1>
-                                    works <span>for you</span>
-                                </h1>
-                                <p>Add board and start planning your tasks</p>
-                                <button className="board-btn" onClick={this.onAddBoard}>Add new board</button>
-                            </div>
-                            <div className="board-img-container">
-                                <img src={BoardSvg} alt=""></img>
-                            </div>
-                        </div>
-                    </section>
-
-                </section>}
+                {!boards.length && !isTimeOut && <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />}
+                {!boards.length && isTimeOut && <MiddlePage user={user} bgColor={bgColor} onAddBoard={this.onAddBoard}/>}
+                {boards.length && !isTimeOut && <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />}
+                {boards.length && isTimeOut && <MiddlePage user={user} bgColor={bgColor} onAddBoard={this.onAddBoard}/>}
+                <UserMsg />
             </section>
-        );
+
+        )
     }
 }
 

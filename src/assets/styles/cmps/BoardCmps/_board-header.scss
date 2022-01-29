@@ -1,13 +1,16 @@
 section.board-header {
-  width: 100%;
-  height: 70px;
+  
+  // width: 100%;
+  // height: 70px;
   // position: sticky;
   // left:320px;
   // border-bottom: 1px solid rgba(0, 0, 0, 0.233);
-  margin: 0;
-  // z-index: 5;
+   // z-index: 5;
   // position: fixed;
-  margin-bottom: 130px;
+  // margin-bottom: 130px;
+  width: 100%;
+  margin: 0;
+  height: fit-content;
   position: sticky;
   left: 0;
   z-index: 200;
@@ -41,23 +44,22 @@ section.board-header {
   }
 
   .board-main-title {
-    display: grid;
-    grid-template-columns: 155px 100px ; 
-    grid-template-rows: 180px auto 100px;
-    grid-template-areas: "board-title  header" "main sidebar" "footer footer";
-
-    
+  
     width: 100%;
-    height: 55px;
+    height: fit-content;
+    margin-bottom: 10px;
 
     .board-title-container {
-    
+      display: flex; 
+      gap: 6px; ///MAYBE CHANGE IN DESKTOP
 
       .board-header-title {
         font-size: 1.5rem;
         margin: 0;
         padding: 3px;
-        // height: 2.5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         color: #323338;
         font-weight: 600;
         font-family: roboto-regular;
@@ -66,7 +68,8 @@ section.board-header {
         // height: fit-content;
         // line-height: 3;
         // margin-block-start: 0;
-        // margin-block-end: 0;
+        // margin-block-end: 0; 
+        // height: 2.5rem;
         &:hover {
           border: 0.5px solid #c5c7d0;
           border-radius: 4px;
@@ -96,12 +99,26 @@ section.board-header {
   }
 
   div.board-header-btns {
-    // line-height: 6;
     margin-right: 2%;
-    gap: 10px;
+    column-gap: 10px;
+    flex-wrap: wrap;
+    row-gap: 5px;
     align-items: center;
 
+    .dots-icon{
+      grid-area: more;
+      
+    }
+    
+    .invite{
+      grid-area: invite;
+    }
+    .activity{
+      grid-area: activity;
+    }
+
     .last-seen-members {
+      grid-area: last-seen;
       justify-content: center;
       cursor: pointer;
       align-items: center;
@@ -114,9 +131,9 @@ section.board-header {
         margin: 0px 11px 0px 0px;
       }
 
-      .LT,
-      .HG,
-      .AL {
+      .LS,
+      .ME,
+      .ZR {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -131,12 +148,20 @@ section.board-header {
         padding: 4px;
         vertical-align: middle;
         font-size: 14px;
+        color: white;
       }
     }
 
     div.icon-btn-container.plus-board {
       border: 0.5px solid #c5c7d0;
-      min-width: 130px;
+      min-width: 145px;
+      max-width: 145px;
+      
+      button{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
   }
   .board-description {
@@ -157,7 +182,7 @@ section.board-header {
   }
   .board-header-top {
     color: #323338;
-    margin: 10px 0px;
+    margin: 12px 0px;
     // border-bottom: 1px solid #e6e9ef;
   }
 }
@@ -188,12 +213,22 @@ section.board-header {
   
     .board-title-container {
       display: flex;
+        gap: 4px; 
       align-items: center;
-          .board-header-title {
-
-          }
-        
       }
+    }
+    div.board-header-btns {
+      column-gap: 10px;
+      row-gap: 0px;
+      flex-wrap: wrap;
+      
+
+      div.icon-btn-container.plus-board {
+        min-width: 130px;
+        max-width: 130px;
+      }
+
+
     }
   }
 }

@@ -58,15 +58,15 @@ export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user
                 <p>Last seen</p>
                 {board.members &&
                   board.members.map((member, idx) => {
-                    return <div key={idx} className={member.acronyms}>{member.acronyms}</div>
+                    return <div key={idx} style={{backgroundColor: member.userColor}} className={member.acronyms}>{member.acronyms}</div>
                   })}
               </div>
 
-              <div className="icon-btn-container flex">
+              <div className="icon-btn-container invite flex">
                 <BsPersonPlus />
                 <button>  Invite / 3</button>
               </div>
-              <div className="icon-btn-container flex">
+              <div className="icon-btn-container activity flex">
                 <BsGraphUp />
                 <button>Activity</button>
               </div>
@@ -74,7 +74,7 @@ export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user
                 <AiOutlinePlus />
                 <button>Add to board</button>
               </div>
-              <div className="icon-btn-container flex">
+              <div className="icon-btn-container dots-icon flex">
                 <button className="flex align-center dots" ><BsThreeDots /></button>
               </div>
             </div>
