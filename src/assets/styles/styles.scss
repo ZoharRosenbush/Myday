@@ -1,4 +1,3 @@
-
 //SETUP
 @import 'setup/functions';
 @import 'setup/mixins';
@@ -25,6 +24,7 @@
 @import './cmps/_group-preview';
 @import './cmps/_group-list';
 @import './cmps/_task-preview';
+@import './cmps/_task-files';
 @import './cmps/task-activity';
 @import './cmps/task-updates';
 @import './cmps/loader';
