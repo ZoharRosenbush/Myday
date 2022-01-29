@@ -58,7 +58,7 @@ export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user
                 <p>Last seen</p>
                 {board.members &&
                   board.members.map((member, idx) => {
-                    return <div key={idx} className={member.acronyms}>{member.acronyms}</div>
+                    return <div key={idx} style={{backgroundColor: member.userColor}} className={member.acronyms}>{member.acronyms}</div>
                   })}
               </div>
 

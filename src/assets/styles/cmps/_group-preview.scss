@@ -33,7 +33,23 @@
   padding: 16px 15px;
   box-shadow: 0 0 12px 1px #00000075;
 }
+.labels-modal.members {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  /* justify-content: initial; */
+  align-items: start;
+  position: absolute;
+  z-index: 10;
+  width: 149px;
+  background: white;
+  padding: 16px 10px;
+  box-shadow: 0 0 12px 1px #00000075;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
+}
 .group-title {
   text-align: start;
   white-space: nowrap;
@@ -235,7 +251,8 @@ div.group-color {
 }
 
 .title-modal-delete {
-  flex-direction: column;
+  // flex-direction: column;
+  margin-top: 10px;
 
   div {
     margin: 10px auto;
@@ -244,40 +261,82 @@ div.group-color {
 
 .no-ans-delete,
 .yes-ans-delete {
-  font-family: roboto-light, helvetica, sans-serif;
-  height: 32px;
+  // font-family: roboto-light, helvetica, sans-serif;
+  // height: 32px;
+  // font-size: 0.875rem;
+  // padding: 4px 8px;
+  // font-weight: 400;
+  // line-height: 22px;
+  // border: none;
+  // border-radius: 4px;
+  // color: #fff;
+  // width: 90px;
+  // margin-top: 4px;
+  font-family: 'roboto-light';
+  height: 30px;
   font-size: 0.875rem;
   padding: 4px 8px;
+  padding-top: 5px;
   font-weight: 400;
   line-height: 22px;
-  border: none;
+  border: 1px white solid;
   border-radius: 4px;
   color: #fff;
-  width: 90px;
+  width: 50px;
   margin-top: 4px;
+  font-weight: 600;
+  background-color: #d1040400;
 }
 
 .yes-ans-delete {
-  background-color: #0073ea;
+  transition: 0.5s;
+  // background-color: #0073ea;
+  &:hover {
+    background-color: #00c8754f;
+  }
 }
 
 .no-ans-delete {
-  background-color: ($red);
+  transition: 0.5s;
+  // background-color: ($red);
   margin-inline-end: 5px;
+  &:hover {
+    background-color: #e2445c4a;
+  }
 }
 
 .modal-delete {
   // padding: 7%;
-  padding: 15px;
-  padding-bottom: 20px;
-  width: 328px;
-  box-shadow: -1px 1px 8px 0px rgb(16 15 15 / 26%);
+  // padding: 15px;
+  // padding-bottom: 20px;
+  // width: 328px;
+  // box-shadow: -1px 1px 8px 0px rgb(16 15 15 / 26%);
+  // text-align: center;
+  // position: fixed;
+  // top: 25vh;
+  // left: 40vw;
+  // background-color: $white;
+  // z-index: 400;
+  width: 395px;
+  gap: 20px;
+  height: 115px;
+  box-shadow: 2px 6px 9px 0px rgb(16 15 15 / 19%);
   text-align: center;
   position: fixed;
   top: 25vh;
   left: 40vw;
-  background-color: $white;
+  background-color: #fff;
   z-index: 400;
+  background-color: #292f4c;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  gap: 12px;
+  justify-content: space-around;
+  padding: 38px 30px 20px 30px;
+  .yes-no {
+    gap: 5px;
+  }
 }
 
 .Owners {

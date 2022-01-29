@@ -31,9 +31,7 @@ export class _BoardNav extends React.Component {
     //TODO: NEVIGATE THE PAGE TO THE NEW BOARD LINK
     // window.location.href = `/myday/board/${newBoard._id}`
   }
-  onRemoveBoard = (boardId) => {
-    this.props.removeBoard(boardId)
-  }
+
   render() {
     const { boards } = this.props
     const { isBoardNavOpen } = this.state
@@ -58,7 +56,7 @@ export class _BoardNav extends React.Component {
                 <AiOutlineSearch size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
                 Search</button>
             </div>
-            {boards && <BoardList boards={boards} onRemoveBoard={this.onRemoveBoard} />}</section>
+            {boards && <BoardList boards={boards}/>}</section>
         }
       </React.Fragment>
       // </div>

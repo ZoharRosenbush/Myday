@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { AiOutlineLike } from 'react-icons/ai'
 import { BsReply, BsBell } from 'react-icons/bs'
 import { HiOutlineClock } from 'react-icons/hi'
+import { CgProfile } from 'react-icons/cg'
 
 import { utilService } from "../../services/utils.service.js";
 import { saveTask } from '../../store/board.action.js'
@@ -92,7 +93,9 @@ class _TaskUpdates extends React.Component {
 
                                         <div className="post-header flex">
                                             <div className="header-container flex">
-                                                <div className="avatar">{comment.byMember.acronyms}</div>
+                                                {comment.byMember.fullname !== 'Guest' ? <div className="avatar" style={{ backgroundColor: `${comment.byMember.userColor}` }} > {comment.byMember.acronyms}</div>
+                                                    : <CgProfile style={{ fontSize: "40px", marginLeft: "13px", marginTop: "-2px" }} />}
+
                                                 <div className="user-name">{comment.byMember.fullname}</div>
                                                 <div className="active-circle"></div>
                                             </div>

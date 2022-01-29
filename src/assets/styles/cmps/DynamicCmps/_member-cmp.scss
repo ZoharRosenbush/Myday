@@ -32,9 +32,9 @@
 //     color: white;
 // }
 
-.LT,
-.HG,
-.AL,
+.ME,
+.LS,
+.ZR,
 .user-avatar {
   font-family: 'roboto-regular';
   border-radius: 50%;
@@ -55,7 +55,12 @@ G {
   div {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 0px;
+
   }
 }
 

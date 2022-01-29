@@ -64,7 +64,7 @@ class _ProgressBarPriority extends React.Component {
         <div className="priority-bar">
           <div
             className="progress-div"
-            // title={High}
+            title={High + "%"}
             style={{
               width: High + "%",
               backgroundColor: "#225091",
@@ -72,7 +72,7 @@ class _ProgressBarPriority extends React.Component {
           ></div>
           <div
             className="progress-div"
-            // title={Medium}
+            title={Medium + "%"}
             style={{
               width: Medium + "%",
               backgroundColor: "#0086c0",
@@ -80,7 +80,7 @@ class _ProgressBarPriority extends React.Component {
           ></div>
           <div
             className="progress-div"
-            // title={Low}
+            title={Low + "%"}
             style={{
               width: Low + "%",
 
@@ -89,7 +89,7 @@ class _ProgressBarPriority extends React.Component {
           ></div>
           <div
             className="progress-div"
-            // title={Empty}
+            title={Empty + "%"}
             style={{
               width: Empty + "%",
 
