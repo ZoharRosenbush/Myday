@@ -17,6 +17,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { login, signup } from '../store/user.action.js';
+import {utilService} from '../services/utils.service.js'
 
 const theme = createTheme();
 // console.log('theme', theme);
@@ -56,10 +57,15 @@ class _LoginSignup extends React.Component {
             };
             if (!username.username || !username.password) return;
             const user = await this.props.login(username)
+            console.log('user in login',user);
             { user && this.props.history.push('/myday/board'); }
 
         } else {
             if (!user.username || !user.password || !user.fullname) return;
+            if (!user.fullname.includes(' ')) return
+            user.acronyms = utilService.getUserAcronyms(user)
+            user.userColor = utilService.getNiceRandomColor()
+            // console.log('the user after additions',user);
             this.props.signup(user)
             this.props.history.push('/myday/board');
         }

@@ -52,6 +52,7 @@ class _TaskPreview extends React.Component {
     const { task, saveTask, groupId, board } = this.props;
     const boardCopy = utilService.createDeepCopy(board)
     let { user } = this.props
+    console.log('user in task preview',user)
     if (!user) {
       user = {
         "fullname": "Guest",

@@ -110,7 +110,7 @@ class _BoardList extends React.Component {
                 </section>
               )
               }
-              {isModalToDelete && <div className="sticky-div"><div className="main-screen"></div></div>}
+              {isModalToDelete && <div className="main-screen"></div>}
 
             </div>
           );

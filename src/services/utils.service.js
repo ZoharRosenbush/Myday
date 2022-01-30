@@ -3,7 +3,8 @@ export const utilService = {
   makeId,
   getNiceRandomColor,
   createDeepCopy,
-  timeSince
+  timeSince,
+  getUserAcronyms
 }
 
 
@@ -23,6 +24,11 @@ function makeId(length = 4) {
   return text;
 }
 
+function getUserAcronyms(user) {
+  const fullName = user.fullname.split(' ')
+  return `${fullName[0].substring(0, 1)}${fullName[1].substring(0, 1)}`.toUpperCase()
+}
+
 function getNiceRandomColor() {
   let red = "#E2445C";
   let orange = "#FDAB3D";
@@ -36,6 +42,7 @@ function getNiceRandomColor() {
   let randColor = niceColors[drawnNum];
   return randColor;
 }
+
 function _getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
