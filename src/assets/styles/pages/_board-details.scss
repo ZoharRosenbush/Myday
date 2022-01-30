@@ -4,9 +4,10 @@ section.board-container {
 }
 
 section.board-container-open-nav {
-  margin-left: 60px;
+  margin-left: 15px;
   overflow-x: auto;
 }
+
 
 .sticky-div{
   position: sticky;
@@ -42,6 +43,5 @@ section.board-container-open-nav {
 @media (min-width: 992px) {
   section.board-container {
 
-    margin-left: -180px;
-  }
+    margin-left: -200px;  }
 }

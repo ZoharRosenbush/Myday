@@ -1,8 +1,9 @@
 .dashboard-container {
     box-sizing: border-box;
-    width: 100%;
-    // margin-left: 20px;
+    width: 100vw;
+    margin-left: -210px;
     overflow-y: auto;
+    overflow-x: auto;
 
     section.board-header {
         width: 100%;
@@ -16,17 +17,23 @@
     }
 }
 
+.dashboard-container-open-nav{
+    margin-left: 15px;
+    overflow-x: auto;
+    width: 100vw;
+}
+
 .groups-count-container,
 .tasks-count-container,
 .members-count-container {
-    height: 81px;
-    width: 223px;
+    height: 70px;
+    width: 190px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     gap: 10px;
-    font-size: 20px;
+    font-size: 17px;
 
     span {
         color: white;
@@ -69,10 +76,10 @@
 .counts-container {
     display: flex;
     gap: 20px;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 30px;
-    justify-content: space-around;
-    // background-color: $cell-color;
+    justify-content: start;
+    margin-left: 25px;
 }
 
 
@@ -83,13 +90,11 @@
     grid-template-columns: 45% 45%;
     grid-column-gap: 50px;
     grid-row-gap: 20px;
-    margin-left: 20px;
-    // background-color: $cell-color;
+    margin-left: 25px;
 
-    >*:not(:first-child) {
+    >*:not(:last-child) {
         box-shadow: 0 0 5px 0px #0000001e;
         border-radius: 10px;
-
         background-color: $cell-color;
         padding-left: 5px;
     }
@@ -119,7 +124,8 @@
 }
 
 .pai-container {
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
     margin: 0 auto;
+    grid-column: 1/-1;
 }

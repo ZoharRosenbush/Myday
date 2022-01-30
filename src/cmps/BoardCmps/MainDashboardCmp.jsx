@@ -19,10 +19,10 @@ class _MainDashboardCmp extends React.Component {
             <section className="main-dashboard flex">
                 <div className="main-table-container flex">
                     <div><GrHomeRounded /></div>
-                    <Link className="clean-link" to={`/myday/board/${board._id}`}>  <span>Main Table</span></Link>
+                    <Link className="clean-link" to={`/myday/board/${board._id}`}><span>Main Table</span></Link>
     
                 </div> 
-                <div className="dashboard-container">
+                <div className="dashboard-btn">
                 <Link className="clean-link" to={`/myday/board/${board._id}/dashboard`}> <span> Dashboard</span></Link>
                 </div>
             </section>
