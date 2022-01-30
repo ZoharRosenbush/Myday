@@ -158,39 +158,43 @@ export function saveGroup(groupToSave, boardToSave) {
   )
   boardToSave.groups[groupIdx] = groupToSave
 
-  return async (dispatch) => {
-    _setBackupBoard(dispatch)
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: boardToSave,
-      });
-      await boardService.saveBoard(boardToSave)
-    } catch (err) {
-      _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-      console.log('Err in saving board:', err);
-    }
-  }
+  return saveBoard(boardToSave)
+
+  // return async (dispatch) => {
+  //   _setBackupBoard(dispatch)
+  //   try {
+  //     dispatch({
+  //       type: "SET_BOARD",
+  //       board: boardToSave,
+  //     });
+  //     await boardService.saveBoard(boardToSave)
+  //   } catch (err) {
+  //     _restoreBoard(dispatch)
+  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+  //     console.log('Err in saving board:', err);
+  //   }
+  // }
 }
 
 export function addGroup(boardToSave, user) {
   const newGroup = boardService.getNewGroup(user)
   boardToSave.groups.unshift(newGroup);
-  return async (dispatch) => {
-    _setBackupBoard(dispatch)
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: boardToSave,
-      });
-      await boardService.saveBoard(boardToSave)
-    } catch (err) {
-      _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-      console.log('Err in saving board:', err);
-    }
-  }
+
+  return saveBoard(boardToSave)
+  // return async (dispatch) => {
+  //   _setBackupBoard(dispatch)
+  //   try {
+  //     dispatch({
+  //       type: "SET_BOARD",
+  //       board: boardToSave,
+  //     });
+  //     await boardService.saveBoard(boardToSave)
+  //   } catch (err) {
+  //     _restoreBoard(dispatch)
+  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+  //     console.log('Err in saving board:', err);
+  //   }
+  // }
 }
 
 export function deleteGroup(groupId, boardToSave) {
@@ -199,20 +203,22 @@ export function deleteGroup(groupId, boardToSave) {
   });
   boardToSave.groups = filteredGroups
 
-  return async (dispatch) => {
-    _setBackupBoard(dispatch)
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: boardToSave,
-      });
-      await boardService.saveBoard(boardToSave)
-    } catch (err) {
-      _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-      console.log('Err in saving board:', err);
-    }
-  }
+  return saveBoard(boardToSave)
+
+  // return async (dispatch) => {
+  //   _setBackupBoard(dispatch)
+  //   try {
+  //     dispatch({
+  //       type: "SET_BOARD",
+  //       board: boardToSave,
+  //     });
+  //     await boardService.saveBoard(boardToSave)
+  //   } catch (err) {
+  //     _restoreBoard(dispatch)
+  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+  //     console.log('Err in saving board:', err);
+  //   }
+  // }
 }
 
 
@@ -224,20 +230,22 @@ export function deleteTask(taskId, groupId, boardToSave) {
     return task.id !== taskId;
   })
   boardToSave.groups[groupIdx].tasks = filteredTasks;
-  return async (dispatch) => {
-    _setBackupBoard(dispatch)
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: boardToSave,
-      });
-      await boardService.saveBoard(boardToSave)
-    } catch (err) {
-      _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-      console.log('Err in saving board:', err);
-    }
-  }
+
+  return saveBoard(boardToSave)
+  // return async (dispatch) => {
+  //   _setBackupBoard(dispatch)
+  //   try {
+  //     dispatch({
+  //       type: "SET_BOARD",
+  //       board: boardToSave,
+  //     });
+  //     await boardService.saveBoard(boardToSave)
+  //   } catch (err) {
+  //     _restoreBoard(dispatch)
+  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+  //     console.log('Err in saving board:', err);
+  //   }
+  // }
 }
 
 
@@ -249,20 +257,21 @@ export function addTask(taskTitle, groupId, boardToSave, user, activity) {
 
   const groupIdx = boardToSave.groups.findIndex((group) => groupId === group.id);
   boardToSave.groups[groupIdx].tasks.push(newTask);
-  return async (dispatch) => {
-    _setBackupBoard(dispatch)
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: boardToSave,
-      });
-      await boardService.saveBoard(boardToSave)
-    } catch (err) {
-      _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-      console.log('Err in saving board:', err);
-    }
-  }
+  return saveBoard(boardToSave)
+  // return async (dispatch) => {
+  //   _setBackupBoard(dispatch)
+  //   try {
+  //     dispatch({
+  //       type: "SET_BOARD",
+  //       board: boardToSave,
+  //     });
+  //     await boardService.saveBoard(boardToSave)
+  //   } catch (err) {
+  //     _restoreBoard(dispatch)
+  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+  //     console.log('Err in saving board:', err);
+  //   }
+  // }
 }
 
 export function saveTask(taskToSave, groupId, boardToSave, user, activity, comment) {
@@ -283,20 +292,22 @@ export function saveTask(taskToSave, groupId, boardToSave, user, activity, comme
     return task.id === taskToSave.id ? taskToSave : task
   });
   boardToSave.groups[groupIdx].tasks = updatedtasks
-  return async (dispatch) => {
-    _setBackupBoard(dispatch)
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: boardToSave,
-      });
-      await boardService.saveBoard(boardToSave)
-    } catch (err) {
-      _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-      console.log('Err in saving board:', err);
-    }
-  }
+  return saveBoard(boardToSave)
+
+  // return async (dispatch) => {
+  //   _setBackupBoard(dispatch)
+  //   try {
+  //     dispatch({
+  //       type: "SET_BOARD",
+  //       board: boardToSave,
+  //     });
+  //     await boardService.saveBoard(boardToSave)
+  //   } catch (err) {
+  //     _restoreBoard(dispatch)
+  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+  //     console.log('Err in saving board:', err);
+  //   }
+  // }
 }
 
 

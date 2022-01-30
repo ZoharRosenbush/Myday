@@ -121,10 +121,10 @@ class _BoardControllers extends React.Component {
               </div>}
           </div>
 
-          <div className="controller-opt">
+          {/* <div className="controller-opt">
             <BsPersonCircle />
             <button>Person</button>
-          </div>
+          </div> */}
           <div className="controller-opt">
             <FiFilter />
             <button onClick={this.openFilterModal}>Filter</button>
@@ -171,11 +171,10 @@ class _BoardControllers extends React.Component {
           )
           }
           <div className="controller-opt">
-            {" "}
             <BiSortAlt2 />
             <button>Sort</button>
           </div>
-          <div className="controller-opt">
+          {/* <div className="controller-opt">
             <BsPinAngle />
           </div>
           <div className="controller-opt">
@@ -183,7 +182,7 @@ class _BoardControllers extends React.Component {
           </div>
           <div className="controller-opt">
             <BiColorFill />
-          </div>
+          </div> */}
         </section >
       </div>
     );

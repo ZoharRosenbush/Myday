@@ -62,11 +62,11 @@ export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user
                   })}
               </div>
 
-              <div className="icon-btn-container flex">
+              <div className="icon-btn-container invite flex">
                 <BsPersonPlus />
                 <button>  Invite / 3</button>
               </div>
-              <div className="icon-btn-container flex">
+              <div className="icon-btn-container activity flex">
                 <BsGraphUp />
                 <button>Activity</button>
               </div>
@@ -74,7 +74,7 @@ export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user
                 <AiOutlinePlus />
                 <button>Add to board</button>
               </div>
-              <div className="icon-btn-container flex">
+              <div className="icon-btn-container dots-icon flex">
                 <button className="flex align-center dots" ><BsThreeDots /></button>
               </div>
             </div>

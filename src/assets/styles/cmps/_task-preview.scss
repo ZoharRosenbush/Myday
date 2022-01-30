@@ -13,7 +13,7 @@
     border-bottom: 1px solid #e6e9ef;
     background-color: #f5f6f8ed;
     box-shadow: 0 3px 4px -5px #484444;
-    width: 390px;
+    width: 160px;
     text-align: left;
     position: sticky;
     left: 0;
@@ -53,8 +53,11 @@
     }
   }
   .task-title-content {
-    width: 390px;
+    width: 160px;
     align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     .chat-icon-container {
       display: flex;
@@ -154,3 +157,22 @@
 //   cursor: -webkit-grab;
 //   cursor: auto;
 // }
+
+//TABLET AND DESKTOP
+
+@media (min-width: 640px) {
+
+  .task-preview {
+    .task-title-cell {
+
+      width: 390px;
+    }
+    .task-title-content {
+      width: 390px;
+    }
+
+
+
+
+}
+}

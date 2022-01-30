@@ -1,7 +1,7 @@
 .board-nav {
   min-width: 254px;
   max-width: 254px;
-  transform: translateX(-85%);
+  transform: translateX(-90%);
   border-right: 1px solid #e8eaf0;
   background-color: #f5f6f8;
   top: 0;
@@ -191,3 +191,14 @@
 // .board-nav button.open-nav-btn {
 //   margin-left: 94%;
 // }
+
+
+@media (min-width: 992px) {
+
+  .board-nav {
+    transform: translateX(-85%);
+  }
+
+
+
+}
