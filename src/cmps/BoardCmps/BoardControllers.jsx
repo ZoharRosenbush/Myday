@@ -83,7 +83,9 @@ class _BoardControllers extends React.Component {
 
 }
 
-
+filterAcronyms = () =>{
+  return false
+}
 
   render() {
     const { onAddGroup } = this.props;
@@ -158,9 +160,12 @@ class _BoardControllers extends React.Component {
                       {board.members.map((member, idx) => {
                         const className = (filterBy.member.includes(member.username)) && 'filterClicked'
                         return (
-                          <li key={idx}    className={`flex ${className}`} id={member.username} onClick={this.handleChangeMember}>
-                            <div className={`owner-name-circle ${member.acronyms}`} style={{backgroundColor:member.userColor}} >{member.acronyms}
-                            </div>{(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}</li>
+                          <li key={idx} className={`flex ${className}`} id={member.username} onClick={this.handleChangeMember}>
+                            <div className={`owner-name-circle ${member.acronyms}`} style={{backgroundColor:member.userColor}} onClick={this.filterAcronyms}>
+                              {member.acronyms}
+                            </div>
+                            {(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}
+                            </li>
                         )
                       })}
                     </ul>

@@ -1,51 +1,50 @@
-
-.main-dashboard{
+.main-dashboard {
     margin-bottom: 16px;
     border-bottom: 1px solid #e6e9ef;
     font-family: "roboto-regular", sans-serif;
     font-size: 15px;
 
-    span{
+    span {
         font-family: roboto-regular, helvetica, sans-serif;
         color: black;
     }
-    
-    .main-table-container{
+
+    .main-table-container {
         gap: 10px;
 
         cursor: pointer;
         max-width: 180px;
         min-width: 130px;
         padding: 8px 12px 8px 12px;
-        
-        
-        
         &:hover {
             background-color: #e6e9ef;
             border-radius: 4px;
         }
+
         // span{
-            //     // width: 100%;
-            //     // height: 100%;
-            //     overflow-x: hidden;
-            //     overflow-y: hidden;
-            //     text-overflow: ellipsis;
-            //     white-space: nowrap;
-            //     border: 1px solid transparent;
-            //     // padding: 0 2px;
-            // }
-        }
-        
-        .dashboard-container{
-            max-width: 180px;
-            padding: 8px 12px 8px 12px;
-            cursor: pointer;
-            &:hover {
+        //     // width: 100%;
+        //     // height: 100%;
+        //     overflow-x: hidden;
+        //     overflow-y: hidden;
+        //     text-overflow: ellipsis;
+        //     white-space: nowrap;
+        //     border: 1px solid transparent;
+        //     // padding: 0 2px;
+        // }
+    }
+
+    .dashboard-btn{
+        width: 100px;
+        padding: 8px 12px 8px 12px;
+        cursor: pointer;
+
+
+        &:hover {
             border-radius: 4px;
             background-color: #e6e9ef;
-          }
+        }
 
-          section.board-header{
+        section.board-header {
             width: 100%;
             height: 70px;
             margin: 0;
@@ -54,7 +53,7 @@
             margin-left: 20px;
             left: 0;
             z-index: 200;
-          }
-          
+        }
+
     }
 }

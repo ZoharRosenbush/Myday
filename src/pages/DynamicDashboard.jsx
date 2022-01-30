@@ -30,53 +30,57 @@ class _DynamicDashboard extends React.Component {
         board.groups.map(group => {
             tasksCount = tasksCount + group.tasks.length
         })
-        
+
 
         this.setState({ groupsCount, tasksCount, MembersCount })
     }
 
     render() {
+        const { isBoardNavOpen } = this.props;
 
-        return  <section className="app-layout">
-                  <MainNav />
-        <BoardNav />
-        <section className="dashboard-container">
-        <BoardHeader 
-        board={this.props.board} user={this.props.user}
-        />
-        {/* <section className="board-layout"> */}
+        const dashboardContainerClassName = isBoardNavOpen
+            ? "dashboard-container-open-nav"
+            : "dashboard-container";
+        return <section className="app-layout">
+            <MainNav />
+            <BoardNav />
+            <section className={dashboardContainerClassName}>
+                <BoardHeader
+                    board={this.props.board} user={this.props.user}
+                />
+                {/* <section className="board-layout"> */}
 
-            <div className="counts-container">
-            <div className="groups-count-container flex">
-                <span >Total groups </span><span>{this.state.groupsCount}</span><span><FaLayerGroup /></span>
-            </div>
-            <div className="tasks-count-container flex">
-                <span>Total tasks </span><span>{this.state.tasksCount}</span><span><FaTasks/></span>
-            </div>
-            <div className="members-count-container flex">
-                <span>Total members </span><span>{this.state.MembersCount}</span><span><MdPeople/></span>
-            </div>
-            </div>
-            <div className="dashboards-container">
-            <div className="pai-container">
-                <DashboardPai />
-            </div>
-            <div >
-                <Dashboard labelType={"status"} />
-            </div>
-            <div>
-                <Dashboard labelType={"priority"} />
-            </div>
-          <div>
-            <Dashboard labelType= {"role"} />
-            </div>
-            <div>
-            <Dashboard  labelType= {"type"}  />
-        </div> 
+                <div className="counts-container">
+                    <div className="groups-count-container flex">
+                        <span >Total groups </span><span>{this.state.groupsCount}</span><span><FaLayerGroup /></span>
+                    </div>
+                    <div className="tasks-count-container flex">
+                        <span>Total tasks </span><span>{this.state.tasksCount}</span><span><FaTasks /></span>
+                    </div>
+                    <div className="members-count-container flex">
+                        <span>Total members </span><span>{this.state.MembersCount}</span><span><MdPeople /></span>
+                    </div>
+                </div>
+                <div className="dashboards-container">
+                    <div >
+                        <Dashboard labelType={"status"} />
+                    </div>
+                    <div>
+                        <Dashboard labelType={"type"} />
+                    </div>
+                    <div>
+                        <Dashboard labelType={"priority"} />
+                    </div>
+                    <div>
+                        <Dashboard labelType={"role"} />
+                    </div>
 
-            </div>
-                </section>
-        {/* </section> */}
+                    <div className="pai-container">
+                        <DashboardPai />
+                    </div>
+                </div>
+            </section>
+            {/* </section> */}
         </section>
     }
 }
@@ -84,6 +88,8 @@ function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.board,
         user: userModule.user,
+        isBoardNavOpen : boardModule.isBoardNavOpen
+
 
     }
 }

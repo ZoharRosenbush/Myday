@@ -5,6 +5,7 @@ import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai'
 import { BiFilterAlt } from 'react-icons/bi'
 import { BoardList } from "../BoardCmps/BoardList.jsx";
 import { loadBoards, addBoard, setBoardNav } from '../../store/board.action.js'
+import { utilService } from "../../services/utils.service.js";
 import { boardService } from "../../services/board.service.js";
 
 export class _BoardNav extends React.Component {
@@ -26,7 +27,19 @@ export class _BoardNav extends React.Component {
     })
   }
   onAddBoard = () => {
-    const { user } = this.props
+    let { user } = this.props
+
+    if (!user) {
+      user = {
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
+
     this.props.addBoard(user)
     //TODO: NEVIGATE THE PAGE TO THE NEW BOARD LINK
     // window.location.href = `/myday/board/${newBoard._id}`
@@ -56,7 +69,7 @@ export class _BoardNav extends React.Component {
                 <AiOutlineSearch size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
                 Search</button>
             </div>
-            {boards && <BoardList boards={boards}/>}</section>
+            {boards && <BoardList boards={boards} />}</section>
         }
       </React.Fragment>
       // </div>
