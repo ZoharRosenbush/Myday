@@ -92,6 +92,8 @@ export class _GroupPreview extends React.Component {
 
   checkIfTaskFiltered = (task) => {
     const { currFilterBy } = this.props
+    console.log('currFilterBy:', currFilterBy);
+    
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
       !currFilterBy.type.length &&
@@ -99,20 +101,15 @@ export class _GroupPreview extends React.Component {
       !currFilterBy.member.length) {
 
       return true
-
-
     }
-
-
     else {
-
       const isPriority = (currFilterBy.priority.includes(task.priority))
       const isStatus = (currFilterBy.status.includes(task.status))
       const isType = (currFilterBy.type.includes(task.type))
       const isRole = (currFilterBy.role.includes(task.role))
 
 
-      var isMember = true;
+      let isMember;
       task.owner.map(owner => {
         isMember = (currFilterBy.member.includes(owner.username))
       })
