@@ -5,6 +5,18 @@
   //     color: red;
   //     padding: 1em;
   //   }
+  .nofiles-container {
+    width: 100%;
+    margin: auto;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .nofiles {
+    padding-top: 40px;
+  }
   .add-file-btn {
     font-family: 'roboto-regular';
     color: #48494e;
@@ -61,7 +73,7 @@
   border: 0.5px solid #d8d6d6;
   height: 32px;
   margin-top: 20px;
-  margin-left: 20%;
+  margin-left: 50%;
 }
 .custom-file-input:hover::before {
   background-color: #e6e9ef;

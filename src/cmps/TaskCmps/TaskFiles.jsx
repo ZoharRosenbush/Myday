@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { utilService } from '../../services/utils.service'
 import { getImgUrl } from '../../services/cloudinary-service.js'
 import { saveTask } from "../../store/board.action";
+import nofiles from '../../assets/imgs/nofiles.PNG'
 export class _TaskFiles extends React.Component {
     state = {
         imageUrl: ""
@@ -78,7 +79,7 @@ export class _TaskFiles extends React.Component {
                     <form>
                         <input type="file" name="file" className="custom-file-input" onChange={(ev) => this.uploadImg(ev)}></input>
                     </form>
-                    {!task.files?.length && <h1>hello</h1>}
+                    {!task.files?.length && <div className="nofiles-container"><img className="nofiles" src={nofiles} alt=""></img></div>}
                     <section className=" imgs-container flex">
                         {(!!task.files?.length) && task.files.map((file) => {
                             return <section className="img-files-container flex">

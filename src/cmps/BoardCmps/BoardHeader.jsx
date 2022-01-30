@@ -13,11 +13,21 @@ import { addGroup, updateBoardTitle,saveBoard } from "../../store/board.action.j
 import {utilService} from '../../services/utils.service.js'
 
 
-export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user }) {
+export function _BoardHeader({ board,user, saveBoard, updateBoardTitle, addGroup}) {
 
   const boardCopy = utilService.createDeepCopy(board)
 
   function onAddGroup() {
+        if (!user) {
+            user = {
+                "fullname": "Guest",
+                "acronyms": "G",
+                "_id": utilService.makeId(),
+                "username": "guest",
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+                "userColor": "transparent"
+            }
+        }
     addGroup(boardCopy, user);
   }
 
@@ -103,7 +113,7 @@ export function _BoardHeader({ board, saveBoard, updateBoardTitle, addGroup,user
 
 function mapStateToProps({ userModule }) {
   return {
-    // user: userModule.user,
+    user: userModule.user,
   };
 }
 const mapDispatchToProps = {

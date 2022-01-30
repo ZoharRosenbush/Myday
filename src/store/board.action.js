@@ -20,6 +20,7 @@ export function loadBoards() {
 }
 
 export function loadBoard(boardId, currFilterBy = null) {
+  console.log('loading board 🐣!')
 
   return async (dispatch) => {
     try {
@@ -57,7 +58,7 @@ export function addBoard(user) {
 
 export function saveBoard(boardToSave) {
   return async (dispatch) => {
-    _setBackupBoard(dispatch)
+    // _setBackupBoard(dispatch)
     try {
       dispatch({
         type: "SET_BOARD",
@@ -65,8 +66,8 @@ export function saveBoard(boardToSave) {
       });
       await boardService.saveBoard(boardToSave)
     } catch (err) {
-      _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      // _restoreBoard(dispatch)
+      // _alertUser(dispatch, 'Failed to save board, please check your internet connection')
       console.log('Err in saving board:', err);
     }
   }
@@ -160,20 +161,6 @@ export function saveGroup(groupToSave, boardToSave) {
 
   return saveBoard(boardToSave)
 
-  // return async (dispatch) => {
-  //   _setBackupBoard(dispatch)
-  //   try {
-  //     dispatch({
-  //       type: "SET_BOARD",
-  //       board: boardToSave,
-  //     });
-  //     await boardService.saveBoard(boardToSave)
-  //   } catch (err) {
-  //     _restoreBoard(dispatch)
-  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-  //     console.log('Err in saving board:', err);
-  //   }
-  // }
 }
 
 export function addGroup(boardToSave, user) {
@@ -275,6 +262,7 @@ export function addTask(taskTitle, groupId, boardToSave, user, activity) {
 }
 
 export function saveTask(taskToSave, groupId, boardToSave, user, activity, comment) {
+  console.log('saving task 🌐');
 
   if (activity) {
     activity.id = utilService.makeId()
