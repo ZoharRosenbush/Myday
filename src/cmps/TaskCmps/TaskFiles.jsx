@@ -11,9 +11,22 @@ export class _TaskFiles extends React.Component {
     state = {
         imageUrl: ""
     }
+    componentDidMount() {
+        console.log('hello');
+    }
+    componentDidUpdate(prevProps) {
+        console.log('this.props.task:', this.props.task);
+
+        if (prevProps.task !== this.props.task) {
+            console.log('yes');
+        }
+    }
+
+
     uploadImg = async (ev) => {
-        const { task, board, groupId } = this.props
+        const { task, board, groupId, saveTask } = this.props
         let { user } = this.props
+
         if (!user) {
             user = {
                 "fullname": "Guest",
@@ -27,6 +40,7 @@ export class _TaskFiles extends React.Component {
         try {
             const url = await getImgUrl(ev)
             console.log('url:', url);
+            console.log('task:', task);
             // this.setState({ imageUrl: url })
             if (!task.files) {
                 task.files = [{
@@ -43,8 +57,9 @@ export class _TaskFiles extends React.Component {
                     url: url
                 })
             }
+            const taskToSave = { ...task }
             const boardToSave = utilService.createDeepCopy(board)
-            saveTask(task, groupId, boardToSave, user, null);
+            saveTask(taskToSave, groupId, boardToSave, user, null);
 
         } catch (err) {
             console.log('err:', err);
@@ -64,11 +79,13 @@ export class _TaskFiles extends React.Component {
                         <input type="file" name="file" className="custom-file-input" onChange={(ev) => this.uploadImg(ev)}></input>
                     </form>
                     {!task.files?.length && <h1>hello</h1>}
-                    {(!!task.files?.length) && task.files.map((file) => {
-                        return <section className="img-files-container flex">
-                            <img src={file.url} alt="" ></img>
-                        </section>
-                    })}
+                    <section className=" imgs-container flex">
+                        {(!!task.files?.length) && task.files.map((file) => {
+                            return <section className="img-files-container flex">
+                                <img src={file.url} alt="" ></img>
+                            </section>
+                        })}
+                    </section>
                 </section>
             </section>
         )

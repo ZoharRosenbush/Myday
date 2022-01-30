@@ -18,18 +18,23 @@
       background-color: #e6e9ef;
     }
   }
-  .img-files-container {
+  .imgs-container {
     flex-wrap: wrap;
-    width: 250px;
-    height: 145px;
-    border: 0.5px solid #bfbebe;
-    background-color: #fff;
-    img {
-      max-width: 220px;
-      max-height: 132px;
-      width: auto;
-      height: auto;
-      margin: auto;
+    gap: 15px;
+    margin-top: 20px;
+    .img-files-container {
+      flex-wrap: wrap;
+      width: 250px;
+      height: 145px;
+      border: 0.5px solid #bfbebe;
+      background-color: #fff;
+      img {
+        max-width: 220px;
+        max-height: 132px;
+        width: auto;
+        height: auto;
+        margin: auto;
+      }
     }
   }
 }

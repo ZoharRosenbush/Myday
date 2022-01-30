@@ -34,7 +34,7 @@ export class _TaskDetails extends React.Component {
         if (!board) return
         const currGroup = board.groups.find((group) => group.id === groupId)
         const currTask = currGroup.tasks.find((task) => task.id === taskId)
-        this.setState((prevState) => ({ ...prevState, task: currTask }))
+        this.setState((prevState) => ({ ...prevState, task: { ...currTask } }))
     }
 
     // getCurrTask = () => {
