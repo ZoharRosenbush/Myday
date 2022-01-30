@@ -82,16 +82,29 @@ export class _GroupPreview extends React.Component {
   };
 
 
+  checkIfTaskSearched = (task) => {
+    const { search } = this.props;
+    if (!search) return true
+    const taskText = search && (task.title.toLowerCase().includes(search.search.toLowerCase()))
+    return taskText
+
+  }
+
   checkIfTaskFiltered = (task) => {
-    const { currFilterBy, search } = this.props
+    const { currFilterBy } = this.props
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
       !currFilterBy.type.length &&
-      !currFilterBy.role.length && (!search) &&
+      !currFilterBy.role.length &&
       !currFilterBy.member.length) {
 
       return true
-    } else {
+
+
+    }
+
+
+    else {
 
       const isPriority = (currFilterBy.priority.includes(task.priority))
       const isStatus = (currFilterBy.status.includes(task.status))
@@ -103,8 +116,8 @@ export class _GroupPreview extends React.Component {
       task.owner.map(owner => {
         isMember = (currFilterBy.member.includes(owner.username))
       })
-      const taskText = search && (task.title.toLowerCase().includes(search.search.toLowerCase()))
-      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority || taskText)
+
+      const isTaskToShow = (isMember || isRole || isType || isStatus || isPriority)
       return isTaskToShow
     }
   }
@@ -410,8 +423,9 @@ export class _GroupPreview extends React.Component {
             >
               {group.tasks.map((task, idx) => {
                 const isTaskShown = this.checkIfTaskFiltered(task)
+                const isTaskSearch = this.checkIfTaskSearched(task)
                 return (
-                  isTaskShown && <Draggable key={task.id} draggableId={task.id} index={idx}>
+                  isTaskSearch && isTaskShown && <Draggable key={task.id} draggableId={task.id} index={idx}>
                     {(provided) => (
                       <section
                         {...provided.draggableProps}
