@@ -293,7 +293,7 @@ export function saveTask(taskToSave, groupId, boardToSave, user, activity, comme
   });
   boardToSave.groups[groupIdx].tasks = updatedtasks
   return saveBoard(boardToSave)
-  
+
   // return async (dispatch) => {
   //   _setBackupBoard(dispatch)
   //   try {
