@@ -465,7 +465,7 @@ export class _GroupPreview extends React.Component {
             {/* <div className="add-task-left"> */}
             <div className="input-container">
               <input
-                placeholder="Add task +"
+                placeholder="Add task+"
                 className="add-task"
                 onChange={this.onHandleChange}
                 value={this.state.taskValue}
