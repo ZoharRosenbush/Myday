@@ -71,12 +71,14 @@ export class _TaskFiles extends React.Component {
                         <input type="file" name="file" className="custom-file-input" placeholder="dshjhk" onChange={(ev) => this.uploadImg(ev)}></input>
                     </form>
                     {!task.files?.length && <div className="nofiles-container"><img className="nofiles" src={nofiles} alt=""></img></div>}
-                    <section className=" imgs-container flex">
-                        {(!!task.files?.length) && task.files.map((file) => {
-                            return <section className="img-files-container flex">
-                                <img src={file.url} alt="" ></img>
-                            </section>
-                        })}
+                    <section className="all-files-container">
+                        <section className="imgs-container flex">
+                            {(!!task.files?.length) && task.files.map((file) => {
+                                return <section className="img-files-container flex">
+                                    <img src={file.url} alt="" ></img>
+                                </section>
+                            })}
+                        </section>
                     </section>
                 </section>
             </section>
