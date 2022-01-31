@@ -1,9 +1,7 @@
 .board-controllers {
+  flex-wrap: wrap;
+  margin-left: 10px;
 
-    flex-wrap: wrap;
-    margin-left: 10px;
-    
-   
   .add-group-btn {
     font-family: roboto-regular, helvetica, sans-serif;
     height: 32px;
@@ -113,7 +111,7 @@
       background-color: #e6e9ef;
     }
     &.filterClicked {
-      background-color: #e6e9ef;
+      background-color: #cce5ffc2;
     }
   }
 }
@@ -173,20 +171,15 @@
   margin-left: 10px;
 }
 
-
 @media (min-width: 640px) {
-
   .board-controllers {
     width: fit-content;
   }
-
 }
 @media (min-width: 992px) {
-
   .board-controllers {
     flex-wrap: nowrap;
     margin-left: 10px;
     column-gap: 0px;
   }
-
 }

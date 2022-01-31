@@ -74,5 +74,8 @@ function timeSince(date) {
   if (interval > 1) {
     return Math.floor(interval) + " min";
   }
+  if (interval === 0) {
+    return "now";
+  }
   return Math.floor(seconds) + " sec";
 }

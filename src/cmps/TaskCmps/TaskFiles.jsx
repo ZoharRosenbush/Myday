@@ -12,16 +12,7 @@ export class _TaskFiles extends React.Component {
     state = {
         imageUrl: ""
     }
-    componentDidMount() {
-        console.log('hello');
-    }
-    componentDidUpdate(prevProps) {
-        console.log('this.props.task:', this.props.task);
 
-        if (prevProps.task !== this.props.task) {
-            console.log('yes');
-        }
-    }
 
 
     uploadImg = async (ev) => {
@@ -77,7 +68,7 @@ export class _TaskFiles extends React.Component {
             <section className="task-files">
                 <section>
                     <form>
-                        <input type="file" name="file" className="custom-file-input" onChange={(ev) => this.uploadImg(ev)}></input>
+                        <input type="file" name="file" className="custom-file-input" placeholder="dshjhk" onChange={(ev) => this.uploadImg(ev)}></input>
                     </form>
                     {!task.files?.length && <div className="nofiles-container"><img className="nofiles" src={nofiles} alt=""></img></div>}
                     <section className=" imgs-container flex">
