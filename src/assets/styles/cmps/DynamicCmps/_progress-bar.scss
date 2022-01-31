@@ -1,8 +1,9 @@
 .bar-container {
+
   display: flex;
   width: inherit;
   height: 40px;
-  margin-left: 436.5px;
+  margin-left: 225.5px;
   cursor: pointer;
 }
 
@@ -116,4 +117,17 @@ min-width: 139px;
   padding: 2px 2px;
   text-align: center;
 }
+}
+
+
+@media (min-width: 640px) {
+  .bar-container {
+    display: flex;
+    width: inherit;
+    height: 40px;
+    margin-left: 436.5px;
+    cursor: pointer;
+  }
+
+
 }

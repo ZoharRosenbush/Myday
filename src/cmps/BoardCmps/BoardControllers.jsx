@@ -204,10 +204,10 @@ class _BoardControllers extends React.Component {
               </div>
             </div>
           }
-          <div className="controller-opt">
+          {/* <div className="controller-opt">
             <BiSortAlt2 />
             <button>Sort</button>
-          </div>
+          </div> */}
           {/* <div className="controller-opt">
             <BsPinAngle />
           </div>
