@@ -154,7 +154,7 @@
       border: 0.5px solid #dbdde6;
       border-radius: 4px;
       // margin: 20px;
-      margin-right: 22px;
+      // margin-right: 22px;
       justify-content: space-between;
       flex-flow: column;
       .post-header {
@@ -194,6 +194,10 @@
             font-weight: 600;
             margin-left: 9px;
             font-family: 'roboto-regular';
+            max-width: 8ch;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
           .active-circle {
             background-color: #00ca72;
@@ -263,6 +267,12 @@
     .posts-container {
       .post {
         height: 233px;
+        & .post-header .header-container .user-name {
+          max-width: fit-content;
+          overflow: unset;
+          text-overflow: clip;
+          white-space: normal;
+        }
       }
       .post-title {
         margin-top: -75px;
@@ -275,7 +285,7 @@
       margin-top: 22px;
     }
     .update-area input {
-      width: 522px;
+      width: 508px;
     }
   }
 }

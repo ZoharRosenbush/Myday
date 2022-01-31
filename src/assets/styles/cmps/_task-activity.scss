@@ -24,6 +24,11 @@
       overflow: hidden;
       white-space: nowrap;
       margin-left: 12px;
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
     .member-name {
       min-width: 100px;
