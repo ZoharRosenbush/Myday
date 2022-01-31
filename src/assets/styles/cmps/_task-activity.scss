@@ -13,13 +13,11 @@
     padding-top: 18px;
     margin-right: 20px;
     .task-name {
-      min-width: 300px;
-      max-width: 300px;
-      margin-right: 60px;
+      max-width: 350px;
+      min-width: 350px;
       font-size: 14px;
       overflow: hidden;
       white-space: nowrap;
-      text-overflow: ellipsis;
     }
     .member-name {
       min-width: 100px;

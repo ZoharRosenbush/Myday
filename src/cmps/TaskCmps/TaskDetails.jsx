@@ -2,11 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { AiOutlineClose } from 'react-icons/ai'
+import { BeatLoader } from 'react-spinners'
 import { setTaskModal, saveTask } from '../../store/board.action.js'
 import { TaskUpdates } from "./TaskUpdates.jsx";
 import { TaskActivity } from './TaskActivity.jsx'
 import { TaskFiles } from './TaskFiles.jsx'
 import { utilService } from '../../services/utils.service'
+
 
 export class _TaskDetails extends React.Component {
     state = {
@@ -15,7 +17,12 @@ export class _TaskDetails extends React.Component {
         isActivity: false,
         isFiles: false
     }
+    loaderCSS = {
+        margin: "auto",
+        marginTop: "30vh",
 
+
+    }
     componentDidMount() {
         this.loadTask()
     }
@@ -48,6 +55,8 @@ export class _TaskDetails extends React.Component {
 
     onUpdateTaskTitle = ({ target }) => {
         const { board, saveTask } = this.props
+        const { groupId } = this.props.match.params
+        const { task } = this.state
         let { user } = this.props
         if (!user) {
             user = {
@@ -59,8 +68,6 @@ export class _TaskDetails extends React.Component {
                 "userColor": "transparent"
             }
         }
-        const task = this.getCurrTask()
-        const { groupId } = this.props.match.params
         const value = target.textContent;
         if (!value) return;
         const activity = {
@@ -69,6 +76,9 @@ export class _TaskDetails extends React.Component {
         }
         task.title = value;
         try {
+            console.log('task:', task);
+            console.log('activity:', activity);
+
             saveTask(task, groupId, board, user, activity);
         } catch (err) {
             console.log('error in updating board', err);
@@ -105,12 +115,13 @@ export class _TaskDetails extends React.Component {
     }
 
     render() {
-        const { isTaskDetailsOpen, board } = this.props;
+        const { board } = this.props;
         const { isUpdates, isActivity, isFiles, task } = this.state
         const { groupId } = this.props.match.params
-        const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
+        // const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
         console.log('board in task details', board)
-        if (!task || !board) return <div>Loading...</div>
+        if (!task || !board) return <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />
+
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
             <section className="task-details">
