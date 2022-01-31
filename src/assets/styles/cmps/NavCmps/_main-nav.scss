@@ -60,12 +60,12 @@
     line-height: 40px;
     font-weight: 500;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 10px 10px 23px 12px;
+    margin: 10px 10px 23px 9px;
     cursor: pointer;
   }
 }
 
-.user-modal{
+.user-modal {
   font-size: 14px;
   padding: 5px 20px;
   background-color: #fff;
@@ -79,32 +79,31 @@
   bottom: 5%;
   z-index: 30;
 
+  a {
+    p {
+      color: black;
+      height: 28px;
+      border-radius: 4px;
+      margin: 0;
 
-a{
-  p{
+      &:hover {
+        background-color: #f5f6f8;
+      }
+    }
+  }
+  p {
     color: black;
     height: 28px;
     border-radius: 4px;
     margin: 0;
-
-    &:hover{
+    &:hover {
       background-color: #f5f6f8;
     }
   }
 }
-p{
-  color: black;
-  height: 28px;
-  border-radius: 4px;
-  margin: 0;
-  &:hover{
-    background-color: #f5f6f8;
-  }
-}
-}
 
 @media (max-width: 640px) {
-  .main-nav.hidden{
+  .main-nav.hidden {
     display: none;
   }
 }

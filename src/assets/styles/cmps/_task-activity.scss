@@ -1,6 +1,8 @@
 .posts-container {
   margin-left: 20px;
   margin-top: 20px;
+  margin-right: 20px;
+
   .post {
     margin-bottom: 20px;
   }
@@ -8,19 +10,20 @@
     justify-content: space-between;
     height: 56px;
     border-bottom: 0.5px solid #e5e6ea;
-    padding: 8px 20px;
+    padding: 18px 0 0 0;
+    // margin-left: 0;
+
     // padding: 8px 0px;
-    padding-top: 18px;
-    margin-right: 20px;
+    // padding-top: 18px;
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     .task-name {
-      max-width: 350px;
-      min-width: 350px;
       font-size: 14px;
       overflow: hidden;
       white-space: nowrap;
+      margin-left: 12px;
     }
     .member-name {
       min-width: 100px;
@@ -38,7 +41,8 @@
     .avatar {
       border-radius: 50%;
       height: 27px;
-      width: 27px;
+      min-width: 27px;
+      max-width: 27px;
       color: white;
       font-size: 16px;
       font-family: 'roboto-regular';
@@ -49,4 +53,21 @@
     }
   }
 }
-//delete .posts-container in media query
+@media (min-width: 640px) {
+  .posts-container {
+    margin-left: 20px;
+    margin-top: 20px;
+
+    .post-container {
+      margin: 0;
+      padding: 18px 0 0 0;
+      .task-name {
+        max-width: 350px;
+        min-width: 350px;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
+}

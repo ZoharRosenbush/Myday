@@ -13,4 +13,6 @@ body {
 .app-layout {
   display: flex;
   height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }

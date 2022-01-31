@@ -88,34 +88,35 @@ class _BoardList extends React.Component {
 
                 </div>
               }
-              {isModalToDelete && (
 
-                < section className="modal-delete flex">
-
-
-                  <div className="title-modal-delete">
-                    {/* <div>
-                      <GrCircleAlert color="white" />
-                    </div> */}
-                    <span>Are you sure you want to delete?</span>
-                  </div>
-                  <div className="flex yes-no">
-                    <button onClick={this.toggleModalDelete} className="no-ans-delete">
-                      <HiOutlineX color="white" />
-                    </button>
-                    <Link className="clean-link" to={this.goToUrl}><button onClick={this.onRemoveBoard} className="yes-ans-delete">
-                      <AiOutlineCheck color="white" />
-                    </button></Link>
-                  </div>
-                </section>
-              )
-              }
-              {isModalToDelete && <div className="main-screen"></div>}
 
             </div>
           );
         })
         }
+        {isModalToDelete && (
+
+          < section className="modal-delete flex">
+
+
+            <div className="title-modal-delete">
+              {/* <div>
+      <GrCircleAlert color="white" />
+    </div> */}
+              <span>Are you sure you want to delete?</span>
+            </div>
+            <div className="flex yes-no">
+              <button onClick={this.toggleModalDelete} className="no-ans-delete">
+                <HiOutlineX color="white" />
+              </button>
+              <Link className="clean-link" to={this.goToUrl}><button onClick={this.onRemoveBoard} className="yes-ans-delete">
+                <AiOutlineCheck color="white" />
+              </button></Link>
+            </div>
+          </section>
+        )
+        }
+        {isModalToDelete && <div className="main-screen"></div>}
       </section >
     );
   }
