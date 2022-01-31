@@ -45,11 +45,25 @@ class _BoardControllers extends React.Component {
   hideSearchInput = () => {
     this.setState((prevState) => (
       { ...prevState, isSearchInputShown: false }), () => {
-
       })
-
   }
 
+
+  clearFilter = () => {
+    const { updateFilter } = this.props
+    this.setState({
+      filterBy: {
+        status: [],
+        priority: [],
+        type: [],
+        role: [],
+        member: []
+      }
+    }, () => {
+      updateFilter(this.state.filterBy)
+    })
+
+  }
 
   handleChange = ({ target }) => {
     const value = target.value
@@ -147,7 +161,11 @@ class _BoardControllers extends React.Component {
           {activeModal.cmpType === 'filter' &&
             <div style={{ position: "absolute" }}>
               <div className="filter-modal flex column" >
-                <div><p>Quick filters</p></div>
+                <div className="filter-headline"><p>Quick filters</p>
+                  <button className="clear-all-btn" onClick={this.clearFilter}>
+                    Clear all
+                  </button>
+                </div>
                 <div className="flex">
                   <div className="flex column-filter">
                     <span className="filterBy">Status</span>

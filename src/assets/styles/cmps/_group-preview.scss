@@ -49,7 +49,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
 }
 .group-title {
   text-align: start;
@@ -220,19 +219,19 @@ div.group-color {
 
 .group-modal {
   font-size: 14px;
-  line-height: 24px;
+  line-height: 30px;
   padding: 5px 20px;
   background-color: #fff;
   box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
   border-radius: 4px;
   cursor: pointer;
   width: 155px;
-  /* height: 65px; */
-  padding: 15px;
+  padding: 11px;
+  padding-left: 19px;
   position: absolute;
   z-index: 10;
-  margin-inline: 0.6em;
-  margin-block: 1.9em;
+  margin-inline: 2em;
+  margin-block: 2.2em;
 }
 
 .modal-group-items {

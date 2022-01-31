@@ -98,9 +98,10 @@ class _BoardDetails extends React.Component {
     // console.log('in board details', board)
     return (
       <section className="app-layout">
-        <Route path='/myday/board/:boardId/:groupId/:taskId' component={TaskDetails} />
+        {/* <Route path='/2day/board/:boardId/:groupId/:taskId' component={TaskDetails} /> */}
         <MainNav />
         <BoardNav />
+        <Route path='/2day/board/:boardId/:groupId/:taskId' component={TaskDetails} />
         <section className={boardContainerClassName}>
           <BoardHeader board={board} user={this.props.user} />
           <DragDropContext onDragEnd={this.onDragEnd}>
@@ -126,8 +127,8 @@ class _BoardDetails extends React.Component {
               </Droppable>
             )}
           </DragDropContext>
-          <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} />
-          {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
+          {/* <Route path="/2day/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
+          {/* <Route path="/2day/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
 
         </section>
         <UserMsg />

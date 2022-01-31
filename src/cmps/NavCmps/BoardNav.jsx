@@ -52,7 +52,7 @@ export class _BoardNav extends React.Component {
 
     this.props.addBoard(user)
     //TODO: NEVIGATE THE PAGE TO THE NEW BOARD LINK
-    // window.location.href = `/myday/board/${newBoard._id}`
+    // window.location.href = `/2day/board/${newBoard._id}`
   }
 
   render() {

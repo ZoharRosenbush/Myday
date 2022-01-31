@@ -2,19 +2,27 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { AiOutlineClose } from 'react-icons/ai'
+import { BeatLoader } from 'react-spinners'
 import { setTaskModal, saveTask } from '../../store/board.action.js'
 import { TaskUpdates } from "./TaskUpdates.jsx";
 import { TaskActivity } from './TaskActivity.jsx'
 import { TaskFiles } from './TaskFiles.jsx'
 import { utilService } from '../../services/utils.service'
 
+
 export class _TaskDetails extends React.Component {
     state = {
         task: null,
-        isUpdates: true,
-        isActivity: false,
-        isFiles: false
+
+        buttonClicked: "updates"
     }
+    loaderCSS = {
+        marginTop: "30vh",
+        position: "fixed",
+        left: "50vw"
+    }
+
+
 
     componentDidMount() {
         this.loadTask()
@@ -46,8 +54,16 @@ export class _TaskDetails extends React.Component {
     //     return currTask
     // };
 
+    setClassName = (btnClicked) => {
+        const { buttonClicked } = this.state
+        const className = (btnClicked === buttonClicked) ? 'active-details' : ''
+        return className
+    }
+
     onUpdateTaskTitle = ({ target }) => {
         const { board, saveTask } = this.props
+        const { groupId } = this.props.match.params
+        const { task } = this.state
         let { user } = this.props
         if (!user) {
             user = {
@@ -59,8 +75,6 @@ export class _TaskDetails extends React.Component {
                 "userColor": "transparent"
             }
         }
-        const task = this.getCurrTask()
-        const { groupId } = this.props.match.params
         const value = target.textContent;
         if (!value) return;
         const activity = {
@@ -69,6 +83,9 @@ export class _TaskDetails extends React.Component {
         }
         task.title = value;
         try {
+            console.log('task:', task);
+            console.log('activity:', activity);
+
             saveTask(task, groupId, board, user, activity);
         } catch (err) {
             console.log('error in updating board', err);
@@ -82,39 +99,34 @@ export class _TaskDetails extends React.Component {
 
     goToUpdates = () => {
         this.setState({
-            isUpdates: true,
-            isActivity: false,
-            isFiles: false
+            buttonClicked: "updates"
 
         })
     }
     goToActivity = () => {
         this.setState({
-            isUpdates: false,
-            isActivity: true,
-            isFiles: false
+            buttonClicked: "activity"
         })
     }
     goToFiles = () => {
         this.setState({
-            isUpdates: false,
-            isActivity: false,
-            isFiles: true
+            buttonClicked: "files"
 
         })
     }
 
     render() {
-        const { isTaskDetailsOpen, board } = this.props;
-        const { isUpdates, isActivity, isFiles, task } = this.state
+        const { board } = this.props;
+        const { buttonClicked, task } = this.state
         const { groupId } = this.props.match.params
-        const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
-        console.log('board in task details', board)
-        if (!task || !board) return <div>Loading...</div>
+        // const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
+        if (!task || !board)
+            return <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />
+
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
             <section className="task-details">
-                <Link className="clean-link" to={`/myday/board/${board._id}`}>
+                <Link className="clean-link" to={`/2day/board/${board._id}`}>
                     <div className="close-details" onClick={this.onCloseTaskDetails}>
                         <AiOutlineClose size='19px' color="rgb(122 122 122)" />
                     </div>
@@ -128,18 +140,18 @@ export class _TaskDetails extends React.Component {
                 </h2></div>
 
                 <div className="btns-container flex">
-                    <button className="details-features" onClick={this.goToUpdates}>Updates</button><span> |</span>
-                    <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span>
-                    <button className="details-features" onClick={this.goToActivity}>Activity Log</button> <span> |</span>
+                    <button onClick={this.goToUpdates} className="details-features"><span className={`details-span ${this.setClassName("updates")}`}>Updates</span></button><span> |</span>
+                    <button onClick={this.goToFiles} className="details-features"><span className={`details-span ${this.setClassName("files")}`}>Files</span></button> <span> |</span>
+                    <button onClick={this.goToActivity} className="details-features"><span className={`details-span ${this.setClassName("activity")}`}> Activity Log</span></button> <span> |</span>
                 </div>
-                {isUpdates && <TaskUpdates task={task} groupId={groupId} />}
-                {isActivity && <TaskActivity task={task} />}
-                {isFiles && <TaskFiles task={task} board={board} groupId={groupId} />}
+                {buttonClicked === "updates" && <TaskUpdates task={task} groupId={groupId} />}
+                {buttonClicked === "activity" && <TaskActivity task={task} />}
+                {buttonClicked === "files" && <TaskFiles task={task} board={board} groupId={groupId} />}
 
             </section>
 
 
-        </React.Fragment>
+        </React.Fragment >
 
     }
 }
@@ -159,5 +171,3 @@ const mapDispatchToProps = {
     saveTask
 }
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);
-
-

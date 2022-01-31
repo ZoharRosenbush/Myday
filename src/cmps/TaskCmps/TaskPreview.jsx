@@ -52,7 +52,6 @@ class _TaskPreview extends React.Component {
     const { task, saveTask, groupId, board } = this.props;
     const boardCopy = utilService.createDeepCopy(board)
     let { user } = this.props
-    console.log('user in task preview',user)
     if (!user) {
       user = {
         "fullname": "Guest",
@@ -85,7 +84,6 @@ class _TaskPreview extends React.Component {
         const isOwner = task.owner.findIndex((owner) => {
           return owner._id === data._id;
         });
-        console.log('isOwner:', isOwner);
 
         //removeing guest when adding owner
         if (task.owner[0]?.acronyms === "G") task.owner.splice(0, 1)
@@ -251,7 +249,7 @@ class _TaskPreview extends React.Component {
     if (!value) return;
     task.title = value;
     const activity = {
-      "txt": `Changed task title to ${value}}`,
+      "txt": `Changed task title to ${value}`,
       "createdAt": Date.now(),
     }
     saveTask(task, groupId, boardCopy, user, activity);
@@ -336,7 +334,7 @@ class _TaskPreview extends React.Component {
 
                   <button className="edit-task-title-btn" onClick={this.setFocus}>Edit</button>
                 </div>
-                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
+                <Link onClick={() => this.openTaskDetails()} to={`/2day/board/${board._id}/${group.id}/${task.id}`}>
                   <div className="chat-icon-container"
                   // onClick={() => this.openTaskDetails()}
                   >
@@ -358,8 +356,8 @@ class _TaskPreview extends React.Component {
                 />
               );
             })}
-            {/* <Route path="/myday/board/:boardId/:taskId" render={() => <TaskDetails group={group} />} /> */}
-            {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
+            {/* <Route path="/2day/board/:boardId/:taskId" render={() => <TaskDetails group={group} />} /> */}
+            {/* <Route path="/2day/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
 
             {/* <Route path="/greeting/:name" render={(props) => <Greeting text="Hello, " {...props} />} /> */}
 

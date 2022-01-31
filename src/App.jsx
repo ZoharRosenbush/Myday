@@ -19,7 +19,7 @@ export function App() {
                 <Switch>
                     {routes.map(route => <Route key={route.path} component={route.component} path={route.path} />)}
                     <Route exact component={Home} path={"/"} />
-                    {/* <Route exact component={BoardApp} path={"/myday/board"} /> */}
+                    {/* <Route exact component={BoardApp} path={"/2day/board"} /> */}
                 </Switch>
 
             </main>
