@@ -25,13 +25,18 @@
       background-color: #e6e9ef;
     }
   }
+
+  .all-files-container {
+    height: 800px;
+    overflow-y: auto;
+  }
   .imgs-container {
     flex-wrap: wrap;
     gap: 11px;
     margin-top: 20px;
-    overflow-y: auto;
     padding-bottom: 100px;
-    height: 800px;
+    height: fit-content;
+
     .img-files-container {
       flex-wrap: wrap;
       width: 250px;

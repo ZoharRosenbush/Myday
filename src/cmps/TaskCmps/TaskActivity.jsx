@@ -21,7 +21,9 @@ function _TaskActivity({ board, task }) {
                                 <div className="time-ago"><HiOutlineClock /><span>{utilService.timeSince(activity.createdAt)}</span></div>
                                 {/* <div className="member-name">{activity.byMember.fullname}</div> */}
                                 {activity.byMember.fullname !== 'Guest' ? <div className="avatar" style={{ backgroundColor: `${activity.byMember.userColor}` }} > {activity.byMember.acronyms}</div>
-                                    : <CgProfile color="grey" style={{ fontSize: "27px", marginLeft: "3px", marginTop: "-2px" }} />}
+                                    : <CgProfile color="grey" style={{
+                                        fontSize: "27px", marginLeft: "3px", marginTop: "-2px", maxWidth: "27px", minWidth: "27px"
+                                    }} />}
                                 {/* <div className="user-avatar ME" style={{ backgroundColor: `${activity.byMember.userColor}` }}>{(user) ? user.acronyms : <CgProfile style={{ fontSize: "45px", marginLeft: "-10px", marginTop: "-2px" }} />}</div> */}
 
                                 <div className="task-name flex"><span>{activity.txt}</span></div>
