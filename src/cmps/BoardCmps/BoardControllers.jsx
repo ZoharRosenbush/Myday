@@ -37,11 +37,25 @@ class _BoardControllers extends React.Component {
   hideSearchInput = () => {
     this.setState((prevState) => (
       { ...prevState, isSearchInputShown: false }), () => {
-
       })
-
   }
 
+
+  clearFilter = () => {
+    const { updateFilter } = this.props
+    this.setState({
+      filterBy: {
+        status: [],
+        priority: [],
+        type: [],
+        role: [],
+        member: []
+      }
+    }, () => {
+      updateFilter(this.state.filterBy)
+    })
+
+  }
 
   handleChange = ({ target }) => {
     const value = target.value
@@ -62,7 +76,7 @@ class _BoardControllers extends React.Component {
         })
     } else {
       this.setState((prevState) => (
-        { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {          
+        { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {
           updateFilter(this.state.filterBy)
         }
       )
@@ -76,16 +90,16 @@ class _BoardControllers extends React.Component {
 
   handleChangeMember = ({ target }) => {
     // this.setClassName()
-    
+
     const value = target.id
     const field = "member"
     this.updateFilterBy(value, field)
 
-}
+  }
 
-filterAcronyms = () =>{
-  return false
-}
+  filterAcronyms = () => {
+    return false
+  }
 
   render() {
     const { onAddGroup } = this.props;
@@ -135,7 +149,11 @@ filterAcronyms = () =>{
           {isModalFilterOpen && (
             <div style={{ position: "absolute" }}>
               <div className="filter-modal flex column" >
-                <div><p>Quick filters</p></div>
+                <div className="filter-headline"><p>Quick filters</p>
+                  <button className="clear-all-btn" onClick={this.clearFilter}>
+                    Clear all
+                  </button>
+                </div>
                 <div className="flex">
                   <div className="flex column-filter">
                     <span className="filterBy">Status</span>
@@ -161,11 +179,11 @@ filterAcronyms = () =>{
                         const className = (filterBy.member.includes(member.username)) && 'filterClicked'
                         return (
                           <li key={idx} className={`flex ${className}`} id={member.username} onClick={this.handleChangeMember}>
-                            <div className={`owner-name-circle ${member.acronyms}`} style={{backgroundColor:member.userColor}} onClick={this.filterAcronyms}>
+                            <div className={`owner-name-circle ${member.acronyms}`} style={{ backgroundColor: member.userColor }} onClick={this.filterAcronyms}>
                               {member.acronyms}
                             </div>
                             {(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}
-                            </li>
+                          </li>
                         )
                       })}
                     </ul>

@@ -5,17 +5,17 @@
     font-size: 16px;
     line-height: 24px;
     padding: 8px 16px;
-    height: 69px;
+    height: 45px;
     background-color: #ff3d57;
     color: white;
     border-radius: 41px;
-    width: 204px;
-    margin-right: 34px;
+    width: 135px;
 }
 
 .home-page {
     display: grid;
-    grid-template-columns: 50px 1fr 50px;
+    width: 100vw;
+    grid-template-columns: 20px 1fr 20px;
     height: 100vh;
 
     >* {
@@ -25,19 +25,28 @@
     >*.full {
         grid-column: 1 / -1;
     }
+
+    h1:first-child {
+        // font-family: Roboto;
+        // font-size: 40px;
+        // padding: 0;
+        // margin: 0;
+        margin-top: 30px;
+    }
 }
 
 .main-home-page-container {
-    display: flex;
-    align-items: start;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    align-items: center;
     height: 100%;
     gap: 50px;
-    justify-content: space-evenly;
-
+    justify-self: center;
 
     .home-page-img-container {
-        height: 573px;
-        width: 659px;
+        height: 400px;
+        width: 334px;
+
         img {
             height: 100%;
             width: 100%;
@@ -45,16 +54,10 @@
         }
     }
 
-    h1:first-child {
-        font-family: Roboto;
-        font-size: 63px;
-        padding: 0;
-        margin: 0;
-        margin-top: 37px;
-    }
+
     h1 {
         font-family: Roboto;
-        font-size: 63px;
+        font-size: 35px;
         padding: 0;
         margin: 0;
 
@@ -69,7 +72,7 @@
         padding: 0;
         margin: 0;
         font-family: 'roboto-regular';
-        font-size: 18px;
+        font-size: 14px;
         margin-top: 25px;
         margin-bottom: 25px;
     }
@@ -87,17 +90,17 @@ header {
         font-family: Roboto, sans-serif;
         font-weight: 400;
         font-size: 16px;
-        line-height: 24px;
-
-        padding: 8px 16px;
-        height: 44px;
-
+        /* line-height: 24px; */
+        /* padding: 8px 16px; */
+        height: 36px;
         background-color: #ffffff;
         color: #000000;
         border-radius: 32px;
         border: 1px solid #00000091;
-        width: 156px;
-        margin-right: 46px;
+        width: 96px;
+
+
+
     }
 
 
@@ -107,8 +110,123 @@ header {
 
         img {
             height: 100%;
-         
+
 
         }
+    }
+}
+
+@media (min-width: 640px) {
+
+    .main-home-page-container {
+        display: flex;
+        align-items: start;
+        height: 100%;
+        gap: 50px;
+        justify-content: space-evenly;
+
+
+
+        h1 {
+            font-family: Roboto;
+            font-size: 63px;
+            padding: 0;
+            margin: 0;
+
+        }
+
+        .home-page-img-container {
+            height: 573px;
+            width: 659px;
+
+            img {
+                height: 100%;
+                width: 100%;
+
+            }
+
+        }
+
+        .home-page {
+            display: grid;
+            grid-template-columns: 50px 1fr 50px;
+            height: 100vh;
+
+            >* {
+                grid-column: 2;
+            }
+
+            >*.full {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .start-btn {
+
+            font-family: Roboto, sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 8px 16px;
+            height: 69px;
+            background-color: #ff3d57;
+            color: white;
+            border-radius: 41px;
+            width: 204px;
+            margin-right: 34px;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+            font-family: 'roboto-regular';
+            font-size: 18px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+    }
+
+    header {
+        .start-btn {
+
+
+            font-family: Roboto, sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+
+            padding: 8px 16px;
+            height: 44px;
+
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 32px;
+            border: 1px solid #00000091;
+            width: 156px;
+            margin-right: 46px;
+        }
+    }
+
+}
+
+
+@media (max-width: 1140px) {
+
+
+
+    .main-home-page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        height: 100%;
+        gap: 50px;
+        justify-content: space-evenly;
+
+        .home-page {
+            display: grid;
+            grid-template-columns: 50px 1fr 50px;
+            height: 100vh;
+        }
+    
     }
 }

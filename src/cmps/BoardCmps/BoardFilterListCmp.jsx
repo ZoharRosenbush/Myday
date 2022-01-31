@@ -59,19 +59,22 @@ class _BoardFilterListCmp extends React.Component {
             // const { isFilterBtnClicked } = this.state
         // const btnClassName = isFilterBtnClicked && 'filterClicked'
         return (
+  
+
             <ul className="filter-list">
                 {board[labels].map((labelType, idx) => {
                     const className = (filterBy[field].includes(labelType.value)) && 'filterClicked'
                     return (
                         <li key={idx} id={`${labelType.value}-${field}`} data-field={field}
-                            // className={`flex ${isFilterBtnClicked}`}
-                            className={`flex ${className}`}
-                            onClick={this.handleChange}>
+                        // className={`flex ${isFilterBtnClicked}`}
+                        className={`flex ${className}`}
+                        onClick={this.handleChange}>
                             <div className="status-circle" style={{ backgroundColor: `${labelType.bgColor}` }}>
                             </div>{(labelType.value !== 'Empty') ? labelType.value : 'Blank'}</li>
                     )
                 })}
             </ul>
+              
         )
     }
 }
