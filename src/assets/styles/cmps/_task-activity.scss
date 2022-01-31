@@ -12,6 +12,9 @@
     // padding: 8px 0px;
     padding-top: 18px;
     margin-right: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     .task-name {
       max-width: 350px;
       min-width: 350px;
@@ -46,3 +49,4 @@
     }
   }
 }
+//delete .posts-container in media query

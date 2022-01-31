@@ -149,7 +149,8 @@
     overflow-y: auto;
     padding-bottom: 100px;
     .post {
-      height: 233px;
+      height: 160px;
+
       border: 0.5px solid #dbdde6;
       border-radius: 4px;
       // margin: 20px;
@@ -160,8 +161,10 @@
         justify-content: space-between;
         margin-top: 14px;
         .time-ago {
+          min-width: 75px;
           margin-top: 10px;
-          margin-right: 20px;
+          max-width: 75px;
+          // margin-right: 20px;
           span {
             font-size: 14px;
             top: -1px;
@@ -171,20 +174,18 @@
         .header-container {
           align-items: center;
           // justify-content: space-around;
-          width: 160px;
+          width: 250px;
 
           .avatar {
             width: 40px;
             height: 40px;
-            // background-color: #66cdff;
             border-radius: 50%;
             color: white;
-            font-family: 'roboto-bold';
+            font-family: 'roboto-regular';
             font-size: 19px;
             line-height: 2;
             margin-left: 20px;
-            // margin-right: 9px;
-            padding-left: 9px;
+            padding-left: 8px;
             padding-top: 2px;
           }
           .user-name {
@@ -205,11 +206,15 @@
       }
     }
     .post-title {
-      margin-top: -75px;
+      margin-top: -20px;
       margin-left: 20px;
       font-family: 'Roboto-light';
       color: #4c4c51;
       font-size: 14.5px;
+      width: 80%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     .post-actions {
       cursor: pointer;
@@ -250,7 +255,22 @@
 @media (min-width: 640px) {
   .task-details {
     width: 569px;
-
+    // .post-header {
+    //   .time-ago {
+    //     margin-right: 20px;
+    //   }
+    // }
+    .posts-container {
+      .post {
+        height: 233px;
+      }
+      .post-title {
+        margin-top: -75px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
     .close-details {
       margin-top: 22px;
     }

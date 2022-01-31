@@ -79,6 +79,8 @@ class _TaskPreview extends React.Component {
           "createdAt": Date.now(),
         }
         saveTask(task, groupId, boardCopy, user, activity);
+        console.log('boardCopy:', boardCopy);
+
         break;
       case "member-picker":
         const isOwner = task.owner.findIndex((owner) => {
