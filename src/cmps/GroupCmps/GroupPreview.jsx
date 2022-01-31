@@ -92,7 +92,7 @@ export class _GroupPreview extends React.Component {
 
   checkIfTaskFiltered = (task) => {
     const { currFilterBy } = this.props
-    console.log('currFilterBy:', currFilterBy);
+    // console.log('currFilterBy:', currFilterBy);
     
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&

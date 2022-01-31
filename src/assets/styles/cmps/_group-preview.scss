@@ -2,11 +2,12 @@
   // margin-bottom: 50px;
   position: relative;
   // cursor: auto;
-  margin-top: 30px;
+  margin-top: 10px;
   cursor: auto;
 
   div.group-title-container {
-    min-width: 422px;
+    min-width: 213px;
+    max-width: 213px;
     margin-inline-start: 16px;
     display: flex;
     position: sticky;
@@ -69,10 +70,14 @@
 
   &:hover {
     border: 1px dotted black;
+   
   }
 
   &:focus-visible {
     outline: none;
+    text-overflow: clip;
+  
+
   }
 }
 
@@ -152,18 +157,7 @@
   }
 }
 
-.task-title {
-  border: none;
-  cursor: pointer;
-  font-family: roboto-regular, helvetica, sans-serif;
-  // position: sticky;
-  width: 95%;
-  padding-inline-start: 15px;
 
-  &:focus-visible {
-    outline: none;
-  }
-}
 
 span {
   font-family: roboto-regular, helvetica, sans-serif;
@@ -498,4 +492,16 @@ div.group-color {
       left: 20px;
     }
   }
+}
+
+@media (min-width: 640px) {
+
+  .group-preview {
+    margin-top: 30px;
+
+    div.group-title-container {
+      min-width: 422px;
+    }
+  }
+
 }

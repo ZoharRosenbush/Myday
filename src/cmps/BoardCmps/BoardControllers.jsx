@@ -5,7 +5,7 @@ import { CgSearch } from "react-icons/cg";
 import { BiSortAlt2, BiColorFill } from "react-icons/bi";
 import { FiFilter, FiEyeOff } from "react-icons/fi";
 import { BoardFilterListCmp } from './BoardFilterListCmp'
-import { loadBoard, updateFilter, updateSearch } from '../../store/board.action.js'
+import { loadBoard, updateFilter, updateSearch, setActiveModal } from '../../store/board.action.js'
 // import { IoColorFillOutline } from 'react-icons/io'
 
 class _BoardControllers extends React.Component {
@@ -24,6 +24,14 @@ class _BoardControllers extends React.Component {
 
 
   searchInput = React.createRef()
+
+
+  openFilterModal = () => {
+    const { setActiveModal } = this.props;
+    const activeModal = { cmpType: 'filter' }
+    setActiveModal(activeModal)
+  }
+
 
 
   showSearchInput = () => {
@@ -62,35 +70,36 @@ class _BoardControllers extends React.Component {
         })
     } else {
       this.setState((prevState) => (
-        { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {          
+        { ...prevState, filterBy: { ...prevState.filterBy, [field]: [...prevState.filterBy[field], value] } }), () => {
           updateFilter(this.state.filterBy)
         }
       )
     }
   }
 
-  openFilterModal = () => {
-    this.setState({ isModalFilterOpen: !this.state.isModalFilterOpen })
-  }
+  // openFilterModal = () => {
+  //   this.setState({ isModalFilterOpen: !this.state.isModalFilterOpen })
+  // }
 
 
   handleChangeMember = ({ target }) => {
     // this.setClassName()
-    
+
     const value = target.id
     const field = "member"
     this.updateFilterBy(value, field)
 
-}
+  }
 
-filterAcronyms = () =>{
-  return false
-}
+  filterAcronyms = () => {
+    return false
+  }
 
   render() {
-    const { onAddGroup } = this.props;
-    const { isModalFilterOpen, isSearchInputShown, filterBy } = this.state;
+    const { onAddGroup, activeModal } = this.props;
+    const { isSearchInputShown, filterBy } = this.state;
     const { board } = this.props
+    // console.log('active modal in filter',activeModal)
 
     return (
       <div>
@@ -127,12 +136,15 @@ filterAcronyms = () =>{
             <BsPersonCircle />
             <button>Person</button>
           </div> */}
-          <div className="controller-opt">
+          <div className="controller-opt" onClick={(ev) => {
+            ev.stopPropagation()
+            this.openFilterModal()
+          }}>
             <FiFilter />
-            <button onClick={this.openFilterModal}>Filter</button>
+            <button >Filter</button>
           </div>
 
-          {isModalFilterOpen && (
+          {activeModal.cmpType === 'filter' &&
             <div style={{ position: "absolute" }}>
               <div className="filter-modal flex column" >
                 <div><p>Quick filters</p></div>
@@ -161,11 +173,11 @@ filterAcronyms = () =>{
                         const className = (filterBy.member.includes(member.username)) && 'filterClicked'
                         return (
                           <li key={idx} className={`flex ${className}`} id={member.username} onClick={this.handleChangeMember}>
-                            <div className={`owner-name-circle ${member.acronyms}`} style={{backgroundColor:member.userColor}} onClick={this.filterAcronyms}>
+                            <div className={`owner-name-circle ${member.acronyms}`} style={{ backgroundColor: member.userColor }} onClick={this.filterAcronyms}>
                               {member.acronyms}
                             </div>
                             {(member.fullname.length > 11) ? `${member.fullname.slice(0, 10)}...` : member.fullname}
-                            </li>
+                          </li>
                         )
                       })}
                     </ul>
@@ -173,7 +185,6 @@ filterAcronyms = () =>{
                 </div>
               </div>
             </div>
-          )
           }
           <div className="controller-opt">
             <BiSortAlt2 />
@@ -195,17 +206,17 @@ filterAcronyms = () =>{
 }
 
 
-function mapStateToProps({ boardModule, userModule }) {
+function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
-    user: userModule.user,
-    currFilterBy: boardModule.currFilterBy
+    activeModal: boardModule.activeModal,
   };
 }
 const mapDispatchToProps = {
   loadBoard,
   updateFilter,
-  updateSearch
+  updateSearch,
+  setActiveModal,
 };
 
 export const BoardControllers = connect(

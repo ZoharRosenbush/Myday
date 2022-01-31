@@ -26,12 +26,13 @@ class _MainNav extends React.Component {
 
 
   render() {
-    const { user } = this.props
+    const { user, isBoardNavOpen } = this.props
     const { isModalOpen } = this.state
     const bgColor = user ? user.userColor : "lightgray";
+    const className = isBoardNavOpen? '' :'hidden'
 
     return (
-      <section className="main-nav">
+      <section className={`main-nav ${className}`}>
         <div className="top-opt flex">
           <Link to={'/'}><img className="2day-logo" src={logo} alt="" /></Link>
           <div className="grid-container">
@@ -90,7 +91,7 @@ class _MainNav extends React.Component {
             style={{ marginLeft: "19px", cursor: "pointer" }}
 
           />
-          <div className="user-avatar ME" onClick={this.openUserModal} style={{ backgroundColor: bgColor}}>{(this.props.user) ? user.acronyms : <CgProfile style={{ fontSize:"45px", marginLeft:"-10px", marginTop:"-2px" }} />}</div>
+          <div className="user-avatar ME" onClick={this.openUserModal} style={{ backgroundColor: bgColor}}>{(this.props.user) ? user.acronyms : <CgProfile style={{ fontSize:"45px", marginLeft:"-3px", marginTop:"-2px" }} />}</div>
           {isModalOpen &&
             <div className="user-modal">
               <Link className="clean-link" to={'/login'}><p><CgLogIn style={{ marginRight: "6px", transform: "translateY(2.5px)" }} />Log in</p></Link>
@@ -110,6 +111,7 @@ class _MainNav extends React.Component {
 function mapStateToProps({ boardModule, userModule }) {
   return {
     user: userModule.user,
+    isBoardNavOpen: boardModule.isBoardNavOpen
   };
 }
 const mapDispatchToProps = {

@@ -39,6 +39,17 @@
     }
   }
 
+  .board-nav-small-title{
+    margin-top: -1.875em;
+    margin-bottom: 22px;
+    justify-content: space-between;
+    width: 82%;
+    align-items: center;
+
+
+
+  }
+
   &.board-nav-closed {
     button.open-nav-btn {
       background-color: #fff;
@@ -75,12 +86,13 @@
       margin-left: em(15px);
     }
     p.workspace {
-      margin-top: -1.875em;
+      // margin-top: -1.875em;
       padding: 0px;
+      margin: 0;
       font-size: 0.875rem;
       color: #676879;
       font-family: roboto-regular;
-      margin-bottom: 18px;
+      // margin-bottom: 18px;
     }
     .main-workspace {
       font-family: roboto-bold;
@@ -166,6 +178,18 @@
   }
 }
 
+.user-avatar-small{
+  height: 25px;
+  width: 25px;
+  font-family: "roboto-regular";
+    border-radius: 50%;
+    border: none;
+    color: white;
+    padding: 3px;
+    cursor: pointer;
+
+}
+
 .board-title {
   align-items: center;
   justify-content: space-between;
@@ -192,6 +216,21 @@
 //   margin-left: 94%;
 // }
 
+//**TABLET**
+@media (min-width: 640px) {
+
+  .board-nav {
+    .board-nav-signin{
+      visibility: hidden;
+    }
+  }
+  .board-controllers {
+    width: fit-content;
+  }
+
+}
+
+//**DESKTOP**
 
 @media (min-width: 992px) {
 

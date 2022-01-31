@@ -13,7 +13,7 @@
     border-bottom: 1px solid #e6e9ef;
     background-color: #f5f6f8ed;
     box-shadow: 0 3px 4px -5px #484444;
-    width: 160px;
+    width: 180px;
     text-align: left;
     position: sticky;
     left: 0;
@@ -53,7 +53,9 @@
     }
   }
   .task-title-content {
-    width: 160px;
+    // width: 160px;
+    max-width: 95%;
+    min-width: 95%;
     align-items: center;
     overflow: hidden;
     white-space: nowrap;
@@ -88,6 +90,25 @@
 .drag-icon {
   visibility: hidden;
   width: 0px;
+}
+
+.task-title {
+  border: none;
+  cursor: pointer;
+  font-family: roboto-regular, helvetica, sans-serif;
+  // position: sticky;
+  width: 95%;
+  padding-inline-start: 15px;
+  max-width: 15ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &:focus-visible {
+    outline: none;
+    text-overflow: clip;
+
+  }
 }
 
 .task-preview {
@@ -173,6 +194,13 @@
 
 
 
+
+}
+
+.task-title {
+
+  min-width: 95%;
+  max-width: 35ch;
 
 }
 }

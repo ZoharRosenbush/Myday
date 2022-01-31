@@ -4,7 +4,7 @@ section.board-container {
 }
 
 section.board-container-open-nav {
-  margin-left: 15px;
+  margin-left: 60px;
   overflow-x: auto;
 }
 
@@ -40,8 +40,14 @@ section.board-container-open-nav {
 
 
 
-@media (min-width: 992px) {
+@media (min-width: 640px) {
   section.board-container {
 
     margin-left: -200px;  }
+
+  section.board-container-open-nav {
+      margin-left: 15px;
+      overflow-x: auto;
+  }
 }
+

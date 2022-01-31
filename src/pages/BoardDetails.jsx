@@ -95,7 +95,7 @@ class _BoardDetails extends React.Component {
       ? "board-container-open-nav"
       : "board-container";
 
-    console.log('in board details', board)
+    // console.log('in board details', board)
     return (
       <section className="app-layout">
         <Route path='/myday/board/:boardId/:groupId/:taskId' component={TaskDetails} />

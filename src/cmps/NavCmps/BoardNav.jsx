@@ -1,5 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
+import { CgLogOut } from "react-icons/cg";
+import { CgLogIn } from "react-icons/cg";
 import { IoIosArrowBack, IoMdHome } from 'react-icons/io'
 import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai'
 import { BiFilterAlt } from 'react-icons/bi'
@@ -11,8 +15,14 @@ import { boardService } from "../../services/board.service.js";
 export class _BoardNav extends React.Component {
   state = {
     isBoardNavOpen: true,
-    // isDeleteModalClicked: false
+
   }
+
+  openUserModal = () => {
+    this.setState((prevState) => ({ ...prevState, isModalOpen: !this.state.isModalOpen }))
+
+  }
+
   componentDidMount() {
     this.props.loadBoards()
     this.setState({ isBoardNavOpen: true }, () => {
@@ -46,7 +56,8 @@ export class _BoardNav extends React.Component {
   }
 
   render() {
-    const { boards } = this.props
+    const { boards, user } = this.props
+    const bgColor = user ? user.userColor : "lightgray";
     const { isBoardNavOpen } = this.state
     const className = isBoardNavOpen ? "board-nav board-nav-open" : ' board-nav board-nav-closed'
     return (
@@ -56,7 +67,11 @@ export class _BoardNav extends React.Component {
             <button className="open-nav-btn" onClick={() => this.onToggleBoardNav()}>
               <IoIosArrowBack />
             </button>
-            <p className="workspace">Workspace</p>
+            <div className="board-nav-small-title flex">
+              <div>
+                <p className="workspace">Workspace</p>
+              </div>
+            </div>
             <div className="main-workspace"><div className="m">M<div className="home"><IoMdHome /></div></div>Main Workspace</div>
             <div className="side-bar-features-container">
               <button className="side-bar-features" onClick={() => this.onAddBoard()}>
@@ -69,7 +84,11 @@ export class _BoardNav extends React.Component {
                 <AiOutlineSearch size='19px' style={{ marginRight: "5px", marginTop: "5px" }} />
                 Search</button>
             </div>
-            {boards && <BoardList boards={boards} />}</section>
+            {boards && <BoardList boards={boards} />}
+          </section>
+
+
+
         }
       </React.Fragment>
       // </div>
