@@ -17,7 +17,7 @@
     }
     .dashboards-container {
         display: grid;
-        grid-template-columns: 45% 45%;
+        grid-template-columns: 30% 30% 30%;
         grid-template-rows: repeat(3, autofit);
         grid-column-gap: 50px;
         grid-row-gap: 20px;
@@ -47,7 +47,13 @@
     gap: 10px;
     border: 2px solid #00000021;
     font-size: 17px;
-    background-color: #ffffff;
+    /* background-color: #0086c045; */
+    background-color: #ffc0cb73;
+
+    &:hover{
+        background-color: pink;
+    }
+
     span {
         color: #000000c9;
         font-family: roboto-regular, helvetica, sans-serif;
@@ -88,7 +94,7 @@
 
 .dashboards-container {
     display: grid;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 30% 30% 30%;
     grid-template-rows: repeat(3, autofit);
     grid-column-gap: 50px;
     grid-row-gap: 20px;
