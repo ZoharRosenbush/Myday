@@ -146,7 +146,7 @@
   }
   .posts-container {
     height: 800px;
-    overflow-y: overlay;
+    overflow-y: auto;
     padding-bottom: 100px;
     .post {
       height: 233px;
@@ -164,6 +164,8 @@
           margin-right: 20px;
           span {
             font-size: 14px;
+            top: -1px;
+            position: relative;
           }
         }
         .header-container {
