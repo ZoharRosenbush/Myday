@@ -15,6 +15,7 @@
     color: #fff;
     width: 90px;
     margin-top: 4px;
+    margin-right: 6px;
     transform: translateY(-4px);
   }
 
@@ -56,6 +57,17 @@
   margin-left: 22.3em;
   height: 356px;
   z-index: 200;
+
+  .filter-headline{
+    display: flex;
+    justify-content: space-between;
+
+    .clear-all-btn{
+      margin-right: 10px;
+      font-size: 14px;
+      color: #98999c;
+    }
+  }
 
   & > * {
     padding-top: 8px;
