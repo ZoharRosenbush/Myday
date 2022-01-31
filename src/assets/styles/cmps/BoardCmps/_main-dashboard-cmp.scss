@@ -3,10 +3,24 @@
     border-bottom: 1px solid #e6e9ef;
     font-family: "roboto-regular", sans-serif;
     font-size: 15px;
+    width: 100%;
+    justify-content: space-between;
+
+    .Whatsapp-share{
+        justify-self: flex-end;
+        margin-right: 5%;
+
+    }
 
     span {
         font-family: roboto-regular, helvetica, sans-serif;
         color: black;
+    }
+    .main-dashboard-controllers{
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+
     }
 
     .main-table-container {
@@ -20,6 +34,8 @@
             background-color: #e6e9ef;
             border-radius: 4px;
         }
+
+        
 
         // span{
         //     // width: 100%;
@@ -57,3 +73,13 @@
 
     }
 }
+
+@media (min-width: 640px) {
+
+    .main-dashboard {
+    .Whatsapp-share{
+        margin-right: 2%;
+
+    }
+}
+  }

@@ -20,7 +20,6 @@ export function loadBoards() {
 }
 
 export function loadBoard(boardId, currFilterBy = null) {
-  console.log('loading board 🐣!')
 
   return async (dispatch) => {
     try {
@@ -52,23 +51,6 @@ export function addBoard(user) {
     } catch (err) {
       console.log('Cannot add board:', err);
       _alertUser(dispatch, 'Failed to add board, please check your internet connection')
-    }
-  }
-}
-
-export function saveBoard(boardToSave) {
-  return async (dispatch) => {
-    // _setBackupBoard(dispatch)
-    try {
-      dispatch({
-        type: "SET_BOARD",
-        board: boardToSave,
-      });
-      await boardService.saveBoard(boardToSave)
-    } catch (err) {
-      // _restoreBoard(dispatch)
-      // _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-      console.log('Err in saving board:', err);
     }
   }
 }
@@ -148,6 +130,24 @@ export function setBoardNav(isBoardNavOpen) {
     })
   }
 }
+
+export function saveBoard(boardToSave) {
+  return async (dispatch) => {
+    _setBackupBoard(dispatch)
+    try {
+      dispatch({
+        type: "SET_BOARD",
+        board: boardToSave,
+      });
+      await boardService.saveBoard(boardToSave)
+    } catch (err) {
+      _restoreBoard(dispatch)
+      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      console.log('Err in saving board:', err);
+    }
+  }
+}
+
 
 
 // **GROUP ACTIONS**
