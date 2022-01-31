@@ -7,51 +7,38 @@ import { GrCircleAlert } from "react-icons/gr";
 import { AiOutlineCheck } from "react-icons/ai";
 import { HiOutlineX } from "react-icons/hi";
 import { removeBoard, setActiveModal } from '../../store/board.action.js'
-
-
-
 class _BoardList extends React.Component {
   state = {
     isModalToDelete: false,
     boardInEdit: null
-
   };
-
-
   openModal = (boardId) => {
     this.setState((prevstate) => ({ ...prevstate, boardInEdit: boardId }))
     const activeModal = { cmpType: 'boardEdit', boardId: boardId }
     this.props.setActiveModal(activeModal)
   };
-
   toggleModalDelete = () => {
     this.setState((prevstate) => ({ ...prevstate, isModalToDelete: !prevstate.isModalToDelete }))
   };
-
   onRemoveBoard = () => {
     const { boardInEdit } = this.state
     this.props.removeBoard(boardInEdit)
     this.toggleModalDelete()
   }
-
   setClassName = (boardId) => {
     const { board } = this.props
     if (!board) return
     const className = (board._id === boardId) ? 'active' : ''
     return className
   }
-
   goToUrl = () => {
     const { boards } = this.props
     if (boards.length > 1) return `/2day/board/${boards[0]._id}`
     if (boards.length === 1) return '/2day/board'
   }
-
-
   render() {
     const { boards, board, activeModal } = this.props
     const { isModalToDelete } = this.state
-
     return (
       <section className="sidebar-nav-list">
         {boards.map((board, idx) => {
@@ -75,7 +62,6 @@ class _BoardList extends React.Component {
                 <div className="board-modal">
                   <div
                     className="flex modal-board-items"
-
                   >
                     <div className="delete-board-container flex"
                       onClick={this.toggleModalDelete}>
@@ -85,20 +71,14 @@ class _BoardList extends React.Component {
                       <span>Delete board</span>
                     </div>
                   </div>
-
                 </div>
               }
-
-
             </div>
           );
         })
         }
         {isModalToDelete && (
-
           < section className="modal-delete flex">
-
-
             <div className="title-modal-delete">
               {/* <div>
       <GrCircleAlert color="white" />
@@ -120,16 +100,11 @@ class _BoardList extends React.Component {
       </section >
     );
   }
-
 }
-
-
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
     activeModal: boardModule.activeModal
-
-
   };
 }
 const mapDispatchToProps = {
@@ -137,5 +112,3 @@ const mapDispatchToProps = {
   setActiveModal
 }
 export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList);
-
-
