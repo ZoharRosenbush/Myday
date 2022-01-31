@@ -39,6 +39,7 @@ async function getById(boardId) {
 }
 
 async function saveBoard(boardToSave) {
+  console.log('the board in front',boardToSave)
   if (boardToSave._id) {
     const savedBoard = await httpService.put(`board/${boardToSave._id}`, boardToSave);
     socketService.emit('member updated board', boardToSave._id)
