@@ -50,7 +50,7 @@ class _BoardApp extends React.Component {
 
     //     const newBoard = boards[boards.length - 1]
     //             console.log('the newBoard', newBoard)
-    //             window.location.href = `http://localhost:3000/#/myday/board/${newBoard._id}`
+    //             window.location.href = `http://localhost:3000/#/2day/board/${newBoard._id}`
     // }
     //     }
 

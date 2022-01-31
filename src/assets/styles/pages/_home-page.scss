@@ -5,11 +5,11 @@
     font-size: 16px;
     line-height: 24px;
     padding: 8px 16px;
-    height: 59px;
+    height: 69px;
     background-color: #ff3d57;
     color: white;
-    border-radius: 32px;
-    width: 196px;
+    border-radius: 41px;
+    width: 204px;
     margin-right: 34px;
 }
 
@@ -29,7 +29,7 @@
 
 .main-home-page-container {
     display: flex;
-    align-items: center;
+    align-items: start;
     height: 100%;
     gap: 50px;
     justify-content: space-evenly;
@@ -45,11 +45,19 @@
         }
     }
 
-    h1 {
+    h1:first-child {
         font-family: Roboto;
-           font-size: 63px;
+        font-size: 63px;
         padding: 0;
         margin: 0;
+        margin-top: 37px;
+    }
+    h1 {
+        font-family: Roboto;
+        font-size: 63px;
+        padding: 0;
+        margin: 0;
+
 
         span {
             color: ($green);
@@ -63,6 +71,7 @@
         font-family: 'roboto-regular';
         font-size: 18px;
         margin-top: 25px;
+        margin-bottom: 25px;
     }
 }
 

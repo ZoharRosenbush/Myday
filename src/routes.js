@@ -13,15 +13,15 @@ const routes = [
     },
 
     {
-        path: '/myday/board/:boardId/dashboard',
+        path: '/2day/board/:boardId/dashboard',
         component: DynamicDashboard,
     },
     {
-        path: '/myday/board/:boardId',
+        path: '/2day/board/:boardId',
         component: BoardDetails,
     },
     {
-        path: '/myday/board',
+        path: '/2day/board',
         component: BoardApp,
     },
 

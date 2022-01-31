@@ -114,7 +114,7 @@ export class _TaskDetails extends React.Component {
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
             <section className="task-details">
-                <Link className="clean-link" to={`/myday/board/${board._id}`}>
+                <Link className="clean-link" to={`/2day/board/${board._id}`}>
                     <div className="close-details" onClick={this.onCloseTaskDetails}>
                         <AiOutlineClose size='19px' color="rgb(122 122 122)" />
                     </div>

@@ -43,8 +43,8 @@ class _BoardList extends React.Component {
 
   goToUrl = () => {
     const { boards } = this.props
-    if (boards.length > 1) return `/myday/board/${boards[0]._id}`
-    if (boards.length === 1) return '/myday/board'
+    if (boards.length > 1) return `/2day/board/${boards[0]._id}`
+    if (boards.length === 1) return '/2day/board'
   }
 
 
@@ -58,7 +58,7 @@ class _BoardList extends React.Component {
           return (
             <div className="flex" key={idx}>
               <div className={`board-title flex ${this.setClassName(board._id)}`}>
-                <Link className="clean-link" to={`/myday/board/${board._id}`} >
+                <Link className="clean-link" to={`/2day/board/${board._id}`} >
                   {/* <RiBookLine size="19" style={{ transform: 'rotate(90px)' }} /> */}
                   {board.title}
                 </Link>

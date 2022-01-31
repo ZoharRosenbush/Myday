@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-// import { Pie } from 'react-chartjs-2';
-import { Doughnut } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -43,8 +42,23 @@ class _DashboardPai extends React.Component {
         return mapObj;
     }
 
+    options = {
+        responsive: true,
+        
+        plugins: {
+            legend: {
+                position: "bottom",
+            },
+            // title: {
+            //     display: true,
+            //     text: "Prices per toy type",
+            // },
+        },
+    };
+
     map = this.mapChart()
 
+  
     data = {
         labels:  Object.keys(this.map),
         datasets: [
@@ -52,10 +66,10 @@ class _DashboardPai extends React.Component {
                 label: 'Members',
                 data: Object.values(this.map),
                 backgroundColor: [
-                    '#fcc4f7',
-                    '#00c875',
-                    '#E2445C',
-                    '#c4c4c4'
+                    '#fcc4f780',
+                    '#00c87580',
+                    '#e2445c80',
+                    '#c4c4c480'
 
                 ],
                 borderColor: [
@@ -64,14 +78,14 @@ class _DashboardPai extends React.Component {
                     '#E2445C',
                     '#c4c4c4'
                 ],
-                borderWidth: 3,
+                borderWidth: 2,
             },
         ],
     };
     render() {
 
 
-        return <Doughnut data={this.data} height="300px" width="300px"/>;
+        return <Pie data={this.data} options={this.options} />;
     }
 
 

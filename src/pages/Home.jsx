@@ -25,15 +25,15 @@ export function Home() {
         your <span>work</span>
         </h1>
         <p>Plan, Organize, Track. In One Visual collaborative space.    </p>
+      <Link className="clean-link link-container" to="/2day/board">
+        <button className="start-btn">Quick Start</button>
+      </Link>
         </div>
         <div className="home-page-img-container">
 
           <img src={HomeSvg} alt=""></img>
         </div>
       </div>
-      <Link className="clean-link link-container" to="/myday/board">
-        <button className="start-btn">Quick Start</button>
-      </Link>
     </section>
   );
 }

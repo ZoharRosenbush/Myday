@@ -58,7 +58,7 @@ class _LoginSignup extends React.Component {
             if (!username.username || !username.password) return;
             const user = await this.props.login(username)
             console.log('user in login',user);
-            { user && this.props.history.push('/myday/board'); }
+            { user && this.props.history.push('/2day/board'); }
 
         } else {
             if (!user.username || !user.password || !user.fullname) return;
@@ -67,7 +67,7 @@ class _LoginSignup extends React.Component {
             user.userColor = utilService.getNiceRandomColor()
             // console.log('the user after additions',user);
             this.props.signup(user)
-            this.props.history.push('/myday/board');
+            this.props.history.push('/2day/board');
         }
     }
 

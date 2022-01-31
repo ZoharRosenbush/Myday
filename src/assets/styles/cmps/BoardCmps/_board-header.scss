@@ -1,11 +1,11 @@
 section.board-header {
-  
+
   // width: 100%;
   // height: 70px;
   // position: sticky;
   // left:320px;
   // border-bottom: 1px solid rgba(0, 0, 0, 0.233);
-   // z-index: 5;
+  // z-index: 5;
   // position: fixed;
   // margin-bottom: 130px;
   width: 100%;
@@ -26,11 +26,13 @@ section.board-header {
     justify-content: center;
     width: fit-content;
     transition: 0.1s;
+
     button {
       font-size: em(14px);
       color: #323338;
       font-family: roboto-regular, Arial, Helvetica, sans-serif;
     }
+
     button.dots {
       display: flex;
       align-items: center;
@@ -44,13 +46,13 @@ section.board-header {
   }
 
   .board-main-title {
-  
+
     width: 100%;
     height: fit-content;
     margin-bottom: 10px;
 
     .board-title-container {
-      display: flex; 
+      display: flex;
       gap: 6px; ///MAYBE CHANGE IN DESKTOP
 
       .board-header-title {
@@ -63,6 +65,7 @@ section.board-header {
         color: #323338;
         font-weight: 600;
         font-family: roboto-regular;
+
         // width: fit-content;
         // text-align: start;
         // height: fit-content;
@@ -74,17 +77,20 @@ section.board-header {
           border: 0.5px solid #c5c7d0;
           border-radius: 4px;
         }
+
         &:focus-visible {
           outline: none;
         }
       }
     }
   }
+
   .desc-container {
     // height: ;
     padding: 5px 5px 5px 5px;
     max-width: 75ch;
     white-space: pre-wrap;
+
     p {
       color: rgb(103, 104, 121);
       line-height: 1.5;
@@ -93,6 +99,7 @@ section.board-header {
       margin: 0;
       font-size: em(14px);
     }
+
     &:hover {
       border: 0.5px dashed #c5c7d0;
     }
@@ -105,15 +112,16 @@ section.board-header {
     row-gap: 5px;
     align-items: center;
 
-    .dots-icon{
+    .dots-icon {
       grid-area: more;
-      
+
     }
-    
-    .invite{
+
+    .invite {
       grid-area: invite;
     }
-    .activity{
+
+    .activity {
       grid-area: activity;
     }
 
@@ -156,14 +164,15 @@ section.board-header {
       border: 0.5px solid #c5c7d0;
       min-width: 145px;
       max-width: 145px;
-      
-      button{
+
+      button {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
     }
   }
+
   .board-description {
     text-align: start;
     width: fit-content;
@@ -173,6 +182,9 @@ section.board-header {
     display: inline;
     padding: 5px 10px;
     font-size: 100%;
+
+
+
     // &:hover {
     //   border: 0.5px dashed #000;
     // }
@@ -180,6 +192,7 @@ section.board-header {
       outline: none;
     }
   }
+
   .board-header-top {
     color: #323338;
     margin: 12px 0px;
@@ -189,7 +202,7 @@ section.board-header {
 
 
 
- /* **TABLET** */
+/* **TABLET** */
 
 // @media (min-width: 450px){
 
@@ -198,30 +211,31 @@ section.board-header {
 //   }
 //   section.type-btns{
 //       width: fit-content;
-     
-  
+
+
 //   }
-  
+
 // }
 
 @media (min-width: 992px) {
   section.board-header {
-  .board-main-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    .board-title-container {
+    .board-main-title {
       display: flex;
-        gap: 4px; 
+      justify-content: space-between;
       align-items: center;
+
+      .board-title-container {
+        display: flex;
+        gap: 4px;
+        align-items: center;
       }
     }
+
     div.board-header-btns {
       column-gap: 10px;
       row-gap: 0px;
       flex-wrap: wrap;
-      
+
 
       div.icon-btn-container.plus-board {
         min-width: 130px;
@@ -230,5 +244,13 @@ section.board-header {
 
 
     }
+
+    // .desc-container p {
+    //   inline-size: 10pc; 
+    //   overflow: hidden;
+    //   white-space: nowrap;
+    //   // text-overflow: ellipsis;
+    // }
+
   }
 }

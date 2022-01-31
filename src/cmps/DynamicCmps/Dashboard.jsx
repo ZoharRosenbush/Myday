@@ -38,13 +38,13 @@ class _Dashboard extends React.Component {
         const { labelType } = this.props
         switch (labelType) {
             case "status":
-                return ["#c4c4c4","#00C875", "#E2445C", "#FDAB3D"]
+                return ["#c4c4c4", "#00C875", "#E2445C", "#fdab3d"]
             case "priority":
-                return ["#c4c4c4","#225091", "#0086c0", "#66ccff"]
+                return ["#c4c4c4", "#225091", "#0086c0", "#66ccff"]
             case "type":
-                return ["#c4c4c4","#fcc4f7", "#00c875", "#e2445c", "#a25ddc", "#ffadad"]
+                return ["#c4c4c4", "#fcc4f7", "#00c875", "#e2445c", "#a25ddc", "#ffadad"]
             case "role":
-                return ["#c4c4c4","#279165", "#0086c0", "#a25ddc"]
+                return ["#c4c4c4", "#279165", "#0086c0", "#a25ddc"]
         }
     }
 
@@ -53,21 +53,21 @@ class _Dashboard extends React.Component {
         var mapObj = {};
         switch (labelType) {
             case "status":
-               return mapObj = {
+                return mapObj = {
                     Empty: 0,
                     Done: 0,
                     Stuck: 0,
                     "Working on it": 0
                 }
             case "priority":
-             return   mapObj = {
+                return mapObj = {
                     Empty: 0,
                     High: 0,
                     Medium: 0,
                     Low: 0
                 }
             case "type":
-              return  mapObj = {
+                return mapObj = {
                     Empty: 0,
                     Quality: 0,
                     Feature: 0,
@@ -76,23 +76,23 @@ class _Dashboard extends React.Component {
                     Security: 0
                 }
             case "role":
-               return mapObj = {
+                return mapObj = {
                     Empty: 0,
                     Dev: 0,
                     Design: 0,
                     Product: 0,
                 }
         }
-        
+
     }
 
     mapChart = () => {
         const { labelType, board } = this.props
         const mapObj = this.getMapObj()
-        
+
         board.groups.map(group => {
             group.tasks.map(task => {
-                mapObj[task[labelType]] = (mapObj[task[labelType]]) + 1 
+                mapObj[task[labelType]] = (mapObj[task[labelType]]) + 1
             })
         })
 
@@ -100,27 +100,37 @@ class _Dashboard extends React.Component {
     }
     options = {
         responsive: true,
-        
+   scales: {
+            x: {
+              grid: {
+                display: false
+              }
+            },
+            y: {
+              grid: {
+                display: false
+              }
+            }
+          }
+          ,
         showLine: false,
         plugins: {
             legend: {
-                position: "top",
+                position: "none",
             },
-            title: {
-                display: false,
-                // text: "Prices per toy type",
-            },
+            // title: {
+            //     display: true,
+            //     text: "Prices per toy type",
+            // },
         },
     };
     map = this.mapChart();
-    
-    
+
+
     data = {
         labels: Object.keys(this.map),
-        showLine: false,
         datasets: [
             {
-                showLine: false,
                 label: this.props.labelType,
                 data: Object.values(this.map),
                 backgroundColor: this.getColors(),
@@ -130,7 +140,7 @@ class _Dashboard extends React.Component {
     render() {
 
         return (
-            <Bar  showLine={false} options={this.options} data={this.data} />
+            <Bar options={this.options} data={this.data} />
 
         );
     }

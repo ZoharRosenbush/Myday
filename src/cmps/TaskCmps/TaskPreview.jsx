@@ -336,7 +336,7 @@ class _TaskPreview extends React.Component {
 
                   <button className="edit-task-title-btn" onClick={this.setFocus}>Edit</button>
                 </div>
-                <Link onClick={() => this.openTaskDetails()} to={`/myday/board/${board._id}/${group.id}/${task.id}`}>
+                <Link onClick={() => this.openTaskDetails()} to={`/2day/board/${board._id}/${group.id}/${task.id}`}>
                   <div className="chat-icon-container"
                   // onClick={() => this.openTaskDetails()}
                   >
@@ -358,8 +358,8 @@ class _TaskPreview extends React.Component {
                 />
               );
             })}
-            {/* <Route path="/myday/board/:boardId/:taskId" render={() => <TaskDetails group={group} />} /> */}
-            {/* <Route path="/myday/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
+            {/* <Route path="/2day/board/:boardId/:taskId" render={() => <TaskDetails group={group} />} /> */}
+            {/* <Route path="/2day/board/:boardId/:groupId/:taskId" component={TaskDetails} /> */}
 
             {/* <Route path="/greeting/:name" render={(props) => <Greeting text="Hello, " {...props} />} /> */}
 

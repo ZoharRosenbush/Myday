@@ -63,24 +63,29 @@ class _DynamicDashboard extends React.Component {
                 </div>
                 <div className="dashboards-container">
                     <div >
+                        <span>Tasks per status</span>
                         <Dashboard labelType={"status"} />
                     </div>
+                    <div className="pai-container">
+                        <span>Tasks per member</span>
+                        <DashboardPai />
+                    </div>
                     <div>
+                        <span>Tasks per type</span>
                         <Dashboard labelType={"type"} />
                     </div>
                     <div>
+                        <span>Tasks per priority</span>
                         <Dashboard labelType={"priority"} />
                     </div>
                     <div>
+                        <span>Tasks per role</span>
                         <Dashboard labelType={"role"} />
                     </div>
 
-                    <div className="pai-container">
-                        <DashboardPai />
-                    </div>
                 </div>
             </section>
-            {/* </section> */}
+
         </section>
     }
 }
@@ -88,7 +93,7 @@ function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.board,
         user: userModule.user,
-        isBoardNavOpen : boardModule.isBoardNavOpen
+        isBoardNavOpen: boardModule.isBoardNavOpen
 
 
     }

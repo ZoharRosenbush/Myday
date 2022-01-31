@@ -92,8 +92,6 @@ export class _GroupPreview extends React.Component {
 
   checkIfTaskFiltered = (task) => {
     const { currFilterBy } = this.props
-    console.log('currFilterBy:', currFilterBy);
-    
     if (!currFilterBy.priority.length &&
       !currFilterBy.status.length &&
       !currFilterBy.type.length &&
@@ -141,10 +139,8 @@ export class _GroupPreview extends React.Component {
   };
 
   onDeleteGroup = () => {
-    console.log('hellooo')
     this.setState({ isModalToDelete: false });
     const { deleteGroup, group, board } = this.props;
-    console.log('board on delete group', board)
     const boardCopy = utilService.createDeepCopy(board)
     deleteGroup(group.id, boardCopy);
   };
@@ -252,7 +248,6 @@ export class _GroupPreview extends React.Component {
   };
 
   render() {
-    // console.log('rendering!');
 
     const { group, board, activeModal, idx, goToTaskDetails } = this.props;
     const cmpsOrder = board.cmpsOrder;
