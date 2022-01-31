@@ -18,11 +18,13 @@ export class _TaskDetails extends React.Component {
         isFiles: false
     }
     loaderCSS = {
-        margin: "auto",
         marginTop: "30vh",
-
-
+        position: "fixed",
+        left: "50vw"
     }
+
+
+    
     componentDidMount() {
         this.loadTask()
     }
@@ -119,8 +121,8 @@ export class _TaskDetails extends React.Component {
         const { isUpdates, isActivity, isFiles, task } = this.state
         const { groupId } = this.props.match.params
         // const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
-        console.log('board in task details', board)
-        if (!task || !board) return <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />
+        if (!task || !board) 
+        return <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />
 
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
@@ -170,5 +172,3 @@ const mapDispatchToProps = {
     saveTask
 }
 export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(_TaskDetails);
-
-
