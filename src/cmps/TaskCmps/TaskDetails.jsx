@@ -13,9 +13,8 @@ import { utilService } from '../../services/utils.service'
 export class _TaskDetails extends React.Component {
     state = {
         task: null,
-        isUpdates: true,
-        isActivity: false,
-        isFiles: false
+
+        buttonClicked: "updates"
     }
     loaderCSS = {
         marginTop: "30vh",
@@ -24,7 +23,7 @@ export class _TaskDetails extends React.Component {
     }
 
 
-    
+
     componentDidMount() {
         this.loadTask()
     }
@@ -54,6 +53,12 @@ export class _TaskDetails extends React.Component {
     //     const currTask = currGroup.tasks.find((task) => task.id === taskId)
     //     return currTask
     // };
+
+    setClassName = (btnClicked) => {
+        const { buttonClicked } = this.state
+        const className = (btnClicked === buttonClicked) ? 'active-details' : ''
+        return className
+    }
 
     onUpdateTaskTitle = ({ target }) => {
         const { board, saveTask } = this.props
@@ -94,35 +99,29 @@ export class _TaskDetails extends React.Component {
 
     goToUpdates = () => {
         this.setState({
-            isUpdates: true,
-            isActivity: false,
-            isFiles: false
+            buttonClicked: "updates"
 
         })
     }
     goToActivity = () => {
         this.setState({
-            isUpdates: false,
-            isActivity: true,
-            isFiles: false
+            buttonClicked: "activity"
         })
     }
     goToFiles = () => {
         this.setState({
-            isUpdates: false,
-            isActivity: false,
-            isFiles: true
+            buttonClicked: "files"
 
         })
     }
 
     render() {
         const { board } = this.props;
-        const { isUpdates, isActivity, isFiles, task } = this.state
+        const { buttonClicked, task } = this.state
         const { groupId } = this.props.match.params
         // const className = isTaskDetailsOpen ? "task-details" : "task-details task-details-closed"
-        if (!task || !board) 
-        return <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />
+        if (!task || !board)
+            return <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />
 
         return <React.Fragment>
             {/* {isTaskDetailsOpen && <div className="main-screen"></div>} */}
@@ -141,18 +140,18 @@ export class _TaskDetails extends React.Component {
                 </h2></div>
 
                 <div className="btns-container flex">
-                    <button className="details-features" onClick={this.goToUpdates}>Updates</button><span> |</span>
-                    <button className="details-features" onClick={this.goToFiles}>Files</button> <span> |</span>
-                    <button className="details-features" onClick={this.goToActivity}>Activity Log</button> <span> |</span>
+                    <button onClick={this.goToUpdates} className="details-features"><span className={`details-span ${this.setClassName("updates")}`}>Updates</span></button><span> |</span>
+                    <button onClick={this.goToFiles} className="details-features"><span className={`details-span ${this.setClassName("files")}`}>Files</span></button> <span> |</span>
+                    <button onClick={this.goToActivity} className="details-features"><span className={`details-span ${this.setClassName("activity")}`}> Activity Log</span></button> <span> |</span>
                 </div>
-                {isUpdates && <TaskUpdates task={task} groupId={groupId} />}
-                {isActivity && <TaskActivity task={task} />}
-                {isFiles && <TaskFiles task={task} board={board} groupId={groupId} />}
+                {buttonClicked === "updates" && <TaskUpdates task={task} groupId={groupId} />}
+                {buttonClicked === "activity" && <TaskActivity task={task} />}
+                {buttonClicked === "files" && <TaskFiles task={task} board={board} groupId={groupId} />}
 
             </section>
 
 
-        </React.Fragment>
+        </React.Fragment >
 
     }
 }
