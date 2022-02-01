@@ -24,7 +24,6 @@ function get(entityType, entityId) {
 }
 
 function put(entityType, updatedEntity) {
-  console.log("ENTERED UPDATE");
   return query(entityType).then((entities) => {
     const idx = entities.findIndex(
       (entity) => entity._id === updatedEntity._id
@@ -37,7 +36,6 @@ function put(entityType, updatedEntity) {
 
 function post(entityType, newEntity) {
   newEntity._id = _makeId();
-  // newEntity = _getNewBoard()
   return query(entityType).then((entities) => {
     entities.push(newEntity);
     _save(entityType, entities);

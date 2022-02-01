@@ -53,13 +53,11 @@ export function boardReducer(state = initialState, action) {
       };
     case "SET_BACKUP_BOARD":
       const backupBoard = state.board
-      console.log('backupBoard', backupBoard)
       return {
         ...state, backupBoard
       }
     case "RESTORE_BOARD":
       const boardBackup = state.backupBoard
-      console.log('backup after RESTORE', boardBackup)
       return {
         ...state, board: boardBackup
       };

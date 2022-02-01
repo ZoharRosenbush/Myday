@@ -14,7 +14,7 @@ export function loadBoards() {
       });
     } catch (err) {
       console.log('Cannot load boards:', err);
-      _alertUser(dispatch, 'Failed to load boards, please check your internet connection')
+      _setUserMsg(dispatch, 'Failed to load boards, please check your internet connection')
     }
   }
 }
@@ -30,7 +30,7 @@ export function loadBoard(boardId, currFilterBy = null) {
       });
     } catch (err) {
       console.log('Cannot load board:', err);
-      _alertUser(dispatch, 'Failed to load board, please check your internet connection')
+      _setUserMsg(dispatch, 'Failed to load board, please check your internet connection')
     }
   }
 }
@@ -50,7 +50,7 @@ export function addBoard(user) {
       })
     } catch (err) {
       console.log('Cannot add board:', err);
-      _alertUser(dispatch, 'Failed to add board, please check your internet connection')
+      _setUserMsg(dispatch, 'Failed to add board, please check your internet connection')
     }
   }
 }
@@ -72,7 +72,7 @@ export function updateBoardTitle(boardToSave) {
       await boardService.updateBoardTitle(boardToSave)
     } catch (err) {
       _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to update title, please check your internet connection')
+      _setUserMsg(dispatch, 'Failed to update title, please check your internet connection')
       console.log('Cannot update board title:', err);
     }
   }
@@ -88,7 +88,7 @@ export function removeBoard(boardId) {
       await boardService.removeBoard(boardId);
     } catch (err) {
       console.log('Cannot remove board:', err);
-      _alertUser(dispatch, 'Failed to remove board, please check your internet connection')
+      _setUserMsg(dispatch, 'Failed to remove board, please check your internet connection')
     }
   }
 }
@@ -108,10 +108,7 @@ export function updateFilter(currFilterBy) {
 }
 
 export function updateSearch(search) {
-  // console.log('search:', search);
-
   return (dispatch) => {
-
     dispatch({
       type: "SET_SEARCH",
       search: {
@@ -142,7 +139,7 @@ export function saveBoard(boardToSave) {
       await boardService.saveBoard(boardToSave)
     } catch (err) {
       _restoreBoard(dispatch)
-      _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+      _setUserMsg(dispatch, 'Failed to save board, please check your internet connection')
       console.log('Err in saving board:', err);
     }
   }
@@ -178,7 +175,7 @@ export function addGroup(boardToSave, user) {
   //     await boardService.saveBoard(boardToSave)
   //   } catch (err) {
   //     _restoreBoard(dispatch)
-  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
+  //     _setUserMsg(dispatch, 'Failed to save board, please check your internet connection')
   //     console.log('Err in saving board:', err);
   //   }
   // }
@@ -191,21 +188,6 @@ export function deleteGroup(groupId, boardToSave) {
   boardToSave.groups = filteredGroups
 
   return saveBoard(boardToSave)
-
-  // return async (dispatch) => {
-  //   _setBackupBoard(dispatch)
-  //   try {
-  //     dispatch({
-  //       type: "SET_BOARD",
-  //       board: boardToSave,
-  //     });
-  //     await boardService.saveBoard(boardToSave)
-  //   } catch (err) {
-  //     _restoreBoard(dispatch)
-  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-  //     console.log('Err in saving board:', err);
-  //   }
-  // }
 }
 
 
@@ -219,20 +201,7 @@ export function deleteTask(taskId, groupId, boardToSave) {
   boardToSave.groups[groupIdx].tasks = filteredTasks;
 
   return saveBoard(boardToSave)
-  // return async (dispatch) => {
-  //   _setBackupBoard(dispatch)
-  //   try {
-  //     dispatch({
-  //       type: "SET_BOARD",
-  //       board: boardToSave,
-  //     });
-  //     await boardService.saveBoard(boardToSave)
-  //   } catch (err) {
-  //     _restoreBoard(dispatch)
-  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-  //     console.log('Err in saving board:', err);
-  //   }
-  // }
+
 }
 
 
@@ -245,24 +214,11 @@ export function addTask(taskTitle, groupId, boardToSave, user, activity) {
   const groupIdx = boardToSave.groups.findIndex((group) => groupId === group.id);
   boardToSave.groups[groupIdx].tasks.push(newTask);
   return saveBoard(boardToSave)
-  // return async (dispatch) => {
-  //   _setBackupBoard(dispatch)
-  //   try {
-  //     dispatch({
-  //       type: "SET_BOARD",
-  //       board: boardToSave,
-  //     });
-  //     await boardService.saveBoard(boardToSave)
-  //   } catch (err) {
-  //     _restoreBoard(dispatch)
-  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-  //     console.log('Err in saving board:', err);
-  //   }
-  // }
+
 }
 
 export function saveTask(taskToSave, groupId, boardToSave, user, activity, comment) {
-  console.log('saving task 🌐');
+
 
   if (activity) {
     activity.id = utilService.makeId()
@@ -282,20 +238,7 @@ export function saveTask(taskToSave, groupId, boardToSave, user, activity, comme
   boardToSave.groups[groupIdx].tasks = updatedtasks
   return saveBoard(boardToSave)
 
-  // return async (dispatch) => {
-  //   _setBackupBoard(dispatch)
-  //   try {
-  //     dispatch({
-  //       type: "SET_BOARD",
-  //       board: boardToSave,
-  //     });
-  //     await boardService.saveBoard(boardToSave)
-  //   } catch (err) {
-  //     _restoreBoard(dispatch)
-  //     _alertUser(dispatch, 'Failed to save board, please check your internet connection')
-  //     console.log('Err in saving board:', err);
-  //   }
-  // }
+
 }
 
 
@@ -313,7 +256,7 @@ function _restoreBoard(dispatch) {
   })
 }
 
-function _alertUser(dispatch, txt) {
+function _setUserMsg(dispatch, txt) {
   dispatch({ type: 'SET_MSG', msg: { txt } })
 
 
@@ -322,7 +265,7 @@ function _alertUser(dispatch, txt) {
 // **MODALS ACTIONS**
 
 export function setActiveModal(activeModal) {
-  // console.log('active modal', activeModal);
+
   return (dispatch) => {
     dispatch({
       type: "SET_ACTIVE_MODAL",

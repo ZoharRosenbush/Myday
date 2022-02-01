@@ -1,15 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
-import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
-
+import {  Droppable, DragDropContext } from "react-beautiful-dnd";
 import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
 import { UserMsg } from "../cmps/UserMsg/UserMsg.jsx";
 import { BoardHeader } from "../cmps/BoardCmps/BoardHeader.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { TaskDetails } from '../cmps/TaskCmps/TaskDetails'
 import { GroupList } from "../cmps/GroupCmps/GroupList.jsx";
-
 import { socketService } from "../services/socket.service.js";
 import { utilService } from '../services/utils.service.js';
 import { setActiveModal, saveBoard, loadBoard, loadBoards } from "../store/board.action.js";
@@ -32,9 +30,6 @@ class _BoardDetails extends React.Component {
     socketService.on('board-list was updated', this.props.loadBoards)
   }
 
-  // test() {
-  //   console.log('socket active!');
-  // }
 
 
   componentDidUpdate(prevProps, prevState) {
@@ -95,7 +90,6 @@ class _BoardDetails extends React.Component {
       ? "board-container-open-nav"
       : "board-container";
 
-    // console.log('in board details', board)
     return (
       <section className="app-layout">
         {/* <Route path='/2day/board/:boardId/:groupId/:taskId' component={TaskDetails} /> */}
@@ -143,7 +137,6 @@ function mapStateToProps({ boardModule, userModule }) {
     user: userModule.user,
     isBoardNavOpen: boardModule.isBoardNavOpen,
     activeModal: boardModule.activeModal
-    //   currFilterBy: toyModule.currFilterBy
   }
 }
 const mapDispatchToProps = {

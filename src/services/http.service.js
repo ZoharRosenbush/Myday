@@ -34,7 +34,6 @@ async function ajax(endpoint, method = 'GET', data = null) {
             params: (method === 'GET') ? data : null
         })
 
-        // console.log('thre res',res.data);
         return res.data
     } catch (err) {
         console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: ${data}`)

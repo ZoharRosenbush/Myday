@@ -83,8 +83,7 @@ export class _TaskDetails extends React.Component {
         }
         task.title = value;
         try {
-            console.log('task:', task);
-            console.log('activity:', activity);
+
 
             saveTask(task, groupId, board, user, activity);
         } catch (err) {

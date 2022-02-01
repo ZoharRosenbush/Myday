@@ -80,7 +80,7 @@ function addNewTask(taskTitle, activity) {
     type: "Empty",
     "cost": "Empty",
     activities: [activity],
-    timeline: ["Jan 17-22", "Jan 19-22"],
+    timeline: ["Feb 01-22", "Feb 02-22"],
     owner: [{
       "fullname": "Guest",
       "acronyms": "G",
@@ -112,7 +112,7 @@ function getNewGroup(user) {
         id: utilService.makeId(),
         txt: "Created new task"
       }],
-      timeline: ["Jan 17-22", "Jan 19-22"],
+      timeline: ["Feb 01-22", "Feb 02-22"],
       owner: [{
         "fullname": "Guest",
         "acronyms": "G",
@@ -342,7 +342,7 @@ function getNewBoard(user) {
           id: utilService.makeId(),
           txt: "Created new task"
         }],
-        timeline: ["Jan 17-22", "Jan 19-22"],
+        timeline: ["Feb 01-22", "Feb 02-22"],
         owner: [{
           "fullname": "Guest",
           "acronyms": "G",
@@ -376,7 +376,7 @@ function getNewBoard(user) {
           id: utilService.makeId(),
           txt: "Created new task"
         }],
-        timeline: ["Jan 17-22", "Jan 19-22"],
+        timeline: ["Feb 01-22", "Feb 02-22"],
         owner: [{
           "fullname": "Guest",
           "acronyms": "G",
@@ -410,7 +410,7 @@ function getNewBoard(user) {
           id: utilService.makeId(),
           txt: "Created new task"
         }],
-        timeline: ["Jan 17-22", "Jan 19-22"],
+        timeline: ["Feb 01-22", "Feb 02-22"],
         owner: [{
           "fullname": "Guest",
           "acronyms": "G",

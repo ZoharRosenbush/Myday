@@ -19,7 +19,6 @@ export const userService = {
 
 async function login(credentials) {
   try {
-    // console.log('the cred in service front',credentials);
     const user = await httpService.post("auth/login", credentials);
     if (user) _setLoggedinUser(user);
     return user;
@@ -28,7 +27,6 @@ async function login(credentials) {
   }
 }
 async function signup(user) {
-  // console.log('the cred in signup service front',user)
   try {
     const signedupUser = await httpService.post("auth/signup", user);
     _setLoggedinUser(signedupUser);

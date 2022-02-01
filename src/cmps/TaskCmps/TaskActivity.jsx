@@ -13,8 +13,7 @@ function _TaskActivity({ board, task }) {
             <div>
                 <div className="posts-container">
                     {(!!task.activities.length) && task.activities.map((activity) => {
-                        console.log('activity:', activity);
-                        console.log('activity.byMember.userColor:', activity.byMember.userColor);
+               
 
                         return (
                             <div key={activity.id} className="flex post-container">

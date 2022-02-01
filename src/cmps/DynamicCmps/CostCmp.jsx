@@ -12,21 +12,23 @@ export class CostCmp extends React.Component {
   }
 
   onUpdateTaskCost = ({ target }) => {
-    const { onUpdateTask, cmpData } = this.props
     const value = target.value;
     if (!value) return;
     this.setState({
       cost: value
-    }, () => {
-
-      onUpdateTask("cost", value);
-    })
-
+    }
+    )
   }
-  render() {
-    const { cmpData } = this.props
-    return (
 
+  submitCost = () => {
+
+    const { onUpdateTask } = this.props
+    onUpdateTask("cost", this.state.cost);
+  }
+
+
+  render() {
+    return (
       <div className="cost-cmp">
         <input
           type="number"
@@ -35,6 +37,7 @@ export class CostCmp extends React.Component {
           suppressContentEditableWarning={true}
           onChange={this.onUpdateTaskCost}
           value={this.state.cost}
+          onBlur={this.submitCost}
           min="0"
         >
 

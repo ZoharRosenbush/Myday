@@ -1,18 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, Route } from "react-router-dom";
-
-import { MdArrowDropDownCircle } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { CgArrowDownR } from "react-icons/cg";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { BsChat } from "react-icons/bs";
-import { IoIosColorFilter } from "react-icons/io";
-import { Droppable } from "react-beautiful-dnd";
-import { Draggable } from "react-beautiful-dnd";
 import { MdDragIndicator } from "react-icons/md";
-import { makeId } from '../../services/board.service'
-import { TaskDetails } from "./TaskDetails.jsx";
 import { DynamicCmp } from "../DynamicCmps/DynamicCmp.jsx";
 import { utilService } from '../../services/utils.service.js'
 import {
@@ -22,13 +14,11 @@ import {
   setTaskModal,
 } from "../../store/board.action.js";
 
-
-
 class _TaskPreview extends React.Component {
   state = {
     // isModalTaskOpen: false,
-
   };
+
   taskTitleInput = React.createRef();
   openModal = (taskId) => {
     const activeModal = { cmpType: 'taskEdit', taskId: taskId }
@@ -37,9 +27,7 @@ class _TaskPreview extends React.Component {
 
   onDeleteTask = () => {
     const { task, groupId, board } = this.props;
-    console.log('the board in cmp', board)
     const boardCopy = utilService.createDeepCopy(board)
-    console.log('the bord copy', boardCopy)
     this.props.deleteTask(task.id, groupId, boardCopy);
   };
 
@@ -79,7 +67,6 @@ class _TaskPreview extends React.Component {
           "createdAt": Date.now(),
         }
         saveTask(task, groupId, boardCopy, user, activity);
-        console.log('boardCopy:', boardCopy);
 
         break;
       case "member-picker":
@@ -175,7 +162,6 @@ class _TaskPreview extends React.Component {
         return {
           type: "text",
           info: {
-            // selectedStatus: task.status,
             text: task.text,
           },
         };
@@ -183,7 +169,6 @@ class _TaskPreview extends React.Component {
         return {
           type: "cost",
           info: {
-            // selectedStatus: task.status,
             cost: (task.cost === "Empty") ? "" : task.cost,
           },
         };
@@ -255,7 +240,6 @@ class _TaskPreview extends React.Component {
       "createdAt": Date.now(),
     }
     saveTask(task, groupId, boardCopy, user, activity);
-    // updateTitleContent(value, todo);
   };
 
   setFocus = () => {
@@ -280,7 +264,6 @@ class _TaskPreview extends React.Component {
             ev.stopPropagation()
             this.openModal(task.id)
           }}>
-            {/* {activeModal.taskId !== task.id && */}
             <IoMdArrowDropdown
               style={{
                 backgroundColor: "#C8E1FA",
@@ -288,17 +271,7 @@ class _TaskPreview extends React.Component {
                 borderRadius: "5px",
               }}
             />
-            {/* {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
-            <IoMdArrowDropdown
-              style={{
-                backgroundColor: "#C8E1FA",
-                color: "black",
-                borderRadius: "5px",
-                visibility: 'visible',
-                position:'sticky'
-              }}
-              className="active-arrow-down"
-            />} */}
+          
           </div>
 
           <div className="drag-icon">
@@ -307,7 +280,6 @@ class _TaskPreview extends React.Component {
           {activeModal.cmpType === 'taskEdit' && activeModal.taskId === task.id &&
             <div className="task-modal">
               <div className="flex modal-group-items" onClick={this.onDeleteTask}
-              // console.log('the board in render',board)
               >
                 <div>
                   <RiDeleteBinLine color="#323338c2" />{" "}

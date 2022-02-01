@@ -12,11 +12,9 @@ export function DateCmp({ cmpData, onUpdateTask, groupColor }) {
 
 
     const [dateRange, setDateRange] = useState([userStartDate, userEndDate]);
-    // console.log('the date range',dateRange);
     let [remainingTime, setRemainingTime] = useState(0);
     const [inputValue, setInputValue] = useState(dateRange);
     const [startDate, endDate] = dateRange;
-    // console.log('the start date',typeof startDate);
 
 
     useEffect(() => {
@@ -24,19 +22,16 @@ export function DateCmp({ cmpData, onUpdateTask, groupColor }) {
             if (!startDate || !endDate) return
             onUpdateTask(type, dateRange)
             remainingTime = (endDate.getUTCDate() + 1) - (startDate.getUTCDate() + 1)
-            // console.log('the ramaining',remainingTime);
             setRemainingTime(remainingTime)
         }
 
     }, [dateRange]);
 
     useEffect(() => {
-        //   console.log('the value in use effect',inputValue);
     }, [inputValue]);
 
     const replaceInputValue = () => {
-        // console.log('replaicing value!');
-        // console.log('the remaining in input finc',remainingTime);
+
         setInputValue(remainingTime)
     }
 

@@ -1,9 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { AiOutlineLike } from 'react-icons/ai'
-// import { BsReply, BsBell } from 'react-icons/bs'
-// import { HiOutlineClock } from 'react-icons/hi'
-// import { CgProfile } from 'react-icons/cg'
 import { utilService } from '../../services/utils.service'
 import { getImgUrl } from '../../services/cloudinary-service.js'
 import { saveTask } from "../../store/board.action";
@@ -12,8 +8,6 @@ export class _TaskFiles extends React.Component {
     state = {
         imageUrl: ""
     }
-
-
 
     uploadImg = async (ev) => {
         const { task, board, groupId, saveTask } = this.props
@@ -31,9 +25,6 @@ export class _TaskFiles extends React.Component {
         }
         try {
             const url = await getImgUrl(ev)
-            console.log('url:', url);
-            console.log('task:', task);
-            // this.setState({ imageUrl: url })
             if (!task.files) {
                 task.files = [{
                     byMember: user,
@@ -62,8 +53,6 @@ export class _TaskFiles extends React.Component {
     }
     render() {
         const { task } = this.props
-        console.log('task:', task);
-
         return (
             <section className="task-files">
                 <section>

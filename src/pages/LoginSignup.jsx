@@ -6,8 +6,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -20,22 +18,12 @@ import { login, signup } from '../store/user.action.js';
 import {utilService} from '../services/utils.service.js'
 
 const theme = createTheme();
-// console.log('theme', theme);
 
 class _LoginSignup extends React.Component {
     state = {
         isSignup: false,
         isSigninInProgress:""
     };
-
-    // clearState = () => {
-    //     const clearTemplate = {
-    //         credentials: userService.getEmptyUser(),
-    //         isSignup: false
-    //     }
-    //     this.setState(clearTemplate)
-    // }
-
 
     toggleSignup = () => {
         this.setState({ isSignup: !this.state.isSignup })
@@ -57,7 +45,6 @@ class _LoginSignup extends React.Component {
             };
             if (!username.username || !username.password) return;
             const user = await this.props.login(username)
-            console.log('user in login',user);
             { user && this.props.history.push('/2day/board'); }
 
         } else {
@@ -65,7 +52,6 @@ class _LoginSignup extends React.Component {
             if (!user.fullname.includes(' ')) return
             user.acronyms = utilService.getUserAcronyms(user)
             user.userColor = utilService.getNiceRandomColor()
-            // console.log('the user after additions',user);
             this.props.signup(user)
             this.props.history.push('/2day/board');
         }

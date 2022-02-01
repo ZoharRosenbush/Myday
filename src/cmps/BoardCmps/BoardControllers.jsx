@@ -113,7 +113,6 @@ class _BoardControllers extends React.Component {
     const { onAddGroup, activeModal } = this.props;
     const { isSearchInputShown, filterBy } = this.state;
     const { board } = this.props
-    // console.log('active modal in filter',activeModal)
 
     return (
       <div>
