@@ -5,7 +5,7 @@ import { MiddlePage } from "./MiddlePage.jsx";
 import { UserMsg } from "../cmps/UserMsg/UserMsg.jsx";
 import { BoardNav } from "../cmps/NavCmps/BoardNav.jsx";
 import { MainNav } from "../cmps/NavCmps/MainNav.jsx";
-import { addBoard } from '../store/board.action.js'
+import { addBoard, setBoardNav } from '../store/board.action.js'
 
 class _BoardApp extends React.Component {
     loaderCSS = {
@@ -14,7 +14,8 @@ class _BoardApp extends React.Component {
     }
 
     state = {
-        isTimeOut: false
+        isTimeOut: false,
+        isBoardAdded: false,
     }
     timeoutId;
 
@@ -26,9 +27,13 @@ class _BoardApp extends React.Component {
         if (this.timeoutId) clearTimeout(this.timeoutId)
     }
 
-    onAddBoard = () => {
+    onAddNewBoard = () => {
         this.props.addBoard()
+        this.props.setBoardNav(true)
+        this.setState((prevState) => ({ ...prevState, isBoardAdded: true }))
     }
+
+
 
     hideLoader = () => {
         this.timeoutId = setTimeout(() => {
@@ -39,16 +44,17 @@ class _BoardApp extends React.Component {
 
     render() {
         const { isTimeOut } = this.state
-        const { boards, board, user } = this.props
+        const { boards, board, user,isBoardNavOpen } = this.props
+        console.log('isBoardNavOpen',isBoardNavOpen);
         const bgColor = user ? user.userColor : "lightgray";
         return (
             <section className="app-layout">
                 <MainNav />
-                <BoardNav />
+                <BoardNav isReopened={this.state.isBoardAdded} />
                 {!boards.length && !isTimeOut && <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />}
-                {!boards.length && isTimeOut && <MiddlePage user={user} bgColor={bgColor} onAddBoard={this.onAddBoard}/>}
+                {!boards.length && isTimeOut && <MiddlePage user={user} bgColor={bgColor} onAddNewBoard={this.onAddNewBoard} isBoardNavOpen={isBoardNavOpen} />}
                 {boards.length && !isTimeOut && <BeatLoader loading size={34} css={this.loaderCSS} color={"#ff3d57"} />}
-                {boards.length && isTimeOut && <MiddlePage user={user} bgColor={bgColor} onAddBoard={this.onAddBoard}/>}
+                {boards.length && isTimeOut && <MiddlePage user={user} bgColor={bgColor} onAddNewBoard={this.onAddNewBoard}isBoardNavOpen={isBoardNavOpen} />}
                 <UserMsg />
             </section>
 
@@ -61,10 +67,12 @@ function mapStateToProps({ boardModule, userModule }) {
         boards: boardModule.boards,
         board: boardModule.board,
         user: userModule.user,
+        isBoardNavOpen: boardModule.isBoardNavOpen
     };
 }
 const mapDispatchToProps = {
-    addBoard
+    addBoard,
+    setBoardNav
 
 };
 
