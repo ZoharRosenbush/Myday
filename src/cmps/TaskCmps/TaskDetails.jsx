@@ -30,7 +30,6 @@ export class _TaskDetails extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.board !== this.props.board) {
-            console.log('componentDidUpdate in task details')
             this.loadTask()
         }
     }

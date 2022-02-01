@@ -223,12 +223,12 @@ export function saveTask(taskToSave, groupId, boardToSave, user, activity, comme
   if (activity) {
     activity.id = utilService.makeId()
     activity.byMember = user
-    taskToSave.activities = [activity, ...taskToSave.activities]
+    taskToSave.activities = [activity, ...taskToSave.activities.slice(0, 5)]
   }
   if (comment) {
     comment.id = utilService.makeId()
     comment.byMember = user
-    taskToSave.comments = [comment, ...taskToSave.comments]
+    taskToSave.comments = [comment, ...taskToSave.comments.slice(0, 5)]
   }
 
   const groupIdx = boardToSave.groups.findIndex((group) => groupId === group.id);

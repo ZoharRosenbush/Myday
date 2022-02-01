@@ -54,9 +54,10 @@
   position: absolute;
   /* z-index: 10; */
   margin-top: 2.5em;
-  margin-left: 7.3em;
+
   height: 356px;
   z-index: 200;
+  margin-left: 7.3em;
 
   .filter-headline {
     display: flex;
@@ -68,8 +69,11 @@
       color: #98999c;
     }
   }
-
-  &>* {
+  .labels-filter {
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+  & > * {
     padding-top: 8px;
     color: #323338;
     font-size: rem(16px);
@@ -188,11 +192,23 @@
   .board-controllers {
     width: fit-content;
   }
-
-
+  .filter-modal {
+    width: 470px;
+    padding: 8px 17px 10px;
+    background-color: #fff;
+    margin-left: 0;
+    .labels-filter {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      flex-direction: row;
+    }
+  }
 }
 
 @media (min-width: 992px) {
+  .filter-modal {
+    margin-left: 13.3em;
+  }
   .board-controllers {
     flex-wrap: nowrap;
     margin-left: 0px;
