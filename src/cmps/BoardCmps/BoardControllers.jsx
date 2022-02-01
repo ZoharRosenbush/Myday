@@ -165,7 +165,7 @@ class _BoardControllers extends React.Component {
                     Clear all
                   </button>
                 </div>
-                <div className="flex">
+                <div className="flex labels-filter">
                   <div className="flex column-filter">
                     <span className="filterBy">Status</span>
                     <BoardFilterListCmp filterBy={filterBy} updateFilterBy={this.updateFilterBy} labels={"statuses"} field={"status"} />
