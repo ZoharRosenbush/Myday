@@ -45,17 +45,17 @@ class _MainNav extends React.Component {
           <AiOutlineBell
             color="white"
             size="23px"
-            style={{ marginLeft: "19px", cursor: "pointer" }}
+            style={{ marginLeft: "19px", cursor: "not-allowed" }}
           />
           <BsInbox
             color="white"
             size="23px"
-            style={{ marginLeft: "19px", cursor: "pointer" }}
+            style={{ marginLeft: "19px", cursor: "not-allowed" }}
           />
           <BsCalendar2Check
             color="white"
             size="23px"
-            style={{ marginLeft: "19px", cursor: "pointer" }}
+            style={{ marginLeft: "19px", cursor: "not-allowed" }}
           />
         </div>
         <div className="see-plans flex align-center justify-center">
@@ -73,22 +73,22 @@ class _MainNav extends React.Component {
           <HiOutlinePuzzle
             color="white"
             size="23px"
-            style={{ marginLeft: "19px", cursor: "pointer" }}
+            style={{ marginLeft: "19px", cursor: "not-allowed" }}
           />
           <RiUserAddLine
             color="white"
             size="23px"
-            style={{ marginLeft: "19px", cursor: "pointer" }}
+            style={{ marginLeft: "19px", cursor: "not-allowed" }}
           />
           <AiOutlineSearch
             color="white"
             size="23px"
-            style={{ marginLeft: "19px", cursor: "pointer" }}
+            style={{ marginLeft: "19px", cursor: "not-allowed" }}
           />
           <RiQuestionMark
             color="white"
             size="23px"
-            style={{ marginLeft: "19px", cursor: "pointer" }}
+            style={{ marginLeft: "19px", cursor: "not-allowed" }}
 
           />
           <div className="user-avatar ME" onClick={this.openUserModal} style={{ backgroundColor: bgColor}}>{(this.props.user) ? user.acronyms : <CgProfile style={{ fontSize:"45px", marginLeft:"-3px", marginTop:"-2px" }} />}</div>
@@ -96,9 +96,6 @@ class _MainNav extends React.Component {
             <div className="user-modal">
               <Link className="clean-link" to={'/login'}><p><CgLogIn style={{ marginRight: "6px", transform: "translateY(2.5px)" }} />Log in</p></Link>
               <p onClick={this.props.logout}><CgLogOut style={{ marginRight: "4px", transform: "translateY(2.5px)" }} /> Log out</p>
-
-
-
             </div>
           }
         </div>
