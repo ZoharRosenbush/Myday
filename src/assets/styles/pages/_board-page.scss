@@ -6,8 +6,7 @@
     grid-template-columns: 50px 1fr 50px;
     grid-template-rows: 20px 1fr;
     height: 100vh;
-    width: 100vw;
-    overflow-x: auto;
+    // overflow-x: auto;
     margin-left: -242px;
 
     >* {
@@ -32,6 +31,18 @@
         margin-right: 0px;
         margin-top: 22px;
     }
+
+    .hello-user{
+        justify-self: end;
+        padding: 0;
+        margin-top: 75px;
+        gap: 18px;
+        align-items: center;
+        
+        p{
+            margin: 0;
+        }
+    }
     
     .main-board-container{
         
@@ -48,7 +59,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 30px;
 
 
         }
@@ -91,18 +102,7 @@
                 }
             }}
             
-            .hello-user{
-                justify-self: end;
-                padding: 0;
-                margin-top: 75px;
-                padding-right: 60px;
-                gap: 18px;
-                align-items: center;
-                
-                p{
-                    margin: 0;
-                }
-            }
+         
 
             .board-page-avatar{
                 color: #fff;
@@ -138,8 +138,14 @@ section.board-page.preview{
                 font-size: rem(18px);
             }
 
+           
 
 
+
+        }
+
+        .hello-user{
+            margin-top: 55px;
         }
   
     }
@@ -150,7 +156,7 @@ section.board-page.preview{
 @media (min-width: 992px) {
     .board-page{
 
-        margin-left: -188px;
+        margin-left: -210px;
 
         .main-board-container{
             gap: 0px;
@@ -168,17 +174,18 @@ section.board-page.preview{
             .board-img-container {
                 height: 550px;
                 width: 533px;
-                margin-left: 95px;
+                margin-left: 80px;
             }
 
-            .middle-page-header{
-                .hello-user{
-                     padding-right: 60px;
-                }
-            }
+            
 
 
 
+
+        }
+
+        .hello-user{
+            margin-top: 75px;
         }
   
     }
