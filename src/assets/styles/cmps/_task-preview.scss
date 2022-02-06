@@ -13,7 +13,8 @@
     border-bottom: 1px solid #e6e9ef;
     background-color: #f5f6f8ed;
     box-shadow: 0 3px 4px -5px #484444;
-    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
     text-align: left;
     position: sticky;
     left: 0;
@@ -21,6 +22,8 @@
     .title-edit-container {
       position: sticky;
       left: 0;
+      min-width: 81%;
+      max-width: 81%;
     }
     .group-color {
       position: sticky;
@@ -97,9 +100,9 @@
   cursor: pointer;
   font-family: roboto-regular, helvetica, sans-serif;
   // position: sticky;
-  width: 95%;
-  padding-inline-start: 15px;
+  min-width: 15ch;
   max-width: 15ch;
+  padding-inline-start: 15px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -186,7 +189,8 @@
   .task-preview {
     .task-title-cell {
 
-      width: 390px;
+      min-width: 390px;
+      max-width: 390px;
     }
     .task-title-content {
       width: 390px;

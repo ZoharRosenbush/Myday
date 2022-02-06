@@ -1,4 +1,6 @@
 .date-picker-div{
+    justify-content: center;
+    align-items: center;
     background-color: #F5F6F8;
     min-width: 200px;
     .react-datepicker-wrapper{
@@ -21,3 +23,22 @@
     color: white;
     border: none;
 }
+
+.time-remaining{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 22px;
+    background-color: #333;
+    border-radius: 11px;
+    text-align: center;
+    color: white;
+    border: none;
+
+}
+
+// div.react-datepicker-wrapper {
+//     width: 150px;
+
+// }

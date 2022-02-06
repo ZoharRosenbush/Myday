@@ -67,7 +67,7 @@ async function removeBoard(boardId) {
   return removedBoardId
 }
 
-
+ 
 function addNewTask(taskTitle, activity) {
 
   return {
@@ -80,7 +80,7 @@ function addNewTask(taskTitle, activity) {
     type: "Empty",
     "cost": "Empty",
     activities: [activity],
-    timeline: ["Feb 01-22", "Feb 02-22"],
+    timeline: [],
     owner: [{
       "fullname": "Guest",
       "acronyms": "G",
@@ -112,7 +112,7 @@ function getNewGroup(user) {
         id: utilService.makeId(),
         txt: "Created new task"
       }],
-      timeline: ["Feb 01-22", "Feb 02-22"],
+      timeline: [],
       owner: [{
         "fullname": "Guest",
         "acronyms": "G",

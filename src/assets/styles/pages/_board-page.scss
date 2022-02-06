@@ -1,10 +1,13 @@
 
+
+
 .board-page{
     display: grid;
     grid-template-columns: 50px 1fr 50px;
     grid-template-rows: 20px 1fr;
     height: 100vh;
-    overflow-x: auto;
+    // overflow-x: auto;
+    margin-left: -242px;
 
     >* {
         grid-column: 2;
@@ -25,26 +28,46 @@
         color: white;
         border-radius: 32px;
         width: 196px;
-        margin-right: 34px;
+        margin-right: 0px;
         margin-top: 22px;
+    }
+
+    .hello-user{
+        justify-self: end;
+        padding: 0;
+        margin-top: 75px;
+        gap: 18px;
+        align-items: center;
+        
+        p{
+            margin: 0;
+        }
     }
     
     .main-board-container{
         
         display: flex;
         align-items: center;
+        flex-direction: column;
+        justify-content: center;
         height: 100%;
         gap: 50px;
-        justify-content: space-between;
+        justify-content: center;
         
-        // div{
-            //     margin-top: 125px;
-            // margin-left: 30px;
-            // }
+        .middle-page-header{
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+
+
+        }
             
             h1 {
                 font-family: Roboto;
-                font-size: rem(50px);
+                font-size: 2.125rem;
+                text-align: center;
                 padding: 0;
                 margin: 0;
             }
@@ -59,17 +82,18 @@
                 padding: 0;
                 margin: 0;
                 font-family: 'roboto-regular';
-                font-size: rem(18px);
+                font-size: 14px;
                 margin-top: 25px;
+                text-align: center;
             }
             
             
             
             
             .board-img-container {
-                height: 550px;
-                width: 533px;
-                margin-left: 119px;
+                height: 185px;
+                width: 270px;
+                margin-left: 0px;
                 
                 img {
                     height: 100%;
@@ -78,12 +102,7 @@
                 }
             }}
             
-            .hello-user{
-                justify-self: end;
-                margin: 0;
-                padding: 0;
-                margin-top: 25px;
-            }
+         
 
             .board-page-avatar{
                 color: #fff;
@@ -97,4 +116,71 @@
                 font-family: Arial, Helvetica, sans-serif;
                 margin: 10px 10px 23px 12px;
             }
+}
+
+section.board-page.preview{
+    margin-left: -25px;
+}
+
+@media (min-width: 640px) {
+
+    .board-page{
+
+        .main-board-container{
+
+            h1 {
+                font-size: rem(50px);
+            }
+
+            p {
+                font-size: rem(18px);
+            }
+
         }
+        .hello-user{
+            margin-top: 55px;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .board-page{
+
+        margin-left: -210px;
+
+        .main-board-container{
+            gap: 0px;
+
+            flex-direction: row;
+            
+            h1 {
+                font-size: rem(50px);
+            }
+
+            p {
+                font-size: rem(18px);
+            }
+
+            .board-img-container {
+                height: 550px;
+                width: 533px;
+                margin-left: 80px;
+            }
+
+            
+
+
+
+
+        }
+
+        .hello-user{
+            margin-top: 75px;
+        }
+  
+    }
+
+    section.board-page.preview {
+        margin-left: 0px;
+    }
+}

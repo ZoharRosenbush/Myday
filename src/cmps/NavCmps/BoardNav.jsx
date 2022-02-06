@@ -33,6 +33,15 @@ export class _BoardNav extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.isReopened !== this.props.isReopened) {
+      this.setState({ isBoardNavOpen: true })
+    }
+
+  }
+
+
+
   onToggleBoardNav = () => {
     const { isBoardNavOpen } = this.state
     this.setState({ isBoardNavOpen: !isBoardNavOpen }, () => {
