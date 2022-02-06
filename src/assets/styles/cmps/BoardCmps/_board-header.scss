@@ -120,17 +120,16 @@ section.board-header {
     row-gap: 5px;
     align-items: center;
 
-    .dots-icon {
-      grid-area: more;
-
-    }
-
-    .invite {
-      grid-area: invite;
-    }
-
-    .activity {
-      grid-area: activity;
+    .icon-btn-container.dots-icon {
+      button{
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        cursor: not-allowed;
+      }
     }
 
     .last-seen-members {

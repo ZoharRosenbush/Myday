@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { BsPersonPlus } from "react-icons/bs";
 import { BsThreeDots } from "react-icons/bs";
@@ -9,25 +10,29 @@ import { MainDashboardCmp } from "./MainDashboardCmp.jsx";
 
 
 import { BoardControllers } from "./BoardControllers.jsx";
-import { addGroup, updateBoardTitle,saveBoard } from "../../store/board.action.js";
-import {utilService} from '../../services/utils.service.js'
+import { addGroup, updateBoardTitle, saveBoard } from "../../store/board.action.js";
+import { utilService } from '../../services/utils.service.js'
 
 
-export function _BoardHeader({ board,user, saveBoard, updateBoardTitle, addGroup}) {
+
+export function _BoardHeader({ board, user, saveBoard, updateBoardTitle, addGroup }) {
+
+  const [isDescShown, toggleDesc] = useState(true);
+
 
   const boardCopy = utilService.createDeepCopy(board)
 
   function onAddGroup() {
-        if (!user) {
-            user = {
-                "fullname": "Guest",
-                "acronyms": "G",
-                "_id": utilService.makeId(),
-                "username": "guest",
-                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
-                "userColor": "transparent"
-            }
-        }
+    if (!user) {
+      user = {
+        "fullname": "Guest",
+        "acronyms": "G",
+        "_id": utilService.makeId(),
+        "username": "guest",
+        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+        "userColor": "transparent"
+      }
+    }
     addGroup(boardCopy, user);
   }
 
@@ -59,7 +64,7 @@ export function _BoardHeader({ board,user, saveBoard, updateBoardTitle, addGroup
               >
                 {board.title}
               </h1>
-              <button className="icon-btn-container"><AiFillInfoCircle color="#676879" /></button>
+              <button className="icon-btn-container" onClick={() => { toggleDesc(!isDescShown) }}><AiFillInfoCircle color="#676879" /></button>
               <button className="icon-btn-container"><AiOutlineStar color="#676879" /></button>
             </div>
 
@@ -68,7 +73,7 @@ export function _BoardHeader({ board,user, saveBoard, updateBoardTitle, addGroup
                 <p>Last seen</p>
                 {board.members &&
                   board.members.map((member, idx) => {
-                    return <div key={idx} style={{backgroundColor: member.userColor}} className={member.acronyms}>{member.acronyms}</div>
+                    return <div key={idx} style={{ backgroundColor: member.userColor }} className={member.acronyms}>{member.acronyms}</div>
                   })}
               </div>
 
@@ -89,8 +94,8 @@ export function _BoardHeader({ board,user, saveBoard, updateBoardTitle, addGroup
               </div>
             </div>
           </div>
-          <div className="desc-container">
-            <p
+          {isDescShown &&<div className="desc-container">
+             <p
               className="board-description"
               contentEditable
               suppressContentEditableWarning={true}
@@ -99,8 +104,7 @@ export function _BoardHeader({ board,user, saveBoard, updateBoardTitle, addGroup
             >
               {board.description}
             </p>
-
-          </div>
+          </div>}
         </div>
       )
       }

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { AiOutlineClose } from 'react-icons/ai'
 import { utilService } from '../../services/utils.service'
 import { getImgUrl } from '../../services/cloudinary-service.js'
 import { saveTask } from "../../store/board.action";
@@ -50,7 +51,26 @@ export class _TaskFiles extends React.Component {
             console.log('err:', err);
 
         }
-
+    }
+    onRemoveFile = (id) => {
+        console.log('id:', id);
+        const { groupId, task, board, saveTask } = this.props
+        // const { task } = this.props
+        let { user } = this.props
+        if (!user) {
+            user = {
+                "fullname": "Guest",
+                "acronyms": "G",
+                "_id": utilService.makeId(),
+                "username": "guest",
+                "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
+                "userColor": "transparent"
+            }
+        }
+        const filteredFiles = task.files.filter((file) => file.id !== id)
+        task.files = filteredFiles
+        const taskToSave = { ...task }
+        saveTask(taskToSave, groupId, board, user)
 
     }
     render() {
@@ -66,6 +86,8 @@ export class _TaskFiles extends React.Component {
                         <section className="imgs-container flex">
                             {(!!task.files?.length) && task.files.map((file, idx) => {
                                 return <section key={idx} className="img-files-container flex">
+                                    <button onClick={() => this.onRemoveFile(file.id)}><AiOutlineClose size='15px' color="rgb(122 122 122)" /></button>
+
                                     <img src={file.url} alt="" ></img>
                                 </section>
                             })}

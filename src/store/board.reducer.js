@@ -21,6 +21,7 @@ const initialState = {
     member: []
   },
   search: "",
+  boardsSearch: ""
 };
 
 export function boardReducer(state = initialState, action) {
@@ -40,6 +41,10 @@ export function boardReducer(state = initialState, action) {
     case "SET_SEARCH":
       return {
         ...state, search: action.search
+      }
+    case "SET_BOARDS_SEARCH":
+      return {
+        ...state, boardsSearch: action.boardsSearch
       }
     case "SET_FILTER":
       return {

@@ -171,6 +171,15 @@
             position: relative;
           }
         }
+        button {
+          height: fit-content;
+          width: fit-content;
+          border-radius: 4px;
+          margin-top: 9px;
+          &:hover {
+            background-color: #e6e9ef;
+          }
+        }
         .header-container {
           align-items: center;
           // justify-content: space-around;

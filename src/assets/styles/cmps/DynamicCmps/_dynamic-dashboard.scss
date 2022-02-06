@@ -26,12 +26,29 @@
 }
 
 
-
-
 .dashboard-container-open-nav{
     margin-left: 15px;
     overflow-x: auto;
     width: 100vw;
+
+    section.board-header {
+        width: 100%;
+        height: 70px;
+        margin: 0;
+        margin-bottom: 130px;
+        position: sticky;
+        margin-left: 20px;
+        left: 0;
+        z-index: 200;
+    }
+    .dashboards-container {
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        grid-template-rows: repeat(3, autofit);
+        grid-column-gap: 50px;
+        grid-row-gap: 20px;
+        margin-left: 20px;
+    }
    
 }
 
