@@ -230,7 +230,7 @@ export function addTask(taskTitle, groupId, boardToSave, user, activity) {
 
 export function saveTask(taskToSave, groupId, boardToSave, user, activity, comment) {
 
-  console.log('taskToSave:', taskToSave);
+
 
   if (activity) {
     activity.id = utilService.makeId()

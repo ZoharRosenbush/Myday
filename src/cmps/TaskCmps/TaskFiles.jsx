@@ -67,13 +67,11 @@ export class _TaskFiles extends React.Component {
                 "userColor": "transparent"
             }
         }
-        const taskToSave = task.comments.filter((comment) => comment.id !== id)
-        console.log(' taskToSave:', taskToSave);
-
+        const filteredFiles = task.files.filter((file) => file.id !== id)
+        task.files = filteredFiles
+        const taskToSave = { ...task }
         saveTask(taskToSave, groupId, board, user)
-        // console.log('filteredComments:', filteredComments);
 
-        // return filteredComments
     }
     render() {
         const { task } = this.props

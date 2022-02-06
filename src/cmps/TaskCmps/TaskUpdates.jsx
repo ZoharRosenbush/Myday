@@ -43,7 +43,7 @@ class _TaskUpdates extends React.Component {
     onRemoveUpdate = (id) => {
         console.log('id:', id);
         const { groupId, task, board, saveTask } = this.props
-        // const { task } = this.props
+        console.log('task:', task);
         let { user } = this.props
         if (!user) {
             user = {
@@ -55,13 +55,10 @@ class _TaskUpdates extends React.Component {
                 "userColor": "transparent"
             }
         }
-        const taskToSave = task.comments.filter((comment) => comment.id !== id)
-        console.log(' taskToSave:', taskToSave);
-
-        saveTask(taskToSave, groupId, board, user, null, null)
-        // console.log('filteredComments:', filteredComments);
-
-        // return filteredComments
+        const filteredComments = task.comments.filter((comment) => comment.id !== id)
+        task.comments = filteredComments
+        const taskToSave = { ...task }
+        saveTask(taskToSave, groupId, board, user)
     }
     render() {
         const { task } = this.props

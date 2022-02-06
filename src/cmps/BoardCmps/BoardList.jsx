@@ -37,10 +37,8 @@ class _BoardList extends React.Component {
     if (boards.length === 1) return '/2day/board'
   }
   checkIfBoardSearched = (board) => {
-    console.log('board:', board);
 
     const { boardsSearch } = this.props;
-    console.log('boardsSearch:', boardsSearch);
     if (!boardsSearch) return true
     const boardText = boardsSearch && (board.title.toLowerCase().includes(boardsSearch.search.toLowerCase()))
     return boardText
