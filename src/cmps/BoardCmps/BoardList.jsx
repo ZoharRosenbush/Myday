@@ -36,14 +36,25 @@ class _BoardList extends React.Component {
     if (boards.length > 1) return `/2day/board/${boards[0]._id}`
     if (boards.length === 1) return '/2day/board'
   }
+  checkIfBoardSearched = (board) => {
+    console.log('board:', board);
+
+    const { boardsSearch } = this.props;
+    console.log('boardsSearch:', boardsSearch);
+    if (!boardsSearch) return true
+    const boardText = boardsSearch && (board.title.toLowerCase().includes(boardsSearch.search.toLowerCase()))
+    return boardText
+
+  }
   render() {
     const { boards, board, activeModal } = this.props
     const { isModalToDelete } = this.state
     return (
       <section className="sidebar-nav-list">
         {boards.map((board, idx) => {
+          const isBoardSearched = this.checkIfBoardSearched(board)
           return (
-            <div className="flex" key={idx}>
+            isBoardSearched && <div className="flex" key={idx}>
               <div className={`board-title flex ${this.setClassName(board._id)}`}>
                 <Link className="clean-link" to={`/2day/board/${board._id}`} >
                   {/* <RiBookLine size="19" style={{ transform: 'rotate(90px)' }} /> */}
@@ -104,7 +115,9 @@ class _BoardList extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
-    activeModal: boardModule.activeModal
+    activeModal: boardModule.activeModal,
+    boardsSearch: boardModule.boardsSearch
+
   };
 }
 const mapDispatchToProps = {

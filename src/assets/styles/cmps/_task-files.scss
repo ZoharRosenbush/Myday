@@ -39,6 +39,7 @@
 
     .img-files-container {
       flex-wrap: wrap;
+      flex-direction: row-reverse;
       width: 250px;
       height: 145px;
       border: 0.5px solid #bfbebe;
@@ -50,6 +51,14 @@
         width: auto;
         height: auto;
         margin: auto;
+      }
+      button {
+        width: fit-content;
+        height: fit-content;
+        border-radius: 4px;
+        &:hover {
+          background-color: #e6e9ef;
+        }
       }
     }
   }
