@@ -83,7 +83,7 @@ export function _BoardHeader({ board, user, saveBoard, updateBoardTitle, addGrou
                 {board.title}
               </h1>
               <button className="icon-btn-container" onClick={() => { toggleDesc(!isDescShown) }}><AiFillInfoCircle color="#676879" /></button>
-              <button className="icon-btn-container"><AiOutlineStar color="#676879" /></button>
+              <button className="icon-btn-container star"><AiOutlineStar color="#676879" /></button>
             </div>
 
             <div className="board-header-btns flex">

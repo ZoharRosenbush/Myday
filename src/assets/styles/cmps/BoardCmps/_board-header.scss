@@ -65,6 +65,17 @@ section.board-header {
       display: flex;
       gap: 6px; ///MAYBE CHANGE IN DESKTOP
 
+      .icon-btn-container.star{
+        cursor: not-allowed;
+
+        button{
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+
+      }
+
       .board-header-title {
         font-size: 1.5rem;
         margin: 0;
@@ -141,13 +152,31 @@ section.board-header {
         cursor: not-allowed;
       }
     }
+    
+
+    .icon-btn-container.activity{
+
+      cursor: not-allowed;
+
+      button{
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
+
+    }
 
     .last-seen-members {
       grid-area: last-seen;
       justify-content: center;
-      cursor: pointer;
+      cursor:not-allowed;
       align-items: center;
       height: 100%;
+      button{
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
 
       p {
         font-size: em(14px);
@@ -260,6 +289,13 @@ section.board-header {
       div.icon-btn-container.plus-board {
         min-width: 130px;
         max-width: 130px;
+        cursor: not-allowed;
+
+        button{
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
       }
 
 
