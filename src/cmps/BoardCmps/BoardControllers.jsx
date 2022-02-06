@@ -130,8 +130,8 @@ class _BoardControllers extends React.Component {
                     ref={this.searchInput}
                     onBlur={this.hideSearchInput}
                     onChange={this.handleChange}
+                    value={this.props.search.search}
                   >
-
                   </input>
                 </form>
               </div>}
@@ -224,6 +224,7 @@ class _BoardControllers extends React.Component {
 function mapStateToProps({ boardModule }) {
   return {
     board: boardModule.board,
+    search: boardModule.search,
     activeModal: boardModule.activeModal,
   };
 }

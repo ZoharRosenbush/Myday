@@ -118,6 +118,17 @@ export function updateSearch(search) {
 
   }
 }
+export function updateBoardsSearch(search) {
+  return (dispatch) => {
+    dispatch({
+      type: "SET_BOARDS_SEARCH",
+      boardsSearch: {
+        search
+      }
+    })
+
+  }
+}
 
 export function setBoardNav(isBoardNavOpen) {
   return (dispatch) => {
@@ -218,6 +229,7 @@ export function addTask(taskTitle, groupId, boardToSave, user, activity) {
 }
 
 export function saveTask(taskToSave, groupId, boardToSave, user, activity, comment) {
+
 
 
   if (activity) {
