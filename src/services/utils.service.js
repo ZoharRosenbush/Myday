@@ -30,16 +30,24 @@ function getUserAcronyms(user) {
 }
 
 function getNiceRandomColor() {
-  let red = "#E2445C";
-  let orange = "#FDAB3D";
-  let green = "#00C875";
-  let blue = "#0073ea";
-  let pink = "#FAA1F1";
-  let darkblue = "#292f4c";
+  const red = "#E2445C";
+  const orange = "#FDAB3D";
+  const green = "#00C875";
+  const blue = "#0073ea";
+  const pink = "#FAA1F1";
+  const darkblue = "#292f4c";
+  const purple = '#8A39E1';
+  const magenta = '#FA4EAB'
+  const lightBlue = '#9AD0EC'
+  const markerPurple ='#5800FF'
+  const yellow = '#FFC900'
+  const navyBlue = '#2F3A8F'
+  const lightGreen = '#B4FE98'
+  const lightPink = '#F6A9A9'
 
-  let niceColors = [darkblue, pink, blue, green, orange, red];
-  let drawnNum = _getRandomIntInclusive(0, niceColors.length - 1);
-  let randColor = niceColors[drawnNum];
+  const niceColors = [darkblue, pink, blue, green, orange, red,purple,magenta,lightBlue,markerPurple,yellow,navyBlue,lightGreen,lightPink];
+  const drawnNum = _getRandomIntInclusive(0, niceColors.length - 1);
+  const randColor = niceColors[drawnNum];
   return randColor;
 }
 

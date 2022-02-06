@@ -162,7 +162,6 @@ export class _GroupPreview extends React.Component {
         "acronyms": "G",
         "_id": utilService.makeId(),
         "username": "guest",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
         "userColor": "transparent"
       }
     }
@@ -191,8 +190,6 @@ export class _GroupPreview extends React.Component {
 
   onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    const { group, board, saveBoard, goToTaskDetails } = this.props;
-
     if (!destination) return;
     if (
       destination.index === source.index
@@ -293,7 +290,7 @@ export class _GroupPreview extends React.Component {
               <span>Are you sure you want to delete?</span>
             </div>
             <div className="flex yes-no">
-              <button onClick={this.toggleModalDelete} className="no-ans-delete">
+              <button onClick={this.toggelModalDelete} className="no-ans-delete">
                 <HiOutlineX color="white" />
               </button>
               <button onClick={this.onDeleteGroup} className="yes-ans-delete">

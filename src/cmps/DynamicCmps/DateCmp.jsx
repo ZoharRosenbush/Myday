@@ -14,12 +14,14 @@ export function DateCmp({ cmpData, onUpdateTask }) {
     const [dateRange, setDateRange] = useState([userStartDate, userEndDate]);
     const [startDate, endDate] = dateRange;
     const [isRemainingTimeShown, toggleTimeline] = useState(false);
+  
 
 
     useEffect(() => {
         if (startDate !== userStartDate && endDate !== userEndDate) {
             if (!startDate || !endDate) return
             onUpdateTask(type, dateRange)
+            toggleTimeline(false)
             // remainingTime = (endDate.getUTCDate() + 1) - (startDate.getUTCDate() + 1)
         }
 
@@ -29,7 +31,6 @@ export function DateCmp({ cmpData, onUpdateTask }) {
     }, [isRemainingTimeShown]);
 
     const getRemainingTime = () => {
-        const currDate = Date.now()
         const remainingTime = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24))
         if (!endDate) return 'Set dates'
         if (!remainingTime) {
@@ -43,8 +44,7 @@ export function DateCmp({ cmpData, onUpdateTask }) {
         <div className="date-picker-div flex"
             onMouseEnter={() => { toggleTimeline(true) }}
             onMouseLeave={() => { toggleTimeline(false) }}
-            onClick={() => { toggleTimeline(false)}}
-            >
+        >
             <style>
                 {`.date-picker input {
             width: 90%;
@@ -71,7 +71,7 @@ export function DateCmp({ cmpData, onUpdateTask }) {
                     isClearable={false}
                 />
             }
-            {startDate && endDate &&  !isRemainingTimeShown && <DatePicker
+            {startDate && endDate && !isRemainingTimeShown && <DatePicker
                 selectsRange={true}
                 startDate={startDate}
                 endDate={endDate}
@@ -82,10 +82,22 @@ export function DateCmp({ cmpData, onUpdateTask }) {
                 wrapperClassName="date-picker"
                 isClearable={false}
             />}
-            {isRemainingTimeShown && <div className="time-remaining">{getRemainingTime()}</div>}
-           
+            {isRemainingTimeShown && <div className="time-remaining">
+                    <DatePicker
+                        selectsRange={true}
+                        startDate={startDate}
+                        endDate={endDate}
+                        dateFormat="dd/MM/yyyy"
+                        value={getRemainingTime()}
+                        onChange={(update) => {
+                            setDateRange(update);
+                        }}
+                        wrapperClassName="date-picker"
+                        isClearable={false}
+                    />
+            </div>}
         </div>
 
-    );
+    )
 
 }

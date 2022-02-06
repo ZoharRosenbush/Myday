@@ -46,8 +46,9 @@ class _DynamicDashboard extends React.Component {
             <BoardNav />
             <section className={dashboardContainerClassName}>
                 <BoardHeader
-                    board={this.props.board} user={this.props.user}
+                    board={this.props.board} 
                 />
+                {/* user={this.props.user} */}
                 {/* <section className="board-layout"> */}
 
                 <div className="counts-container">
@@ -92,7 +93,7 @@ class _DynamicDashboard extends React.Component {
 function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.board,
-        user: userModule.user,
+        // user: userModule.user,
         isBoardNavOpen: boardModule.isBoardNavOpen
 
 

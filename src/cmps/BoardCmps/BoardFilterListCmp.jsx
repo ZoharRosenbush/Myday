@@ -83,8 +83,7 @@ class _BoardFilterListCmp extends React.Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        board: boardModule.board,
-        currFilterBy: boardModule.currFilterBy
+        board: boardModule.board
     };
 }
 const mapDispatchToProps = {

@@ -16,7 +16,7 @@ export function Home() {
 
       </header>
       <div className="main-home-page-container">
-        <div>
+        <div className="homepage-content">
 
         <h1>
           A new way to manage 
@@ -24,7 +24,7 @@ export function Home() {
         <h1>
         your <span>work</span>
         </h1>
-        <p>Plan, Organize, Track. In One Visual collaborative space.    </p>
+        <p>Plan, organize, track. In one visual collaborative space.    </p>
       <Link className="clean-link link-container" to="/2day/board">
         <button className="start-btn">Quick Start</button>
       </Link>

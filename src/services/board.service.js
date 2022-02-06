@@ -86,7 +86,6 @@ function addNewTask(taskTitle, activity) {
       "acronyms": "G",
       "_id": utilService.makeId(),
       "username": "guest",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
       "userColor": "transparent"
     }],
     comments: [],
@@ -118,7 +117,6 @@ function getNewGroup(user) {
         "acronyms": "G",
         "_id": utilService.makeId(),
         "username": "guest",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
         "userColor": "transparent"
       }],
       comments: [],
@@ -136,7 +134,6 @@ function getNewBoard(user) {
       "acronyms": "G",
       "_id": utilService.makeId(),
       "username": "guest",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
       "userColor": "transparent"
     }
   }
@@ -158,7 +155,6 @@ function getNewBoard(user) {
       "acronyms": "LS",
       "fullname": "Lee Segal",
       "username": "Lee Segal",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
       "userColor": "#fcc4f7"
     },
     "lastSeen": [{
@@ -166,7 +162,6 @@ function getNewBoard(user) {
       "acronyms": "LS",
       "fullname": "Lee Segal",
       "username": "Lee Segal",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
       "userColor": "#fcc4f7"
     },
     {
@@ -174,7 +169,6 @@ function getNewBoard(user) {
       "acronyms": "ME",
       "fullname": "May Elgarat",
       "username": "May Elgarat",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
       "userColor": "#00c875"
     },
     {
@@ -182,7 +176,6 @@ function getNewBoard(user) {
       "acronyms": "ZR",
       "fullname": "Zohar Rosenbush",
       "username": "Zohar Rosenbush",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
       "userColor": "#E2445C"
     }
     ],
@@ -241,7 +234,6 @@ function getNewBoard(user) {
       "acronyms": "LS",
       "fullname": "Lee Segal",
       "username": "Lee Segal",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968393/Ann_Lee_e6tybh.jpg",
       "userColor": "#fcc4f7"
     },
     {
@@ -249,7 +241,6 @@ function getNewBoard(user) {
       "acronyms": "ME",
       "fullname": "May Elgarat",
       "username": "May Elgarat",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
       "userColor": "#00c875"
 
     },
@@ -258,7 +249,6 @@ function getNewBoard(user) {
       "acronyms": "ZR",
       "fullname": "Zohar Rosenbush",
       "username": "Zohar Rosenbush",
-      "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968384/Lora_Turner_gqzvpz.jpg",
       "userColor": "#e2445c"
     }
     ],
@@ -342,14 +332,12 @@ function getNewBoard(user) {
           id: utilService.makeId(),
           txt: "Created new task"
         }],
-        timeline: ["Feb 01-22", "Feb 02-22"],
+        timeline: [],
         owner: [{
           "fullname": "Guest",
           "acronyms": "G",
-
           "_id": utilService.makeId(),
           "username": "guest",
-          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
           "userColor": "transparent"
         }],
         comments: [],
@@ -376,14 +364,13 @@ function getNewBoard(user) {
           id: utilService.makeId(),
           txt: "Created new task"
         }],
-        timeline: ["Feb 01-22", "Feb 02-22"],
+        timeline: [],
         owner: [{
           "fullname": "Guest",
           "acronyms": "G",
 
           "_id": utilService.makeId(),
           "username": "guest",
-          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
           "userColor": "transparent"
         },],
         comments: [],
@@ -410,14 +397,13 @@ function getNewBoard(user) {
           id: utilService.makeId(),
           txt: "Created new task"
         }],
-        timeline: ["Feb 01-22", "Feb 02-22"],
+        timeline: [],
         owner: [{
           "fullname": "Guest",
           "acronyms": "G",
 
           "_id": utilService.makeId(),
           "username": "guest",
-          "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
           "userColor": "transparent"
         },],
         comments: [],

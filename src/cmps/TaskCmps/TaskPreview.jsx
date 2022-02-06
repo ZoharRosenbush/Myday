@@ -46,7 +46,6 @@ class _TaskPreview extends React.Component {
         "acronyms": "G",
         "_id": utilService.makeId(),
         "username": "guest",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
         "userColor": "transparent"
       }
     }
@@ -84,7 +83,6 @@ class _TaskPreview extends React.Component {
               "acronyms": "G",
               "_id": utilService.makeId(),
               "username": "guest",
-              "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
               "userColor": "transparent"
             })
 
@@ -228,7 +226,6 @@ class _TaskPreview extends React.Component {
         "acronyms": "G",
         "_id": utilService.makeId(),
         "username": "guest",
-        "imgUrl": "https://res.cloudinary.com/dejo279fn/image/upload/v1642968389/Henry_Gold_kf3jfz.jpg",
         "userColor": "transparent"
       }
     }

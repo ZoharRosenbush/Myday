@@ -21,5 +21,3 @@ export function ColorInput({ onUpdateGroupColor }) {
         </div>
     )
 }
-
-// '#C84B31'

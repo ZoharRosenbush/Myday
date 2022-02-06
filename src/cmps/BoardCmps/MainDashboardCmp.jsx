@@ -49,13 +49,9 @@ class _MainDashboardCmp extends React.Component {
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.board,
-        // currFilterBy: boardModule.currFilterBy
     };
 }
 const mapDispatchToProps = {
-    //   loadBoard,
-    //   updateFilter,
-    //   updateSearch
 };
 
 export const MainDashboardCmp = connect(

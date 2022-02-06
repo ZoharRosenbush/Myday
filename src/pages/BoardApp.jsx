@@ -44,8 +44,8 @@ class _BoardApp extends React.Component {
 
     render() {
         const { isTimeOut } = this.state
-        const { boards, board, user,isBoardNavOpen } = this.props
-        console.log('isBoardNavOpen',isBoardNavOpen);
+        const { boards, user,isBoardNavOpen } = this.props
+        // console.log('isBoardNavOpen',isBoardNavOpen);
         const bgColor = user ? user.userColor : "lightgray";
         return (
             <section className="app-layout">
@@ -65,7 +65,6 @@ class _BoardApp extends React.Component {
 function mapStateToProps({ boardModule, userModule }) {
     return {
         boards: boardModule.boards,
-        board: boardModule.board,
         user: userModule.user,
         isBoardNavOpen: boardModule.isBoardNavOpen
     };

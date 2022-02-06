@@ -1,9 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { BsPersonCircle, BsPinAngle } from "react-icons/bs";
 import { CgSearch } from "react-icons/cg";
-import { BiSortAlt2, BiColorFill } from "react-icons/bi";
-import { FiFilter, FiEyeOff } from "react-icons/fi";
+import { FiFilter } from "react-icons/fi";
 import { BoardFilterListCmp } from './BoardFilterListCmp'
 import { loadBoard, updateFilter, updateSearch, setActiveModal } from '../../store/board.action.js'
 // import { IoColorFillOutline } from 'react-icons/io'

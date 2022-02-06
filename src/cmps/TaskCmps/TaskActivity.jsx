@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { HiOutlineClock } from 'react-icons/hi'
 import { CgProfile } from 'react-icons/cg'
 import { utilService } from '../../services/utils.service'
-function _TaskActivity({ board, task }) {
+function _TaskActivity({ task }) {
 
 
     return (
@@ -47,9 +47,8 @@ function _TaskActivity({ board, task }) {
 
 
 
-function mapStateToProps({ boardModule, userModule }) {
+function mapStateToProps({userModule }) {
     return {
-        board: boardModule.board,
         user: userModule.user,
     };
 }

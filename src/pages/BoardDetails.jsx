@@ -45,6 +45,7 @@ class _BoardDetails extends React.Component {
     document.removeEventListener("click", () => {
       this.props.setActiveModal(activeModal);
     });
+    socketService.terminate()
   }
 
   onDragEnd = ({ type, ...result }) => {
@@ -97,7 +98,8 @@ class _BoardDetails extends React.Component {
         <BoardNav />
         <Route path='/2day/board/:boardId/:groupId/:taskId' component={TaskDetails} />
         <section className={boardContainerClassName}>
-          <BoardHeader board={board} user={this.props.user} />
+          <BoardHeader board={board} />
+          {/* user={this.props.user} */}
           <DragDropContext onDragEnd={this.onDragEnd}>
             {board?.groups && (
               <Droppable
@@ -134,7 +136,7 @@ class _BoardDetails extends React.Component {
 function mapStateToProps({ boardModule, userModule }) {
   return {
     board: boardModule.board,
-    user: userModule.user,
+    // user: userModule.user,
     isBoardNavOpen: boardModule.isBoardNavOpen,
     activeModal: boardModule.activeModal
   }

@@ -43,6 +43,16 @@ section.board-header {
     &:hover {
       background-color: $grey;
     }
+
+    div.mini-modal{
+      z-index: 10;
+      position: absolute;
+      top: 72px;
+      background-color: black;
+      padding: 5px;
+      border-radius: 6px;
+      color: white;
+    }
   }
 
   .board-main-title {
@@ -190,11 +200,6 @@ section.board-header {
     padding: 5px 10px;
     font-size: 100%;
 
-
-
-    // &:hover {
-    //   border: 0.5px dashed #000;
-    // }
     &:focus-visible {
       outline: none;
     }
@@ -203,29 +208,37 @@ section.board-header {
   .board-header-top {
     color: #323338;
     margin: 12px 0px;
-    // border-bottom: 1px solid #e6e9ef;
+
   }
+
+  // div.main-screen .email-modal{
+  //   position: fixed;
+  //   top: 25vh;
+  //   left: 40vw;
+  //   height: 530px ;
+  //   width: 500px;
+  //   background-color: white;
+
+  //   input{
+  //     height: 35px;
+  //     width: 467px;
+  //   }
+
+  // }
 }
 
 
 
-/* **TABLET** */
-
-// @media (min-width: 450px){
-
-//   section.add-note{
-//       height: 50vh;
-//   }
-//   section.type-btns{
-//       width: fit-content;
-
-
-//   }
-
-// }
 
 @media (min-width: 992px) {
   section.board-header {
+
+
+    .icon-btn-container {
+      div.mini-modal{
+            top: 40px;
+      }
+    }
     .board-main-title {
       display: flex;
       justify-content: space-between;
@@ -251,6 +264,8 @@ section.board-header {
 
 
     }
+
+    
 
    
   }

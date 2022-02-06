@@ -15,14 +15,14 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { login, signup } from '../store/user.action.js';
-import {utilService} from '../services/utils.service.js'
+import { utilService } from '../services/utils.service.js'
 
 const theme = createTheme();
 
 class _LoginSignup extends React.Component {
     state = {
         isSignup: false,
-        isSigninInProgress:""
+        isSigninInProgress: ""
     };
 
     toggleSignup = () => {
@@ -45,7 +45,7 @@ class _LoginSignup extends React.Component {
             };
             if (!username.username || !username.password) return;
             const user = await this.props.login(username)
-            { user && this.props.history.push('/2day/board'); }
+            { user && this.props.history.push('/2day/board') }
 
         } else {
             if (!user.username || !user.password || !user.fullname) return;
@@ -57,7 +57,11 @@ class _LoginSignup extends React.Component {
         }
     }
 
- 
+    goToHomepage = () => {
+        this.props.history.push('/')
+    }
+
+
     // signIn = async () => {
     //     try {
     //       await GoogleSignin.hasPlayServices();
@@ -75,120 +79,122 @@ class _LoginSignup extends React.Component {
     //       }
     //     }
     //   };
-    
-    
+
+
     render() {
         return (
-        <section>
-{/* 
+            <section className="login-signup">
+                {/* 
             <GoogleSigninButton
               style={{ width: 192, height: 48 }}
               size={GoogleSigninButton.Size.Wide}
               color={GoogleSigninButton.Color.Dark}
               onPress={this.signIn}
               disabled={this.state.isSigninInProgress} /> */}
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    style={{
-                        marginTop: 8,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                    }}
-                    >
-                    <Avatar style={{ margin: 1, backgroundColor: "#9c27b0" }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        {this.state.isSignin ? "Sign in" : " Log in"}
-                    </Typography>
-                    <Box
-                        component="form"
-                        onSubmit={this.handleSubmit}
-                        noValidate
-                        style={{ marginTop: 1 }}
+                <ThemeProvider theme={theme}>
+                    <Container component="main" maxWidth="xs">
+                        <CssBaseline />
+                        <Box
+                            style={{
+                                marginTop: 8,
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                            }}
                         >
-                        {!this.state.isSignup && (
-                            <React.Fragment>
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="username"
-                                    label="User name"
-                                    name="username"
-                                    // autoComplete="email"
-                                    autoFocus
-                                    />
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    />
-                            </React.Fragment>
-                        )}
-                        {this.state.isSignup &&
-                            <React.Fragment>
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="fullname"
-                                    label="Full name"
-                                    name="fullname"
-                                    // autoComplete="email"
-                                    autoFocus
-                                    />
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="username"
-                                    label="User name"
-                                    name="username"
-                                    // autoComplete="email"
-                                    
-                                    />
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    />
-                            </React.Fragment>
-                        }
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            style={{ marginTop: 3, marginBottom: 2 }}
-                            
+                            <Avatar style={{ margin: 1, backgroundColor: "#dd5240" }}>
+                                <LockOutlinedIcon />
+                            </Avatar>
+                            <Typography component="h1" variant="h5">
+                                {this.state.isSignup ? "Sign up" : " Log in"}
+                            </Typography>
+                            <Box
+                                component="form"
+                                onSubmit={this.handleSubmit}
+                                noValidate
+                                style={{ marginTop: 1 }}
                             >
-                            {this.state.isSignup ? "Sign up" : " Log In"}
-                        </Button>
-                        <Grid item xs>
-                            <Link variant="body2" onClick={this.toggleSignup}>
-                                {this.state.isSignup ? "Already have an account? Log in" : "Dont have an account? Sign up"}
-                            </Link>
-                        </Grid>
-                    </Box>
-                </Box>
-            </Container>
-        </ThemeProvider>
-                            </section>
-    )
-}
+                                {!this.state.isSignup && (
+                                    <React.Fragment>
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="username"
+                                            label="User name"
+                                            name="username"
+                                            // autoComplete="email"
+                                            autoFocus
+                                        />
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            name="password"
+                                            label="Password"
+                                            type="password"
+                                            id="password"
+                                            autoComplete="current-password"
+                                        />
+                                    </React.Fragment>
+                                )}
+                                {this.state.isSignup &&
+                                    <React.Fragment>
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="fullname"
+                                            label="Full name"
+                                            name="fullname"
+                                            // autoComplete="email"
+                                            autoFocus
+                                        />
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="username"
+                                            label="User name"
+                                            name="username"
+                                        // autoComplete="email"
+
+                                        />
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            name="password"
+                                            label="Password"
+                                            type="password"
+                                            id="password"
+                                            autoComplete="current-password"
+                                        />
+                                    </React.Fragment>
+                                }
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    style={{ marginTop: 3, marginBottom: 2 }}
+
+                                >
+                                    {this.state.isSignup ? "Sign up" : " Log In"}
+                                </Button>
+                                <div className="links-container flex">
+                                    <Grid item xs>
+                                        <Link variant="body2" onClick={this.toggleSignup}>
+                                            {this.state.isSignup ? "Already have an account? Log in" : "Dont have an account? Sign up"}
+                                        </Link>
+                                    </Grid>
+                                </div>
+                            </Box>
+                        </Box>
+                    </Container>
+                </ThemeProvider>
+            </section>
+        )
+    }
 }
 
 const mapDispatchToProps = {

@@ -12,7 +12,6 @@ import { CostCmp } from "./CostCmp.jsx";
 export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiveModal, activeModal }) {
 
   switch (cmpData.type) {
-
     case "status-picker":
       return <StatusCmp cmpData={cmpData} taskId={taskId} onUpdateTask={onUpdateTask} activeModal={activeModal} setActiveModal={setActiveModal} />;
     // return <StatusCmp info={info} onUpdate={onUpdate}  />;
@@ -32,18 +31,5 @@ export function DynamicCmp({ cmpData, onUpdateTask, groupColor, taskId, setActiv
       return <CostCmp taskId={taskId} cmpData={cmpData} onUpdateTask={onUpdateTask} />
 
     default:
-
-
-    // case 'member-picker':
-    //     return <MemberCmp task={task}/>
-
-    // case 'date-picker':
-    //     return <DateCmp task={task}/>
-
-    // case 'priority-picker':
-    //     return <PriorityCmp task={task}/>
-
-
   }
-  return <h1></h1>
 }
